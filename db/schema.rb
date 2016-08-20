@@ -10,21 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820085926) do
+ActiveRecord::Schema.define(version: 20160820090900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "infos", force: :cascade do |t|
-    t.string   "gender"
-    t.string   "experience"
-    t.string   "age"
-    t.string   "workplace_number"
-    t.string   "work_position"
+    t.string   "gender",           default: ""
+    t.string   "experience",       default: ""
+    t.string   "age",              default: ""
+    t.string   "workplace_number", default: ""
+    t.string   "work_position",    default: ""
     t.integer  "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["user_id"], name: "index_infos_on_user_id", using: :btree
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.string   "question",   default: ""
+    t.string   "answer",     default: ""
+    t.integer  "survey_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -54,5 +63,6 @@ ActiveRecord::Schema.define(version: 20160820085926) do
   end
 
   add_foreign_key "infos", "users"
+  add_foreign_key "responses", "surveys"
   add_foreign_key "surveys", "users"
 end

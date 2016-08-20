@@ -16,4 +16,9 @@ FactoryGirl.define do
 
   factory :survey do
   end 
+
+  factory :response do
+    question Faker::Lorem.sentence.gsub!('.', '?')
+    answer Faker::Lorem.sentence
+  end
 end
