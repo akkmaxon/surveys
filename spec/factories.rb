@@ -21,4 +21,9 @@ FactoryGirl.define do
     question Faker::Lorem.sentence.gsub!('.', '?')
     answer Faker::Lorem.sentence
   end
+
+  factory :question do
+    text Faker::Lorem.sentence.gsub!('.', '?')
+    audience 'management'
+  end
 end
