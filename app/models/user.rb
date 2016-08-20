@@ -8,6 +8,7 @@ class User < ApplicationRecord
     :trackable,
     :validatable
   has_one :info, dependent: :destroy
+  has_many :surveys, dependent: :destroy
 
   validates :login, presence: true
   validates :login, length: { maximum: 64 }

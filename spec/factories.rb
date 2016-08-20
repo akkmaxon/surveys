@@ -13,4 +13,7 @@ FactoryGirl.define do
     workplace_number 'second'
     work_position 'office worker'
   end
+
+  factory :survey do
+  end 
 end
