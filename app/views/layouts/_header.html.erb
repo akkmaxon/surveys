@@ -1,0 +1,37 @@
+<header class="navbar navbar-default">
+  <nav class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsed" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <%= link_to "Surveys", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapsed">
+      <ul class="nav navbar-nav">
+        <li class="active">
+	  <a href="#">Link</a>
+	</li>
+	<li class="dropdown">
+	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	    Dropdown <span class="caret"></span>
+	  </a>
+	  <ul class="dropdown-menu">
+	    <li><a href="#">One</a></li>
+	    <li><a href="#">Two</a></li>
+	    <li><a href="#">Three</a></li>
+	  </ul>
+	</li>
+      </ul>
+      <form class="navbar-form navbar-left">
+	<div class="form-group">
+	  <input type="text" class="form-control" placeholder="Search">
+	</div>
+	<button type="submit" class="btn btn-default">Find</button>
+      </form>
+      <p class="navbar-text navbar-right">Signed in as User</p>
+    </div>
+  </nav>
+</header>
