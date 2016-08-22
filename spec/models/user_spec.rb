@@ -3,10 +3,24 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'User creation' do
     let(:user) { FactoryGirl.build :user }
+    let(:other_user) { FactoryGirl.build :user }
 
     context 'success' do
       it 'default properties' do
 	user.save
+	expect(user).to be_valid
+      end
+
+      it 'email is not required' do
+	[nil, ''].each do |email|
+	  user.email = email
+	  expect(user).to be_valid
+	end
+      end
+
+      it 'email is not unique' do
+	other_user.email = user.email
+	other_user.save
 	expect(user).to be_valid
       end
     end
@@ -22,8 +36,9 @@ RSpec.describe User, type: :model do
 	expect(user).to be_invalid
       end
 
-      it 'with empty email' do
-	user.email = ''
+      it 'login must be unique' do
+	other_user.login = user.login
+	other_user.save
 	expect(user).to be_invalid
       end
 
