@@ -10,27 +10,29 @@
       <%= link_to 'Surveys', root_path, id: 'app-title', class: 'navbar-brand' %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
-      <ul class="nav navbar-nav">
-	<li class="<%= active_link('surveys', 'new') %>">
-	  <%= link_to 'New Survey', new_survey_path %>
-	</li>
-	<li class="<%= active_link('surveys', 'index') %>">
-	  <%= link_to 'All Surveys', surveys_path %>
-	</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-	<% if user_signed_in? %>
+      <% if user_signed_in? %>
+	<ul class="nav navbar-nav">
+	  <li class="<%= active_link('surveys', 'new') %>">
+	    <%= link_to 'New Survey', new_survey_path %>
+	  </li>
+	  <li class="<%= active_link('surveys', 'index') %>">
+	    <%= link_to 'All Surveys', surveys_path %>
+	  </li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
 	  <li><%= link_to "Signed in as #{current_user.login}", edit_info_path %></a></li>
 	  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
-	<% else %>
+	</ul>
+      <% else %>
+	<ul class="nav navbar-nav navbar-right">
 	  <li class="<%= active_link('registrations', 'new') %>">
 	    <%= link_to 'Sign up', new_user_registration_path %>
 	  </li>
 	  <li class="<%= active_link('sessions', 'new') %>">
 	    <%= link_to 'Sign in', new_user_session_path %>
 	  </li>
-	<% end %>
-      </ul>
+	</ul>
+      <% end %>
     </div>
   </nav>
 </header>
