@@ -34,3 +34,5 @@ group :test do
   gem 'database_cleaner'
   gem 'poltergeist'
 end
+
+gem 'rails_12factor', group: :production
