@@ -4,10 +4,12 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  protected
-
   def devise_sanitizer_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:login])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
+  end
+
+  def check_for_empty_info
+    redirect_to new_info_url if current_user.info.blank?
   end
 end

@@ -20,7 +20,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
-	  <li><%= link_to "Signed in as #{current_user.login}", edit_user_registration_path %></a></li>
+	  <li><%= link_to "Signed in as #{current_user.login}", edit_info_path %></a></li>
 	  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
 	<% else %>
 	  <li class="<%= active_link('registrations', 'new') %>">
