@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :check_for_empty_info, only: [:index, :show]
+  before_action :check_for_empty_info, only: [:index, :show, :new]
 
   def index
     @surveys = current_user.surveys
@@ -7,5 +7,8 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+  end
+
+  def new
   end
 end

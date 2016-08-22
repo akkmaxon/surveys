@@ -49,6 +49,18 @@ RSpec.describe SurveysController, type: :controller do
   end
 
   describe 'GET #new' do
+    let(:info) { FactoryGirl.create :info, user: user }
+
+    it 'successfully' do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'redirect to info#new' do
+      user.info = nil
+      get :new
+      expect(response).to redirect_to(:new_info)
+    end
   end
 
   describe 'POST #create' do

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe InfosController, type: :controller do
   let(:user) { FactoryGirl.create :user }
+  let!(:info) { FactoryGirl.create :info, user: user }
 
   before do
     sign_in user
@@ -10,9 +11,20 @@ RSpec.describe InfosController, type: :controller do
   describe 'POST #create' do
   end
 
-  describe 'GET #edit' do
-    let!(:info) { FactoryGirl.create :info, user: user }
+  describe 'GET #new' do
+    it 'successfully init @info' do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
 
+    it 'redirect to sign in' do
+      sign_out user
+      get :new
+      expect(response).to redirect_to(:new_user_session)
+    end
+  end
+
+  describe 'GET #edit' do
     it 'successfully init @info' do
       get :edit
       expect(response).to have_http_status(:success)

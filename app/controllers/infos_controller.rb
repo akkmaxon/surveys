@@ -1,5 +1,6 @@
 class InfosController < ApplicationController
   before_action :check_for_empty_info, only: [:edit]
+
   def new
   end
 
