@@ -11,31 +11,66 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :gender %>
-    <%= f.text_field :gender, class: 'form-control' %>
+    <h3>Укажите Ваш пол</h3>
+    <%= f.radio_button :gender, 'мужской', id: 'info_gender_male', checked: 'checked' %>
+    <%= f.label :gender_male, 'Мужской' %><br />
+    <%= f.radio_button :gender, 'женский', id: 'info_gender_female' %>
+    <%= f.label :gender_female, 'Женский' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :experience %>
-    <%= f.text_field :experience, class: 'form-control' %>
+    <h3>Сколько лет Вы работаете в данной компании?</h3>
+    <%= f.radio_button :experience, 'меньше 1 года', id: 'info_experience_1', checked: 'checked' %>
+    <%= f.label :experience_1, 'Меньше 1 года' %><br />
+    <%= f.radio_button :experience, 'от 1 года до 3х лет', id: 'info_experience_2' %>
+    <%= f.label :experience_2, 'От 1 года до 3х лет'%><br />
+    <%= f.radio_button :experience, 'от 3х до 5ти лет', id: 'info_experience_3' %>
+    <%= f.label :experience_3, 'От 3х до 5ти лет' %><br />
+    <%= f.radio_button :experience, 'более 5ти лет', id: 'info_experience_4' %>
+    <%= f.label :experience_4, 'Более 5ти лет' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :age %>
-    <%= f.text_field :age, class: 'form-control' %>
+    <h3>Ваш возраст</h3>
+    <%= f.radio_button :age, 'менее 25 лет', id: 'info_age_1', checked: 'checked' %>
+    <%= f.label :age_1, 'Менее 25 лет' %><br />
+    <%= f.radio_button :age, 'от 25 до 30 лет', id: 'info_age_2' %>
+    <%= f.label :age_2, 'От 25 до 30 лет' %><br />
+    <%= f.radio_button :age, 'от 30 до 40 лет', id: 'info_age_3' %>
+    <%= f.label :age_3, 'От 30 до 40 лет' %><br />
+    <%= f.radio_button :age, 'от 40 до 55 лет', id: 'info_age_4' %>
+    <%= f.label :age_4, 'От 40 до 55 лет' %><br />
+    <%= f.radio_button :age, 'более 55 лет', id: 'info_age_5' %>
+    <%= f.label :age_5, 'Более 55 лет' %><br />
   </div>
 
   <div class="form-group">
-    <%= f.label :workplace_number %>
-    <%= f.text_field :workplace_number, class: 'form-control' %>
+    <h3>Какое по счету это место работы для вас?</h3>
+    <%= f.radio_button :workplace_number, 'первое', id: 'info_workplace_number_1', checked: 'checked' %>
+    <%= f.label :workplace_number_1, 'Первое' %><br />
+    <%= f.radio_button :workplace_number, 'второе', id: 'info_workplace_number_2' %>
+    <%= f.label :workplace_number_2, 'Второе' %><br />
+    <%= f.radio_button :workplace_number, 'третье', id: 'info_workplace_number_3' %>
+    <%= f.label :workplace_number_3, 'Третье' %><br />
+    <%= f.radio_button :workplace_number, 'больше третьего', id: 'info_workplace_number_4' %>
+    <%= f.label :workplace_number_4, 'Уже и не помню(больше третьего)' %><br />
   </div>
 
   <div class="form-group">
-    <%= f.label :work_position %>
-    <%= f.text_field :work_position, class: 'form-control' %>
+    <h3>Какую должность Вы занимаете в компании?</h3>
+    <%= f.radio_button :work_position, 'рабочая должность', id: 'info_work_position_1', checked: 'checked' %>
+    <%= f.label :work_position_1, 'Рабочая должность' %><br />
+    <%= f.radio_button :work_position, 'производственный руководитель', id: 'info_work_position_2' %>
+    <%= f.label :work_position_2, 'Производственный руководитель' %><br />
+    <%= f.radio_button :work_position, 'работник офиса', id: 'info_work_position_3' %>
+    <%= f.label :work_position_3, 'Работник офиса' %><br />
+    <%= f.radio_button :work_position, 'руководитель отдела', id: 'info_work_position_4' %>
+    <%= f.label :work_position_4, 'Руководитель отдела' %><br />
+    <%= f.radio_button :work_position, 'топ-менеджер', id: 'info_work_position_5' %>
+    <%= f.label :work_position_5, 'Топ-менеджер' %><br />
   </div>
 
   <div class="actions">
-    <%= f.submit "Submit", class: 'btn btn-primary btn-lg btn-block' %>
+    <%= f.submit "Подтвердить", class: 'btn btn-primary btn-lg btn-block' %>
   </div>
 <% end %>
