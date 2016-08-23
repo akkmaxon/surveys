@@ -38,6 +38,11 @@ RSpec.describe Info, type: :model do
 	info.work_position = ''
 	expect(info).to be_invalid
       end
+
+      it 'company is empty' do
+	info.company = ''
+	expect(info).to be_invalid
+      end
     end
   end
 end

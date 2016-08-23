@@ -6,6 +6,7 @@ class Info < ApplicationRecord
     :age,
     :workplace_number,
     :work_position,
+    :company,
     presence: true
 
 end

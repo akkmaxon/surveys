@@ -35,7 +35,8 @@ class InfosController < ApplicationController
 				 :experience,
 				 :age,
 				 :workplace_number,
-				 :work_position)
+				 :work_position,
+				 :company)
   end
 
   def find_info

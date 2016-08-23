@@ -35,7 +35,8 @@ RSpec.describe InfosController, type: :controller do
 			 experience: "",
 			 age: "",
 			 workplace_number: "",
-			 work_position: "")
+			 work_position: "",
+			 company: "")
       post :create, params: { info: info_params }
       expect(response).to render_template(:new)
       expect(flash[:notice]).to be nil
@@ -81,7 +82,8 @@ RSpec.describe InfosController, type: :controller do
 			 experience: "",
 			 age: "",
 			 workplace_number: "",
-			 work_position: "")
+			 work_position: "",
+			 company: "")
       put :update, params: { info: info_params }
       expect(response).to render_template(:edit)
       expect(flash[:notice]).to be nil

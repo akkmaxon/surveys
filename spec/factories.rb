@@ -12,6 +12,7 @@ FactoryGirl.define do
     age 'from 25 to 30'
     workplace_number 'second'
     work_position 'office worker'
+    company 'Pepsi'
   end
 
   factory :survey do
