@@ -27,7 +27,7 @@ RSpec.describe InfosController, type: :controller do
     it 'successfully' do
       post :create, params: { info: info_params }
       expect(response).to redirect_to(:surveys) 
-      expect(flash[:notice]).to_not eq nil
+      expect(flash[:notice]).to_not be nil
     end
 
     it 'rerender new' do
@@ -38,7 +38,7 @@ RSpec.describe InfosController, type: :controller do
 			 work_position: "")
       post :create, params: { info: info_params }
       expect(response).to render_template(:new)
-      expect(flash[:notice]).to eq nil
+      expect(flash[:notice]).to be nil
     end
   end
 
@@ -53,7 +53,7 @@ RSpec.describe InfosController, type: :controller do
     it 'redirect to new info' do 
       get :edit
       expect(response).to redirect_to(:new_info)
-      expect(flash[:notice]).to_not eq nil
+      expect(flash[:notice]).to_not be nil
     end
 
     it 'redirect to sign in' do
@@ -63,6 +63,28 @@ RSpec.describe InfosController, type: :controller do
     end
   end
 
-  describe 'PATCH #update' do
+  describe 'PUT #update' do
+    let(:info_params) { FactoryGirl.attributes_for(:info) }
+
+    before do
+      info.save!
+    end
+
+    it 'successfully' do
+      put :update, params: { info: info_params }
+      expect(response).to redirect_to(:surveys)
+      expect(flash[:notice]).to_not be nil
+    end
+
+    it 'rerender edit' do
+      info_params.update(gender: "",
+			 experience: "",
+			 age: "",
+			 workplace_number: "",
+			 work_position: "")
+      put :update, params: { info: info_params }
+      expect(response).to render_template(:edit)
+      expect(flash[:notice]).to be nil
+    end
   end
 end
