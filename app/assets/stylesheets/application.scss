@@ -37,6 +37,20 @@
 }
 
 #error_explanation {
+  background: #f9d9d8;
+  border: 1px solid #ef5b58;
+  margin: 20px 0;
+  h2 {
+    @extend .h3;
+    @extend .text-center;
+    margin: 0;
+    padding: 20px 0;
+    background: #c52f24;
+    color: #fff;
+  }
+  ul {
+    padding-top: 10px;
+  }
 }
 
 .alert {
