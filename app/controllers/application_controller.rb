@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_empty_info
-    flash[:notice] = 'You should fill info about yourself before'
-    redirect_to new_info_url if current_user.info.blank?
+    if current_user.info.blank?
+      flash[:notice] = 'You should fill info about yourself before'
+      redirect_to new_info_url
+    end
   end
 end

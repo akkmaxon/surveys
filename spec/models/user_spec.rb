@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'with short password' do
-	user.password = user.password_confirmation = 'a' * 7
+	user.password = user.password_confirmation = 'a' * 5
 	expect(user).to be_invalid
       end
     end

@@ -1,0 +1,41 @@
+<%= form_for @info, url: info_path do |f| %>
+  <% if @info.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@info.errors.size, 'error') %> prohibited this user from being saved!</h2>
+      <ul>
+	<% @info.errors.full_messages.each do |error| %>
+	  <li><%= error %></li>
+	<% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.text_field :gender, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :experience %>
+    <%= f.text_field :experience, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.text_field :age, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :workplace_number %>
+    <%= f.text_field :workplace_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :work_position %>
+    <%= f.text_field :work_position, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: 'btn btn-primary btn-lg btn-block' %>
+  </div>
+<% end %>
