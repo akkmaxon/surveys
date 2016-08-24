@@ -9,7 +9,6 @@ RSpec.describe Survey, type: :model do
       it 'default values' do
 	survey.save!
 	expect(survey).to be_valid
-	expect(survey).to_not be_completed
 	expect(user.surveys.first).to eq survey
       end
     end

@@ -27,27 +27,6 @@ RSpec.describe SurveysController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    let!(:survey) { FactoryGirl.create :survey, user: user }
-    
-    it 'successfully' do
-      get :show, params: { id: survey.id }
-      expect(response).to have_http_status(:success)
-    end
-
-    it 'redirect to sign in' do
-      sign_out user
-      get :show, params: { id: survey.id }
-      expect(response).to redirect_to(:new_user_session)
-    end
-
-    it 'redirect to info#new' do
-      user.info = nil
-      get :show, params: { id: survey.id }
-      expect(response).to redirect_to(:new_info)
-    end
-  end
-
   describe 'GET #new' do
     let(:info) { FactoryGirl.create :info, user: user }
 
