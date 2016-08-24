@@ -18,10 +18,9 @@ class SurveysController < ApplicationController
 
   def update
     @survey.update(surveys_params)
-    flash.now[:notice] = 'Спасибо!'
-    respond_to do |format|
-      format.html { redirect_to @survey }
-      format.js
+    if surveys_params.key?(:user_email)
+      flash[:notice] = "Спасибо за уделенное время."
+      redirect_to surveys_url
     end
   end
 

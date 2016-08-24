@@ -22,8 +22,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
     it 'User click agreement' do
       expect(survey.user_agreement).to eq ''
       choose id: 'not_agree'
-      expect(page).to have_selector('.alert-success')
-      expect(page).to have_selector('.edit_survey')
+      sleep 1
       survey.reload
       expect(survey.user_agreement).to eq 'я не согласен со своим результатом'
     end
@@ -34,6 +33,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
       sleep 1
       fill_in id: 'survey_user_email', with: 'my@email.com'
       click_button 'leave_email'
+      expect(page.current_path).to eq surveys_path
       survey.reload
       expect(survey.user_email).to eq 'my@email.com'
     end
