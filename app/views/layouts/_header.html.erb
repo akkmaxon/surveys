@@ -25,9 +25,11 @@
 	</ul>
       <% else %>
 	<ul class="nav navbar-nav navbar-right">
-	  <li class="<%= active_link('registrations', 'new') %>">
-	    <%= link_to 'Sign up', new_user_registration_path %>
-	  </li>
+	  <% if devise_mapping.registerable? %>
+	    <li class="<%= active_link('registrations', 'new') %>">
+	      <%= link_to 'Sign up', new_user_registration_path %>
+	    </li>
+	  <% end %>
 	  <li class="<%= active_link('sessions', 'new') %>">
 	    <%= link_to 'Sign in', new_user_session_path %>
 	  </li>
