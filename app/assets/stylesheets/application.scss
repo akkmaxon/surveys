@@ -75,3 +75,11 @@ table {
     width: 70px;
   }
 }
+
+#agreement {
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+  #submit_agreement {
+    display: none;
+  }
+}
