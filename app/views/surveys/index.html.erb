@@ -1,23 +1,27 @@
 <h1 class="header">Your surveys.</h1>
 
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <% @surveys.each do |survey| %>
-    <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="heading<%= survey.id %>">
-	<h2 class="panel-title h3">
-	  <%= link_to "Results", "#collapse#{survey.id}",
-	    class: 'btn btn-link pull-right', role: 'button',
-	    data: { toggle: 'collapse', parent: 'accordion' },
-	    aria: { expanded: 'false', controls: "collapse#{survey.id}" }
-	  %>
-	  <%= survey.pass_time %>
-	</h2>
-      </div>
-      <div id="collapse<%= survey.id %>" class="panel-collapse collapse <%= expand_state_for(survey) %>" role="tabpanel" aria-labelledby="heading<%= survey.id %>">
-	<div class="panel-body">
-	  <%= render 'survey', survey: survey %>
+<% if @surveys.blank? %>
+  <%= link_to "Pass first survey", new_survey_path, class: 'btn btn-primary btn-lg btn-block' %>
+<% else %>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% @surveys.each do |survey| %>
+      <div class="panel panel-default">
+	<div class="panel-heading" role="tab" id="heading<%= survey.id %>">
+	  <h2 class="panel-title h3">
+	    <%= link_to "Results", "#collapse#{survey.id}",
+	      class: 'btn btn-link pull-right', role: 'button',
+	      data: { toggle: 'collapse', parent: 'accordion' },
+	      aria: { expanded: 'false', controls: "collapse#{survey.id}" }
+	    %>
+	    <%= survey.pass_time %>
+	  </h2>
+	</div>
+	<div id="collapse<%= survey.id %>" class="panel-collapse collapse <%= expand_state_for(survey) %>" role="tabpanel" aria-labelledby="heading<%= survey.id %>">
+	  <div class="panel-body">
+	    <%= render 'survey', survey: survey %>
+	  </div>
 	</div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

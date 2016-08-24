@@ -7,14 +7,11 @@
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
       </button>
-      <%= link_to 'Surveys', root_path, id: 'app-title', class: 'navbar-brand' %>
+      <%= link_to 'New Survey', root_path, id: 'app-title', class: 'navbar-brand' %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
       <% if user_signed_in? %>
 	<ul class="nav navbar-nav">
-	  <li class="<%= active_link('surveys', 'new') %>">
-	    <%= link_to 'New Survey', new_survey_path %>
-	  </li>
 	  <li class="<%= active_link('surveys', 'index') %>">
 	    <%= link_to 'All Surveys', surveys_path %>
 	  </li>
