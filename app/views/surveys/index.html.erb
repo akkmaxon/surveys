@@ -13,7 +13,7 @@
 	      data: { toggle: 'collapse', parent: 'accordion' },
 	      aria: { expanded: 'false', controls: "collapse#{survey.id}" }
 	    %>
-	    <%= survey.pass_time %>
+	    <%= survey.pass_date %>
 	  </h2>
 	</div>
 	<div id="collapse<%= survey.id %>" class="panel-collapse collapse <%= expand_state_for(survey) %>" role="tabpanel" aria-labelledby="heading<%= survey.id %>">

@@ -4,7 +4,7 @@ class Survey < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  def pass_time
+  def pass_date
     created_at.strftime "%d %B %Y"
   end
 end
