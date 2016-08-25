@@ -3,7 +3,11 @@ class InfosController < ApplicationController
   before_action :find_info, only: [:edit, :update]
 
   def new
-    @info = Info.new
+    if current_user.info.blank?
+      @info = Info.new
+    else
+      redirect_to edit_info_url
+    end
   end
 
   def create

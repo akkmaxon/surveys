@@ -77,6 +77,12 @@ RSpec.describe SurveysController, type: :controller do
       expect(response).to have_http_status(:redirect)
       expect(response).to redirect_to(:new_user_session)
     end
+
+    it 'redirect to info#new' do
+      user.info = nil
+      post :create
+      expect(response).to redirect_to(:new_info)
+    end
   end
 
   describe 'GET #edit' do
@@ -88,6 +94,31 @@ RSpec.describe SurveysController, type: :controller do
     it 'redirect to info#new' do
       user.info = nil
       get :edit, params: { id: survey.id }
+      expect(response).to redirect_to(:new_info)
+    end
+  end
+
+  describe 'PUT #update' do
+    it 'remotely' do
+      put :update, params: { id: survey.id, survey: { user_agreement: 'i agree' } }
+      expect(response).to have_http_status(:success)
+      expect(response).to_not redirect_to(:surveys)
+    end
+
+    it 'with redirect to surveys' do
+      put :update, params: { id: survey.id, survey: { user_email: 'my@email.com' } }
+      expect(response).to redirect_to(:surveys)
+    end
+
+    it 'redirect to sign in' do
+      sign_out user
+      put :update, params: { id: survey.id, survey: { user_agreement: 'i agree' } }
+      expect(response).to redirect_to(:new_user_session)
+    end
+
+    it 'redirect to info#new' do
+      user.info = nil
+      put :update, params: { id: survey.id, survey: { user_agreement: 'i agree' } }
       expect(response).to redirect_to(:new_info)
     end
   end

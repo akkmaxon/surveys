@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :check_for_empty_info, only: [:index, :show, :edit]
+  before_action :check_for_empty_info
   before_action :find_survey, only: [:show, :edit, :update]
   before_action :check_for_survey_owner, only: [:show, :edit]
   before_action :check_for_blank_survey, only: :create

@@ -19,6 +19,12 @@ RSpec.describe InfosController, type: :controller do
       get :new
       expect(response).to redirect_to(:new_user_session)
     end
+
+    it 'redirect to #edit if info present' do
+      info.save
+      get :new
+      expect(response).to redirect_to(:edit_info)
+    end
   end
 
   describe 'POST #create' do
