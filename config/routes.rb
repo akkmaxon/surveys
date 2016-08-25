@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resource :info, only: [:new, :create, :edit, :update]
-  resources :surveys, only: [:index, :show, :new, :create, :update]
+  resources :surveys, only: [:index, :show, :create, :edit, :update]
   devise_for :users
-  root to: 'surveys#new'
+  root to: 'surveys#index'
 end

@@ -1,7 +1,7 @@
 <h1 class="header">Your surveys.</h1>
 
 <% if @surveys.blank? %>
-  <%= link_to "Pass first survey", new_survey_path, class: 'btn btn-primary btn-lg btn-block' %>
+  <%= link_to "Pass first survey", surveys_path, method: :post, class: 'btn btn-primary btn-lg btn-block' %>
 <% else %>
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <% @surveys.each do |survey| %>
