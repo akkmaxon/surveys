@@ -11,7 +11,7 @@ FactoryGirl.define do
     experience 'less than 1 year'
     age 'from 25 to 30'
     workplace_number 'second'
-    work_position 'office worker'
+    work_position 'руководитель отдела'
     company 'Pepsi'
   end
 
@@ -19,12 +19,20 @@ FactoryGirl.define do
   end 
 
   factory :response do
-    question Faker::Lorem.sentence.gsub!('.', '?')
     answer Faker::Lorem.sentence
   end
 
   factory :question do
-    text Faker::Lorem.sentence.gsub!('.', '?')
     audience 'management'
+  end
+
+  factory :left_statement do
+    title Faker::Lorem.sentence
+    text Faker::Lorem.paragraph
+  end
+    
+  factory :right_statement do
+    title Faker::Lorem.sentence
+    text Faker::Lorem.paragraph
   end
 end

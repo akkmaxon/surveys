@@ -17,4 +17,14 @@ class User < ApplicationRecord
   def email_required?
     false
   end
+
+  def manager?
+    if info.work_position == "производственный руководитель" or
+	info.work_position == "руководитель отдела" or
+	info.work_position == "топ-менеджер"
+      true
+    else
+      false
+    end
+  end
 end

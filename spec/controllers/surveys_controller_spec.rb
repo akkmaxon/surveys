@@ -56,7 +56,8 @@ RSpec.describe SurveysController, type: :controller do
   end
 
   describe 'POST #create' do
-    let!(:resp) { FactoryGirl.create :response, survey: survey }
+    let(:question) { FactoryGirl.create :question }
+    let!(:resp) { FactoryGirl.create :response, survey: survey, question: question }
 
     it 'successfully' do
       post :create

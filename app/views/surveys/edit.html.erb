@@ -1,1 +1,23 @@
-<h1>Form for new survey</h1>
+<h1 class="header">Answer these questions</h1>
+
+<div class="progress">
+  <div class="progress-bar" style="width: 70%">
+    33/43
+  </div>
+</div>
+
+<% @questions.each do |question| %>
+  <div class="response">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<%= question.id %>
+      </div>
+      <div class="panel-body">
+	<!-- form with hidden question field and text for answer -->
+	<input type="text" class="form-control">
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'Show results', @survey, class: 'btn btn-primary btn-lg btn-block', id: 'finish_survey' %>

@@ -5,7 +5,7 @@ RSpec.describe Question, type: :model do
     let(:question) { FactoryGirl.build :question }
 
     context 'success' do
-      it 'successfully' do
+      it 'default' do
 	question.save
 	expect(question).to be_valid
       end
@@ -16,14 +16,14 @@ RSpec.describe Question, type: :model do
 	  expect(question).to be_valid
 	end
       end
+
+      it 'responds to left and right statements' do
+	expect(question.respond_to? :left_statement).to eq true
+	expect(question.respond_to? :right_statement).to eq true
+      end
     end
 
     context 'fails' do
-      it 'with empty value' do
-	question.text = ''
-	expect(question).to be_invalid
-      end
-
       it 'with empty audience' do
 	question.audience = ''
 	expect(question).to be_invalid

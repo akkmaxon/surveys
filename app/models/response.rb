@@ -1,6 +1,6 @@
 class Response < ApplicationRecord
   belongs_to :survey
+  belongs_to :question
 
-  validates :question, presence: true
   validates :answer, presence: true
 end

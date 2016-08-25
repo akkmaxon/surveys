@@ -57,7 +57,7 @@
   text-align: center;
 }
 
-#main_action {
+#new_survey {
   position: absolute;
   left: 50%;
   margin-left: -50px;
@@ -92,4 +92,9 @@ table {
   .actions {
     display: none;
   }
+}
+
+.progress {
+  width: 100%;
+  bottom: 0;
 }

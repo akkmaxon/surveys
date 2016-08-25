@@ -17,6 +17,7 @@ class SurveysController < ApplicationController
   end
 
   def edit
+    @questions = Question.for(current_user)
   end
 
   def update
@@ -45,7 +46,11 @@ class SurveysController < ApplicationController
   end
 
   def check_for_blank_survey
-    last_survey = current_user.surveys.first
-    @blank_survey = last_survey.responses.blank? ? last_survey : false
+    if current_user.surveys.blank?
+      @blank_survey = false
+    else
+      last_survey = current_user.surveys.first
+      @blank_survey = last_survey.responses.blank? ? last_survey : false
+    end
   end
 end
