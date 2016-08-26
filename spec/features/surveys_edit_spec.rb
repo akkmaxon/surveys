@@ -43,4 +43,16 @@ RSpec.describe 'Work with surveys/edit', type: :feature do
     expect(page).to have_selector '#finish_survey'
     expect(page).to_not have_selector '#finish_survey.disabled'
   end 
+
+  it 'Good render and work survey#show after' do
+    choose id: 'question_1_answer_3'
+    click_button 'submit_question_1'
+    choose id: 'question_2_answer_1'
+    click_button 'submit_question_2'
+    click_link 'finish_survey'
+    user.reload
+    expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
+    choose id: 'not_agree'
+    expect(page).to have_selector('#email_field .edit_survey')
+  end
 end
