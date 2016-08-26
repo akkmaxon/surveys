@@ -18,6 +18,7 @@ RSpec.describe 'User create new response by clicking radio button' do
   end
 
   it 'successfully' do
+    save_page
     choose id: 'question_1_answer_3'
     click_button 'submit_question_1'
     sleep 1

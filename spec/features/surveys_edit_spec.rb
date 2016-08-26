@@ -27,7 +27,7 @@ RSpec.describe 'Work with surveys/edit', type: :feature do
   it 'Page layout before' do
     expect(page).to have_selector '.response', count: 2
     expect(page).to have_selector '.progress'
-    expect(page).to have_selector '#finish_survey'
+    expect(page).to have_selector '#finish_survey.disabled'
     within '.table' do
       %w[1left 2left 1right 2right].each do |title|
 	expect(page).to have_content title
@@ -35,6 +35,12 @@ RSpec.describe 'Work with surveys/edit', type: :feature do
     end
   end
 
-  it 'Page layout after'
-    
+  it 'Page layout after' do
+    choose id: 'question_1_answer_3'
+    click_button 'submit_question_1'
+    choose id: 'question_2_answer_1'
+    click_button 'submit_question_2'
+    expect(page).to have_selector '#finish_survey'
+    expect(page).to_not have_selector '#finish_survey.disabled'
+  end 
 end

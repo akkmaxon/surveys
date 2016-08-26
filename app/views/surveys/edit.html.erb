@@ -1,8 +1,7 @@
 <h1 class="header">Answer these questions</h1>
 
 <div class="progress">
-  <div class="progress-bar" style="width: 70%">
-    33/43
+  <div class="progress-bar">
   </div>
 </div>
 
@@ -16,10 +15,10 @@
 	  <%= question.left_statement.text %>
 	</th>
 	<th class="table_radio">
-	  <%= form_for Response.new, remote: true do |f| %>
+	  <%= form_for Response.new, remote: true, id: "question_#{question.id}" do |f| %>
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
-	    <div class="form-group" id="question_<%= question.id %>">
+	    <div class="form-group">
 	      <label class="radio-inline">
 		<%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1" %>1
 	      </label>
@@ -36,7 +35,7 @@
 		<%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5" %>5
 	      </label>
 	    </div>
-	    <%= f.submit "Next", class: "submit_question", id: "submit_question_#{question.id}" %>
+	    <%= f.submit "Выбрать", class: "submit_question", id: "submit_question_#{question.id}" %>
 	  <% end %>
 	</th>
 	<th>
@@ -48,4 +47,4 @@
   <% end %>
 </table>
 
-<%= link_to 'Show results', @survey, class: 'btn btn-primary btn-lg btn-block', id: 'finish_survey' %>
+<%= link_to 'Получить краткие результаты', @survey, class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
