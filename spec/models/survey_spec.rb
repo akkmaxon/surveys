@@ -14,6 +14,10 @@ RSpec.describe Survey, type: :model do
     end
 
     context 'fails' do
+      it 'created independently from user' do
+	survey = FactoryGirl.build :survey
+	expect(survey).to be_invalid
+      end
     end
   end
 end

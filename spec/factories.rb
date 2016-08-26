@@ -20,9 +20,11 @@ FactoryGirl.define do
 
   factory :response do
     answer Faker::Lorem.sentence
+    sequence(:question_number, 1)
   end
 
   factory :question do
+    sequence(:number, 1)
     audience 'management'
   end
 

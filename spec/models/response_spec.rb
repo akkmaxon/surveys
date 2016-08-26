@@ -5,7 +5,7 @@ RSpec.describe Response, type: :model do
     let(:user) { FactoryGirl.create :user }
     let!(:survey) { FactoryGirl.create :survey, user: user }
     let!(:question) { FactoryGirl.create :question }
-    let!(:response) { survey.responses.build FactoryGirl.attributes_for(:response).merge(question: question) }
+    let!(:response) { survey.responses.build FactoryGirl.attributes_for(:response) }
 
     context 'success' do
       it 'default values' do
@@ -21,7 +21,7 @@ RSpec.describe Response, type: :model do
       end
 
       it 'question id is nil' do
-	response.question_id = nil
+	response.question_number = nil
 	expect(response).to be_invalid
       end
     end

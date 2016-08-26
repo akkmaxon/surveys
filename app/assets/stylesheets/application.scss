@@ -98,3 +98,10 @@ table {
   width: 100%;
   bottom: 0;
 }
+
+.table_radio {
+  width: 300px;
+  .submit_question {
+    display: none;
+  }
+}

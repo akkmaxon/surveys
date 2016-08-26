@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Work with surveys/edit', type: :feature do
+RSpec.describe 'User create new response by clicking radio button' do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
 
@@ -11,29 +11,13 @@ RSpec.describe 'Work with surveys/edit', type: :feature do
   let!(:left_st_for_q_two) { FactoryGirl.create :left_statement, title: '2left', question: question_two }
   let!(:right_st_for_q_two) { FactoryGirl.create :right_statement, title: '2right', question: question_two }
 
-  before do
+  it 'successfully' do
     login_as user
     visit root_path
     click_link 'new_survey'
-  end
-
-  it 'Creating new survey' do
+    choose id: 'question_2_answer_3'
     user.reload
-    expect(user.surveys).to_not be_blank
-    expect(user.surveys.first).to_not be_nil
-    expect(user.surveys.first.responses).to be_blank
+    expect(user.surveys.first.responses.size).to eq 1
+    expect(user.surveys.first.responses.first.answer).to eq 3
   end
-
-  it 'Page layout before' do
-    expect(page).to have_selector '.response', count: 2
-    expect(page).to have_selector '.progress'
-    expect(page).to have_selector '#finish_survey'
-    within '.table' do
-      %w[1left 2left 1right 2right].each do |title|
-	expect(page).to have_content title
-      end
-    end
-  end
-
-  it 'Page layout after'
 end
