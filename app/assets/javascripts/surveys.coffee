@@ -1,24 +1,26 @@
 $(document).ready () ->
+  parseProgressBarId = () ->
+    [checked, total] = $(".progress-bar").attr('id').split '/'
+    [Number(checked), Number(total)]
+
   finishedSurvey = () ->
-    text = $(".progress").text().trim()
-    [checked, total] = text.split '/'
+    [checked, total] = parseProgressBarId()
     checked is total
 
   updateProgressBar = () ->
-    total = $('.new_response').size()
-    checked = $('.checked_response').size()
-    progressBar = $('.progress-bar')
-    $(progressBar).text("#{checked}/#{total}")
-    $(progressBar).css('width', "#{checked/total * 100}%")
-
-  updateProgressBar()
+    [wasChecked, total] = parseProgressBarId()
+    nowChecked = wasChecked + 1
+    newId = "#{nowChecked}/#{total}"
+    $('.progress-bar').text(newId)
+    $('.progress-bar').attr('id', newId)
+    $('.progress-bar').css('width', "#{nowChecked/total * 100}%")
 
   $(".edit_survey input").on "change", () ->
     $("#submit_agreement").click()
     $("#email_field").css "display", "block"
 
-  $(".new_response input[type='radio']").on "change", () ->
-    $(@).parent().parent().addClass 'checked_response'
+  $(".new_response").on "ajax:success", (e, data, status, xhr) ->
+    $(@).parent().parent().hide(200)
     updateProgressBar()
     if finishedSurvey()
       $("#finish_survey").removeClass("disabled")

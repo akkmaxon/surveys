@@ -1,13 +1,15 @@
 <h1 class="header">Answer these questions</h1>
 
 <div class="progress">
-  <div class="progress-bar">
+  <% initial_value = "0/#{@questions.size}" %>
+  <div class="progress-bar" id="<%= initial_value %>">
+    <%= initial_value %>
   </div>
 </div>
 
 <table class="table">
-  <% @questions.each do |question| %>
-    <tbody>
+  <tbody>
+    <% @questions.each do |question| %>
       <tr class="response">
 	<td>
 	  <strong><%= question.id %></strong>
@@ -51,8 +53,8 @@
 	  <%= question.right_statement.text %>
 	</td>
       </tr>
-    </tbody>
-  <% end %>
+    <% end %>
+  </tbody>
 </table>
 
 <%= link_to 'Получить краткие результаты', @survey, class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey', data: { turbolinks: false } %>
