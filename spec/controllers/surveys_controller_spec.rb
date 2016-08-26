@@ -56,20 +56,21 @@ RSpec.describe SurveysController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:question) { FactoryGirl.create :question }
-    let!(:resp) { FactoryGirl.create :response, survey: survey }
+    let!(:question) { FactoryGirl.create :question }
+    let!(:resp) { FactoryGirl.create :response, survey: survey, question_number: question.number }
+
 
     it 'successfully' do
       post :create
       expect(response).to redirect_to(take_survey_url(assigns(:survey)))
-      expect(assigns(:survey).id).to_not eq survey.id
+      expect(assigns(:survey).id).to_not eq(survey.id)
     end
 
     it 'using empty survey instead creating new' do
       resp.destroy
       post :create
       expect(response).to redirect_to(take_survey_url(assigns(:survey)))
-      expect(assigns(:survey).id).to eq survey.id
+      expect(assigns(:survey).id).to eq(survey.id)
     end
 
     it 'redirect to sign in' do

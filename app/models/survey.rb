@@ -20,4 +20,9 @@ class Survey < ApplicationRecord
     end
     sum
   end
+
+  def completed?
+    responses.pluck(:question_number) ==
+      Question.pluck(:number)
+  end
 end

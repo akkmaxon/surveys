@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
   before_action :check_for_empty_info
   before_action :find_survey, only: [:show, :take, :update]
   before_action :check_for_survey_owner, only: [:show, :take]
-  before_action :check_for_blank_survey, only: :create
+  before_action :check_for_not_completed_survey, only: :create
 
   def index
     @surveys = current_user.surveys
@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
   end
 
   def create
-    @survey = @blank_survey ? @blank_survey : current_user.surveys.create!
+    @survey = @not_completed_survey ? @not_completed_survey : current_user.surveys.create!
     redirect_to take_survey_url(@survey)
   end
 
@@ -45,12 +45,12 @@ class SurveysController < ApplicationController
     end
   end
 
-  def check_for_blank_survey
+  def check_for_not_completed_survey
     if current_user.surveys.blank?
-      @blank_survey = false
+      @not_completed_survey = false
     else
       last_survey = current_user.surveys.first
-      @blank_survey = last_survey.responses.blank? ? last_survey : false
+      @not_completed_survey = last_survey.completed? ? false : last_survey
     end
   end
 end

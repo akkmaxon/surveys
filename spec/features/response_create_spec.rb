@@ -15,6 +15,7 @@ RSpec.describe 'User create new response by clicking radio button' do
     login_as user
     visit root_path
     click_link 'new_survey'
+    sleep 1
   end
 
   it 'successfully' do

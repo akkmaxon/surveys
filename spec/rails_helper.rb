@@ -8,6 +8,8 @@ require 'rspec/rails'
 require 'capybara/poltergeist'
 
 Capybara.default_driver = :poltergeist
+Capybara.javascript_driver = :poltergeist
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,6 +64,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do
     DatabaseCleaner.strategy = :truncation
   end
 
