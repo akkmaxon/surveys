@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User create new response by clicking radio button' do
+RSpec.describe 'User create new response by clicking radio button', type: :feature do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
 
@@ -15,7 +15,6 @@ RSpec.describe 'User create new response by clicking radio button' do
     login_as user
     visit root_path
     click_link 'new_survey'
-    sleep 1
   end
 
   it 'successfully' do
@@ -27,14 +26,15 @@ RSpec.describe 'User create new response by clicking radio button' do
     expect(user.surveys.first.responses.first.answer).to eq "3"
   end
 
-  it 'prevent creating responses on one question' do
-    choose id: 'question_1_answer_3'
-    click_button 'submit_question_1'
-    choose id: 'question_1_answer_1'
+  it 'check for disappearing tr' do
+    expect(page).to have_selector '.new_response', count: 2
+    choose id: 'question_1_answer_5'
     click_button 'submit_question_1'
     sleep 1
     user.reload
+    expect(page).to_not have_selector '#submit_question_1'
+    expect(page).to have_selector '.new_response', count: 1
     expect(user.surveys.first.responses.count).to eq 1
-    expect(user.surveys.first.responses.first.answer).to eq "1"
+    expect(user.surveys.first.responses.first.answer).to eq "5"
   end
 end

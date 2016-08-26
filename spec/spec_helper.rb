@@ -12,5 +12,5 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.order = :random
+  config.order = :defined
 end

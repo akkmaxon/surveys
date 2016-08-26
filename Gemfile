@@ -33,7 +33,9 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'rails-controller-testing'
+  gem 'launchy'
 end
 
 gem 'rails_12factor', group: :production
