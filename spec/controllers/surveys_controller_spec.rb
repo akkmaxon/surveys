@@ -61,14 +61,14 @@ RSpec.describe SurveysController, type: :controller do
 
     it 'successfully' do
       post :create
-      expect(response).to redirect_to(edit_survey_url(assigns(:survey)))
+      expect(response).to redirect_to(take_survey_url(assigns(:survey)))
       expect(assigns(:survey).id).to_not eq survey.id
     end
 
     it 'using empty survey instead creating new' do
       resp.destroy
       post :create
-      expect(response).to redirect_to(edit_survey_url(assigns(:survey)))
+      expect(response).to redirect_to(take_survey_url(assigns(:survey)))
       expect(assigns(:survey).id).to eq survey.id
     end
 
@@ -86,15 +86,15 @@ RSpec.describe SurveysController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
+  describe 'GET #take' do
     it 'successfully' do
-      get :edit, params: { id: survey.id }
+      get :take, params: { id: survey.id }
       expect(response).to have_http_status(:success)
     end
 
     it 'redirect to info#new' do
       user.info = nil
-      get :edit, params: { id: survey.id }
+      get :take, params: { id: survey.id }
       expect(response).to redirect_to(:new_info)
     end
   end

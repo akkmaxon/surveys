@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_action :check_for_empty_info
-  before_action :find_survey, only: [:show, :edit, :update]
-  before_action :check_for_survey_owner, only: [:show, :edit]
+  before_action :find_survey, only: [:show, :take, :update]
+  before_action :check_for_survey_owner, only: [:show, :take]
   before_action :check_for_blank_survey, only: :create
 
   def index
@@ -13,10 +13,10 @@ class SurveysController < ApplicationController
 
   def create
     @survey = @blank_survey ? @blank_survey : current_user.surveys.create!
-    redirect_to edit_survey_url(@survey)
+    redirect_to take_survey_url(@survey)
   end
 
-  def edit
+  def take
     @questions = Question.for(current_user)
   end
 
