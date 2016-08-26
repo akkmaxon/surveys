@@ -370,6 +370,7 @@ end
 (1..29).each do |n|
   Response.create! do |resp|
     resp.survey_id = survey.id
+    resp.opinion_subject = Question.find_by(number: n).opinion_subject
     resp.question_number = n
     resp.answer = (rand(5) + 1).to_s
   end

@@ -106,3 +106,14 @@ table {
     @extend .btn-block;
   }
 }
+
+.new_response {
+  padding-top: 20px;
+}
+
+#table_results {
+  @extend .text-center;
+  td:nth-child(2) {
+    @extend .text-left;
+  }
+}
