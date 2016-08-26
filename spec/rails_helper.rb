@@ -62,10 +62,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.before(:each, type: :feature) do
     DatabaseCleaner.strategy = :truncation
   end
 

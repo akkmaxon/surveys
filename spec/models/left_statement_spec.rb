@@ -10,11 +10,6 @@ RSpec.describe LeftStatement, type: :model do
     expect(question.left_statement.title).to eq left_st.title
   end
 
-  it 'Invalid if title is empty' do
-    left_st.title = ''
-    expect(left_st).to be_invalid
-  end
-
   it 'Invalid if text is empty' do
     left_st.text = ''
     expect(left_st).to be_invalid
