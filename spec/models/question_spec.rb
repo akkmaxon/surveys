@@ -17,6 +17,13 @@ RSpec.describe Question, type: :model do
 	end
       end
 
+      it 'opinion_subject in proper range' do
+	["Я", "Мои коллеги"].each do |o|
+	  question.opinion_subject = o
+	  expect(question).to be_valid
+	end
+      end
+
       it 'responds to left and right statements' do
 	expect(question.respond_to? :left_statement).to eq true
 	expect(question.respond_to? :right_statement).to eq true
@@ -32,6 +39,13 @@ RSpec.describe Question, type: :model do
       it 'when audience in wrong range' do
 	%w[teacher programmer seller].each do |a|
 	  question.audience = a
+	  expect(question).to be_invalid
+	end
+      end
+
+      it 'opinion_subject in wrong range' do
+	%w[ you they ].each do |o|
+	  question.opinion_subject = o
 	  expect(question).to be_invalid
 	end
       end

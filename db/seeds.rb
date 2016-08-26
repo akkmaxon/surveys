@@ -11,7 +11,7 @@ Info.create! do |i|
 end
 
 ### 1 question ###
-q_1 = Question.create! audience: "management", number: 1
+q_1 = Question.create! opinion_subject: "Я", audience: "management", number: 1
 LeftStatement.create! do |left|
   left.question_id = q_1.id
   left.title = "Инициатива убивает систему"
@@ -23,7 +23,7 @@ RightStatement.create! do |right|
   right.text = "Я часто проявляю инициативу, выходя за рамки своей должностной инструкции. Я всегда что-то предлагаю, охотно участвую в новых проектах, не могу сидеть без дела. Я готов брать ответственность за реализацию предложений на себя. Я энергичен и заражаю своей энергией других."
 end
 ### 2 question ###
-q_2 = Question.create! audience: "management", number: 2
+q_2 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 2
 LeftStatement.create! do |left|
   left.question_id = q_2.id
   left.title = "Инициатива убивает систему"
@@ -36,7 +36,7 @@ RightStatement.create! do |right|
   Они готовы брать ответственность за реализацию предложений на себя. Они энергичны и заражают своей энергией других."
 end
 ### 3 question ###
-q_3 = Question.create! audience: "management", number: 3
+q_3 = Question.create! opinion_subject: "Я", audience: "management", number: 3
 LeftStatement.create! do |left|
   left.question_id = q_3.id
   left.title = "Лучшее - враг хорошего"
@@ -48,7 +48,7 @@ RightStatement.create! do |right|
   right.text = "Я считаю, что моей задачей является постоянное улучшение рабочих процессов. Я  часто вносит изменения в свою работу, чтобы сделать ее проще, удобнее. После выполнения какого-либо задания, я не могу его забыть, пока не продумаю, как можно было бы сделать его лучше."
 end
 ### 4 question ###
-q_4 = Question.create! audience: "management", number: 4
+q_4 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 4
 LeftStatement.create! do |left|
   left.question_id = q_4.id
   left.title = "Лучшее - враг хорошего"
@@ -60,7 +60,7 @@ RightStatement.create! do |right|
   right.text = "Задачей каждого работника, считают мои коллеги,  является постоянное улучшение рабочих процессов. Мои коллеги  часто инициируют изменения в нашу работу, чтобы сделать ее проще, удобнее. После выполнения какого-либо задания, они не забывают его, а думают, как в следующий раз можно было бы сделать лучше."
 end
 ### 5 question ###
-q_5 = Question.create! audience: "management", number: 5
+q_5 = Question.create! opinion_subject: "Я", audience: "management", number: 5
 LeftStatement.create! do |left|
   left.question_id = q_5.id
   left.title = "Ответственные подчиненные"
@@ -72,7 +72,7 @@ RightStatement.create! do |right|
   right.text = "Я четко понимаю, каких результатов ожидают от моей работы, от работы моего подразделения. Я сам выбираю способы, как этих результатов достичь, самостоятельно принимая решения по многим вопросам, принимая на себя ответственность за принятые решения."
 end
 ### 6 question ###
-q_6 = Question.create! audience: "management", number: 6
+q_6 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 6
 LeftStatement.create! do |left|
   left.question_id = q_6.id
   left.title = "Ответственные подчиненные"
@@ -84,7 +84,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег четко понимают, каких результатов ожидают от их работы, от работы их подразделения. Они сами выбирают способы, как этих результатов достичь, самостоятельно принимая решения по многим вопросам, принимая на себя ответственность за принятые решения."
 end
 ### 7 question ###
-q_7 = Question.create! audience: "management", number: 7
+q_7 = Question.create! opinion_subject: "Я", audience: "management", number: 7
 LeftStatement.create! do |left|
   left.question_id = q_7.id
   left.title = "Индивидуальный игрок"
@@ -96,7 +96,7 @@ RightStatement.create! do |right|
   right.text = "Я считаю свой коллектив настоящей командой. Работая вместе можно достичь большего. В коллективе у меня есть коллеги, на которых я могу полностью положиться. И я, в свою очередь, стараюсь не подводить команду."
 end
 ### 8 question ###
-q_8 = Question.create! audience: "management", number: 8
+q_8 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 8
 LeftStatement.create! do |left|
   left.question_id = q_8.id
   left.title = "Индивидуальный игрок"
@@ -108,7 +108,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег считают свой коллектив настоящей командой. Они считают, что работая вместе можно достичь большего. В коллективе у них есть коллеги, на которых они могут полностью положиться. И они, в свою очередь, не подводят команду."
 end
 ### 9 question ###
-q_9 = Question.create! audience: "management", number: 9
+q_9 = Question.create! opinion_subject: "Я", audience: "management", number: 9
 LeftStatement.create! do |left|
   left.question_id = q_9.id
   left.title = "Трудно застать"
@@ -120,7 +120,7 @@ RightStatement.create! do |right|
   right.text = "Я могу в любой момент прийти к своему руководителю и поделиться проблемой. Мое руководство доступно для общения и готово меня выслушать."
 end
 ### 10 question ###
-q_10 = Question.create! audience: "management", number: 10
+q_10 = Question.create! opinion_subject: "Я", audience: "management", number: 10
 LeftStatement.create! do |left|
   left.question_id = q_10.id
   left.title = "Не понимаю"
@@ -132,7 +132,7 @@ RightStatement.create! do |right|
   right.text = "Я понимаю, как мои руководители принимают управленческие решения, с большинством из них я полностью согласен. Руководство заинтересовано в развитии компании и думает о своих работниках. Большинство решений направлено на удовлетворение потребностей клиентов компании (жителей, потребителей)."
 end
 ### 11 question ###
-q_11 = Question.create! audience: "management", number: 11
+q_11 = Question.create! opinion_subject: "Я", audience: "management", number: 11
 LeftStatement.create! do |left|
   left.question_id = q_11.id
   left.title = "О деньгах, не о людях"
@@ -144,7 +144,7 @@ RightStatement.create! do |right|
   right.text = "Я вижу, что руководству важно знать, в каких условиях люди работают, чем они живут, какие у них проблемы. Руководство заботится о том, чтобы люди чувствовали себя на работе  комфортно."
 end
 ### 12 question ###
-q_12 = Question.create! audience: "management", number: 12
+q_12 = Question.create! opinion_subject: "Я", audience: "management", number: 12
 LeftStatement.create! do |left|
   left.question_id = q_12.id
   left.title = "Подчинение, но не уважение"
@@ -156,7 +156,7 @@ RightStatement.create! do |right|
   right.text = "Я доверяю своему руководству и уважаю своих руководителей за то, что они выполняют данные обещания и прислушиваются к моему мнению. Я чувствую, что это уважение взаимное."
 end
 ### 13 question ###
-q_13 = Question.create! audience: "management", number: 13
+q_13 = Question.create! opinion_subject: "Я", audience: "management", number: 13
 LeftStatement.create! do |left|
   left.question_id = q_13.id
   left.title = "Начальник"
@@ -168,7 +168,7 @@ RightStatement.create! do |right|
   right.text = "Моих руководителей можно назвать харизматичными лидерами. Они ставят задачу так, что хочется ее выполнить. Они умеют мотивировать людей, поднимать командный дух, сплотить команду."
 end
 ### 14 question ###
-q_14 = Question.create! audience: "management", number: 14
+q_14 = Question.create! opinion_subject: "Я", audience: "management", number: 14
 LeftStatement.create! do |left|
   left.question_id = q_14.id
   left.title = "Работа как работа"
@@ -180,7 +180,7 @@ RightStatement.create! do |right|
   right.text = "Я считаю, что у меня есть возможность заниматься на работе тем, что я люблю и лучше всего умею. Я чувствую себя на своем месте. Я считаю свою работу интересной, сложной и важной. Я с радостью иду утром на работу, полон энергии и энтузиазма."
 end
 ### 15 question ###
-q_15 = Question.create! audience: "management", number: 15
+q_15 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 15
 LeftStatement.create! do |left|
   left.question_id = q_15.id
   left.title = "Работа как работа"
@@ -192,7 +192,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег считают, что у них есть возможность заниматься на работе тем, что они любят и лучше всего умеют. Они чувствуют себя на своем месте. Они считают свою работу интересной, сложной и важной. Они с радостью идут утром на работу, полны энергии и энтузиазма."
 end
 ### 16 question ###
-q_16 = Question.create! audience: "management", number: 16
+q_16 = Question.create! opinion_subject: "Я", audience: "management", number: 16
 LeftStatement.create! do |left|
   left.question_id = q_16.id
   left.title = "Мы не всемогущие!"
@@ -204,7 +204,7 @@ RightStatement.create! do |right|
   right.text = "Я испытываю радость и удовольствие, когда могу решить проблемы своих клиентов. У меня есть и возможности, и полномочия, чтобы помогать жителям. Я четко понимаю, чего хотят наши клиенты, и способна формировать в них лояльное отношение."
 end
 ### 17 question ###
-q_17 = Question.create! audience: "management", number: 17
+q_17 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 17
 LeftStatement.create! do |left|
   left.question_id = q_17.id
   left.title = "Мы не всемогущие!"
@@ -216,7 +216,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег испытывают радость и удовольствие от того, что могут решить проблемы своих клиентов. У таких работников есть все возможности и полномочия, чтобы помогать жителям. Они четко понимают, чего хотят их клиенты, и способны формировать в них лояльное отношение."
 end
 ### 18 question ###
-q_18 = Question.create! audience: "management", number: 18
+q_18 = Question.create! opinion_subject: "Я", audience: "management", number: 18
 LeftStatement.create! do |left|
   left.question_id = q_18.id
   left.title = "Не советую"
@@ -228,7 +228,7 @@ RightStatement.create! do |right|
   right.text = "Я считаю, что наша организация является одним из лучших мест работы в городе, поскольку имеет хорошую репутацию. Я с радостью рекомендую свою компанию друзьям, которые ищут работу."
 end
 ### 19 question ###
-q_19 = Question.create! audience: "management", number: 19
+q_19 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 19
 LeftStatement.create! do |left|
   left.question_id = q_19.id
   left.title = "Не советую"
@@ -240,7 +240,7 @@ RightStatement.create! do |right|
   right.text = "Мои коллеги считают, что наша организация является одним из лучших мест работы в городе, поскольку имеет хорошую репутацию. Многие из них с радостью рекомендуют свою компанию друзьям, которые ищут работу."
 end
 ### 20 question ###
-q_20 = Question.create! audience: "management", number: 20
+q_20 = Question.create! opinion_subject: "Я", audience: "management", number: 20
 LeftStatement.create! do |left|
   left.question_id = q_20.id
   left.title = "В условиях дефицита"
@@ -252,7 +252,7 @@ RightStatement.create! do |right|
   right.text = "Я доволен и зарплатой, и условиями труда. У меня удобное рабочее место и достаточное обеспечение всем необходимым для работы."
 end
 ### 21 question ###
-q_21 = Question.create! audience: "management", number: 21
+q_21 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 21
 LeftStatement.create! do |left|
   left.question_id = q_21.id
   left.title = "В условиях дефицита"
@@ -264,7 +264,7 @@ RightStatement.create! do |right|
   right.text = "Такие работники довольны и зарплатой, и условиями труда. У них удобное рабочее место и достаточное обеспечение всем необходимым для работы."
 end
 ### 22 question ###
-q_22 = Question.create! audience: "management", number: 22
+q_22 = Question.create! opinion_subject: "Я", audience: "management", number: 22
 LeftStatement.create! do |left|
   left.question_id = q_22.id
   left.title = "Неосведомленный"
@@ -276,7 +276,7 @@ RightStatement.create! do |right|
   right.text = "Я получаю информацию о делах компании от руководителей, в курсе всех основных событий. Если мне нужна какая-то информация из другого отдела или службы – ее предоставляют быстро и по первому требованию. Службы и отделы в нашей компании работают согласованно и вовремя предоставляют все необходимые данные."
 end
 ### 23 question ###
-q_23 = Question.create! audience: "management", number: 23
+q_23 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 23
 LeftStatement.create! do |left|
   left.question_id = q_23.id
   left.title = "Неосведомленный"
@@ -288,7 +288,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег получают информацию о делах компании от руководителей, в курсе всех основных событий. Если им нужна какая-то информация из другого отдела или службы – ее предоставляют быстро по первому требованию. Службы и отделы в такой компании работают согласованно и вовремя предоставляют все необходимые данные."
 end
 ### 24 question ###
-q_24 = Question.create! audience: "management", number: 24
+q_24 = Question.create! opinion_subject: "Я", audience: "management", number: 24
 LeftStatement.create! do |left|
   left.question_id = q_24.id
   left.title = "Прохладная обстановка"
@@ -300,7 +300,7 @@ RightStatement.create! do |right|
   right.text = "Я могу назвать коллектив, в котором работаю, дружным и сплоченным. В нем всегда можно получить необходимую поддержку и помощь. Я доверяю своим коллегам, мы все  увлечены одним делом. Мы с удовольствием собираемся вместе и в нерабочей атмосфере, обсуждая как рабочие, так и личные дела."
 end
 ### 25 question ###
-q_25 = Question.create! audience: "management", number: 25
+q_25 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 25
 LeftStatement.create! do |left|
   left.question_id = q_25.id
   left.title = "Прохладная обстановка"
@@ -312,7 +312,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег могут назвать коллектив, в котором работают, дружным и сплоченным. В нем всегда можно получить необходимую поддержку и помощь. Коллеги доверяют друг другу и увлечены одним делом. Они с удовольствием собираются вместе и в нерабочей атмосфере, обсуждая как рабочие, так и личные дела."
 end
 ### 26 question ###
-q_26 = Question.create! audience: "management", number: 26
+q_26 = Question.create! opinion_subject: "Я", audience: "management", number: 26
 LeftStatement.create! do |left|
   left.question_id = q_26.id
   left.title = "Непризнанный"
@@ -324,7 +324,7 @@ RightStatement.create! do |right|
   right.text = "Меня уважают руководители и коллеги, считая Профессионалом. Мне поручают сложные задачи, потому что уверены в результате. Я редко допускаю ошибки, способен самостоятельно организовать любой рабочий процесс. Тем не менее, я постоянно чему-то учусь, и могу научить менее опытных коллег."
 end
 ### 27 question ###
-q_27 = Question.create! audience: "management", number: 27
+q_27 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 27
 LeftStatement.create! do |left|
   left.question_id = q_27.id
   left.title = "Непризнанный"
@@ -336,7 +336,7 @@ RightStatement.create! do |right|
   right.text = "Большинство моих коллег уважают руководители и коллеги, считая их профессионалами. Они редко допускают ошибки, способны самостоятельно организовать любой рабочий процесс. Тем не менее, они постоянно чему-то учатся, и у них есть всегда чему поучиться."
 end
 ### 28 question ###
-q_28 = Question.create! audience: "management", number: 28
+q_28 = Question.create! opinion_subject: "Я", audience: "management", number: 28
 LeftStatement.create! do |left|
   left.question_id = q_28.id
   left.title = ""
@@ -348,7 +348,7 @@ RightStatement.create! do |right|
   right.text = "Все свои дела на работе я довожу до конца. Никогда ни с кем не вступаю в конфликт. Никогда не обсуждаю с коллегами неправильные решения руководства. Меня никогда не раздражают люди, которые обращаются ко мне с просьбами."
 end
 ### 29 question ###
-q_29 = Question.create! audience: "management", number: 29
+q_29 = Question.create! opinion_subject: "Я", audience: "management", number: 29
 LeftStatement.create! do |left|
   left.question_id = q_29.id
   left.title = ""
@@ -362,7 +362,7 @@ end
 
 survey = Survey.create! do |s|
   s.user_id = user.id
-  s.user_agreement = "полностью согласен"
+  s.user_agreement = "я полностью согласен со своим результатом"
   s.user_email = "user@email.com"
 end
 

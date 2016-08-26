@@ -9,15 +9,20 @@
   <% @questions.each do |question| %>
     <tbody>
       <tr class="response">
-	<th><%= question.id %></th>
-	<th>
-	  "<%= question.left_statement.title %>"
+	<td>
+	  <strong><%= question.id %></strong>
+	</td>
+	<td>
+	  <% unless question.left_statement.title.blank? %>
+	    <strong>"<%= question.left_statement.title %>"</strong><br />
+	  <% end %>
 	  <%= question.left_statement.text %>
-	</th>
-	<th class="table_radio">
+	</td>
+	<td class="table_radio">
 	  <%= form_for Response.new, remote: true, id: "question_#{question.id}" do |f| %>
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
+	    <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 	    <div class="form-group">
 	      <label class="radio-inline">
 		<%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1" %>1
@@ -37,11 +42,13 @@
 	    </div>
 	    <%= f.submit "Выбрать", class: "submit_question", id: "submit_question_#{question.id}" %>
 	  <% end %>
-	</th>
-	<th>
-	  "<%= question.right_statement.title %>"
+	</td>
+	<td>
+	  <% unless question.right_statement.title.blank? %>
+	    <strong>"<%= question.right_statement.title %>"</strong><br />
+	  <% end %>
 	  <%= question.right_statement.text %>
-	</th>
+	</td>
       </tr>
     </tbody>
   <% end %>

@@ -12,7 +12,7 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:question_number, :answer)
+    params.require(:response).permit(:question_number, :answer, :opinion_subject)
   end
 
   def find_response

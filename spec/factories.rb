@@ -26,6 +26,7 @@ FactoryGirl.define do
   factory :question do
     sequence(:number, 1)
     audience 'management'
+    opinion_subject 'Я'
   end
 
   factory :left_statement do

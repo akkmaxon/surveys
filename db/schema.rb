@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826080124) do
+ActiveRecord::Schema.define(version: 20160826151003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,11 @@ ActiveRecord::Schema.define(version: 20160826080124) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "audience",   default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "audience",        default: ""
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "number"
+    t.string   "opinion_subject"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20160826080124) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "question_number"
+    t.string   "opinion_subject"
     t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 

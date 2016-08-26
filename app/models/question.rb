@@ -7,6 +7,7 @@ class Question < ApplicationRecord
   validates :audience, inclusion: { in: %w[management working_staff] }
   validates :number, presence: true
   validates :number, numericality: { only_integer: true }
+  validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
 
   def self.for(user)
     if user.manager?
