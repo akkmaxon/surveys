@@ -26,20 +26,20 @@
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
 	    <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
-	    <div class="form-group">
-	      <label class="radio-inline">
+	    <div class="btn-group" data-toggle="buttons">
+	      <label class="btn btn-primary">
 		<%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
 	      </label>
-	      <label class="radio-inline">
+	      <label class="btn btn-primary">
 		<%= f.radio_button :answer, 2, id: "question_#{question.id}_answer_2", class: "r_#{question.id}"  %>2
 	      </label>
-	      <label class="radio-inline">
+	      <label class="btn btn-primary">
 		<%= f.radio_button :answer, 3, id: "question_#{question.id}_answer_3", class: "r_#{question.id}"  %>3
 	      </label>
-	      <label class="radio-inline">
+	      <label class="btn btn-primary">
 		<%= f.radio_button :answer, 4, id: "question_#{question.id}_answer_4", class: "r_#{question.id}"  %>4
 	      </label>
-	      <label class="radio-inline">
+	      <label class="btn btn-primary">
 		<%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
 	      </label>
 	    </div>

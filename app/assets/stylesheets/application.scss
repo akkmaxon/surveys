@@ -79,6 +79,12 @@ table {
 #agreement {
   border-top: 1px solid #ddd;
   margin-top: 40px;
+  .btn-group {
+    width: 100%;
+  }
+  label {
+    width: 33.33%;
+  }
   #submit_agreement {
     display: none;
   }

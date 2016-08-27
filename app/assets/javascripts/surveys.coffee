@@ -25,6 +25,6 @@ $(document).ready () ->
     submitId = $(@).attr('class')
     $(".submit_question##{submitId}").click()
 
-  $(".edit_survey input").on "change", () ->
+  $(".edit_survey input[type='radio']").on "change", () ->
     $("#submit_agreement").click()
     $("#email_field").css "display", "block"

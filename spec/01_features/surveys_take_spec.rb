@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Work with surveys/edit', type: :feature do
+RSpec.describe 'Work with surveys/take', type: :feature do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
 
@@ -36,19 +36,19 @@ RSpec.describe 'Work with surveys/edit', type: :feature do
   end
 
   it 'Page layout after' do
-    choose id: 'question_1_answer_3'
-    choose id: 'question_2_answer_1'
+    find('#question_1_answer_3').trigger 'click'
+    find('#question_2_answer_1').trigger 'click'
     expect(page).to have_selector '#finish_survey'
     expect(page).to_not have_selector '#finish_survey.disabled'
   end 
 
   it 'Good render and work survey#show after' do
-    choose id: 'question_1_answer_3'
-    choose id: 'question_2_answer_1'
+    find('#question_1_answer_3').trigger 'click'
+    find('#question_2_answer_1').trigger 'click'
     click_link 'finish_survey'
     user.reload
     expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
-    choose id: 'not_agree'
+    find('#not_agree').trigger 'click'
     expect(page).to have_selector('#email_field .edit_survey')
   end
 end
