@@ -16,4 +16,12 @@ class Question < ApplicationRecord
       where(audience: 'working_staff')
     end
   end
+
+  def self.first_questions_for(user)
+    self.for(user).where('sentence = ?', "")
+  end
+
+  def self.second_questions_for(user)
+    self.for(user).where('sentence != ?', "")
+  end
 end

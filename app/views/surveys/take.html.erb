@@ -1,60 +1,80 @@
 <h1 class="header">Answer these questions</h1>
 
 <div class="progress">
-  <% initial_value = "0/#{@questions.size}" %>
+  <% initial_value = "0/#{@sum_of_questions}" %>
   <div class="progress-bar" id="<%= initial_value %>">
     <%= initial_value %>
   </div>
 </div>
 
-<table class="table">
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr class="response">
-	<td>
-	  <strong><%= question.id %></strong>
-	</td>
-	<td>
-	  <% unless question.left_statement.title.blank? %>
-	    <strong>"<%= question.left_statement.title %>"</strong><br />
-	  <% end %>
-	  <%= question.left_statement.text %>
-	</td>
-	<td class="table_radio text-center">
-	  <strong><%= question.opinion_subject %></strong>
-	  <%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
-	    <%= hidden_field_tag :survey_id, @survey.id %>
-	    <%= f.hidden_field :question_number, value: question.number %>
-	    <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
-	    <div class="btn-group" data-toggle="buttons">
-	      <label class="btn btn-primary">
-		<%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
-	      </label>
-	      <label class="btn btn-primary">
-		<%= f.radio_button :answer, 2, id: "question_#{question.id}_answer_2", class: "r_#{question.id}"  %>2
-	      </label>
-	      <label class="btn btn-primary">
-		<%= f.radio_button :answer, 3, id: "question_#{question.id}_answer_3", class: "r_#{question.id}"  %>3
-	      </label>
-	      <label class="btn btn-primary">
-		<%= f.radio_button :answer, 4, id: "question_#{question.id}_answer_4", class: "r_#{question.id}"  %>4
-	      </label>
-	      <label class="btn btn-primary">
-		<%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
-	      </label>
-	    </div>
-	    <%= f.submit "Выбрать", class: "submit_question", id: "r_#{question.id}" %>
-	  <% end %>
-	</td>
-	<td>
-	  <% unless question.right_statement.title.blank? %>
-	    <strong>"<%= question.right_statement.title %>"</strong><br />
-	  <% end %>
-	  <%= question.right_statement.text %>
-	</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="first_questions">
+  <h2 class="h3">1 Задание ...</h2>
+  <table class="table">
+    <tbody>
+      <% @first_questions.each do |question| %>
+	<tr class="response">
+	  <td>
+	    <strong><%= question.id %></strong>
+	  </td>
+	  <td>
+	    <% unless question.left_statement.title.blank? %>
+	      <strong>"<%= question.left_statement.title %>"</strong><br />
+	    <% end %>
+	    <%= question.left_statement.text %>
+	  </td>
+	  <td class="table_radio text-center">
+	    <strong><%= question.opinion_subject %></strong>
+	    <%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
+	      <%= hidden_field_tag :survey_id, @survey.id %>
+	      <%= f.hidden_field :question_number, value: question.number %>
+	      <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
+	      <div class="btn-group" data-toggle="buttons">
+		<label class="btn btn-primary">
+		  <%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
+		</label>
+		<label class="btn btn-primary">
+		  <%= f.radio_button :answer, 2, id: "question_#{question.id}_answer_2", class: "r_#{question.id}"  %>2
+		</label>
+		<label class="btn btn-primary">
+		  <%= f.radio_button :answer, 3, id: "question_#{question.id}_answer_3", class: "r_#{question.id}"  %>3
+		</label>
+		<label class="btn btn-primary">
+		  <%= f.radio_button :answer, 4, id: "question_#{question.id}_answer_4", class: "r_#{question.id}"  %>4
+		</label>
+		<label class="btn btn-primary">
+		  <%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
+		</label>
+	      </div>
+	      <%= f.submit "Выбрать", class: "submit_question", id: "r_#{question.id}" %>
+	    <% end %>
+	  </td>
+	  <td>
+	    <% unless question.right_statement.title.blank? %>
+	      <strong>"<%= question.right_statement.title %>"</strong><br />
+	    <% end %>
+	    <%= question.right_statement.text %>
+	  </td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
+<div id="second_questions">
+  <h2 class="h3">2 Задание ...</h2>
+  <% @second_questions.each do |question| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+	<p><%= question.sentence %></p>
+	<%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
+	  <%= hidden_field_tag :survey_id, @survey.id %>
+	  <%= f.hidden_field :question_number, value: question.number %>
+	  <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
+	  <%= f.text_area :answer, class: 'form-control', value: "затрудняюсь ответить", width: '300px', height: '100px'  %>
+	  <%= f.submit "Подтвердить", class: "submit_question_2 btn btn-primary pull-center" %>
+	<% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 <%= link_to 'Получить краткие результаты', @survey, class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey', data: { turbolinks: false } %>

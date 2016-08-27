@@ -17,7 +17,9 @@ class SurveysController < ApplicationController
   end
 
   def take
-    @questions = Question.for(current_user)
+    @first_questions = Question.first_questions_for(current_user)
+    @second_questions = Question.second_questions_for(current_user)
+    @sum_of_questions = @first_questions.size + @second_questions.size
   end
 
   def update
