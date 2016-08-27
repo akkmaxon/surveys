@@ -19,7 +19,6 @@ RSpec.describe 'User create new response by clicking radio button', type: :featu
 
   it 'successfully' do
     choose id: 'question_1_answer_3'
-    click_button 'submit_question_1'
     sleep 1
     user.reload
     expect(user.surveys.first.responses.size).to eq 1
@@ -29,7 +28,6 @@ RSpec.describe 'User create new response by clicking radio button', type: :featu
   it 'check for disappearing tr' do
     expect(page).to have_selector '.new_response', count: 2
     choose id: 'question_1_answer_5'
-    click_button 'submit_question_1'
     sleep 1
     user.reload
     expect(page).to_not have_selector '#submit_question_1'

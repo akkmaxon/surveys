@@ -15,12 +15,16 @@ $(document).ready () ->
     $('.progress-bar').attr('id', newId)
     $('.progress-bar').css('width', "#{nowChecked/total * 100}%")
 
-  $(".edit_survey input").on "change", () ->
-    $("#submit_agreement").click()
-    $("#email_field").css "display", "block"
-
   $(".new_response").on "ajax:success", (e, data, status, xhr) ->
     $(@).parent().parent().hide(200)
     updateProgressBar()
     if finishedSurvey()
       $("#finish_survey").removeClass("disabled")
+
+  $(".new_response input[type='radio']").on "change", () ->
+    submitId = $(@).attr('class')
+    $(".submit_question##{submitId}").click()
+
+  $(".edit_survey input").on "change", () ->
+    $("#submit_agreement").click()
+    $("#email_field").css "display", "block"

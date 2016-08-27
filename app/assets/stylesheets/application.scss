@@ -101,9 +101,7 @@ table {
 .table_radio {
   width: 220px;
   .submit_question {
-    @extend .btn;
-    @extend .btn-primary;
-    @extend .btn-block;
+    display: none;
   }
 }
 
