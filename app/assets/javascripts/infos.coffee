@@ -1,3 +1,3 @@
 $(document).ready () ->
-  $(".new_info .radio input").on "click", () ->
-    $(".actions").css("display", "block")
+  $(".new_info input[type='radio']").on "click", () ->
+    $(".new_info .actions").css("display", "block")
