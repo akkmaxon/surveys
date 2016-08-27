@@ -365,6 +365,24 @@ survey = Survey.create! do |s|
   s.user_agreement = "я полностью согласен со своим результатом"
   s.user_email = "user@email.com"
 end
+### 2_1 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 201,
+  sentence: "Я считаю, что основными проблемами в компании являются"
+### 2_2 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 202,
+  sentence: "Если бы я был назначен генеральным директором своей компании, в первую очередь я изменил бы"
+### 2_3 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 203,
+  sentence: "Я чувствовал гордость за свою компанию, когда"
+### 2_4 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 204,
+  sentence: "Чтобы работники компании работали с большей душой и отдачей, руководству компании нужно сделать следующее"
+### 2_5 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 205,
+  sentence: "В целом я посоветовал бы нашему руководству"
+### 2_6 question ###
+Question.create! opinion_subject: "Я", audience: "management", number: 206,
+  sentence: "Назовите 2-3 имени Ваших коллег, точку зрения которых Вы уважаете, к мнению которых прислушиваетесь:"
 
 ### User takes a survey ###
 (1..29).each do |n|
@@ -373,5 +391,15 @@ end
     resp.opinion_subject = Question.find_by(number: n).opinion_subject
     resp.question_number = n
     resp.answer = (rand(5) + 1).to_s
+  end
+end
+
+(1..6).each do |n|
+  question_number = "20#{n}".to_i
+  Response.create! do |resp|
+    resp.survey_id = survey.id
+    resp.opinion_subject = Question.find_by(number: question_number).opinion_subject 
+    resp.question_number = question_number
+    resp.answer = "Затрудняюсь ответить"
   end
 end
