@@ -8,16 +8,15 @@
 </div>
 
 <div id="first_questions">
-  <h2 class="h3">
-    <strong>Задание 1.</strong>
-    Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.
-    Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).
-  </h2>
+  <div class="specifying_question">
+    <h2><strong>Задание 1.</strong></h2>
+    <p>Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.
+    Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).</p>
+  </div>
   <table class="table">
     <tbody class="container">
       <% @first_questions.each_with_index do |question, n| %>
 	<tr class="response row <%= n == 0 ? '' : 'hidden_question' %>">
-	  <td><%= question.number %></td>
 	  <td class="left col-xs-2 col-md-4">
 	    <% unless question.left_statement.title.blank? %>
 	      <strong>"<%= question.left_statement.title %>"</strong><br />
@@ -63,9 +62,10 @@
 </div>
 
 <div id="second_questions">
-  <h2 class="h3">
-    <strong>Задание 2.</strong> Закончите следующие предложения:
-  </h2>
+  <div class="specifying_question">
+    <h2><strong>Задание 2.</strong></h2>
+    <p>Закончите следующие предложения:</p>
+  </div>
   <% @second_questions.each_with_index do |question, n| %>
     <div class="panel panel-default <%= n == 0 ? '' : 'hidden_question' %>">
       <div class="panel-body">

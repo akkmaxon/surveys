@@ -60,7 +60,7 @@
 #new_survey {
   position: absolute;
   left: 50%;
-  margin-left: -50px;
+  margin-left: -65px;
 }
 
 #accordion a {
@@ -131,4 +131,18 @@ table {
 
 #second_questions {
   display: none;
+}
+
+.specifying_question {
+  h2 {
+    @extend .h3;
+    @extend .text-center;
+  }
+  font-weight: bold;
+} 
+
+.subject_with_arrows {
+  strong {
+    padding: 0 50px;
+  }
 }
