@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'User creation' do
-    let(:user) { FactoryGirl.build :user }
-    let(:other_user) { FactoryGirl.build :user }
+  let(:user) { FactoryGirl.build :user }
+  let(:other_user) { FactoryGirl.build :user }
 
+  describe 'User creation' do
     context 'success' do
       it 'default properties' do
 	user.save
@@ -45,6 +45,32 @@ RSpec.describe User, type: :model do
       it 'with short password' do
 	user.password = user.password_confirmation = 'a' * 5
 	expect(user).to be_invalid
+      end
+    end
+  end
+
+  describe 'methods' do
+    context '#manager?' do
+      let!(:info) { FactoryGirl.create :info, user: user }
+
+      it 'return true' do
+	["производственный руководитель", "работник офиса", "руководитель отдела", "топ-менеджер"].each do |position|
+	  user.info.work_position = position
+	  expect(user).to be_manager
+	end
+      end
+
+      it 'return false' do
+	user.info.work_position = "рабочая должность"
+	expect(user).not_to be_manager
+      end
+
+      it 'raise error when blank' do
+	[nil, ""].each do |position|
+	  user.info.work_position = position
+	  expect(user.info).to be_invalid
+	  expect{user.info.save!}.to raise_error(ActiveRecord::RecordInvalid)
+	end
       end
     end
   end

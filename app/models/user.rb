@@ -19,12 +19,6 @@ class User < ApplicationRecord
   end
 
   def manager?
-    if info.work_position == "производственный руководитель" or
-	info.work_position == "руководитель отдела" or
-	info.work_position == "топ-менеджер"
-      true
-    else
-      false
-    end
+    info.work_position != "рабочая должность"
   end
 end
