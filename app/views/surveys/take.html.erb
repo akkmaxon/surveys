@@ -10,49 +10,47 @@
 <div id="first_questions">
   <h2 class="h3">
     <strong>Задание 1.</strong>
-    Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании. 
+    Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.
+    Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).
   </h2>
   <table class="table">
-    <tbody>
-      <% @first_questions.each do |question| %>
-	<tr><td colspan="4" class="text-center h3"><%= text_for(question.opinion_subject) %></td></tr>
-	<tr class="response">
-	  <td>
-	    <strong><%= question.number %></strong>
-	  </td>
-	  <td>
+    <tbody class="container">
+      <% @first_questions.each_with_index do |question, n| %>
+	<tr class="response row <%= n == 0 ? '' : 'hidden_question' %>">
+	  <td><%= question.number %></td>
+	  <td class="left col-xs-2 col-md-4">
 	    <% unless question.left_statement.title.blank? %>
 	      <strong>"<%= question.left_statement.title %>"</strong><br />
 	    <% end %>
 	    <%= question.left_statement.text %>
 	  </td>
-	  <td class="table_radio text-center">
-	    <strong><%= question.opinion_subject %></strong>
+	  <td class="table_radio text-center col-xs-8 col-md-4">
+	    <%= text_for_subject(question.opinion_subject) %>
 	    <%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
 	      <%= hidden_field_tag :survey_id, @survey.id %>
 	      <%= f.hidden_field :question_number, value: question.number %>
 	      <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
-	      <div class="btn-group" data-toggle="buttons">
-		<label class="btn btn-primary">
+	      <div data-toggle="buttons">
+		<label class="btn btn-primary btn-lg">
 		  <%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
 		</label>
 		<label class="btn btn-primary">
 		  <%= f.radio_button :answer, 2, id: "question_#{question.id}_answer_2", class: "r_#{question.id}"  %>2
 		</label>
-		<label class="btn btn-primary">
+		<label class="btn btn-primary btn-sm">
 		  <%= f.radio_button :answer, 3, id: "question_#{question.id}_answer_3", class: "r_#{question.id}"  %>3
 		</label>
 		<label class="btn btn-primary">
 		  <%= f.radio_button :answer, 4, id: "question_#{question.id}_answer_4", class: "r_#{question.id}"  %>4
 		</label>
-		<label class="btn btn-primary">
+		<label class="btn btn-primary btn-lg">
 		  <%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
 		</label>
 	      </div>
-	      <%= f.submit "Выбрать", class: "submit_question", id: "r_#{question.id}" %>
+	      <%= f.submit "Выбрать", class: "submit_question_1", id: "r_#{question.id}" %>
 	    <% end %>
 	  </td>
-	  <td>
+	  <td class="right col-xs-2 col-md-4">
 	    <% unless question.right_statement.title.blank? %>
 	      <strong>"<%= question.right_statement.title %>"</strong><br />
 	    <% end %>
@@ -68,8 +66,8 @@
   <h2 class="h3">
     <strong>Задание 2.</strong> Закончите следующие предложения:
   </h2>
-  <% @second_questions.each do |question| %>
-    <div class="panel panel-default">
+  <% @second_questions.each_with_index do |question, n| %>
+    <div class="panel panel-default <%= n == 0 ? '' : 'hidden_question' %>">
       <div class="panel-body">
 	<p><%= question.sentence %></p>
 	<%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
@@ -79,7 +77,7 @@
 	  <div class="input-group">
 	    <%= f.text_field :answer, value: "затрудняюсь ответить", class: 'form-control' %>
 	    <span class="input-group-btn">
-	      <%= f.submit "Подтвердить", class: "btn btn-primary" %>
+	      <%= f.submit "Подтвердить", class: "btn btn-primary submit_question_2" %>
 	    </span>
 	  </div>
 	<% end %>
@@ -87,4 +85,5 @@
     </div>
   <% end %>
 </div>
+
 <%= link_to 'Получить краткие результаты', @survey, class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey', data: { turbolinks: false } %>

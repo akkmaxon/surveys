@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Surveys</title>
+    <title>Самооценка вовлеченности</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <%= csrf_meta_tags %>
 
@@ -15,7 +15,7 @@
     <%= render "shared/messages" %>
     <div class="container">
       <div class="row">
-	<div class="<%= devise_controller? ? 'col-md-6 col-md-offset-3' : 'col-md-10 col-md-offset-1' %>">
+	<div class="<%= devise_controller? ? 'col-md-6 col-md-offset-3' : 'col-sm-12' %>">
 	  <%= yield %>
 	</div>
       </div>

@@ -105,8 +105,7 @@ table {
 }
 
 .table_radio {
-  width: 220px;
-  .submit_question {
+  .submit_question_1 {
     display: none;
   }
 }
@@ -120,4 +119,16 @@ table {
   td:nth-child(2) {
     @extend .text-left;
   }
+}
+
+.hidden_question {
+  display: none;
+}
+
+#finish_survey {
+  display: none;
+}
+
+#second_questions {
+  display: none;
 }
