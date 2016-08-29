@@ -1,14 +1,14 @@
-<h1 class="header">Your surveys.</h1>
-
 <% if @surveys.blank? %>
-  <%= link_to "Pass first survey", surveys_path, method: :post, class: 'btn btn-primary btn-lg btn-block' %>
+  <%= link_to "Пройти тест", surveys_path, method: :post, class: 'btn btn-primary btn-lg btn-block' %>
 <% else %>
+  <h1 class="header">Завершенные опросы</h1>
+
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <% @surveys.each do |survey| %>
       <div class="panel panel-default">
 	<div class="panel-heading" role="tab" id="heading<%= survey.id %>">
 	  <h2 class="panel-title h3">
-	    <%= link_to "Results", "#collapse#{survey.id}",
+	    <%= link_to "Краткие результаты", "#collapse#{survey.id}",
 	      class: 'btn btn-link pull-right', role: 'button',
 	      data: { toggle: 'collapse', parent: 'accordion' },
 	      aria: { expanded: 'false', controls: "collapse#{survey.id}" }

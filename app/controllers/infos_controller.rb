@@ -13,7 +13,7 @@ class InfosController < ApplicationController
   def create
     @info = Info.new(info_params.merge user_id: current_user.id)
     if @info.save
-      flash[:notice] = 'Now you can take a survey.'
+      flash[:notice] = "Спасибо, теперь Вы можете пройти тест."
       redirect_to surveys_url
     else
       render :new
@@ -25,7 +25,7 @@ class InfosController < ApplicationController
 
   def update
     if @info.update(info_params)
-      flash[:notice] = 'Information about yourself has been updated.'
+      flash[:notice] = "Ваши данные обновлены."
       redirect_to surveys_url
     else
       render :edit

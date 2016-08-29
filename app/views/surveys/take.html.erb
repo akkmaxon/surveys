@@ -1,4 +1,4 @@
-<h1 class="header">Answer these questions</h1>
+<h1 class="header">Опрос для <%= current_user.login %></h1>
 
 <div class="progress">
   <% initial_value = "0/#{@sum_of_questions}" %>
@@ -8,13 +8,17 @@
 </div>
 
 <div id="first_questions">
-  <h2 class="h3">1 Задание ...</h2>
+  <h2 class="h3">
+    <strong>Задание 1.</strong>
+    Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании. 
+  </h2>
   <table class="table">
     <tbody>
       <% @first_questions.each do |question| %>
+	<tr><td colspan="4" class="text-center h3"><%= text_for(question.opinion_subject) %></td></tr>
 	<tr class="response">
 	  <td>
-	    <strong><%= question.id %></strong>
+	    <strong><%= question.number %></strong>
 	  </td>
 	  <td>
 	    <% unless question.left_statement.title.blank? %>
@@ -61,7 +65,9 @@
 </div>
 
 <div id="second_questions">
-  <h2 class="h3">2 Задание ...</h2>
+  <h2 class="h3">
+    <strong>Задание 2.</strong> Закончите следующие предложения:
+  </h2>
   <% @second_questions.each do |question| %>
     <div class="panel panel-default">
       <div class="panel-body">
@@ -70,8 +76,12 @@
 	  <%= hidden_field_tag :survey_id, @survey.id %>
 	  <%= f.hidden_field :question_number, value: question.number %>
 	  <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
-	  <%= f.text_area :answer, class: 'form-control', value: "затрудняюсь ответить", width: '300px', height: '100px'  %>
-	  <%= f.submit "Подтвердить", class: "submit_question_2 btn btn-primary pull-center" %>
+	  <div class="input-group">
+	    <%= f.text_field :answer, value: "затрудняюсь ответить", class: 'form-control' %>
+	    <span class="input-group-btn">
+	      <%= f.submit "Подтвердить", class: "btn btn-primary" %>
+	    </span>
+	  </div>
 	<% end %>
       </div>
     </div>

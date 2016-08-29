@@ -1,24 +1,24 @@
-<h2 class="header">Log in</h2>
+<h2 class="header">Вход в систему</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
-    <%= f.label :login %><br />
+    <%= f.label :login, "Логин" %><br />
     <%= f.text_field :login, autofocus: true, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password %><br />
+    <%= f.label :password, "Пароль" %><br />
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :remember_me, "Запомнить" %>
     </div>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in", class: 'btn btn-primary btn-lg btn-block' %>
+    <%= f.submit "Войти", class: 'btn btn-primary btn-lg btn-block' %>
   </div>
 <% end %>

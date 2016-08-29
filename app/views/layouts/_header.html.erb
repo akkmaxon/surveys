@@ -7,23 +7,27 @@
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
       </button>
-      <%= link_to 'New Survey', surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
+      <% if user_signed_in? %>
+	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
+      <% else %>
+	<%= link_to "Самооценка вовлеченности", '#', class: 'navbar-brand' %>
+      <% end %>
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
       <% if user_signed_in? %>
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('surveys', 'index') %>">
-	    <%= link_to 'All Surveys', surveys_path, id: 'all_surveys' %>
+	    <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li><%= link_to "Signed in as #{current_user.login}", edit_info_path %></a></li>
-	  <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+	  <li><%= link_to "Информация о себе", edit_info_path %></a></li>
+	  <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
 	</ul>
       <% else %>
 	<ul class="nav navbar-nav navbar-right">
 	  <li class="<%= active_link('sessions', 'new') %>">
-	    <%= link_to 'Sign in', new_user_session_path %>
+	    <%= link_to "Войти", new_user_session_path %>
 	  </li>
 	</ul>
       <% end %>

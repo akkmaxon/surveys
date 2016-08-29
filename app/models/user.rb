@@ -21,4 +21,8 @@ class User < ApplicationRecord
   def manager?
     info.work_position != "рабочая должность"
   end
+
+  def current_survey_number
+    surveys.blank? ? 1 : (surveys.completed_count + 1)
+  end
 end

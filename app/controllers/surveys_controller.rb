@@ -25,7 +25,7 @@ class SurveysController < ApplicationController
   def update
     @survey.update(surveys_params)
     if surveys_params.key?(:user_email)
-      flash[:notice] = "Спасибо за уделенное время."
+      flash[:notice] = "Опрос завершен. Благодарим Вас за уделенное время."
       redirect_to surveys_url
     end
   end
@@ -42,7 +42,7 @@ class SurveysController < ApplicationController
 
   def check_for_survey_owner
     unless current_user.surveys.include?(@survey)
-      flash[:alert] = 'You are not allowed to watch other people\'s surveys!'
+      flash[:alert] = "Вы не можете видеть результаты других пользователей"
       redirect_to surveys_url
     end
   end

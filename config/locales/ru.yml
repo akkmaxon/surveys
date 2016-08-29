@@ -1,0 +1,19 @@
+ru:
+  activerecord:
+    errors:
+      models:
+        info:
+          attributes:
+            gender:
+              blank: "Вы не указали пол"
+            experience:
+              blank: "Вы не указали опыт работы в компании"
+            age:
+              blank: "Вы не указали возраст"
+            workplace_number:
+              blank: "Вы не указали место работы по счету" 
+            work_position: 
+              blank: "Вы не указали должность в компании"
+            company:
+              blank: "Вы не выбрали компанию"
+                
