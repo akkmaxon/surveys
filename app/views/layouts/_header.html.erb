@@ -21,7 +21,7 @@
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li><%= link_to "Информация о себе", edit_info_path %></a></li>
+	  <li><%= link_to "Информация о себе", edit_info_path, data: { turbolinks: false } %></a></li>
 	  <li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
 	</ul>
       <% else %>

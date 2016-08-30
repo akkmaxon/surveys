@@ -15,7 +15,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 
   it 'with all fields' do
     %w[gender experience age workplace_number work_position company].each do |input|
-      choose id: "info_#{input}_1"
+      find("#info_#{input}_1").trigger 'click'
     end
     click_button "submit_info"
     expect(page).to have_selector '#messages .alert-success'
@@ -25,7 +25,7 @@ RSpec.describe 'User create info about himself', type: :feature do
   it 'allowed to create full info only' do
     %w[gender experience age workplace_number work_position company].each do |input|
       visit new_info_path
-      choose id: "info_#{input}_1"
+      find("#info_#{input}_1").trigger 'click'
       click_button "submit_info"
       expect(page).to have_selector '#error_explanation'
     end

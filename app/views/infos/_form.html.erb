@@ -12,192 +12,160 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <h3>Укажите Ваш пол</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Укажите Ваш пол</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :gender, 'мужской', id: 'info_gender_1' %>
 	Мужской
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :gender, 'женский', id: 'info_gender_2' %>
 	Женский
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <h3>Ваш возраст</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Ваш возраст</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :age, 'менее 25 лет', id: 'info_age_1' %>
 	Менее 25 лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :age, 'от 25 до 30 лет', id: 'info_age_2' %>
 	От 25 до 30 лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :age, 'от 30 до 40 лет', id: 'info_age_3' %>
 	От 30 до 40 лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :age, 'от 40 до 55 лет', id: 'info_age_4' %>
 	От 40 до 55 лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :age, 'более 55 лет', id: 'info_age_5' %>
 	Более 55 лет
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <h3>Укажите компанию, в которой Вы работаете</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Укажите компанию, в которой Вы работаете</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'ГК Управдом', id: 'info_company_1' %>
 	ГК Управдом
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'ГК ДУК', id: 'info_company_2' %>
 	ГК ДУК
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'ГК Дзержинские лифты', id: 'info_company_3' %>
 	ГК Дзержинские лифты
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'ГК Газы', id: 'info_company_4' %>
 	ГК Газы
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'Рекламные технологии', id: 'info_company_5' %>
 	Рекламные технологии
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'Таможенный пост', id: 'info_company_6' %>
 	Таможенный пост
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'Управление недвижимостью', id: 'info_company_7' %>
 	Управление недвижимостью
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :company, 'Городской парк', id: 'info_company_8' %>
 	Городской парк
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <h3>Сколько лет Вы работаете в данной компании?</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Сколько лет Вы работаете в данной компании?</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :experience, 'меньше 1 года', id: 'info_experience_1' %>
 	Меньше 1 года
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :experience, 'от 1 года до 3х лет', id: 'info_experience_2' %>
 	От 1 года до 3х лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :experience, 'от 3х до 5ти лет', id: 'info_experience_3' %>
 	От 3х до 5ти лет
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :experience, 'более 5ти лет', id: 'info_experience_4' %>
 	Более 5ти лет
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <h3>Какое по счету это место работы для вас?</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Какое по счету это место работы для вас?</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :workplace_number, 'первое', id: 'info_workplace_number_1' %>
 	Первое
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :workplace_number, 'второе', id: 'info_workplace_number_2' %>
 	Второе
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :workplace_number, 'третье', id: 'info_workplace_number_3' %>
 	Третье
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :workplace_number, 'больше третьего', id: 'info_workplace_number_4' %>
 	Больше третьего
       </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <h3>Какую должность Вы занимаете в компании?</h3>
-    <div class="radio">
-      <label>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Какую должность Вы занимаете в компании?</h3>
+    </div>
+    <div class="btn-group-vertical" data-toggle="buttons">
+      <label class="btn btn-default">
 	<%= f.radio_button :work_position, 'рабочая должность', id: 'info_work_position_1' %>
 	Рабочая должность
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :work_position, 'производственный руководитель', id: 'info_work_position_2' %>
 	Производственный руководитель
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :work_position, 'работник офиса', id: 'info_work_position_3' %>
 	Работник офиса
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :work_position, 'руководитель отдела', id: 'info_work_position_4' %>
 	Руководитель отдела
       </label>
-    </div>
-    <div class="radio">
-      <label>
+      <label class="btn btn-default">
 	<%= f.radio_button :work_position, 'топ-менеджер', id: 'info_work_position_5' %>
 	Топ-менеджер
       </label>
