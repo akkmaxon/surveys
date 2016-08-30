@@ -23,6 +23,14 @@ class User < ApplicationRecord
   end
 
   def current_survey_number
-    surveys.blank? ? 1 : (surveys.completed_count + 1)
+    surveys.blank? ? 1 : (count_completed_surveys + 1)
+  end
+
+  def completed_surveys
+    surveys.where('completed = ?', true)
+  end
+
+  def count_completed_surveys
+    completed_surveys.count
   end
 end

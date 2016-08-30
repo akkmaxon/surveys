@@ -364,7 +364,9 @@ survey = Survey.create! do |s|
   s.user_id = user.id
   s.user_agreement = "я полностью согласен со своим результатом"
   s.user_email = "user@email.com"
+  s.completed = true
 end
+
 ### 2_1 question ###
 Question.create! opinion_subject: "Я", audience: "management", number: 201,
   sentence: "Я считаю, что основными проблемами в компании являются"

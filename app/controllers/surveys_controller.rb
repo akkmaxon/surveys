@@ -5,7 +5,7 @@ class SurveysController < ApplicationController
   before_action :check_for_not_completed_survey, only: :create
 
   def index
-    @surveys = current_user.surveys
+    @surveys = current_user.completed_surveys
   end
 
   def show
@@ -41,6 +41,9 @@ class SurveysController < ApplicationController
 
   def find_survey
     @survey = Survey.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Опрос №#{params[:id]} не существует"
+    redirect_to surveys_url
   end
 
   def check_for_survey_owner

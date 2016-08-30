@@ -1,6 +1,6 @@
 module SurveysHelper
   def expand_state_for(survey)
-    newest_survey = current_user.surveys.first
+    newest_survey = current_user.completed_surveys.first
     survey.id == newest_survey.id ? "in" : ""
   end
 

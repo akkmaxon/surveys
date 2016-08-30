@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'methods' do
-    context '#manager?' do
+    describe '#manager?' do
       let!(:info) { FactoryGirl.create :info, user: user }
 
       it 'return true' do
@@ -71,6 +71,21 @@ RSpec.describe User, type: :model do
 	  expect(user.info).to be_invalid
 	  expect{user.info.save!}.to raise_error(ActiveRecord::RecordInvalid)
 	end
+      end
+    end
+
+    describe 'count_completed_surveys' do
+      let!(:s1) { FactoryGirl.create :survey, completed: true, user: user }
+      let!(:s2) { FactoryGirl.create :survey, completed: true, user: user }
+      let!(:s3) { FactoryGirl.create :survey, user: user }
+
+      it 'first test' do
+	expect(user.count_completed_surveys).to eq 2
+      end
+
+      it 'second test' do
+	s3.update completed: true
+	expect(user.count_completed_surveys).to eq 3
       end
     end
   end

@@ -81,6 +81,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     find('.submit_questions_2').trigger 'click'
     find('#finish_survey').trigger 'click'
     click_link 'new_survey'
+    sleep 1
     user.reload
     expect(user.surveys.count).to eq 2
   end
