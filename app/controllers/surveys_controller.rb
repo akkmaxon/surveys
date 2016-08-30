@@ -25,7 +25,7 @@ class SurveysController < ApplicationController
   def update
     @survey.update(surveys_params)
     if surveys_params.key?(:completed)
-      flash[:notice] = "Опрос завершен. Благодарим Вас за уделенное время."
+      flash[:notice] = "Опрос завершен."
       redirect_to @survey
     end
     if surveys_params.key?(:user_email)
