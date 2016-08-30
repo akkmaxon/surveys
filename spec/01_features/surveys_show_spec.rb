@@ -25,10 +25,6 @@ RSpec.describe 'Work with surveys/show', type: :feature do
       sleep 1
       survey.reload
       expect(survey.user_agreement).to eq 'я не согласен со своим результатом'
-      find('#agree').trigger 'click'
-      sleep 1
-      survey.reload
-      expect(survey.user_agreement).to eq 'я полностью согласен со своим результатом'
     end
 
     it 'User fill in an email form' do

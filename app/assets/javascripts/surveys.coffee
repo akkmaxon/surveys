@@ -16,21 +16,20 @@ $(document).ready () ->
     $('.progress-bar').css('width', "#{nowChecked/total * 100}%")
 
   $(".new_response").on "ajax:success", (e, data, status, xhr) ->
-    currentTr = $(@).parent().parent()
-    nextTr = currentTr.next()
-    currentTr.remove()
-    nextTr.css('display', 'block')
+    currentQ = $(@).parent().parent()
+    nextQ = currentQ.next()
+    currentQ.remove()
+    nextQ.css('display', 'block')
+
     updateProgressBar()
     # end of the game
     if finishedSurvey()
+      $('#second_questions').remove()
       $("#finish_survey").css('display', 'block').removeClass("disabled")
     # finishing 1 questions
-    if ($('.submit_questions_1').size() is 0) and $("#first_questions").size() isnt 0
+    if ($('.submit_questions_1').size() is 0) and ($("#first_questions").size() isnt 0)
       $("#first_questions").remove()
       $("#second_questions").css('display', 'block')
-    # finishing 2 questions
-    if $('.submit_questions_2').size() is 0
-      $('#second_questions').remove()
 
   # 1 questions radios
   $(".new_response input[type='radio']").on "change", () ->
@@ -38,12 +37,8 @@ $(document).ready () ->
     submitButton = $(".submit_questions_1##{submitId}")
     submitButton.click()
 
-  # 2 questions forms
-  $(".new_response .submit_questions_2").on "click", () ->
-    form = $(@).parent()
-    form.parent().parent().css('display', 'none')
-
   # after survey
   $(".edit_survey input[type='radio']").on "change", () ->
     $("#submit_agreement").click()
+    $("#agreement").hide(200)
     $("#email_field").css "display", "block"
