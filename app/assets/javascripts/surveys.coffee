@@ -25,21 +25,21 @@ $(document).ready () ->
     if finishedSurvey()
       $("#finish_survey").css('display', 'block').removeClass("disabled")
     # finishing 1 questions
-    if ($('.submit_question_1').size() is 0) and $("#first_questions").size() isnt 0
+    if ($('.submit_questions_1').size() is 0) and $("#first_questions").size() isnt 0
       $("#first_questions").remove()
       $("#second_questions").css('display', 'block')
     # finishing 2 questions
-    if $('.submit_question_2').size() is 0
+    if $('.submit_questions_2').size() is 0
       $('#second_questions').remove()
 
   # 1 questions radios
   $(".new_response input[type='radio']").on "change", () ->
     submitId = $(@).attr('class')
-    submitButton = $(".submit_question_1##{submitId}")
+    submitButton = $(".submit_questions_1##{submitId}")
     submitButton.click()
 
   # 2 questions forms
-  $(".new_response .submit_question_2").on "click", () ->
+  $(".new_response .submit_questions_2").on "click", () ->
     form = $(@).parent()
     form.parent().parent().css('display', 'none')
 

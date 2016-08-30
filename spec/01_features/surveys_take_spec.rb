@@ -7,9 +7,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
   let!(:question_one) { FactoryGirl.create :question }
   let!(:left_st_for_q_one) { FactoryGirl.create :left_statement, title: '1left', question: question_one }
   let!(:right_st_for_q_one) { FactoryGirl.create :right_statement, title: '1right', question: question_one }
-  let!(:question_two) { FactoryGirl.create :question }
-  let!(:left_st_for_q_two) { FactoryGirl.create :left_statement, title: '2left', question: question_two }
-  let!(:right_st_for_q_two) { FactoryGirl.create :right_statement, title: '2right', question: question_two }
+  let!(:question_two) { FactoryGirl.create :question, sentence: Faker::Lorem.sentence }
 
   before do
     login_as user
@@ -25,26 +23,48 @@ RSpec.describe 'Work with surveys/take', type: :feature do
   end
 
   it 'Page layout before' do
-    expect(page).to have_selector '.response', count: 2
+    expect(page).to have_selector '#first_questions'
+    expect(page).not_to have_selector '#second_questions'
     expect(page).to have_selector '.progress'
-    expect(page).to have_selector '#finish_survey.disabled'
+    expect(page).to have_selector '.response', count: 1
+    expect(page).to have_selector 'input[type="radio"]', count: 5
+    expect(page).not_to have_selector '#finish_survey'
     within '.table' do
-      %w[1left 2left 1right 2right].each do |title|
+      %w[1left 1right].each do |title|
 	expect(page).to have_content title
       end
     end
   end
 
+  it 'Survey in action' do
+    expect(page).to have_selector '#first_questions'
+    expect(page).not_to have_selector '#second_questions'
+    find('#question_1_answer_4').trigger 'click'
+    expect(page).not_to have_selector '#first_questions'
+    expect(page).to have_selector '#second_questions'
+    expect(page).to have_content question_two.sentence
+    fill_in 'response_answer', with: 'answer sentence'
+    find('.submit_questions_2').trigger 'click'
+    expect(page).not_to have_selector '#second_questions'
+    user.reload
+    expect(user.surveys.first.responses.count).to eq 2
+    expect(user.surveys.first.responses.first.answer).to eq '4'
+    expect(user.surveys.first.responses.last.answer).to eq 'answer sentence'
+  end
+
   it 'Page layout after' do
     find('#question_1_answer_3').trigger 'click'
-    find('#question_2_answer_1').trigger 'click'
+    fill_in 'response_answer', with: 'answer sentence'
+    find('.submit_questions_2').trigger 'click'
+    expect(page).not_to have_selector '#first_questions'
+    expect(page).not_to have_selector '#second_questions'
     expect(page).to have_selector '#finish_survey'
-    expect(page).to_not have_selector '#finish_survey.disabled'
   end 
 
   it 'Good render and work survey#show after' do
     find('#question_1_answer_3').trigger 'click'
-    find('#question_2_answer_1').trigger 'click'
+    fill_in 'response_answer', with: 'answer sentence'
+    find('.submit_questions_2').trigger 'click'
     click_link 'finish_survey'
     user.reload
     expect(page.current_path).to eq survey_path(id: user.surveys.first.id)

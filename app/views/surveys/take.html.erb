@@ -46,7 +46,7 @@
 		  <%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
 		</label>
 	      </div>
-	      <%= f.submit "Выбрать", class: "submit_question_1", id: "r_#{question.id}" %>
+	      <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.id}" %>
 	    <% end %>
 	  </td>
 	  <td class="right col-xs-2 col-md-4">
@@ -69,15 +69,15 @@
   <% @second_questions.each_with_index do |question, n| %>
     <div class="panel panel-default <%= n == 0 ? '' : 'hidden_question' %>">
       <div class="panel-body">
-	<p><%= question.sentence %></p>
+	<blockquote><%= question.sentence %></blockquote>
 	<%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
 	  <%= hidden_field_tag :survey_id, @survey.id %>
 	  <%= f.hidden_field :question_number, value: question.number %>
 	  <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 	  <div class="input-group">
-	    <%= f.text_field :answer, value: "затрудняюсь ответить", class: 'form-control' %>
+	    <%= f.text_field :answer, class: 'form-control' %>
 	    <span class="input-group-btn">
-	      <%= f.submit "Подтвердить", class: "btn btn-primary submit_question_2" %>
+	      <%= f.submit "Подтвердить", class: "btn btn-default submit_questions_2" %>
 	    </span>
 	  </div>
 	<% end %>

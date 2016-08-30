@@ -15,13 +15,13 @@ RSpec.describe Response, type: :model do
     end
 
     context 'fails' do
-      it 'answer is empty' do
-	response.answer = ''
+      it 'question number is nil' do
+	response.question_number = nil
 	expect(response).to be_invalid
       end
 
-      it 'question id is nil' do
-	response.question_number = nil
+      it 'question number is not a number' do
+	response.question_number = 'string'
 	expect(response).to be_invalid
       end
     end
