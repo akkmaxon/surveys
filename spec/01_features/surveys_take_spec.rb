@@ -65,10 +65,23 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     find('#question_1_answer_3').trigger 'click'
     fill_in 'response_answer', with: 'answer sentence'
     find('.submit_questions_2').trigger 'click'
-    click_link 'finish_survey'
+    find('#finish_survey').trigger 'click'
+    sleep 1
     user.reload
     expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
+    expect(page).to have_selector '.alert-success'
     find('#not_agree').trigger 'click'
     expect(page).to have_selector('#email_field .edit_survey')
+  end
+
+  it 'Survey completed state is determining properly' do
+    question_three = FactoryGirl.create :question, audience: 'working_staff', sentence: Faker::Lorem.sentence
+    find('#question_1_answer_3').trigger 'click'
+    fill_in 'response_answer', with: 'answer sentence'
+    find('.submit_questions_2').trigger 'click'
+    find('#finish_survey').trigger 'click'
+    click_link 'new_survey'
+    user.reload
+    expect(user.surveys.count).to eq 2
   end
 end

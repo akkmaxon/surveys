@@ -61,13 +61,13 @@ RSpec.describe SurveysController, type: :controller do
 
 
     it 'successfully' do
+      survey.update completed: true
       post :create
       expect(response).to redirect_to(take_survey_url(assigns(:survey)))
       expect(assigns(:survey).id).to_not eq(survey.id)
     end
 
     it 'using empty survey instead creating new' do
-      resp.destroy
       post :create
       expect(response).to redirect_to(take_survey_url(assigns(:survey)))
       expect(assigns(:survey).id).to eq(survey.id)

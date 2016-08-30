@@ -20,8 +20,4 @@ class Survey < ApplicationRecord
     end
     sum
   end
-
-  def completed?
-    responses.count == Question.count
-  end
 end

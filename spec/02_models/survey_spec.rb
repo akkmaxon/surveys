@@ -32,18 +32,6 @@ RSpec.describe Survey, type: :model do
 	question_number: 2,
 	answer: '2response'
     end
-    
-    describe '#completed?' do
-      it 'return true' do
-	allow(Question).to receive(:count).and_return(2)
-	expect(survey).to be_completed
-      end
-
-      it 'return false' do
-	allow(Question).to receive(:count).and_return(3)
-	expect(survey).not_to be_completed
-      end
-    end
 
     describe '#answer_for' do
       it 'return nil' do

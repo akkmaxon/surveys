@@ -24,7 +24,10 @@ class SurveysController < ApplicationController
 
   def update
     @survey.update(surveys_params)
-    flash[:notice] = "Опрос завершен. Благодарим Вас за уделенное время."
+    if surveys_params.key?(:completed)
+      flash[:notice] = "Опрос завершен. Благодарим Вас за уделенное время."
+      redirect_to @survey
+    end
     if surveys_params.key?(:user_email)
       redirect_to surveys_url
     end
@@ -33,7 +36,7 @@ class SurveysController < ApplicationController
   private
 
   def surveys_params
-    params.require(:survey).permit(:user_agreement, :user_email)
+    params.require(:survey).permit(:user_agreement, :user_email, :completed)
   end
 
   def find_survey
