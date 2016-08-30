@@ -15,7 +15,7 @@
     <%= render "shared/messages" %>
     <div class="container">
       <div class="row">
-	<div class="<%= devise_controller? ? 'col-md-6 col-md-offset-3' : 'col-sm-12' %>">
+	<div class="<%= set_class_for_layout %>">
 	  <%= yield %>
 	</div>
       </div>

@@ -1,4 +1,5 @@
 user = User.create! login: 'user', password: 'password', password_confirmation: 'password'
+newuser = User.create! login: 'newuser', password: 'password', password_confirmation: 'password'
 
 Info.create! do |i|
   i.gender = "мужской"

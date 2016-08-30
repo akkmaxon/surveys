@@ -1,4 +1,11 @@
 module ApplicationHelper
+  def set_class_for_layout
+    if devise_controller? then 'col-md-6 col-md-offset-3'
+    elsif controller_name == 'surveys' then 'col-sm-12'
+    else 'col-md-8 col-md-offset-2'
+    end
+  end
+
   def change_for_bootstrap(name)
     if name == 'alert'
       'danger'

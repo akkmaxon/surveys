@@ -5,7 +5,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 
   before do
     login_as user
-    visit root_path
+    visit surveys_path
   end
 
   it 'check good redirect' do

@@ -88,5 +88,5 @@
 
 <%= form_for @survey do |f| %>
   <%= f.hidden_field :completed, value: true %>
-  <%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg disabled', id: 'finish_survey', data: { turbolinks: false } %>
+  <%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey', data: { turbolinks: false } %>
 <% end %>
