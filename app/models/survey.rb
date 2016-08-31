@@ -20,4 +20,9 @@ class Survey < ApplicationRecord
     end
     sum
   end
+
+  def reliable?
+    responses.find_by(question_number: 28).answer != "5" ||
+      responses.find_by(question_number: 29).answer != "5"
+  end
 end

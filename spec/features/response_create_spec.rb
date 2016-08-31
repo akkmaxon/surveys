@@ -4,10 +4,10 @@ RSpec.describe 'User create new response answering', type: :feature do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
 
-  let!(:question_one) { FactoryGirl.create :question }
+  let!(:question_one) { FactoryGirl.create :question, number: 1 }
   let!(:left_st_for_q_one) { FactoryGirl.create :left_statement, title: '1left', question: question_one }
   let!(:right_st_for_q_one) { FactoryGirl.create :right_statement, title: '1right', question: question_one }
-  let!(:question_two) { FactoryGirl.create :question }
+  let!(:question_two) { FactoryGirl.create :question, number: 2 }
   let!(:left_st_for_q_two) { FactoryGirl.create :left_statement, title: '2left', question: question_two }
   let!(:right_st_for_q_two) { FactoryGirl.create :right_statement, title: '2right', question: question_two }
 

@@ -4,7 +4,7 @@
       <th rowspan="2">№ п/п</th>
       <th rowspan="2">Наименование шкалы</th>
       <th rowspan="2">№ вопроса</th>
-      <th colspan="2">Коеффициенты</th>
+      <th colspan="2">Коэффициенты</th>
       <th rowspan="2" class="assessment">Общий балл</th>
     </tr>
     <tr>
@@ -13,126 +13,34 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Инициативность, энтузиазм, проактивность</td>
-      <td>1,2</td>
-      <td><%= survey.answer_for(1) %></td>
-      <td><%= survey.answer_for(2) %></td>
-      <td><%= survey.sum_of [1,2] %></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Нацеленность на повышение эффективности в работе</td>
-      <td>3,4</td>
-      <td><%= survey.answer_for(3) %></td>
-      <td><%= survey.answer_for(4) %></td>
-      <td><%= survey.sum_of [3,4] %></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Увлеченность работой и профессией</td>
-      <td>5,6</td>
-      <td><%= survey.answer_for(5) %></td>
-      <td><%= survey.answer_for(6) %></td>
-      <td><%= survey.sum_of [5,6] %></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Понимание собственных полномочий(потребность в автономии)</td>
-      <td>14,15</td>
-      <td><%= survey.answer_for(14) %></td>
-      <td><%= survey.answer_for(15) %></td>
-      <td><%= survey.sum_of [14,15] %></td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Вовлеченность в команду</td>
-      <td>7,8</td>
-      <td><%= survey.answer_for(7) %></td>
-      <td><%= survey.answer_for(8) %></td>
-      <td><%= survey.sum_of [7,8] %></td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Доверие к руководству</td>
-      <td>9,10,11,12,13</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Брэнд работодателя</td>
-      <td>18,19</td>
-      <td><%= survey.answer_for(18) %></td>
-      <td><%= survey.answer_for(19) %></td>
-      <td><%= survey.sum_of [18,19] %></td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Субъективная клиетнориентированность</td>
-      <td>16,17</td>
-      <td><%= survey.answer_for(16) %></td>
-      <td><%= survey.answer_for(17) %></td>
-      <td><%= survey.sum_of [16,17] %></td>
-    </tr>
-    <tr class="info">
-      <td></td>
-      <td>Общий уровень вовлеченности</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Удовлетворенность условиями труда</td>
-      <td>20,21</td>
-      <td><%= survey.answer_for(20) %></td>
-      <td><%= survey.answer_for(21) %></td>
-      <td><%= survey.sum_of [20,21] %></td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Удовлетворенность качеством коммуникаций(информированность)</td>
-      <td>22,23</td>
-      <td><%= survey.answer_for(22) %></td>
-      <td><%= survey.answer_for(23) %></td>
-      <td><%= survey.sum_of [22,23] %></td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Удовлетворенность атмосферой в коллективе</td>
-      <td>24,25</td>
-      <td><%= survey.answer_for(24) %></td>
-      <td><%= survey.answer_for(25) %></td>
-      <td><%= survey.sum_of [24,25] %></td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td>Удовлетворенность потребности в компетентности</td>
-      <td>26,27</td>
-      <td><%= survey.answer_for(26) %></td>
-      <td><%= survey.answer_for(27) %></td>
-      <td><%= survey.sum_of [26,27] %></td>
-    </tr>
-    <tr class="info">
-      <td></td>
-      <td>Общий уровень удовлетворенности</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td>Шкала социальной желательности</td>
-      <td>28,29</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+    <% @criteria.each_with_index do |node, i| %>
+      <% criterion = node[0]; questions = node[1] %>
+      <% next if criterion.include?("Доверие к руководству") %>
+      <% if i == 8 %>
+	<tr class="info">
+	  <td colspan="3">Общий уровень вовлеченности</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+      <% elsif i == 12 %>
+	<tr class="info">
+	  <td colspan="3">Общий уровень удовлетворенности</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+	</tr>
+      <% end %>
+      <tr>
+	<td><%= i + 1 %></td>
+	<td><%= criterion %></td>
+	<td><%= questions.join(', ') %></td>
+	<% questions.each do |q| %>
+	  <td><%= survey.answer_for(q) %></td>
+	<% end %>
+	<td><%= survey.sum_of(questions)%></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <div class="charts">

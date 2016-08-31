@@ -59,5 +59,19 @@ RSpec.describe Survey, type: :model do
 	expect(survey.sum_of([6,7,8,9,10])).to eq 25
       end
     end
+
+    describe '#reliable?' do
+      let!(:resp1) { FactoryGirl.create :response, survey: survey, question_number: 28, answer: "5" }
+      let!(:resp2) { FactoryGirl.create :response, survey: survey, question_number: 29, answer: "1" }
+
+      it 'return true' do
+	expect(survey).to be_reliable
+      end
+
+      it 'return false' do
+	resp2.update answer: "5"
+	expect(survey).not_to be_reliable
+      end
+    end
   end
 end

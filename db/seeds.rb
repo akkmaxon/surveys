@@ -365,7 +365,7 @@ RightStatement.create! do |right|
 end
 ### 28 question ###
 q_28 = Question.create! opinion_subject: "Я", audience: "management", number: 28,
-  criterion: "Достоверность данных"
+  criterion: "Шкала социальной желательности"
 LeftStatement.create! do |left|
   left.question_id = q_28.id
   left.title = ""
@@ -378,7 +378,7 @@ RightStatement.create! do |right|
 end
 ### 29 question ###
 q_29 = Question.create! opinion_subject: "Я", audience: "management", number: 29,
-  criterion: "Достоверность данных"
+  criterion: "Шкала социальной желательности"
 LeftStatement.create! do |left|
   left.question_id = q_29.id
   left.title = ""

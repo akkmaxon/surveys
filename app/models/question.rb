@@ -25,4 +25,12 @@ class Question < ApplicationRecord
   def self.second_questions_for(user)
     self.for(user).where('sentence != ?', "")
   end
+
+  def self.group_by_criterion(user)
+    questions = self.first_questions_for(user)
+    criteria_list = questions.pluck(:criterion)
+    criteria_list.inject({}) do |result, criterion|
+      result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))
+    end
+  end
 end

@@ -25,27 +25,27 @@
 	  </td>
 	  <td class="table_radio text-center col-xs-8 col-md-4">
 	    <%= text_for_subject(question.opinion_subject) %>
-	    <%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
+	    <%= form_for Response.new, id: "question_#{question.number}", remote: true do |f| %>
 	      <%= hidden_field_tag :survey_id, @survey.id %>
 	      <%= f.hidden_field :question_number, value: question.number %>
 	      <div data-toggle="buttons">
 		<label class="btn btn-primary btn-lg">
-		  <%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
+		  <%= f.radio_button :answer, 1, id: "question_#{question.number}_answer_1", class: "r_#{question.number}" %>1
 		</label>
 		<label class="btn btn-primary">
-		  <%= f.radio_button :answer, 2, id: "question_#{question.id}_answer_2", class: "r_#{question.id}"  %>2
+		  <%= f.radio_button :answer, 2, id: "question_#{question.number}_answer_2", class: "r_#{question.number}"  %>2
 		</label>
 		<label class="btn btn-primary btn-sm">
-		  <%= f.radio_button :answer, 3, id: "question_#{question.id}_answer_3", class: "r_#{question.id}"  %>3
+		  <%= f.radio_button :answer, 3, id: "question_#{question.number}_answer_3", class: "r_#{question.number}"  %>3
 		</label>
 		<label class="btn btn-primary">
-		  <%= f.radio_button :answer, 4, id: "question_#{question.id}_answer_4", class: "r_#{question.id}"  %>4
+		  <%= f.radio_button :answer, 4, id: "question_#{question.number}_answer_4", class: "r_#{question.number}"  %>4
 		</label>
 		<label class="btn btn-primary btn-lg">
-		  <%= f.radio_button :answer, 5, id: "question_#{question.id}_answer_5", class: "r_#{question.id}"  %>5
+		  <%= f.radio_button :answer, 5, id: "question_#{question.number}_answer_5", class: "r_#{question.number}"  %>5
 		</label>
 	      </div>
-	      <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.id}" %>
+	      <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.number}" %>
 	    <% end %>
 	  </td>
 	  <td class="right col-xs-2 col-md-4">
@@ -69,7 +69,7 @@
     <div class="panel panel-default <%= n == 0 ? '' : 'hidden_question' %>">
       <div class="panel-body">
 	<blockquote><%= question.sentence %></blockquote>
-	<%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
+	<%= form_for Response.new, id: "question_#{question.number}", remote: true do |f| %>
 	  <%= hidden_field_tag :survey_id, @survey.id %>
 	  <%= f.hidden_field :question_number, value: question.number %>
 	  <div class="input-group">

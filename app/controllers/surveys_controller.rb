@@ -3,6 +3,7 @@ class SurveysController < ApplicationController
   before_action :find_survey, only: [:show, :take, :update]
   before_action :check_for_survey_owner, only: [:show, :take]
   before_action :check_for_not_completed_survey, only: :create
+  before_action :set_criteria, only: [:show, :index]
 
   def index
     @surveys = current_user.completed_surveys
@@ -25,8 +26,14 @@ class SurveysController < ApplicationController
   def update
     @survey.update(surveys_params)
     if surveys_params.key?(:completed)
-      flash[:notice] = "Опрос завершен."
-      redirect_to @survey
+      if @survey.reliable?
+	flash[:notice] = "Опрос завершен."
+	redirect_to @survey
+      else
+	@survey.destroy
+	flash[:alert] = "С большой долей вероятности можно сказать, что Вы отвечали не совсем искренне, поэтому мы считаем Ваши данные недостоверными."
+	redirect_to root_path
+      end
     end
     if surveys_params.key?(:user_email)
       redirect_to surveys_url
@@ -60,5 +67,10 @@ class SurveysController < ApplicationController
       last_survey = current_user.surveys.first
       @not_completed_survey = last_survey.completed? ? false : last_survey
     end
+  end
+
+  def set_criteria
+    @criteria = Question.group_by_criterion(current_user)
+    # {'first' => [1,2], 'second' => [3,4], 'third' => [5,6]}
   end
 end
