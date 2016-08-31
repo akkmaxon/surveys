@@ -27,6 +27,7 @@ FactoryGirl.define do
     sequence(:number, 1)
     audience 'management'
     opinion_subject 'Я'
+    criterion Faker::Lorem.sentence
   end
 
   factory :left_statement do

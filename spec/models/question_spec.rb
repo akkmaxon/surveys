@@ -36,6 +36,11 @@ RSpec.describe Question, type: :model do
 	expect(question).to be_invalid
       end
 
+      it 'when criterion is empty' do
+	question.criterion = ''
+	expect(question).to be_invalid
+      end
+
       it 'when audience in wrong range' do
 	%w[teacher programmer seller].each do |a|
 	  question.audience = a
