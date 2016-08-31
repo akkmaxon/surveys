@@ -14,11 +14,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', 
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
-  gem 'faker'
 end
 
 group :development do
