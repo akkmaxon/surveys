@@ -28,7 +28,6 @@
 	    <%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
 	      <%= hidden_field_tag :survey_id, @survey.id %>
 	      <%= f.hidden_field :question_number, value: question.number %>
-	      <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 	      <div data-toggle="buttons">
 		<label class="btn btn-primary btn-lg">
 		  <%= f.radio_button :answer, 1, id: "question_#{question.id}_answer_1", class: "r_#{question.id}" %>1
@@ -73,7 +72,6 @@
 	<%= form_for Response.new, id: "question_#{question.id}", remote: true do |f| %>
 	  <%= hidden_field_tag :survey_id, @survey.id %>
 	  <%= f.hidden_field :question_number, value: question.number %>
-	  <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 	  <div class="input-group">
 	    <%= f.text_field :answer, class: 'form-control' %>
 	    <span class="input-group-btn">

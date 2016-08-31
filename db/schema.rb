@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160830104149) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "question_number"
-    t.string   "opinion_subject"
     t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 
