@@ -1,3 +1,80 @@
-// Place all the styles related to the surveys controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'bootstrap';
+
+#accordion a {
+  margin-top: -7px;
+}
+
+table {
+  th {
+    text-align: center;
+  }
+  .assessment {
+    width: 70px;
+  }
+}
+
+#agreement {
+  border-top: 1px solid #ddd;
+  margin-top: 40px;
+  .btn-group {
+    width: 100%;
+  }
+  label {
+    width: 33.33%;
+  }
+  #submit_agreement {
+    display: none;
+  }
+}
+
+#email_field {
+  display: none;
+}
+
+.progress-bar {
+  min-width: 5%;
+}
+
+.table_radio {
+  .submit_questions_1 {
+    display: none;
+  }
+}
+
+.new_response {
+  padding-top: 20px;
+}
+
+#table_results {
+  @extend .text-center;
+  td:nth-child(2) {
+    @extend .text-left;
+  }
+}
+
+.hidden_question {
+  display: none;
+}
+
+#finish_survey {
+  display: none;
+  margin-top: 100px;
+}
+
+#second_questions {
+  display: none;
+}
+
+.specifying_question {
+  h2 {
+    @extend .h3;
+    @extend .text-center;
+  }
+  font-weight: bold;
+} 
+
+.subject_with_arrows {
+  strong {
+    padding: 0 50px;
+  }
+}

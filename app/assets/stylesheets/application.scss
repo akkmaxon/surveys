@@ -16,6 +16,7 @@
 
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
 #console-toggle {
   position: absolute;
   top: 100px;
@@ -61,99 +62,4 @@
   position: absolute;
   left: 50%;
   margin-left: -70px;
-}
-
-#accordion a {
-  margin-top: -7px;
-}
-
-table {
-  th {
-    text-align: center;
-  }
-  .assessment {
-    width: 70px;
-  }
-}
-
-#agreement {
-  border-top: 1px solid #ddd;
-  margin-top: 40px;
-  .btn-group {
-    width: 100%;
-  }
-  label {
-    width: 33.33%;
-  }
-  #submit_agreement {
-    display: none;
-  }
-}
-
-#email_field {
-  display: none;
-}
-
-.new_info {
-  .actions {
-    display: none;
-  }
-}
-
-.new_info, .edit_info {
-  text-align: center;
-  .btn-group-vertical {
-    width: 100%;
-  }
-  .actions {
-    margin-top: 20px;
-  }
-}
-
-.progress-bar {
-  min-width: 5%;
-}
-
-.table_radio {
-  .submit_questions_1 {
-    display: none;
-  }
-}
-
-.new_response {
-  padding-top: 20px;
-}
-
-#table_results {
-  @extend .text-center;
-  td:nth-child(2) {
-    @extend .text-left;
-  }
-}
-
-.hidden_question {
-  display: none;
-}
-
-#finish_survey {
-  display: none;
-  margin-top: 100px;
-}
-
-#second_questions {
-  display: none;
-}
-
-.specifying_question {
-  h2 {
-    @extend .h3;
-    @extend .text-center;
-  }
-  font-weight: bold;
-} 
-
-.subject_with_arrows {
-  strong {
-    padding: 0 50px;
-  }
 }
