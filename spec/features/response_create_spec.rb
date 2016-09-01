@@ -33,7 +33,14 @@ RSpec.describe 'User create new response answering', type: :feature do
       sleep 1
       user.reload
       expect(user.surveys.first.responses.count).to eq 4
-      expect(user.surveys.first.responses.pluck(:answer)).to eq(%w[1 4 2 absolutely])
+      expect(user.surveys.first.responses.find_by(question_number: 1).answer).
+	to eq "1"
+      expect(user.surveys.first.responses.find_by(question_number: 28).answer).
+	to eq "4"
+      expect(user.surveys.first.responses.find_by(question_number: 29).answer).
+	to eq "2"
+      expect(user.surveys.first.responses.find_by(question_number: 201).answer).
+	to eq "absolutely"
     end
 
     it 'with empty answer' do
