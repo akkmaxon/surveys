@@ -14,28 +14,35 @@ RSpec.describe 'Work with surveys/show', type: :feature do
     it 'Page layout is ok' do
       expect(page).to have_selector('.header')
       expect(page).to have_selector('.table')
+      expect(page).to have_selector('.charts')
+      expect(page).not_to have_selector('#email_field')
       within('#agreement') do
 	expect(page).to have_selector("input[type='radio']", count: 3)
       end
     end
 
-    it 'User click agreement' do
+    it 'agreement & email are absent' do
+      survey.reload
       expect(survey.user_agreement).to eq ''
+      expect(survey.user_email).to eq nil
+    end
+
+    it 'User click agreement' do
       find('#not_agree').trigger 'click'
       sleep 1
       survey.reload
       expect(survey.user_agreement).to eq 'я не согласен со своим результатом'
+      expect(page).to have_selector('#email_field')
     end
 
     it 'User fill in an email form' do
-      expect(survey.user_email).to eq nil
       find('#not_agree').trigger 'click'
       sleep 1
       fill_in id: 'survey_user_email', with: 'my@email.com'
       click_button 'leave_email'
       expect(page.current_path).to eq surveys_path
       survey.reload
-      expect(survey.user_email).to eq 'my@email.com'
+      expect(survey.user_email).to eq('my@email.com')
     end
   end
 end

@@ -6,29 +6,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/poltergeist'
-
 Capybara.default_driver = :poltergeist
 #Capybara.default_driver = :selenium
 
-# Add additional requires below this line. Rails is not loaded until this point!
-
-# Requires supporting ruby files with custom matchers and macros, etc, in
-# spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
-# run as spec files by default. This means that files in spec/support that end
-# in _spec.rb will both be required and run as specs, causing the specs to be
-# run twice. It is recommended that you do not name files matching this glob to
-# end with _spec.rb. You can configure this pattern with the --pattern
-# option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
-#
-# The following line is provided for convenience purposes. It has the downside
-# of increasing the boot-up time by auto-requiring all files in the support
-# directory. Alternatively, in the individual `*_spec.rb` files, manually
-# require only the support files necessary.
-#
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-
-# Checks for pending migration and applies them before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
@@ -82,3 +62,34 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
 end
+
+module TestHelpers
+  def init_data
+    let(:user) { FactoryGirl.create :user }
+    let!(:info) { FactoryGirl.create :info, user: user }
+
+    let!(:question_1) { FactoryGirl.create :question, number: 1 }
+    let!(:left_st_for_q_1) { FactoryGirl.create :left_statement, title: '1left', question: question_1 }
+    let!(:right_st_for_q_1) { FactoryGirl.create :right_statement, title: '1right', question: question_1 }
+
+    let!(:question_2) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence }
+
+    let!(:question_28) { FactoryGirl.create :question, number: 28 }
+    let!(:left_st_for_q_28) { FactoryGirl.create :left_statement, title: '28left', question: question_28 }
+    let!(:right_st_for_q_28) { FactoryGirl.create :right_statement, title: '28right', question: question_28 }
+
+    let!(:question_29) { FactoryGirl.create :question, number: 29 }
+    let!(:left_st_for_q_29) { FactoryGirl.create :left_statement, title: '29left', question: question_29 }
+    let!(:right_st_for_q_29) { FactoryGirl.create :right_statement, title: '29right', question: question_29 }
+  end
+
+  def take_a_survey
+    find('#question_1_answer_1').trigger 'click'
+    find('#question_28_answer_4').trigger 'click'
+    find('#question_29_answer_2').trigger 'click'
+    fill_in 'response_answer', with: 'answer sentence'
+    find('.submit_questions_2').trigger 'click'
+  end
+end
+
+include TestHelpers

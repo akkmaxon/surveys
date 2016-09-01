@@ -11,23 +11,34 @@ RSpec.describe 'User create info about himself', type: :feature do
   it 'check good redirect' do
     expect(page).to have_selector 'form.new_info'
     expect(page).to have_selector '#messages .alert'
+    click_link 'new_survey'
+    expect(page).to have_selector 'form.new_info'
   end
 
-  it 'with all fields' do
+  it 'do not create new survey when empty' do
+    click_link 'new_survey'
+    expect(Survey.count).to eq 0
+  end
+
+  it 'create info with all fields' do
     %w[gender experience age workplace_number work_position company].each do |input|
       find("#info_#{input}_1").trigger 'click'
     end
     click_button "submit_info"
     expect(page).to have_selector '#messages .alert-success'
     expect(page.current_path).to eq(surveys_path)
+    user.reload
+    expect(user.info).not_to be_nil
   end
 
-  it 'allowed to create full info only' do
+  it 'errors when not all fields are filled' do
     %w[gender experience age workplace_number work_position company].each do |input|
       visit new_info_path
       find("#info_#{input}_1").trigger 'click'
       click_button "submit_info"
       expect(page).to have_selector '#error_explanation'
     end
+    user.reload
+    expect(user.info).to be_nil
   end
 end

@@ -1,15 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User create new response answering', type: :feature do
-  let(:user) { FactoryGirl.create :user }
-  let!(:info) { FactoryGirl.create :info, user: user }
-
-  let!(:question_one) { FactoryGirl.create :question, number: 1 }
-  let!(:left_st_for_q_one) { FactoryGirl.create :left_statement, title: '1left', question: question_one }
-  let!(:right_st_for_q_one) { FactoryGirl.create :right_statement, title: '1right', question: question_one }
-  let!(:question_two) { FactoryGirl.create :question, number: 2 }
-  let!(:left_st_for_q_two) { FactoryGirl.create :left_statement, title: '2left', question: question_two }
-  let!(:right_st_for_q_two) { FactoryGirl.create :right_statement, title: '2right', question: question_two }
+  init_data
 
   before do
     login_as user
@@ -29,9 +21,10 @@ RSpec.describe 'User create new response answering', type: :feature do
 
   context 'the second questions' do
     before do
-      question_two.update! sentence: Faker::Lorem.sentence
       click_link 'new_survey'
       find('#question_1_answer_1').trigger 'click'
+      find('#question_28_answer_4').trigger 'click'
+      find('#question_29_answer_2').trigger 'click'
     end
 
     it 'successfully' do
@@ -39,8 +32,8 @@ RSpec.describe 'User create new response answering', type: :feature do
       find('.submit_questions_2').trigger 'click'
       sleep 1
       user.reload
-      expect(user.surveys.first.responses.count).to eq 2
-      expect(user.surveys.first.responses.last.answer).to eq 'absolutely'
+      expect(user.surveys.first.responses.count).to eq 4
+      expect(user.surveys.first.responses.pluck(:answer)).to eq(%w[1 4 2 absolutely])
     end
 
     it 'with empty answer' do
