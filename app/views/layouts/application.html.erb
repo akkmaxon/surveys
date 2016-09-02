@@ -11,29 +11,15 @@
 
   <body>
     <%= render "shared/web_console" %>
-    <% if controller_path.include? "admin/" %>
-      <%= render "shared/messages" %>
-      <div class="container-fluid">
-	<div class="row">
-	  <aside class="col-md-3">
-	    <%= render 'admin/sidebar' %>
-	  </aside>
-	  <section class="col-md-9">
-	    <%= yield %>
-	  </section>
+    <%= render "layouts/header" %>
+    <%= render "shared/messages" %>
+    <div class="container">
+      <div class="row">
+	<div class="<%= set_class_for_layout %>">
+	  <%= yield %>
 	</div>
       </div>
-    <% else %>
-      <%= render "layouts/header" %>
-      <%= render "shared/messages" %>
-      <div class="container">
-	<div class="row">
-	  <div class="<%= set_class_for_layout %>">
-	    <%= yield %>
-	  </div>
-	</div>
-      </div>
-    <% end %>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>

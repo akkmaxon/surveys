@@ -9,6 +9,8 @@
       </button>
       <% if user_signed_in? %>
 	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
+      <% elsif admin_signed_in? %>
+	<%= link_to "Панель управления", root_path, class: 'navbar-brand' %>
       <% else %>
 	<%= link_to "Самооценка вовлеченности", root_path, class: 'navbar-brand' %>
       <% end %>
@@ -23,6 +25,15 @@
 	<ul class="nav navbar-nav navbar-right">
 	  <li><%= link_to "Информация о себе", edit_info_path, data: { turbolinks: false } %></a></li>
 	  <li><%= link_to "Выход", destroy_user_session_path, method: :delete %></li>
+	</ul>
+      <% elsif admin_signed_in? %>
+	<ul class="nav navbar-nav">
+	  <li><%= link_to "Респонденты", '#' %></li>
+	  <li><%= link_to "Опросы", '#' %></li>
+	  <li><%= link_to "Вопросы", '#' %></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><%= link_to "Выход", destroy_admin_session_path, method: :delete %></li>
 	</ul>
       <% else %>
 	<ul class="nav navbar-nav navbar-right">

@@ -23,15 +23,21 @@ RSpec.describe 'Dashboard page', type: :feature do
   end
   
   context 'admin signed in' do
-    it 'good layout' do
+    before do
       visit new_admin_session_path
       fill_in "Логин", with: admin.login
-      fill_in "Пароль", with: admin.password
+      fill_in "Пароль",with: admin.password
       click_button "Войти"
-      visit admin_root_path
-      expect(page).not_to have_selector 'header'
-      expect(page).to have_selector 'aside'
-      expect(page).to have_selector 'section'
+    end
+
+    it 'good layout' do
+      expect(page).to have_content "Вход в систему осуществлен"
+      expect(page).to have_content "Панель управления"
+    end
+
+    it 'sign out after' do
+      click_link "Выход"
+      expect(page).to have_content "Выход из системы осуществлен"
     end
   end
 end
