@@ -1,0 +1,13 @@
+<div class="list-group">
+  <%= link_to '#', class: 'list-group-item' do %>
+    Респонденты<span class="badge"><%= User.count %></span>
+  <% end %>
+  <%= link_to '#', class: 'list-group-item' do %>
+    Опросы<span class="badge"><%= Survey.count %></span>
+  <% end %>
+  <%= link_to '#', class: 'list-group-item' do %>
+    Вопросы<span class="badge"><%= Question.count %></span>
+  <% end %>
+  <%= link_to "Выход", destroy_admin_session_path, method: :delete, class: 'list-group-item' %>
+</ul>
+

@@ -1,38 +1,36 @@
-<% unless admin_signed_in? %>
-  <header class="navbar navbar-default">
-    <nav class="container-fluid">
-      <div class="navbar-header">
-	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsed" aria-expanded="false">
-	  <span class="sr-only">Toggle navigation</span>
-	  <span class="icon-bar"></span>
-	  <span class="icon-bar"></span>
-	  <span class="icon-bar"></span>
-	</button>
-	<% if user_signed_in? %>
-	  <%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
-	<% else %>
-	  <%= link_to "Самооценка вовлеченности", root_path, class: 'navbar-brand' %>
-	<% end %>
-      </div>
-      <div class="collapse navbar-collapse" id="navbar-collapsed">
-	<% if user_signed_in? %>
-	  <ul class="nav navbar-nav">
-	    <li class="<%= active_link('surveys', 'index') %>">
-	      <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys' %>
-	    </li>
-	  </ul>
-	  <ul class="nav navbar-nav navbar-right">
-	    <li><%= link_to "Информация о себе", edit_info_path, data: { turbolinks: false } %></a></li>
-	    <li><%= link_to "Выход", destroy_user_session_path, method: :delete %></li>
-	  </ul>
-	<% else %>
-	  <ul class="nav navbar-nav navbar-right">
-	    <li class="<%= active_link('sessions', 'new') %>">
-	      <%= link_to "Вход", new_user_session_path %>
-	    </li>
-	  </ul>
-	<% end %>
-      </div>
-    </nav>
-  </header>
-<% end %>
+<header class="navbar navbar-default">
+  <nav class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsed" aria-expanded="false">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </button>
+      <% if user_signed_in? %>
+	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
+      <% else %>
+	<%= link_to "Самооценка вовлеченности", root_path, class: 'navbar-brand' %>
+      <% end %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapsed">
+      <% if user_signed_in? %>
+	<ul class="nav navbar-nav">
+	  <li class="<%= active_link('surveys', 'index') %>">
+	    <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys' %>
+	  </li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><%= link_to "Информация о себе", edit_info_path, data: { turbolinks: false } %></a></li>
+	  <li><%= link_to "Выход", destroy_user_session_path, method: :delete %></li>
+	</ul>
+      <% else %>
+	<ul class="nav navbar-nav navbar-right">
+	  <li class="<%= active_link('sessions', 'new') %>">
+	    <%= link_to "Вход", new_user_session_path %>
+	  </li>
+	</ul>
+      <% end %>
+    </div>
+  </nav>
+</header>

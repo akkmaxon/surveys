@@ -10,18 +10,22 @@ RSpec.describe 'Authentication for admin', type: :feature do
       fill_in "Логин", with: admin.login
       fill_in "Пароль", with: admin.password
       click_button "Войти"
-      expect(page).to have_selector '#messages .alert-success'
+      within '#messages .alert-success' do
+	expect(page).to have_content "Вход в систему осуществлен"
+      end
       expect(page.current_path).to eq admin_root_path
     end
 
-    context 'unsuccessful' do
+    describe 'unsuccessful' do
       before do
 	visit new_admin_session_path
       end
 
       after do
 	click_button "Войти"
-	expect(page).to have_selector '#messages .alert-danger'
+	within '#messages .alert-danger' do
+	  expect(page).to have_content "Неверный логин или пароль"
+	end
       end
 
       it 'login empty' do

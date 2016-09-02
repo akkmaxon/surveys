@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
     :trackable,
     :validatable
 
-  def email_required?
-    false
-  end 
+  validates :login, presence: true
+  validates :login, length: { maximum: 64 }
+  validates :login, uniqueness: { case_sensitive: false }
 end

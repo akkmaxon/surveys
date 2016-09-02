@@ -17,6 +17,10 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+body {
+  font-family: "Helvetica Neue", Arial;
+}
+
 #console-toggle {
   position: absolute;
   top: 100px;
