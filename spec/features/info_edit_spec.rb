@@ -19,7 +19,9 @@ RSpec.describe 'User update his info', type: :feature do
   it 'update when submit button clicked' do
     find("#info_age_2").trigger 'click'
     click_button 'submit_info'
-    expect(page).to have_selector('#messages .alert-success')
+    within '#messages .alert-success' do
+      expect(page).to have_content "Ваши данные обновлены."
+    end
     expect(page.current_path).to eq(surveys_path)
     user.reload
     expect(user.info.age).not_to eq(info_clone.age)

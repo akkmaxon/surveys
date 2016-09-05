@@ -8,7 +8,9 @@ RSpec.describe 'Dashboard page', type: :feature do
     
     it 'unsigned in user cannot view admin dashboard' do
       visit admin_root_path
-      expect(page).to have_selector '#messages .alert-danger'
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Войдите, пожалуйста, в систему."
+      end
       expect(page.current_path).to eq(new_admin_session_path)
     end
 
@@ -17,7 +19,9 @@ RSpec.describe 'Dashboard page', type: :feature do
       visit surveys_path
       expect(page.current_path).to eq new_info_path
       visit admin_root_path
-      expect(page).to have_selector '#messages .alert-danger'
+      within'#messages .alert-danger' do
+	expect(page).to have_content "Войдите, пожалуйста, в систему."
+      end
       expect(page.current_path).to eq(new_admin_session_path)
     end
   end

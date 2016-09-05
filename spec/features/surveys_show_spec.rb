@@ -44,5 +44,24 @@ RSpec.describe 'Work with surveys/show', type: :feature do
       survey.reload
       expect(survey.user_email).to eq('my@email.com')
     end
+
+    it 'Attempt to watch survey of other user' do
+      other_user = FactoryGirl.create :user
+      forbidden_survey = FactoryGirl.create :survey, user: other_user
+      visit "/surveys/#{forbidden_survey.id}"
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Вы не можете видеть результаты других пользователей"
+      end
+      expect(page.current_path).to eq surveys_path
+    end
+
+    it 'Try to watch non-existent survey' do
+      number_of_survey = 1000000
+      visit "/surveys/#{number_of_survey}"
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Опрос №#{number_of_survey} не существует"
+      end
+      expect(page.current_path).to eq surveys_path
+    end
   end
 end

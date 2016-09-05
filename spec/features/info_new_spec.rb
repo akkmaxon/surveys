@@ -25,7 +25,9 @@ RSpec.describe 'User create info about himself', type: :feature do
       find("#info_#{input}_1").trigger 'click'
     end
     click_button "submit_info"
-    expect(page).to have_selector '#messages .alert-success'
+    within '#messages .alert-success' do
+      expect(page).to have_content "Спасибо, теперь Вы можете пройти тест."
+    end
     expect(page.current_path).to eq(surveys_path)
     user.reload
     expect(user.info).not_to be_nil
@@ -36,7 +38,9 @@ RSpec.describe 'User create info about himself', type: :feature do
       visit new_info_path
       find("#info_#{input}_1").trigger 'click'
       click_button "submit_info"
-      expect(page).to have_selector '#error_explanation'
+      within '#error_explanation' do
+	expect(page).to have_selector 'ul li', count: 5
+      end
     end
     user.reload
     expect(user.info).to be_nil

@@ -5,18 +5,31 @@ RSpec.describe 'Authentication for admin', type: :feature do
     let!(:user) { FactoryGirl.create :user }
     let!(:admin) { FactoryGirl.create :admin }
 
-    it 'successfully' do
-      visit new_admin_session_path
-      fill_in "Логин", with: admin.login
-      fill_in "Пароль", with: admin.password
-      click_button "Войти"
-      within '#messages .alert-success' do
-	expect(page).to have_content "Вход в систему осуществлен"
+    describe 'successfully' do
+      before do
+	visit new_admin_session_path
+	fill_in "Логин", with: admin.login
+	fill_in "Пароль", with: admin.password
+	click_button "Войти"
       end
-      expect(page.current_path).to eq admin_root_path
+
+      it 'login' do
+	within '#messages .alert-success' do
+	  expect(page).to have_content "Вход в систему осуществлен"
+	end
+	expect(page.current_path).to eq admin_root_path
+      end
+
+      it 'logout' do
+	click_link "Выход"
+	within '#messages .alert-success' do
+	  expect(page).to have_content "Выход из системы осуществлен"
+	end
+	expect(page.current_path).to eq root_path
+      end
     end
 
-    describe 'unsuccessful' do
+    describe 'unsuccessfully' do
       before do
 	visit new_admin_session_path
       end

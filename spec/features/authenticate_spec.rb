@@ -8,7 +8,7 @@ RSpec.describe 'Authentication for User', type: :feature do
 
     after do
       within '#messages .alert-danger' do
-	expect(page).to have_content "Войдите, пожалуйста, в систему"
+	expect(page).to have_content "Войдите, пожалуйста, в систему."
       end
       expect(page.current_path).to eq new_user_session_path
     end
@@ -31,7 +31,7 @@ RSpec.describe 'Authentication for User', type: :feature do
   end
   
   describe 'successfully' do
-    it 'with good properties' do
+    it 'login for new user' do
       visit new_user_session_path
       fill_in "Логин", with: user.login
       fill_in "Пароль", with: user.password
@@ -40,6 +40,31 @@ RSpec.describe 'Authentication for User', type: :feature do
 	expect(page).to have_content "Перед началом работы заполните"
       end
       expect(page.current_path).to eq new_info_path
+    end
+
+    it 'login for user with filled in info' do
+      user = FactoryGirl.create :user
+      FactoryGirl.create :info, user: user
+      visit new_user_session_path
+      fill_in "Логин", with: user.login
+      fill_in "Пароль", with: user.password
+      click_button "Войти"
+      within '#messages .alert-success' do
+	expect(page).to have_content "Вход в систему осуществлен."
+      end
+      expect(page.current_path).to eq surveys_path
+    end
+
+    it 'logout' do
+      visit new_user_session_path
+      fill_in "Логин", with: user.login
+      fill_in "Пароль", with: user.password
+      click_button "Войти"
+      click_link "Выход"
+      within '#messages .alert-success' do
+	expect(page).to have_content "Выход из системы осуществлен."
+      end
+      expect(page.current_path).to eq root_path
     end
   end
 

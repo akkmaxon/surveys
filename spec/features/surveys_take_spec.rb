@@ -63,7 +63,9 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     sleep 1
     user.reload
     expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
-    expect(page).to have_selector '.alert-success'
+    within '#messages .alert-success' do
+      expect(page).to have_content "Опрос завершен."
+    end
   end
 
   it 'Survey is not reliable' do
@@ -75,7 +77,9 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     find('#finish_survey').trigger 'click'
     sleep 1
     user.reload
-    expect(page).to have_selector '.alert-danger'
+    within '#messages .alert-danger' do
+      expect(page).to have_content "С большой долей вероятности можно сказать"
+    end
     expect(user.surveys.count).to eq 0
   end
 
