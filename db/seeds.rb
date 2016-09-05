@@ -1,6 +1,6 @@
 user = User.create! login: 'user', password: 'password', password_confirmation: 'password'
 newuser = User.create! login: 'newuser', password: 'password', password_confirmation: 'password'
-admin = Admin.create! login: 'admin', password: 'password', password_confirmation: 'password'
+admin = Admin.create! login: 'admin', email: 'admin@email.com', password: 'password', password_confirmation: 'password'
 
 Info.create! do |i|
   i.gender = "мужской"
