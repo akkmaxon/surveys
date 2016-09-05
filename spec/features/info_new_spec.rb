@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'User create info about himself', type: :feature do
   let(:user) { FactoryGirl.create :user }
+  let!(:company1) { FactoryGirl.create :company, id: 1 }
+  let!(:company2) { FactoryGirl.create :company, id: 2 }
 
   before do
     login_as user
@@ -44,5 +46,49 @@ RSpec.describe 'User create info about himself', type: :feature do
     end
     user.reload
     expect(user.info).to be_nil
+  end
+
+  context 'companies not defined by admin' do
+    before do
+      company1.destroy
+      company2.destroy
+      visit new_info_path
+    end
+
+    it 'page layout' do 
+      expect(page).not_to have_selector '#info_company_1'
+      expect(page).not_to have_selector '#info_company_2'
+    end
+
+    it 'data from user' do
+      %w[gender experience age workplace_number work_position].each do |input|
+	find("#info_#{input}_1").trigger 'click'
+      end
+      click_button 'submit_info'
+      expect(page.current_path).to eq(surveys_path)
+      user.reload
+      expect(user.info.company).to eq "нет ответа"
+    end
+  end
+
+  context 'only one company' do
+    before do
+      company2.destroy
+      visit new_info_path
+    end
+
+    it 'page layout' do
+      expect(page).not_to have_selector '#info_company_1'
+    end
+
+    it 'data from user' do
+      %w[gender experience age workplace_number work_position].each do |input|
+	find("#info_#{input}_1").trigger 'click'
+      end
+      click_button 'submit_info'
+      expect(page.current_path).to eq(surveys_path)
+      user.reload
+      expect(user.info.company).to eq(company1.name)
+    end
   end
 end

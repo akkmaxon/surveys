@@ -1,6 +1,7 @@
 class InfosController < ApplicationController
   before_action :check_for_empty_info, only: [:edit]
   before_action :find_info, only: [:edit, :update]
+  before_action :set_companies, except: [:create]
 
   def new
     if current_user.info.blank?
@@ -47,4 +48,7 @@ class InfosController < ApplicationController
     @info = Info.find(current_user.info.id)
   end
 
+  def set_companies
+    @companies = Company.all
+  end
 end

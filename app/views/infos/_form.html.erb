@@ -56,49 +56,29 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Укажите компанию, в которой Вы работаете</h3>
+  <% if @companies.blank? %>
+    <%= f.hidden_field :company, value: "нет ответа" %>
+  <% elsif @companies.count == 1 %>
+    <%= f.hidden_field :company, value: @companies.first.name %>
+  <% else %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+	<h3>Укажите компанию, в которой Вы работаете</h3>
+      </div>
+      <div class="btn-group-vertical" data-toggle="buttons">
+	<% @companies.each do |company| %>
+	  <label class="btn btn-default">
+	    <%= f.radio_button :company, company.name, id: "info_company_#{company.id}" %>
+	    <%= company.name %>
+	  </label>
+	<% end %>
+      </div>
     </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'ГК Управдом', id: 'info_company_1' %>
-	ГК Управдом
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'ГК ДУК', id: 'info_company_2' %>
-	ГК ДУК
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'ГК Дзержинские лифты', id: 'info_company_3' %>
-	ГК Дзержинские лифты
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'ГК Газы', id: 'info_company_4' %>
-	ГК Газы
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'Рекламные технологии', id: 'info_company_5' %>
-	Рекламные технологии
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'Таможенный пост', id: 'info_company_6' %>
-	Таможенный пост
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'Управление недвижимостью', id: 'info_company_7' %>
-	Управление недвижимостью
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :company, 'Городской парк', id: 'info_company_8' %>
-	Городской парк
-      </label>
-    </div>
-  </div>
+  <% end %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3>Сколько лет Вы работаете в данной компании?</h3>
+      <h3>Сколько лет Вы работаете в компании?</h3>
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">

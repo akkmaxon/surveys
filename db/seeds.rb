@@ -12,6 +12,16 @@ Info.create! do |i|
   i.user_id = user.id
 end
 
+### Companies ###
+Company.create! name: "ГК Управдом"
+Company.create! name: "ГК ДУК"
+Company.create! name: "ГК Дзержинские лифты"
+Company.create! name: "ГК Газы"
+Company.create! name: "Рекламные технологии"
+Company.create! name: "Таможенный пост"
+Company.create! name: "Управление недвижимостью"
+Company.create! name: "Городской парк"
+
 ### 1 question ###
 q_1 = Question.create! opinion_subject: "Я", audience: "management", number: 1,
   criterion: "Инициативность, энтузиазм, проактивность"

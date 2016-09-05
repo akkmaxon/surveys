@@ -45,4 +45,8 @@ FactoryGirl.define do
     title Faker::Lorem.sentence
     text Faker::Lorem.paragraph
   end
+
+  factory :company do
+    name Faker::Lorem.sentence
+  end
 end
