@@ -1,0 +1,15 @@
+<%= form_for [:admin, @user] do |f| %>
+  <%= error_explanation_for @user %>
+
+  <div class="form-group">
+    <%= f.label :login, "Логин" %>
+    <%= f.text_field :login, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, "Пароль(не менее 6 символов)" %>
+    <%= f.text_field :password, class: 'form-control' %>
+  </div>
+
+  <%= f.submit "Создать", class: 'btn btn-primary btn-lg btn-block' %>
+<% end %>

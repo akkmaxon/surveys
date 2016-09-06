@@ -7,7 +7,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
     let!(:survey) { FactoryGirl.create :survey, user: user }
 
     before do
-      login_as user
+      sign_in user
       visit "/surveys/#{survey.id}"
     end
 

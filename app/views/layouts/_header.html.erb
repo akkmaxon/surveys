@@ -18,7 +18,9 @@
     <div class="collapse navbar-collapse" id="navbar-collapsed">
       <% if admin_signed_in? %>
 	<ul class="nav navbar-nav">
-	  <li><%= link_to "Респонденты", '#' %></li>
+	  <li class="<%= active_link('users', 'index') %>">
+	    <%= link_to "Респонденты", admin_users_path, id: 'users_link' %>
+	  </li>
 	  <li><%= link_to "Опросы", '#' %></li>
 	  <li><%= link_to "Вопросы", '#' %></li>
 	</ul>

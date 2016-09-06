@@ -15,7 +15,7 @@ RSpec.describe 'Dashboard page', type: :feature do
     end
 
     it 'signed in user cannot view admin dashboard' do
-      login_as user
+      sign_in user
       visit surveys_path
       expect(page.current_path).to eq new_info_path
       visit admin_root_path
@@ -28,15 +28,15 @@ RSpec.describe 'Dashboard page', type: :feature do
   
   context 'admin signed in' do
     before do
-      visit new_admin_session_path
-      fill_in "Логин", with: admin.login
-      fill_in "Пароль",with: admin.password
-      click_button "Войти"
+      sign_in admin
+      visit admin_root_path
     end
 
     it 'good layout' do
-      expect(page).to have_content "Вход в систему осуществлен"
       expect(page).to have_content "Панель управления"
+      expect(page).not_to have_content "Самооценка"
+      expect(page).not_to have_content "Завершенные опросы"
+      expect(page.current_path).to eq admin_root_path
     end
 
     it 'sign out after' do

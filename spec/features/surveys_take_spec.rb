@@ -4,7 +4,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
   init_data
   
   before do
-    login_as user
+    sign_in user
     visit root_path
     click_link 'new_survey'
   end

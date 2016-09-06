@@ -5,7 +5,9 @@
 }
 
 .new_info, .edit_info {
-  text-align: center;
+  .panel {
+    text-align: center;
+  }
   .btn-group-vertical {
     width: 100%;
   }

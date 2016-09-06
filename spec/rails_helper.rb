@@ -57,10 +57,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include Warden::Test::Helpers, type: :feature
-  config.after(type: :feature) { Warden.test_reset! }
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 end
 
 module TestHelpers

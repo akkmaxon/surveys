@@ -6,7 +6,7 @@ RSpec.describe 'User update his info', type: :feature do
   let!(:info_clone) { info.dup }
 
   before do
-    login_as user
+    sign_in user
     visit edit_info_path
   end
 

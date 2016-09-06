@@ -6,7 +6,7 @@ RSpec.describe 'User create info about himself', type: :feature do
   let!(:company2) { FactoryGirl.create :company, id: 2 }
 
   before do
-    login_as user
+    sign_in user
     visit surveys_path
   end
 
@@ -56,6 +56,7 @@ RSpec.describe 'User create info about himself', type: :feature do
     end
 
     it 'page layout' do 
+      expect(page).to have_selector '#info_gender_1'
       expect(page).not_to have_selector '#info_company_1'
       expect(page).not_to have_selector '#info_company_2'
     end
@@ -78,6 +79,7 @@ RSpec.describe 'User create info about himself', type: :feature do
     end
 
     it 'page layout' do
+      expect(page).to have_selector '#info_gender_1'
       expect(page).not_to have_selector '#info_company_1'
     end
 

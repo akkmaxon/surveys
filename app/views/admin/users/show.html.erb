@@ -1,0 +1,37 @@
+<h1 class="header">Респондент <em><%= @user.login %></em></h1>
+
+<%= error_explanation_for @user %>
+
+<div class="row">
+  <div class="col-xs-6 h3">
+    <span class="label label-default pull-right">Логин</span>
+  </div>
+  <div class="col-xs-6">
+    <%= form_for [:admin, @user] do |f| %>
+      <div class="input-group h3" id="login">
+	<%= f.text_field :login, placeholder: "Изменить логин",class: 'form-control' %>
+	<span class="input-group-btn">
+	  <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_login' %>
+	</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-6 h3">
+    <span class="label label-default pull-right">Пароль</span>
+  </div>
+  <div class="col-xs-6">
+    <%= form_for [:admin, @user] do |f| %>
+      <div class="input-group h3" id="password">
+	<%= f.text_field :password, placeholder: "Изменить пароль",class: 'form-control' %>
+	<span class="input-group-btn">
+	  <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_password' %>
+	</span>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to "Изменить регистрационные данные", edit_admin_user_path(@user), class: 'btn btn-info pull-right', id: 'edit_user' %>
+<%= link_to "Опросы", '#', class: 'btn btn-primary', id: 'surveys' %>
