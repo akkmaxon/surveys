@@ -1,0 +1,25 @@
+<h1 class="header">Список компаний</h1>
+
+<a id="add_company" class="btn btn-success pull-right">Добавить компанию</a>
+
+<%= form_for [:admin, @new_company] do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "Имя компании" %>
+    <div class="input-group">
+      <%= f.text_field :name, class: 'form-control' %>
+      <span class="input-group-btn">
+	<%= f.submit "Добавить", class: 'btn btn-primary' %>
+      </span>
+    </div>
+  </div>
+<% end %>
+
+<div class="list-group" id="all_companies">
+  <% @companies.each do |company| %>
+    <div class="list-group-item company">
+      <h2 class="h4">
+	<%= company %>
+      </h2>
+    </div>
+  <% end %>
+</div>

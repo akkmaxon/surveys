@@ -1,15 +1,16 @@
 <h1 class="header">Список всех респондентов</h1>
 
-<%= link_to "Создать нового респондента", new_admin_user_path, class: 'btn btn-success pull-right', id: 'new_user' %>
+<%= link_to "Создать нового респондента", new_admin_user_path, data: { turbolinks: false }, class: 'btn btn-success pull-right', id: 'new_user' %>
 
 <div class="list-group" id="all_users">
   <% @users.each do |user| %>
     <div class="list-group-item user">
-      <h3 class="h4 pull-right">
+      <h2 class="h4 pull-right">
 	Surveys <span class="badge"><%= user.completed_surveys.count %></span>
-      </h3>
-      <%= link_to user.login, admin_user_path(user), class: 'h4 show_user' %>
-      </h3>
+      </h2>
+      <h2 class="h4">
+	<%= link_to user.login, admin_user_path(user), class: 'show_user' %>
+      </h2>
     </div>
   <% end %>
 </div>

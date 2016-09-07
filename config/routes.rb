@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :users, except: [:destroy, :edit]
+    resources :companies, only: [:index, :create, :update, :destroy]
     root to: 'application#index'
   end
 
