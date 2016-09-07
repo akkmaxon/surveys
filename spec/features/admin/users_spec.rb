@@ -180,7 +180,7 @@ RSpec.describe 'Manage users by admin', type: :feature do
     end
 
     context 'successfully' do
-      it 'login' do
+      it 'manually login' do
 	fill_in 'user_login', with: 'newlogin'
 	click_button 'submit_login'
 	within '#messages .alert-success' do
@@ -189,8 +189,24 @@ RSpec.describe 'Manage users by admin', type: :feature do
 	expect(page).to have_content "Респондент newlogin"
       end
 
-      it 'password' do
+      it 'generate login' do
+	find('#generate_login').trigger 'click'
+	click_button 'submit_login'
+	within '#messages .alert-success' do
+	  expect(page).to have_content "Логин респондента успешно изменен."
+	end
+      end
+
+      it 'manually password' do
 	fill_in 'user_password', with: 'newpassword'
+	click_button 'submit_password'
+	within '#messages .alert-success' do
+	  expect(page).to have_content "Пароль респондента успешно изменен."
+	end
+      end
+
+      it 'generate password' do
+	find('#generate_password').trigger 'click'
 	click_button 'submit_password'
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Пароль респондента успешно изменен."

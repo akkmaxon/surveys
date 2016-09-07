@@ -7,6 +7,9 @@
     <span class="input-group-addon">Логин</span>
     <%= f.text_field :login, placeholder: "Изменить логин",class: 'form-control' %>
     <span class="input-group-btn">
+      <a id="generate_login" class="btn btn-default">Генерировать логин</a>
+    </span>
+    <span class="input-group-btn">
       <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_login' %>
     </span>
   </div>
@@ -16,6 +19,9 @@
   <div class="input-group h3" id="password">
     <span class="input-group-addon">Пароль</span>
     <%= f.text_field :password, placeholder: "Изменить пароль",class: 'form-control' %>
+    <span class="input-group-btn">
+      <a id="generate_password" class="btn btn-default">Генерировать пароль</a>
+    </span>
     <span class="input-group-btn">
       <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_password' %>
     </span>
