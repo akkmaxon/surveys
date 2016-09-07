@@ -40,6 +40,7 @@ RSpec.describe 'Manage users by admin', type: :feature do
 	fill_in "Логин", with: 'user123'
 	fill_in "Пароль", with: 'password'
 	click_button "Создать"
+	visit admin_users_path
 	expect(page).to have_selector '#all_users .user', count: 1
       end
     end
@@ -67,7 +68,6 @@ RSpec.describe 'Manage users by admin', type: :feature do
 	visit admin_user_path(user)
 	expect(page).to have_selector '#login'
 	expect(page).to have_selector '#password'
-	expect(page).to have_selector 'a#edit_user'
 	expect(page).to have_selector 'a#surveys'
       end
     end
@@ -86,15 +86,39 @@ RSpec.describe 'Manage users by admin', type: :feature do
     end
 
     context 'successfully' do
-      it 'with valid properties' do
-	fill_in "Логин", with: 'user1'
-	fill_in "Пароль", with: 'password'
-	click_button "Создать"
-	expect(page.current_path).to eq admin_users_path
+      after do
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Новый респондент успешно создан."
 	end
 	expect(User.count).to eq 1
+      end
+
+      it 'manually enter properties' do
+	fill_in "Логин", with: 'user123'
+	fill_in "Пароль", with: 'password'
+	click_button "Создать"
+	expect(page).to have_content "Логин: user123"
+	expect(page).to have_content "Пароль: password"
+	expect(User.first.login).to eq 'user123'
+      end
+
+      it 'generate login' do
+	find('#generate_login').trigger 'click'
+	fill_in "Пароль", with: 'password'
+	click_button "Создать"
+      end
+
+      it 'generate password' do
+	fill_in "Логин", with: 'user123'
+	find('#generate_password').trigger 'click'
+	click_button "Создать"
+	expect(User.first.login).to eq 'user123'
+      end
+
+      it 'generating login/password' do
+	find('#generate_login').trigger 'click'
+	find('#generate_password').trigger 'click'
+	click_button "Создать"
       end
     end
 

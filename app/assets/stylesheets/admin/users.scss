@@ -9,6 +9,12 @@
   }
 }
 
-#login span{
-  margin-right: 15px;
+#login, #password {
+  .input-group-addon {
+    width: 100px !important;
+  }
+}
+
+#generate_login, #generate_password {
+  width: 200px !important;
 }

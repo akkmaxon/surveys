@@ -15,8 +15,8 @@ class Admin::UsersController < Admin::ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Новый респондент успешно создан."
-      redirect_to admin_users_url
+      flash.now[:notice] = "Новый респондент успешно создан."
+      render :user_credentials
     else
       render :new
     end
