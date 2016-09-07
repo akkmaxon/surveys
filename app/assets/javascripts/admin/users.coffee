@@ -1,4 +1,4 @@
-$(document).ready () ->
+document.addEventListener "turbolinks:load", () ->
   $("#generate_login").on "click", () ->
     login = Math.random().toString(36).slice(2, 8)
     $("input#user_login").attr "value", login

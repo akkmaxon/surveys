@@ -1,4 +1,4 @@
-$(document).ready () ->
+document.addEventListener "turbolinks:load", () ->
   $("#new_company").hide()
   $("#add_company").on "click", () ->
     $(@).hide(500)

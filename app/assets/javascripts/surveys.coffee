@@ -1,4 +1,4 @@
-$(document).ready () ->
+document.addEventListener "turbolinks:load", () ->
   parseProgressBarId = () ->
     [checked, total] = $(".progress-bar").attr('id').split '/'
     [Number(checked), Number(total)]

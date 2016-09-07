@@ -1,6 +1,6 @@
 <h1 class="header">Список всех респондентов</h1>
 
-<%= link_to "Создать нового респондента", new_admin_user_path, data: { turbolinks: false }, class: 'btn btn-success pull-right', id: 'new_user' %>
+<%= link_to "Создать нового респондента", new_admin_user_path, class: 'btn btn-success pull-right', id: 'new_user' %>
 
 <div class="list-group" id="all_users">
   <% @users.each do |user| %>

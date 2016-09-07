@@ -1,4 +1,4 @@
-$(document).ready () ->
+document.addEventListener "turbolinks:load", () ->
   $(".new_info input[type='radio']").on "change", () ->
     $(".new_info .actions").css("display", "block")
 
