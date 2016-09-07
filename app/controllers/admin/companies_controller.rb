@@ -1,6 +1,8 @@
 class Admin::CompaniesController < Admin::ApplicationController
+  before_action :set_company, only: [:update, :destroy]
+
   def index
-    @companies = Company.order(updated_at: :desc).pluck(:name)
+    @companies = Company.order(updated_at: :desc)
     @new_company = Company.new
   end
 
@@ -9,9 +11,24 @@ class Admin::CompaniesController < Admin::ApplicationController
     if @new_company.save
       flash[:notice] = "Список компаний расширен."
     else
-      flash[:alert] = "Невозможно создать компанию без названия."
+      flash[:alert] = "Для добавления компании укажите ее имя."
     end
-    redirect_to admin_companies_url
+    redirect_back(fallback_location: admin_companies_url)
+  end
+
+  def update
+    if @company.update(company_params)
+      flash[:notice] = "Список компаний обновлен."
+    else
+      flash[:alert] = "Необходимо указать новое имя компании."
+    end
+    redirect_back(fallback_location: admin_companies_url)
+  end
+
+  def destroy
+    @company.destroy
+    flash[:notice] = "Компания удалена."
+    redirect_back(fallback_location: admin_companies_url)
   end
 
   private

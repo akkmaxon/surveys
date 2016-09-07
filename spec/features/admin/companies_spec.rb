@@ -56,18 +56,48 @@ RSpec.describe "Admin can manage companies", type: :feature do
       fill_in "Имя компании", with: ''
       click_button "Добавить"
       within '#messages .alert-danger' do
-	expect(page).to have_content "Невозможно создать компанию"
+	expect(page).to have_content "Для добавления компании укажите ее имя."
       end
       expect(page).not_to have_selector '.company'
     end
   end
 
   describe "updating" do
-    it 'with valid name'
-    it 'with empty name'
+    let!(:company) { FactoryGirl.create :company }
+
+    before do
+      visit admin_companies_path
+      find('.company .update_company').trigger 'click'
+    end
+
+    it 'with valid name' do
+      fill_in "Имя компании", with: 'NEW COMPANY'
+      click_button "Изменить"
+      within '#messages .alert-success' do
+	expect(page).to have_content "Список компаний обновлен."
+      end
+      expect(page).to have_content 'NEW COMPANY'
+    end
+
+    it 'with empty name' do
+      fill_in "Имя компании", with: ''
+      click_button "Изменить"
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Необходимо указать новое имя компании."
+      end
+    end
   end
 
   describe "deleting" do
-    it 'successfully'
+    it 'successfully' do
+      FactoryGirl.create :company
+      visit admin_companies_path
+      expect(page).to have_selector '.company'
+      find('.company .delete_company').trigger 'click'
+      within '#messages .alert-success' do
+	expect(page).to have_content "Компания удалена."
+      end
+      expect(page).not_to have_selector '.company'
+    end    
   end
 end
