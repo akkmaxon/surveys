@@ -2,13 +2,16 @@ class Question < ApplicationRecord
   has_one :left_statement, dependent: :destroy
   has_one :right_statement, dependent: :destroy
 
-  default_scope -> { order(number: :asc) }
-
   validates :audience, inclusion: { in: %w[management working_staff] }
   validates :number, presence: true
   validates :number, numericality: { only_integer: true }
   validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
   validates :criterion, presence: true
+
+  default_scope -> { order(number: :asc) }
+
+  scope :all_first_questions, -> { where('sentence = ?', "") }
+  scope :all_second_questions, -> { where('sentence != ?', "") }
 
   def self.for(user)
     if user.manager?
@@ -31,6 +34,22 @@ class Question < ApplicationRecord
     criteria_list = questions.pluck(:criterion)
     criteria_list.inject({}) do |result, criterion|
       result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))
+    end
+  end
+
+  def left_text
+    left_statement.text if left_statement
+  end
+
+  def right_text
+    right_statement.text if right_statement
+  end
+
+  def audience_in_russian
+    if audience == 'management'
+      "Менеджмент"
+    elsif audience == 'working_staff'
+      "Рабочая специальность"
     end
   end
 end

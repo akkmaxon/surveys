@@ -1,4 +1,4 @@
-<h1 class="header">Список компаний</h1>
+<h1 class="header">Компании <span class="badge"><%= @companies.count %></span></h1>
 
 <a id="add_company" class="btn btn-success pull-right">Добавить компанию</a>
 
@@ -6,7 +6,7 @@
   <div class="form-group">
     <%= f.label :name, "Имя компании" %>
     <div class="input-group">
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', required: 'required' %>
       <span class="input-group-btn">
 	<%= f.submit "Добавить", class: 'btn btn-primary' %>
       </span>
@@ -26,7 +26,7 @@
       </h2>
       <%= form_for [:admin, company] do |f| %>
 	<div class="input-group input-group-sm">
-	  <%= f.text_field :name, class: 'form-control' %>
+	  <%= f.text_field :name, class: 'form-control', required: 'required' %>
 	  <span class="input-group-btn">
 	    <%= f.submit "Изменить", class: 'btn btn-primary' %>
 	  </span>

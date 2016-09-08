@@ -1,6 +1,6 @@
-<h1 class="header">Список всех респондентов</h1>
+<h1 class="header">Респонденты <span class="badge"><%= @users.count %></span></h1>
 
-<%= link_to "Создать нового респондента", new_admin_user_path, class: 'btn btn-success pull-right', id: 'new_user' %>
+<%= link_to "Создать респондента", new_admin_user_path, class: 'btn btn-success pull-right', id: 'add_user' %>
 
 <div class="list-group" id="all_users">
   <% @users.each do |user| %>

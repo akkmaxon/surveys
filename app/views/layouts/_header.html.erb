@@ -25,7 +25,9 @@
 	    <%= link_to "Компании", admin_companies_path, id: 'companies_link' %>
 	  </li>
 	  <li><%= link_to "Опросы", '#' %></li>
-	  <li><%= link_to "Вопросы", '#' %></li>
+	  <li class="<%= active_link('questions', 'index') %>">
+	    <%= link_to "Вопросы", admin_questions_path, id: 'questions_link' %>
+	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li><%= link_to "Выход", destroy_admin_session_path, method: :delete %></li>

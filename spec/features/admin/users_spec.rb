@@ -29,7 +29,7 @@ RSpec.describe 'Manage users by admin', type: :feature do
 	expect(page).to have_selector '#all_users'
 	expect(page).to have_selector '.user', count: 3
 	expect(page).to have_selector '.active #users_link'
-	expect(page).to have_selector 'a#new_user'
+	expect(page).to have_selector 'a#add_user'
 	expect(page).to have_selector 'a.show_user'
       end
 

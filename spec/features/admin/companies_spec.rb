@@ -11,9 +11,18 @@ RSpec.describe "Admin can manage companies", type: :feature do
   describe "view" do
     let!(:company) { FactoryGirl.create :company, name: 'New Company' }
 
-    it 'impossible for not admin' do
+    it 'impossible for signed in user' do
       sign_out admin
       sign_in FactoryGirl.create :user
+      visit admin_companies_path
+      expect(page.current_path).to eq new_admin_session_path
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Войдите, пожалуйста, в систему"
+      end
+    end
+
+    it 'impossible for unsigned in user' do
+      sign_out admin
       visit admin_companies_path
       expect(page.current_path).to eq new_admin_session_path
       within '#messages .alert-danger' do
@@ -55,10 +64,9 @@ RSpec.describe "Admin can manage companies", type: :feature do
       find('#add_company').trigger 'click'
       fill_in "Имя компании", with: ''
       click_button "Добавить"
-      within '#messages .alert-danger' do
-	expect(page).to have_content "Для добавления компании укажите ее имя."
-      end
+      visit admin_companies_path
       expect(page).not_to have_selector '.company'
+      expect(Company.count).to eq 0
     end
   end
 
@@ -82,9 +90,8 @@ RSpec.describe "Admin can manage companies", type: :feature do
     it 'with empty name' do
       fill_in "Имя компании", with: ''
       click_button "Изменить"
-      within '#messages .alert-danger' do
-	expect(page).to have_content "Необходимо указать новое имя компании."
-      end
+      company.reload
+      expect(company.name).not_to eq ''
     end
   end
 
