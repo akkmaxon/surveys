@@ -130,7 +130,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	  expect(page).to have_content "Вопрос создан."
 	end
 	expect(Question.all_second_questions.count).to eq 1
-	expect(Question.all_second_questions.last.number).to eq 1
+	expect(Question.all_second_questions.last.number).to eq 201
       end
     end
     

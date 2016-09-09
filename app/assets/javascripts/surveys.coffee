@@ -16,7 +16,7 @@ document.addEventListener "turbolinks:load", () ->
     $('.progress-bar').css('width', "#{nowChecked/total * 100}%")
 
   $(".new_response").on "ajax:success", (e, data, status, xhr) ->
-    currentQ = $(@).parent().parent()
+    currentQ = $(@).parents('.response')
     nextQ = currentQ.next()
     currentQ.remove()
     nextQ.css('display', 'block')

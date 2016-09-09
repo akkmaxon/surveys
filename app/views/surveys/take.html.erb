@@ -66,7 +66,7 @@
     <p>Закончите следующие предложения:</p>
   </div>
   <% @second_questions.each_with_index do |question, n| %>
-    <div class="panel panel-default <%= n == 0 ? '' : 'hidden_question' %>">
+    <div class="panel panel-default response <%= n == 0 ? '' : 'hidden_question' %>">
       <div class="panel-body">
 	<blockquote><%= question.sentence %></blockquote>
 	<%= form_for Response.new, id: "question_#{question.number}", remote: true do |f| %>
