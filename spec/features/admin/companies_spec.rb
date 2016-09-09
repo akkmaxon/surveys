@@ -50,7 +50,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
     it 'with valid name' do
       find('#add_company').trigger 'click'
       fill_in "Имя компании", with: 'NEW COMPANY'
-      click_button "Добавить"
+      click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Список компаний расширен."
       end
@@ -63,7 +63,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
     it 'with empty name' do
       find('#add_company').trigger 'click'
       fill_in "Имя компании", with: ''
-      click_button "Добавить"
+      click_button "Подтвердить"
       visit admin_companies_path
       expect(page).not_to have_selector '.company'
       expect(Company.count).to eq 0
@@ -80,7 +80,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
 
     it 'with valid name' do
       fill_in "Имя компании", with: 'NEW COMPANY'
-      click_button "Изменить"
+      click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Список компаний обновлен."
       end
@@ -89,7 +89,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
 
     it 'with empty name' do
       fill_in "Имя компании", with: ''
-      click_button "Изменить"
+      click_button "Подтвердить"
       company.reload
       expect(company.name).not_to eq ''
     end
