@@ -11,5 +11,30 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe Admin::QuestionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#next_number_for_question' do
+    let(:question) { FactoryGirl.build :question, number: 1 }
+    
+    it 'return 1 for first questions' do
+      result = next_number_for_question(Question.all_first_questions.last)
+      expect(result).to eq 1
+    end
+
+    it 'return 1 for second questions' do
+      result = next_number_for_question(Question.all_second_questions.last)
+      expect(result).to eq 1
+    end
+
+    it 'return 2 for first questions' do
+      question.save
+      result = next_number_for_question(Question.all_first_questions.last)
+      expect(result).to eq 2
+    end
+
+    it 'return 2 for second questions' do
+      question.sentence = Faker::Lorem.sentence
+      question.save
+      result = next_number_for_question(Question.all_second_questions.last)
+      expect(result).to eq 2
+    end
+  end
 end
