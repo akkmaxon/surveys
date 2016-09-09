@@ -1,6 +1,7 @@
 class Admin::QuestionsController < Admin::ApplicationController
   before_action :set_questions, only: [:index, :create]
   before_action :set_question, only: [:destroy]
+  after_action :create_left_and_right_statements, only: :create
 
   def index
     @new_question = Question.new
@@ -35,5 +36,18 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def set_question
     @question = Question.find(params[:id])
+  end
+
+  def create_left_and_right_statements
+    LeftStatement.create do |left|
+      left.question_id = @new_question.id
+      left.title = params[:left_title] || ""
+      left.text = params[:left_text] || ""
+    end
+    RightStatement.create do |right|
+      right.question_id = @new_question.id
+      right.title = params[:right_title] || ""
+      right.text = params[:right_text] || ""
+    end
   end
 end

@@ -13,5 +13,21 @@
 }
 
 #new_first_question, #new_second_question {
-  margin-top: 40px;
+  margin-top: 70px;
+}
+
+#new_first_question .panel-heading .form-group {
+  margin-right: 20px;
+}
+
+#new_1q_criterion {
+  width: 400px;
+}
+
+#new_1q_number {
+  width: 70px;
+}
+
+#add_1q, #add_2q {
+  margin-top: 25px;
 }

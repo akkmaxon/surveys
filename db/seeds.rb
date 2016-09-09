@@ -403,27 +403,27 @@ end
 
 questions_2_criterion = "Свободные ответы"
 ### 2_1 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 201,
+Question.create! opinion_subject: "Я", audience: "management", number: 1,
   sentence: "Я считаю, что основными проблемами в компании являются",
   criterion: questions_2_criterion
 ### 2_2 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 202,
+Question.create! opinion_subject: "Я", audience: "management", number: 2,
   sentence: "Если бы я был назначен генеральным директором своей компании, в первую очередь я изменил бы",
   criterion: questions_2_criterion
 ### 2_3 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 203,
+Question.create! opinion_subject: "Я", audience: "management", number: 3,
   sentence: "Я чувствовал гордость за свою компанию, когда",
   criterion: questions_2_criterion
 ### 2_4 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 204,
+Question.create! opinion_subject: "Я", audience: "management", number: 4,
   sentence: "Чтобы работники компании работали с большей душой и отдачей, руководству компании нужно сделать следующее",
   criterion: questions_2_criterion
 ### 2_5 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 205,
+Question.create! opinion_subject: "Я", audience: "management", number: 5,
   sentence: "В целом я посоветовал бы нашему руководству",
   criterion: questions_2_criterion
 ### 2_6 question ###
-Question.create! opinion_subject: "Я", audience: "management", number: 206,
+Question.create! opinion_subject: "Я", audience: "management", number: 6,
   sentence: "Назовите 2-3 имени Ваших коллег, точку зрения которых Вы уважаете, к мнению которых прислушиваетесь:",
   criterion: questions_2_criterion
 
@@ -444,10 +444,9 @@ end
 end
 
 (1..6).each do |n|
-  question_number = "20#{n}".to_i
   Response.create! do |resp|
     resp.survey_id = survey.id
-    resp.question_number = question_number
+    resp.question_number = n
     resp.answer = "Затрудняюсь ответить"
   end
 end

@@ -45,6 +45,14 @@ class Question < ApplicationRecord
     right_statement.text if right_statement
   end
 
+  def left_title
+    left_statement.title if left_statement
+  end
+
+  def right_title
+    right_statement.title if right_statement
+  end
+
   def audience_in_russian
     if audience == 'management'
       "Менеджмент"
