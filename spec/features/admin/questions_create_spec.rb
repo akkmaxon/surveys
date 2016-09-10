@@ -16,15 +16,15 @@ RSpec.describe 'Admin can create questions', type: :feature do
 
     context 'successfully' do
       it 'with all properties' do
-	fill_in 'new_1q_number', with: 123
-	find('#new_1q_audience_1').trigger 'click'
-	find('#new_1q_subject_1').trigger 'click'
-	fill_in 'new_1q_criterion', with: 'Something New'
-	fill_in 'new_1q_left_title', with: 'Left Title'
-	fill_in 'new_1q_left_text', with: 'Text from left'
-	fill_in 'new_1q_right_title', with: 'Right Title'
-	fill_in 'new_1q_right_text', with: 'Text from right'
-	click_button "add_1q"
+	fill_in 'field_1q_number', with: 123
+	find('#field_1q_audience_1').trigger 'click'
+	find('#field_1q_subject_1').trigger 'click'
+	fill_in 'field_1q_criterion', with: 'Something New'
+	fill_in 'field_1q_left_title', with: 'Left Title'
+	fill_in 'field_1q_left_text', with: 'Text from left'
+	fill_in 'field_1q_right_title', with: 'Right Title'
+	fill_in 'field_1q_right_text', with: 'Text from right'
+	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).to have_content '123'
 	  expect(page).to have_content 'Something New'
@@ -43,10 +43,10 @@ RSpec.describe 'Admin can create questions', type: :feature do
 
     context 'unsuccessfully' do
       it 'without audience' do
-	fill_in 'new_1q_number', with: 123
-	find('#new_1q_subject_1').trigger 'click'
-	fill_in "new_1q_criterion", with: 'Something New'
-	click_button 'add_1q'
+	fill_in 'field_1q_number', with: 123
+	find('#field_1q_subject_1').trigger 'click'
+	fill_in "field_1q_criterion", with: 'Something New'
+	click_button 'submit_1q'
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'
 	  expect(page).not_to have_content 'Something New'
@@ -56,11 +56,11 @@ RSpec.describe 'Admin can create questions', type: :feature do
       end
 
       it 'without number' do
-	fill_in 'new_1q_number', with: ''
-	find("#new_1q_audience_1").trigger 'click'
-	find("#new_1q_subject_1").trigger 'click'
-	fill_in "new_1q_criterion", with: 'Something New'
-	click_button "add_1q"
+	fill_in 'field_1q_number', with: ''
+	find("#field_1q_audience_1").trigger 'click'
+	find("#field_1q_subject_1").trigger 'click'
+	fill_in "field_1q_criterion", with: 'Something New'
+	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content 'Something New'
 	end
@@ -69,15 +69,15 @@ RSpec.describe 'Admin can create questions', type: :feature do
       end
 
       it 'with wrong number' do
-	fill_in 'new_1q_number', with: 'abc123'
-	find("#new_1q_audience_1").trigger 'click'
-	find("#new_1q_subject_1").trigger 'click'
-	fill_in "new_1q_criterion", with: 'Something New'
-	fill_in 'new_1q_left_title', with: 'Left Title'
-	fill_in 'new_1q_left_text', with: 'Text from left'
-	fill_in 'new_1q_right_title', with: 'Right Title'
-	fill_in 'new_1q_right_text', with: 'Text from right'
-	click_button "add_1q"
+	fill_in 'field_1q_number', with: 'abc123'
+	find("#field_1q_audience_1").trigger 'click'
+	find("#field_1q_subject_1").trigger 'click'
+	fill_in "field_1q_criterion", with: 'Something New'
+	fill_in 'field_1q_left_title', with: 'Left Title'
+	fill_in 'field_1q_left_text', with: 'Text from left'
+	fill_in 'field_1q_right_title', with: 'Right Title'
+	fill_in 'field_1q_right_text', with: 'Text from right'
+	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content 'abc123'
 	  expect(page).not_to have_content 'Something New'
@@ -87,10 +87,10 @@ RSpec.describe 'Admin can create questions', type: :feature do
       end
 
       it 'without opinion subject' do
-	fill_in "new_1q_number", with: 123
-	find("#new_1q_audience_1").trigger 'click'
-	fill_in "new_1q_criterion", with: 'Something New'
-	click_button "add_1q"
+	fill_in "field_1q_number", with: 123
+	find("#field_1q_audience_1").trigger 'click'
+	fill_in "field_1q_criterion", with: 'Something New'
+	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'
 	  expect(page).not_to have_content 'Something New'
@@ -100,10 +100,10 @@ RSpec.describe 'Admin can create questions', type: :feature do
       end
 
       it 'without criterion' do
-	fill_in "new_1q_number", with: 123
-	find("#new_1q_audience_1").trigger 'click'
-	find("#new_1q_subject_1").trigger 'click'
-	click_button "add_1q"
+	fill_in "field_1q_number", with: 123
+	find("#field_1q_audience_1").trigger 'click'
+	find("#field_1q_subject_1").trigger 'click'
+	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'
 	end
@@ -120,9 +120,9 @@ RSpec.describe 'Admin can create questions', type: :feature do
 
     context 'successfully' do
       it 'with all properties' do
-	find('#new_2q_audience_1').trigger 'click'
-	fill_in 'new_2q_sentence', with: 'New Sentence'
-	click_button "add_2q"
+	find('#field_2q_audience_1').trigger 'click'
+	fill_in 'field_2q_sentence', with: 'New Sentence'
+	click_button "submit_2q"
 	within '#admin_second_questions' do
 	  expect(page).to have_content 'New Sentence'
 	end
@@ -136,8 +136,8 @@ RSpec.describe 'Admin can create questions', type: :feature do
     
     context 'unsuccessfully' do
       it 'without audience' do
-	fill_in 'new_2q_sentence', with: 'New Sentence'
-	click_button "add_2q"
+	fill_in 'field_2q_sentence', with: 'New Sentence'
+	click_button "submit_2q"
 	within '#admin_second_questions' do
 	  expect(page).not_to have_content 'New Sentence'
 	end
@@ -146,8 +146,8 @@ RSpec.describe 'Admin can create questions', type: :feature do
       end
 
       it 'without sentence' do
-	find('#new_2q_audience_1').trigger 'click'
-	click_button "add_2q"
+	find('#field_2q_audience_1').trigger 'click'
+	click_button "submit_2q"
 	within '#admin_second_questions' do
 	  expect(page).not_to have_content 'New Sentence'
 	end

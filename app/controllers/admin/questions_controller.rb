@@ -1,15 +1,18 @@
 class Admin::QuestionsController < Admin::ApplicationController
   before_action :set_questions, only: [:index, :create]
-  before_action :set_question, only: [:destroy]
-  after_action :create_left_and_right_statements, only: :create
+  before_action :set_question, only: [:update, :destroy]
 
   def index
-    @new_question = Question.new
+    @question = Question.new
   end
 
   def create
-    @new_question = Question.new(question_params)
-    if @new_question.save
+    @question = Question.new(question_params)
+    if @question.save
+      if @question.sentence.blank?
+	LeftStatement.create(left_statement_params)
+	RightStatement.create(right_statement_params)
+      end
       flash[:notice] = "Вопрос создан."
       redirect_back(fallback_location: admin_questions_path)
     else
@@ -21,6 +24,19 @@ class Admin::QuestionsController < Admin::ApplicationController
     @question.destroy
     flash[:notice] = "Вопрос удален."
     redirect_back(fallback_location: admin_questions_path)
+  end
+
+  def update
+    if @question.update(question_params)
+      if @question.sentence.blank?
+	@question.left_statement.update(left_statement_params)
+	@question.right_statement.update(right_statement_params)
+      end
+      flash[:notice] = "Вопрос обновлен."
+      redirect_back(fallback_location: admin_questions_path)
+    else
+      render :index
+    end
   end
 
   private
@@ -38,16 +54,17 @@ class Admin::QuestionsController < Admin::ApplicationController
     @question = Question.find(params[:id])
   end
 
-  def create_left_and_right_statements
-    LeftStatement.create do |left|
-      left.question_id = @new_question.id
-      left.title = params[:left_title] || ""
-      left.text = params[:left_text] || ""
-    end
-    RightStatement.create do |right|
-      right.question_id = @new_question.id
-      right.title = params[:right_title] || ""
-      right.text = params[:right_text] || ""
-    end
+  def left_statement_params
+    { question_id: @question.id,
+      title: params[:left_title],
+      text: params[:left_text]
+    }
+  end
+
+  def right_statement_params
+    { question_id: @question.id,
+      title: params[:right_title],
+      text: params[:right_text]
+    }
   end
 end

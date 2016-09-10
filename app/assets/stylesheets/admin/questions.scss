@@ -16,18 +16,16 @@
   margin-top: 70px;
 }
 
-#new_first_question .panel-heading .form-group {
-  margin-right: 20px;
-}
+.container_question_form {
+  .panel-footer .form-group {
+    margin-bottom: 0 !important;
+  }
 
-#new_1q_criterion {
-  width: 400px;
-}
+  #field_1q_criterion {
+    width: 400px;
+  }
 
-#new_1q_number {
-  width: 70px;
-}
-
-#add_2q, #add_1q {
-  margin-top: 3px;
+  #submit_2q, #submit_1q {
+    margin-top: 3px;
+  }
 }

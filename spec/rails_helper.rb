@@ -9,6 +9,7 @@ require 'capybara/poltergeist'
 Capybara.default_driver = :poltergeist
 #Capybara.default_driver = :selenium
 
+Capybara.default_max_wait_time = 5
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
