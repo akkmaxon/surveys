@@ -20,12 +20,6 @@ class Admin::QuestionsController < Admin::ApplicationController
     end
   end
 
-  def destroy
-    @question.destroy
-    flash[:notice] = "Вопрос удален."
-    redirect_back(fallback_location: admin_questions_path)
-  end
-
   def update
     if @question.update(question_params)
       if @question.sentence.blank?
@@ -37,6 +31,12 @@ class Admin::QuestionsController < Admin::ApplicationController
     else
       render :index
     end
+  end
+
+  def destroy
+    @question.destroy
+    flash[:notice] = "Вопрос удален."
+    redirect_back(fallback_location: admin_questions_path)
   end
 
   private

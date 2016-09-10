@@ -24,14 +24,14 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	end
       end
 
+      it 'changing nothing' do
+	click_button 'submit_1q'
+      end
+
       it 'changing one thing' do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	click_button 'submit_1q'
 	expect(page).to have_content 'New Criterion'
-      end
-
-      it 'changing nothing' do
-	click_button 'submit_1q'
       end
 
       it 'changing all properties' do
