@@ -7,9 +7,9 @@
       <div class="list-group-item survey">
 	<h2 class="h4">
 	  Респондент: 
-	  <%= link_to survey.user.login, admin_user_path(survey.user), class: 'show_survey' %>
+	  <%= link_to survey.user.login, admin_user_path(survey.user), class: 'show_user' %>
 	  <span class="pull-right">
-	    <%= link_to "Результаты", admin_survey_path(survey), class: 'btn btn-primary' %>
+	    <%= link_to "Результаты", admin_survey_path(survey), class: 'btn btn-primary show_survey' %>
 	  </span>
 	</h2>
 	<p>

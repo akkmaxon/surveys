@@ -20,6 +20,13 @@ RSpec.describe 'Admin view all surveys', type: :feature do
     end
   end
 
+  it 'accessing from dashboard' do
+    sign_in admin
+    visit admin_root_path
+    click_link 'surveys_link'
+    expect(page.current_path).to eq admin_surveys_path
+  end
+
   it 'successfully' do
     user = FactoryGirl.create :user, login: 'user123'
     FactoryGirl.create :survey, user: user, completed: true

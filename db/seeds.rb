@@ -1,17 +1,3 @@
-user = User.create! login: 'user', password: 'password', password_confirmation: 'password'
-newuser = User.create! login: 'newuser', password: 'password', password_confirmation: 'password'
-admin = Admin.create! login: 'admin', email: 'admin@email.com', password: 'password', password_confirmation: 'password'
-
-Info.create! do |i|
-  i.gender = "мужской"
-  i.experience = "более 5ти лет"
-  i.age = "от 30 до 40 лет"
-  i.workplace_number = "второе"
-  i.work_position = "руководитель отдела"
-  i.company = "ГК Газы"
-  i.user_id = user.id
-end
-
 ### Companies ###
 Company.create! name: "ГК Управдом"
 Company.create! name: "ГК ДУК"
@@ -427,27 +413,57 @@ Question.create! opinion_subject: "Я", audience: "management", number: 206,
   sentence: "Назовите 2-3 имени Ваших коллег, точку зрения которых Вы уважаете, к мнению которых прислушиваетесь:",
   criterion: questions_2_criterion
 
-### User takes a survey ###
-survey = Survey.create! do |s|
-  s.user_id = user.id
-  s.user_agreement = "я полностью согласен со своим результатом"
-  s.user_email = "user@email.com"
-  s.completed = true
-end
+### Users ###
+newuser = User.create! login: 'newuser', password: 'password'
+admin = Admin.create! login: 'admin', email: 'admin@email.com', password: 'password'
 
-(1..29).each do |n|
-  Response.create! do |resp|
-    resp.survey_id = survey.id
-    resp.question_number = n
-    resp.answer = (rand(5) + 1).to_s
+genders = %w[ мужской женский ]
+ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет", "от 40 до 55 лет", "более 55 лет"]
+experiences = ["менее 1 года", "от 1 года до 3х лет", "от 3х лет до 5ти лет", "более 5ти лет"]
+workplace_numbers = ["первое", "второе", "третье", "больше третьего"]
+work_positions = ["рабочая должность", "производственный руководитель", "работник офиса", "руководитель отдела", "топ-менеджер"]
+user_agreements = ["я не согласен со своим результатом",
+		   "я частично согласен со своим результатом",
+		   "я полностью согласен со своим результатом"]
+
+20.times do
+  login = User.find_by(login: 'user').nil? ? 'user' : Faker::Internet.user_name
+  user = User.create! login: login, password: 'password'
+
+  Info.create! do |i|
+    i.gender = genders[rand(2)]
+    i.experience = experiences[rand(4)]
+    i.age = ages[rand(5)]
+    i.workplace_number = workplace_numbers[rand(4)]
+    i.work_position = work_positions[rand(5)]
+    i.company = Company.find(rand(8) + 1).name
+    i.user_id = user.id
   end
-end
 
-(1..6).each do |n|
-  question_number = "20#{n}".to_i
-  Response.create! do |resp|
-    resp.survey_id = survey.id
-    resp.question_number = question_number
-    resp.answer = "Затрудняюсь ответить"
+  rand(5).times do
+    ### User takes a survey ###
+    survey = Survey.create! do |s|
+      s.user_id = user.id
+      s.user_agreement = user_agreements[rand(3)]
+      s.user_email = "#{login}@email.com"
+      s.completed = true
+    end
+
+    (1..29).each do |n|
+      Response.create! do |resp|
+	resp.survey_id = survey.id
+	resp.question_number = n
+	resp.answer = (rand(5) + 1).to_s
+      end
+    end
+
+    (1..6).each do |n|
+      question_number = "20#{n}".to_i
+      Response.create! do |resp|
+	resp.survey_id = survey.id
+	resp.question_number = question_number
+	resp.answer = Faker::Lorem.sentence
+      end
+    end
   end
 end
