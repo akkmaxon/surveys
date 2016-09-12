@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :users, except: [:destroy, :edit]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
+    resources :surveys, only: [:index, :show]
     root to: 'application#index'
   end
 

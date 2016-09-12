@@ -1,0 +1,21 @@
+<h1 class="header">Опросы <span class="badge"><%= @surveys.count %></span>
+</h1>
+
+<section id="all_surveys">
+  <div class="list-group">
+    <% @surveys.each do |survey| %>
+      <div class="list-group-item survey">
+	<h2 class="h4">
+	  Респондент: 
+	  <%= link_to survey.user.login, admin_user_path(survey.user), class: 'show_survey' %>
+	  <span class="pull-right">
+	    <%= link_to "Результаты", admin_survey_path(survey), class: 'btn btn-primary' %>
+	  </span>
+	</h2>
+	<p>
+	  <%= survey.completed? ? "ЗАВЕРШЕН #{survey.pass_date}" : "НЕ ЗАВЕРШЕН" %>
+	</p>
+      </div>
+    <% end %>
+  </div>
+</section>

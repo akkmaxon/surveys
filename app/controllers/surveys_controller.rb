@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+#  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :check_for_empty_info
   before_action :find_survey, only: [:show, :take, :update]
   before_action :check_for_survey_owner, only: [:show, :take]
