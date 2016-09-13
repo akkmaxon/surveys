@@ -1,31 +1,37 @@
-<h1 class="header">Респондент <em><%= @user.login %></em></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="header">Респондент <em><%= @user.login %></em></h1>
 
-<%= error_explanation_for @user %>
+      <%= error_explanation_for @user %>
 
-<%= form_for [:admin, @user] do |f| %>
-  <div class="input-group h3" id="login">
-    <span class="input-group-addon">Логин</span>
-    <%= f.text_field :login, placeholder: "Изменить логин",class: 'form-control' %>
-    <span class="input-group-btn">
-      <a id="generate_login" class="btn btn-default">Генерировать логин</a>
-    </span>
-    <span class="input-group-btn">
-      <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_login' %>
-    </span>
+      <%= form_for [:admin, @user] do |f| %>
+	<div class="input-group h3" id="login">
+	  <span class="input-group-addon">Логин</span>
+	  <%= f.text_field :login, placeholder: "Изменить логин",class: 'form-control' %>
+	  <span class="input-group-btn">
+	    <a id="generate_login" class="btn btn-default">Генерировать логин</a>
+	  </span>
+	  <span class="input-group-btn">
+	    <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_login' %>
+	  </span>
+	</div>
+      <% end %>
+
+      <%= form_for [:admin, @user] do |f| %>
+	<div class="input-group h3" id="password">
+	  <span class="input-group-addon">Пароль</span>
+	  <%= f.text_field :password, placeholder: "Изменить пароль",class: 'form-control' %>
+	  <span class="input-group-btn">
+	    <a id="generate_password" class="btn btn-default">Генерировать пароль</a>
+	  </span>
+	  <span class="input-group-btn">
+	    <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_password' %>
+	  </span>
+	</div>
+      <% end %>
+
+      <%= link_to "Опросы", '#', class: 'btn btn-primary', id: 'surveys' %>
+    </div>
   </div>
-<% end %>
-
-<%= form_for [:admin, @user] do |f| %>
-  <div class="input-group h3" id="password">
-    <span class="input-group-addon">Пароль</span>
-    <%= f.text_field :password, placeholder: "Изменить пароль",class: 'form-control' %>
-    <span class="input-group-btn">
-      <a id="generate_password" class="btn btn-default">Генерировать пароль</a>
-    </span>
-    <span class="input-group-btn">
-      <%= f.submit "Изменить", class: 'btn btn-primary', id: 'submit_password' %>
-    </span>
-  </div>
-<% end %>
-
-<%= link_to "Опросы", '#', class: 'btn btn-primary', id: 'surveys' %>
+</div>
