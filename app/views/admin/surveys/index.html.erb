@@ -1,10 +1,22 @@
-<h1 class="header">Опросы <span class="badge"><%= @surveys.count %></span>
-</h1>
+<div class="container">
+  <h1 class="header">Опросы <span class="badge"><%= @surveys.count %></span>
+  </h1>
 
-<section id="all_surveys">
-  <div class="list-group">
-    <% @surveys.each do |survey| %>
-      <div class="list-group-item survey">
+  <div id="manage_bar" class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <input id="search_survey" type="text" placeholder="Поиск"></input>
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
+
+<section id="all_surveys" class="container-fluid">
+  <% @surveys.each do |survey| %>
+    <div class="panel panel-default survey">
+      <div class="panel-body">
 	<h2 class="h4">
 	  Респондент: 
 	  <%= link_to survey.user.login, admin_user_path(survey.user), class: 'show_user' %>
@@ -16,6 +28,6 @@
 	  <%= survey.completed? ? "ЗАВЕРШЕН #{survey.pass_date}" : "НЕ ЗАВЕРШЕН" %>
 	</p>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </section>
