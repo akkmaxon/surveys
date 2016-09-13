@@ -10,7 +10,7 @@
       <% if admin_signed_in? %>
 	<%= link_to "Панель управления", root_path, class: 'navbar-brand' %>
       <% elsif user_signed_in? %>
-	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey', class: 'navbar-brand' %>
+	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey_link', class: 'navbar-brand' %>
       <% else %>
 	<%= link_to "Самооценка вовлеченности", root_path, class: 'navbar-brand' %>
       <% end %>
@@ -37,7 +37,7 @@
       <% elsif user_signed_in? %>
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('surveys', 'index') %>">
-	    <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys' %>
+	    <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys_link' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
