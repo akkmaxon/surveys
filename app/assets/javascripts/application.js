@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+document.addEventListener("turbolinks:load", function() {
+  hideMessages = function() {
+    $('#messages .alert').hide(300)
+    $('#error_explanation').hide(300)
+  }
+  setTimeout(hideMessages, 2000)
+});

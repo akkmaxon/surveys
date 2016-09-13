@@ -1,14 +1,16 @@
-$paddingContainer = 15
-
 resizeCompanies = () ->
-  $width = $(window).width()
-  newWidth = if $width < 992
-    $width - 2 * $paddingContainer
-  else if($width < 1300)
-    $width / 2 - 2 * $paddingContainer
+  paddingContainer = 2 * 15
+  width = $(window).width()
+  newWidth = if width < 992
+    width - paddingContainer
+  else if(width < 1300)
+    width / 2 - paddingContainer
   else
-    $width / 3 - 2 * $paddingContainer
+    width / 3 - paddingContainer
   $('.company').css('width', newWidth)
+
+searchCompany = (keyword) ->
+  companies = document.getElementByClassName('company_name')
 
 document.addEventListener "turbolinks:load", () ->
   resizeCompanies()
@@ -29,6 +31,10 @@ document.addEventListener "turbolinks:load", () ->
     gutter: 24,
     isFitWidth: true
   })
+
+  $('#search').on 'keyup', () ->
+    keyword = document.getElementById('search').value
+    searchCompany(keyword) # TODO
 
 $(window).resize () ->
   resizeCompanies()
