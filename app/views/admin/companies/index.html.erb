@@ -1,6 +1,13 @@
 <h1 class="header">Компании <span class="badge"><%= @companies.count %></span></h1>
 
-<a id="add_company" class="btn btn-success pull-right">Добавить компанию</a>
+<div id="manage_bar" class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <input id="search" type="text" placeholder="Поиск по названию"></input>
+  </div>
+  <div class="col-md-4">
+    <a id="add_company" class="btn btn-success">Добавить компанию</a>
+  </div>
+</div>
 
 <div id="add_new_company">
   <%= label_tag :company_name, "Добавить компанию" %>

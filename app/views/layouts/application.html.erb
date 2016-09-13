@@ -14,11 +14,7 @@
     <%= render "layouts/header" %>
     <%= render "shared/messages" %>
     <div class="container">
-      <div class="row">
-	<div class="<%= set_class_for_layout %>">
-	  <%= yield %>
-	</div>
-      </div>
+      <%= yield %>
     </div>
     <%= render "layouts/footer" %>
   </body>
