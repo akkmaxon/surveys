@@ -19,7 +19,7 @@
       <div class="panel-body">
 	<div class="pull-right buttons">
 	  <a class="update_company btn btn-sm btn-info">Изменить</a>
-	  <%= link_to "Удалить", admin_company_path(company), method: :delete, class: "delete_company btn btn-sm btn-danger" %>
+	  <%= link_to "Удалить", admin_company_path(company), method: :delete, class: "delete_company btn btn-sm btn-danger", data: { confirm: "Компания будет удалена. Подтверждаете действие?" } %>
 	</div>
 	<h2 class="h4 company_name">
 	  <%= company.name %>

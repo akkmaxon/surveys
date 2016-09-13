@@ -74,13 +74,13 @@ body {
     text-align: center;
 
     input {
-      background: white asset-url('searchicon.png') 7px 7px no-repeat !important;
+      background: #ffffff asset-url('searchicon.png') 7px 7px no-repeat !important;
       padding: 7px 20px 7px 35px;
       border-top: none;
       border-left: none;
       border-right: none;
       border-bottom: 2px solid #dadada;
-      width: 80%;
+      width: 50%;
       transition: width 0.4s ease-in-out;
       -webkit-transition: width 0.4s ease-in-out;
       &:focus {
