@@ -1,11 +1,13 @@
-<h1 class="header">Результат опроса от <%= @survey.pass_date %></h1>
+<div class="container">
+  <h1 class="header">Результат опроса от <%= @survey.pass_date %></h1>
 
-<%= render 'survey', survey: @survey %>
+  <%= render 'survey', survey: @survey %>
 
-<div id="agreement">
-  <%= render 'surveys/agreement' %>
-</div>
+  <div id="agreement">
+    <%= render 'surveys/agreement' %>
+  </div>
 
-<div id="email_field">
-  <%= render 'surveys/email_form' %>
+  <div id="email_field">
+    <%= render 'surveys/email_form' %>
+  </div>
 </div>

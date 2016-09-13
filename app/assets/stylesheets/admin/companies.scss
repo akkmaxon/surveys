@@ -1,31 +1,6 @@
-#manage_bar {
-  margin-top: 20px;
-  div {
-    text-align: center;
-
-    input {
-      background: white asset-url('searchicon.png') 7px 7px no-repeat !important;
-      padding: 7px 20px 7px 35px;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      border-bottom: 2px solid #dadada;
-      width: 80%;
-      transition: width 0.4s ease-in-out;
-      -webkit-transition: width 0.4s ease-in-out;
-      &:focus {
-	width: 100%;
-      }
-    }
-  }
-}
-
 #all_companies {
-  width: 100%;
   margin-top: 40px;
   .buttons a, .edit_company {
     margin: 5px;
-  }
-  .company {
   }
 }

@@ -9,9 +9,6 @@ resizeCompanies = () ->
     width / 3 - paddingContainer
   $('.company').css('width', newWidth)
 
-searchCompany = (keyword) ->
-  companies = document.getElementByClassName('company_name')
-
 document.addEventListener "turbolinks:load", () ->
   resizeCompanies()
   $("#add_new_company").hide()
@@ -31,10 +28,6 @@ document.addEventListener "turbolinks:load", () ->
     gutter: 24,
     isFitWidth: true
   })
-
-  $('#search').on 'keyup', () ->
-    keyword = document.getElementById('search').value
-    searchCompany(keyword) # TODO
 
 $(window).resize () ->
   resizeCompanies()
