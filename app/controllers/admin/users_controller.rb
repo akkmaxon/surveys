@@ -38,7 +38,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(login: params[:id])
   end
 
   def set_users

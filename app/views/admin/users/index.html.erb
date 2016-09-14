@@ -7,6 +7,7 @@
     </div>
     <div class="col-md-4">
       <a class="btn btn-success" id="add_user_link" data-toggle="modal" data-target="#new_user_modal">
+	<span class="glyphicon glyphicon-plus"></span>
 	Создать респондента
       </a>
     </div>
@@ -23,7 +24,7 @@
 	      <button class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	      </button>
-	      <h2 class="h4 text-center">Создать респондента</h2>
+	      <h2 class="h3 text-center">Создать респондента</h2>
 	    </div>
 	    <div class="modal-body">
 	      <%= render 'form', object: @user %>
@@ -40,11 +41,15 @@
     <div class="panel panel-default user">
       <div class="panel-body">
 	<h2 class="h4 pull-right">
-	  Surveys <span class="badge"><%= user.completed_surveys.count %></span>
+	  Опросы <span class="badge"><%= user.completed_surveys.count %></span>
 	</h2>
 	<h2 class="h4">
+	  Логин: 
 	  <%= link_to user.login, admin_user_path(user), class: 'show_user' %>
 	</h2>
+	<p>
+	  ЗАРЕГИСТРИРОВАН: <%= user.creation_time %>
+	</p>
       </div>
     </div>
   <% end %>

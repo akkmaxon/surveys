@@ -11,6 +11,10 @@ class User < ApplicationRecord
   validates :login, length: { maximum: 64 }
   validates :login, uniqueness: { case_sensitive: false }
 
+  def creation_time
+    created_at.strftime "%d.%m.%Y"
+  end
+
   def email_required?
     false
   end
@@ -33,5 +37,9 @@ class User < ApplicationRecord
 
   def update_decrypted_password(passwd)
     update(decrypted_password: password) unless passwd.blank?
+  end
+
+  def to_param
+    login
   end
 end

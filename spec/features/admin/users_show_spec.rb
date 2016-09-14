@@ -31,6 +31,5 @@ RSpec.describe 'Admin can view one user', type: :feature do
     visit admin_user_path(user)
     expect(page).to have_selector '#login'
     expect(page).to have_selector '#password'
-    expect(page).to have_selector 'a#surveys'
   end
 end
