@@ -6,7 +6,31 @@
       <input id="search_users" type="text" placeholder="Поиск"></input>
     </div>
     <div class="col-md-4">
-      <%= link_to "Создать респондента", new_admin_user_path, class: 'btn btn-success', id: 'add_user_link' %>
+      <a class="btn btn-success" id="add_user_link" data-toggle="modal" data-target="#new_user_modal">
+	Создать респондента
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= error_explanation_for @user %>
+
+      <div id="new_user_modal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	      </button>
+	      <h2 class="h4 text-center">Создать респондента</h2>
+	    </div>
+	    <div class="modal-body">
+	      <%= render 'form', object: @user %>
+	    </div>
+	  </div>
+	</div>
+      </div>
     </div>
   </div>
 </div>

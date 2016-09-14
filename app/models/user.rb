@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def count_completed_surveys
     completed_surveys.count
   end
+
+  def update_decrypted_password(passwd)
+    update(decrypted_password: password) unless passwd.blank?
+  end
 end

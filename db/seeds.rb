@@ -414,8 +414,12 @@ Question.create! opinion_subject: "Я", audience: "management", number: 206,
   criterion: questions_2_criterion
 
 ### Users ###
-newuser = User.create! login: 'newuser', password: 'password'
-admin = Admin.create! login: 'admin', email: 'admin@email.com', password: 'password'
+newuser = User.create! login: 'newuser',
+  password: 'password',
+  decrypted_password: 'password'
+admin = Admin.create! login: 'admin',
+  email: 'admin@email.com',
+  password: 'password'
 
 genders = %w[ мужской женский ]
 ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет", "от 40 до 55 лет", "более 55 лет"]
@@ -428,7 +432,9 @@ user_agreements = ["я не согласен со своим результат�
 
 20.times do
   login = User.find_by(login: 'user').nil? ? 'user' : Faker::Internet.user_name
-  user = User.create! login: login, password: 'password'
+  user = User.create! login: login,
+    password: 'password',
+    decrypted_password: 'password'
 
   Info.create! do |i|
     i.gender = genders[rand(2)]
