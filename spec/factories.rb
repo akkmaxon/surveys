@@ -2,14 +2,13 @@ FactoryGirl.define do
   factory :user do
     sequence(:login) { |n| "login#{n}" }
     password "password"
-    password_confirmation "password"
+    decrypted_password "password"
   end
 
   factory :admin do
     login 'admin'
     sequence(:email) { |n| "admin#{n}@email.com" }
     password "password"
-    password_confirmation "password"
   end
 
   factory :info do

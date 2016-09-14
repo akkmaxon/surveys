@@ -26,15 +26,4 @@ RSpec.describe 'Admin can view all users', type: :feature do
     expect(page).to have_selector 'a#add_user_link'
     expect(page).to have_selector 'a.show_user'
   end
-
-  it 'add new users successfully' do
-    visit admin_users_path
-    expect(page).not_to have_selector '#all_users .user'
-    visit new_admin_user_path
-    fill_in "Логин", with: 'user123'
-    fill_in "Пароль", with: 'password'
-    click_button "Создать"
-    visit admin_users_path
-    expect(page).to have_selector '#all_users .user', count: 1
-  end
 end

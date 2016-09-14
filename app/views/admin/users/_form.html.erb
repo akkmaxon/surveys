@@ -12,7 +12,7 @@
   <div class="form-group">
     <%= f.label :password, "Пароль(не менее 6 символов)" %>
     <div class="input-group">
-      <%= f.text_field :password, class: 'form-control', required: 'required' %>
+      <%= f.text_field :password, class: 'form-control', value: object.decrypted_password, required: 'required' %>
       <span class="input-group-btn">
 	<a id="generate_password" class="btn btn-default">Генерировать пароль</a>
       </span>
