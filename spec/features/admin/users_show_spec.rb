@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin can view one user', type: :feature do
   let(:admin) { FactoryGirl.create :admin }
-  let!(:user) { FactoryGirl.create :user, login: 'login123' }
+  let!(:user) { FactoryGirl.create :user, id: 123 }
 
   before do
     sign_in admin
@@ -21,7 +21,7 @@ RSpec.describe 'Admin can view one user', type: :feature do
   it 'visit from users#index page' do
     visit admin_users_path
     click_link user.login
-    expect(page.current_path).to eq "/admin/users/login123"
+    expect(page.current_path).to eq "/admin/users/123"
     within '.header' do
       expect(page).to have_content user.login
     end

@@ -38,8 +38,4 @@ class User < ApplicationRecord
   def update_decrypted_password(passwd)
     update(decrypted_password: password) unless passwd.blank?
   end
-
-  def to_param
-    login
-  end
 end
