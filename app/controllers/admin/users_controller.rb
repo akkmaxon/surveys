@@ -42,6 +42,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def set_users
-    @users = User.order(updated_at: :desc)
+    @users = User.order(updated_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 end

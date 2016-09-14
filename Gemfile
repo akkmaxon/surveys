@@ -13,6 +13,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'faker'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'byebug'

@@ -37,3 +37,7 @@ ru:
               inclusion: "Вы не определили субъекта (Я - Мои коллеги)"
             criterion:
               blank: "Вы забыли ввести критерий"
+  will_paginate:
+    previous_label: "Назад"
+    next_label: "Вперед"
+
