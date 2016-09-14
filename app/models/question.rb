@@ -12,6 +12,8 @@ class Question < ApplicationRecord
 
   scope :all_first_questions, -> { where('sentence = ?', "") }
   scope :all_second_questions, -> { where('sentence != ?', "") }
+  scope :for_management_count, -> { where('audience = ?', 'management').count }
+  scope :for_working_staff_count, -> { where('audience = ?', 'working_staff').count }
 
   def self.for(user)
     if user.manager?

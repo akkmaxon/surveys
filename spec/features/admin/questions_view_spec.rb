@@ -49,6 +49,37 @@ RSpec.describe 'Admin can view all questions', type: :feature do
       click_link 'questions_link'
       expect(page.current_path).to eq admin_questions_path
     end
+
+    it 'show only management' do
+      find('#show_only_management_questions').trigger 'click'
+      expect(page).to have_selector '#admin_first_questions .question', count: 3
+      expect(page).to have_selector '#admin_second_questions .question', count: 1
+      expect(page).not_to have_selector('.working_staff')
+    end
+
+    it 'show only working staff' do
+      find('#show_only_working_staff_questions').trigger 'click'
+      expect(page).not_to have_selector('#admin_first_questions .question')
+      expect(page).to have_selector '#admin_second_questions .question', count: 1
+      expect(page).not_to have_selector('.management')
+    end
+
+    it 'show all questions after filtering' do
+      find('#show_only_management_questions').trigger 'click'
+      expect(page).not_to have_selector('.working_staff')
+      find('#show_only_working_staff_questions').trigger 'click'
+      expect(page).not_to have_selector('.management')
+      find('#show_all_questions').trigger 'click'
+      within '#admin_first_questions' do
+	expect(page).to have_selector '.question', count: 3
+	expect(page).to have_content "Менеджмент", count: 3
+      end
+      within '#admin_second_questions' do
+	expect(page).to have_selector '.question', count: 2
+	expect(page).to have_content "Менеджмент", count: 1
+	expect(page).to have_content "Рабочая специальность", count: 1
+      end
+    end
   end
 end
 
