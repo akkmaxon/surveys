@@ -6,7 +6,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
   before do
     sign_in user
     visit root_path
-    click_link 'new_survey'
+    click_link 'new_survey_link'
   end
 
   it 'data state before' do
@@ -89,7 +89,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       take_a_survey
       find('#finish_survey').trigger 'click'
       sleep 1
-      click_link 'new_survey'
+      click_link 'new_survey_link'
       user.reload
       expect(user.surveys.count).to eq 2
     end
@@ -99,7 +99,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       take_a_survey
       find('#finish_survey').trigger 'click'
       sleep 1
-      click_link 'new_survey'
+      click_link 'new_survey_link'
       user.reload
       expect(user.surveys.count).to eq 2
     end

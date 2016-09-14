@@ -13,12 +13,12 @@ RSpec.describe 'User create info about himself', type: :feature do
   it 'check good redirect' do
     expect(page).to have_selector 'form.new_info'
     expect(page).to have_selector '#messages .alert'
-    click_link 'new_survey'
+    click_link 'new_survey_link'
     expect(page).to have_selector 'form.new_info'
   end
 
   it 'do not create new survey when empty' do
-    click_link 'new_survey'
+    click_link 'new_survey_link'
     expect(Survey.count).to eq 0
   end
 

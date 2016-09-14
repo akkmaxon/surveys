@@ -33,12 +33,15 @@ RSpec.describe 'Admin can view all questions', type: :feature do
 
   describe 'successfully' do
     it 'page layout' do
-      expect(page).to have_selector '#admin_first_questions'
-      expect(page).to have_selector '#admin_second_questions'
-      expect(page).to have_selector '#admin_first_questions .question', count: 3
-      expect(page).to have_selector '#admin_second_questions .question', count: 2
-      expect(page).to have_content "Менеджмент", count: 4
-      expect(page).to have_content "Рабочая специальность", count: 1
+      within '#admin_first_questions' do
+	expect(page).to have_selector '.question', count: 3
+	expect(page).to have_content "Менеджмент", count: 3
+      end
+      within '#admin_second_questions' do
+	expect(page).to have_selector '.question', count: 2
+	expect(page).to have_content "Менеджмент", count: 1
+	expect(page).to have_content "Рабочая специальность", count: 1
+      end
     end
 
     it 'access from dashboard' do

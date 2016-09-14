@@ -6,7 +6,7 @@ RSpec.describe 'User create new response answering', type: :feature do
   before do
     sign_in user
     visit root_path
-    click_link 'new_survey'
+    click_link 'new_survey_link'
   end
 
   context 'the first questions' do 
@@ -21,7 +21,7 @@ RSpec.describe 'User create new response answering', type: :feature do
 
   context 'the second questions' do
     before do
-      click_link 'new_survey'
+      click_link 'new_survey_link'
       find('#question_1_answer_1').trigger 'click'
       find('#question_28_answer_4').trigger 'click'
       find('#question_29_answer_2').trigger 'click'
