@@ -1,6 +1,6 @@
 class Admin::SurveysController < Admin::ApplicationController
   def index
-    @surveys = Survey.all
+    @surveys = Survey.paginate(page: params[:page], per_page: 10)
   end
 
   def show

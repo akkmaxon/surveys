@@ -31,3 +31,7 @@
     </div>
   <% end %>
 </section>
+
+<div class="text-center">
+  <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>
+</div>
