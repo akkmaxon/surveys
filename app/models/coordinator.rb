@@ -6,6 +6,8 @@ class Coordinator < ApplicationRecord
 
   validates :login, presence: true
   validates :login, length: { maximum: 64 }
+  validates :login, uniqueness: { case_sensitive: false }
+
   def email_required?
     false
   end

@@ -23,6 +23,11 @@ RSpec.describe Coordinator, type: :model do
 	coordinator.login = 'a' * 65
       end
 
+      it 'with not unique login' do
+	FactoryGirl.create :coordinator, login: 'login'
+	coordinator.login = 'login'
+      end
+
       it 'without password' do
 	coordinator.password = coordinator.password_confirmation = ''
       end

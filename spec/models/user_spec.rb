@@ -10,19 +10,6 @@ RSpec.describe User, type: :model do
 	user.save
 	expect(user).to be_valid
       end
-
-      it 'email is not required' do
-	[nil, ''].each do |email|
-	  user.email = email
-	  expect(user).to be_valid
-	end
-      end
-
-      it 'email is not unique' do
-	other_user.email = user.email
-	other_user.save
-	expect(user).to be_valid
-      end
     end
 
     context 'fails' do

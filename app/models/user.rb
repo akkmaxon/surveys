@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable,
-    :registerable,
-    :rememberable,
-    :trackable,
-    :validatable
+	 :rememberable,
+	 :trackable,
+	 :validatable
+
   has_one :info, dependent: :destroy
   has_many :surveys, dependent: :destroy
 
@@ -16,6 +16,10 @@ class User < ApplicationRecord
   end
 
   def email_required?
+    false
+  end
+
+  def email_changed?
     false
   end
 
