@@ -1,33 +1,30 @@
 class Admin::UsersController < Admin::ApplicationController
-  before_action :set_user, only: [:show, :update]
-  before_action :set_users, only: [:index, :create]
+  before_action :set_users
 
   def index
     @user = User.new
-  end
-
-  def show
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       @user.update_decrypted_password(params[:user][:password])
-      flash.now[:notice] = "Новый респондент успешно создан."
-      render :show
+      flash[:notice] = "Респондент создан."
+      redirect_back(fallback_location: admin_companies_url)
     else
       render :index
     end
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
       @user.update_decrypted_password(params[:user][:password])
-      flash[:notice] = "Респондент успешно изменен."
-      redirect_to admin_user_url(@user)
+      flash[:notice] = "Респондент изменен."
+      redirect_back(fallback_location: admin_companies_url)
     else
       @user.reload
-      render :show
+      render :index
     end
   end
 
@@ -35,10 +32,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   def user_params
     params.require(:user).permit(:login, :password)
-  end
-
-  def set_user
-    @user = User.find(params[:id])
   end
 
   def set_users

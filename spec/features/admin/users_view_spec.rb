@@ -5,11 +5,12 @@ RSpec.describe 'Admin can view all users', type: :feature do
 
   before do
     sign_in admin
+    3.times { FactoryGirl.create :user }
   end
 
   it 'only admin can do it' do
     sign_out admin
-    sign_in FactoryGirl.create :user
+    sign_in User.first
     visit admin_users_path
     expect(page.current_path).to eq new_admin_session_path
     within '#messages .alert-danger' do
@@ -18,12 +19,12 @@ RSpec.describe 'Admin can view all users', type: :feature do
   end
 
   it 'page layout' do
-    3.times { FactoryGirl.create :user }
     visit admin_users_path
     expect(page).to have_selector '#all_users'
     expect(page).to have_selector '.user', count: 3
     expect(page).to have_selector '.active #users_link'
     expect(page).to have_selector 'a#add_user_link'
-    expect(page).to have_selector 'a.show_user'
+    expect(page).to have_content "Логин:", count: 3
+    expect(page).to have_content "Пароль:", count: 3
   end
 end

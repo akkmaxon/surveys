@@ -41,15 +41,31 @@
     <div class="panel panel-default user">
       <div class="panel-body">
 	<h2 class="h4 pull-right">
-	  Опросы <span class="badge"><%= user.completed_surveys.count %></span>
+	  <a class="edit_user_link btn btn-info" data-toggle="modal" data-target="#edit_user_<%= user.id %>_modal">
+	    <span class="glyphicon glyphicon-pencil"></span>
+	  </a>
 	</h2>
 	<h2 class="h4">
-	  Логин: 
-	  <%= link_to user.login, admin_user_path(user), class: 'show_user' %>
+	  Логин: <%= user.login %>
 	</h2>
-	<p>
-	  ЗАРЕГИСТРИРОВАН: <%= user.creation_time %>
-	</p>
+	<h2 class="h4">
+	  Пароль: <%= user.decrypted_password %>
+	</h2>
+      </div>
+    </div>
+    <div id="edit_user_<%= user.id %>_modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button class="close" data-dismiss="modal" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	    <h2 class="h3 text-center">Изменить логин/пароль</h2>
+	  </div>
+	  <div class="modal-body">
+	    <%= render 'form', object: user %>
+	  </div>
+	</div>
       </div>
     </div>
   <% end %>

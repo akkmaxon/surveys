@@ -21,7 +21,7 @@ RSpec.describe 'Admin can create users', type: :feature do
   describe 'Successfully' do
     after do
       within '#messages .alert-success' do
-	expect(page).to have_content "Новый респондент успешно создан."
+	expect(page).to have_content "Респондент создан."
       end
       expect(User.count).to eq 1
     end
@@ -35,7 +35,7 @@ RSpec.describe 'Admin can create users', type: :feature do
     end
 
     it 'generate login' do
-      find('#generate_login').trigger 'click'
+      find('.generate_login').trigger 'click'
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
       expect(User.first.decrypted_password).to eq 'pAssw0rd'
@@ -43,14 +43,14 @@ RSpec.describe 'Admin can create users', type: :feature do
 
     it 'generate password' do
       fill_in "Логин", with: 'user123'
-      find('#generate_password').trigger 'click'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       expect(User.first.login).to eq 'user123'
     end
 
     it 'generating login/password' do
-      find('#generate_login').trigger 'click'
-      find('#generate_password').trigger 'click'
+      find('.generate_login').trigger 'click'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
     end
   end

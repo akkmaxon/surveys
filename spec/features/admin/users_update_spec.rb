@@ -6,8 +6,8 @@ RSpec.describe 'Manage users by admin', type: :feature do
 
   before do
     sign_in admin
-    visit admin_user_path(user)
-    find('#edit_user_link').trigger 'click'
+    visit admin_users_path
+    find('.edit_user_link').trigger 'click'
   end
 
   describe 'successfully' do
@@ -15,17 +15,17 @@ RSpec.describe 'Manage users by admin', type: :feature do
       fill_in 'user_login', with: 'newlogin'
       click_button "Подтвердить"
       within '#messages .alert-success' do
-	expect(page).to have_content "Респондент успешно изменен."
+	expect(page).to have_content "Респондент изменен."
       end
-      expect(page).to have_content "Респондент newlogin"
+      expect(page).to have_content "Логин: newlogin"
     end
 
     it 'generate login' do
-      find('#generate_login').trigger 'click'
+      find('.generate_login').trigger 'click'
       click_button "Подтвердить"
       sleep 1
       within '#messages .alert-success' do
-	expect(page).to have_content "Респондент успешно изменен."
+	expect(page).to have_content "Респондент изменен."
       end
     end
 
@@ -33,27 +33,24 @@ RSpec.describe 'Manage users by admin', type: :feature do
       fill_in 'user_password', with: 'newpassword'
       click_button "Подтвердить"
       within '#messages .alert-success' do
-	expect(page).to have_content "Респондент успешно изменен."
+	expect(page).to have_content "Респондент изменен."
       end
     end
 
     it 'generate password' do
-      find('#generate_password').trigger 'click'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       within '#messages .alert-success' do
-	expect(page).to have_content "Респондент успешно изменен."
+	expect(page).to have_content "Респондент изменен."
       end
     end
   end
 
   describe 'unsuccessfully' do
-    after do
-      expect(page).to have_content "Респондент login"
-    end
-
     it 'empty login' do
       fill_in 'user_login', with: ""
       click_button "Подтвердить"
+      expect(page).to have_selector '.modal.fade.in'
     end
 
     it 'too long login' do

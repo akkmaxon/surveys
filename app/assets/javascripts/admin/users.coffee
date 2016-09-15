@@ -14,13 +14,13 @@ searchUsers = (keyword) ->
 
 document.addEventListener "turbolinks:load", () ->
   resizeUsers()
-  $("#generate_login").on "click", () ->
+  $(".generate_login").on "click", () ->
     login = Math.random().toString(36).slice(2, 8)
-    $("input#user_login").attr "value", login
+    $(".modal.fade.in input#user_login").attr("value", login)
      
-  $("#generate_password").on "click", () ->
+  $(".generate_password").on "click", () ->
     password = Math.random().toString(36).slice(2, 12)
-    $("input#user_password").attr "value", password
+    $(".modal.fade.in input#user_password").attr("value", password)
 
   $('#all_users').masonry({
     itemSelector: '.user',
