@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :coordinators
   namespace :admin do
     resources :users, only: [:index, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]

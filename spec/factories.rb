@@ -11,6 +11,11 @@ FactoryGirl.define do
     password "password"
   end
 
+  factory :coordinator do
+    sequence(:login) { |n| "login#{n}" }
+    password "password"
+  end
+
   factory :info do
     gender 'male'
     experience 'less than 1 year'

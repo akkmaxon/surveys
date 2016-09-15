@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
   let(:admin) { FactoryGirl.build :admin }
-  let(:other_admin) { FactoryGirl.build :admin }
 
   describe 'admin creation' do
     context 'success' do
@@ -38,7 +37,7 @@ RSpec.describe Admin, type: :model do
       end
 
       it 'email must be unique' do
-	other_admin.email = admin.email
+	other_admin = FactoryGirl.create :admin, email: admin.email
 	other_admin.save
 	expect(admin).to be_invalid
       end
