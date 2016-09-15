@@ -15,7 +15,7 @@ searchUsers = (keyword) ->
 document.addEventListener "turbolinks:load", () ->
   resizeUsers()
   $(".generate_login").on "click", () ->
-    login = Math.random().toString(36).slice(2, 8)
+    login = Math.random().toString(36).slice(2, 7)
     $(".modal.fade.in input#user_login").attr("value", login)
      
   $(".generate_password").on "click", () ->

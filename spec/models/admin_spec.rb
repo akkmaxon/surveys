@@ -10,6 +10,13 @@ RSpec.describe Admin, type: :model do
 	admin.save
 	expect(admin).to be_valid
       end
+
+      it 'good email' do
+	['a@b.c', 'me.and@you.com', 'a_b@c.d'].each do |email|
+	  admin.email = email
+	  expect(admin).to be_valid
+	end
+      end
     end
 
     context 'fails' do
@@ -20,12 +27,6 @@ RSpec.describe Admin, type: :model do
 
       it 'with long login' do
 	admin.login = 'a' * 65
-	expect(admin).to be_invalid
-      end
-
-      it 'login must be unique' do
-	other_admin.login = admin.login
-	other_admin.save
 	expect(admin).to be_invalid
       end
 
@@ -40,6 +41,13 @@ RSpec.describe Admin, type: :model do
 	other_admin.email = admin.email
 	other_admin.save
 	expect(admin).to be_invalid
+      end
+
+      it 'bad email' do
+	['a.b.c', 'a_and_b'].each do |email|
+	  admin.email = email
+	  expect(admin).to be_invalid
+	end
       end
 
       it 'with short password' do

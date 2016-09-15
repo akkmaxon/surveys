@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def devise_sanitizer_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:login])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:login])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email])
   end
 
   def check_for_empty_info
