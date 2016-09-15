@@ -1,0 +1,69 @@
+<div class="container">
+  <h1 class="header">Координаторы <span class="badge"><%= @coordinators.count %></span></h1>
+
+  <div id="manage_bar" class="row">
+    <div class="col-md-4 col-md-offset-8">
+      <a id="add_coordinator_link" class="btn btn-success" data-toggle="modal" data-target="#new_coordinator_modal">
+	<span class="glyphicon glyphicon-plus"></span>
+	Создать координатора
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <%= error_explanation_for @coordinator %>
+
+      <div id="new_coordinator_modal" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <button class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	      </button>
+	      <h2 class="h3 text-center">Создать координатора</h2>
+	    </div>
+	    <div class="modal-body">
+	      <%= render 'form', object: @coordinator %>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="all_coordinators">
+  <% @coordinators.each do |coordinator| %>
+    <div class="panel panel-default coordinator">
+      <div class="panel-body">
+	<h2 class="h4 pull-right">
+	  <a class="edit_coordinator_link btn btn-info btn-sm" data-toggle="modal" data-target="#edit_coordinator_<%= coordinator.id %>_modal">
+	    <span class="glyphicon glyphicon-pencil"></span>
+	  </a>
+	  <%= link_to admin_coordinator_path(coordinator), method: :delete, class: 'delete_coordinator btn btn-sm btn-danger', data: { confirm: "Координатор будет удален. Подтверждаете действие?" } do %>
+	    <span class="glyphicon glyphicon-trash"></span>
+	  <% end %>
+	</h2>
+	<h2 class="h4">
+	  Логин: <%= coordinator.login %>
+	</h2>
+      </div>
+    </div>
+    <div id="edit_coordinator_<%= coordinator.id %>_modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button class="close" data-dismiss="modal" aria-label="Close">
+	      <span aria-hidden="true">&times;</span>
+	    </button>
+	    <h2 class="h3 text-center">Изменить логин/пароль</h2>
+	  </div>
+	  <div class="modal-body">
+	    <%= render 'form', object: coordinator %>
+	  </div>
+	</div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :coordinators
   namespace :admin do
+    resources :coordinators, only: [:index, :create, :update, :destroy]
     resources :users, only: [:index, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     root to: 'application#index'
   end
 
+  devise_for :coordinators
   devise_for :admin, path_names: {
     sign_in: 'login'
   }
