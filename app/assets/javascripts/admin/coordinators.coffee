@@ -1,12 +1,14 @@
 resizeCoordinators = () ->
   paddingContainer = 2 * 15
   width = $(window).width()
-  newWidth = if width < 992
+  newWidth = if width < 768
     width - paddingContainer
-  else if(width < 1300)
+  else if(width < 992)
     width / 2 - paddingContainer
-  else
+  else if(width < 1300)
     width / 3 - paddingContainer
+  else
+    width / 4 - paddingContainer
   $('.coordinator').css('width', newWidth)
 
 document.addEventListener "turbolinks:load", () ->
