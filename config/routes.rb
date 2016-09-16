@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :coordinator do
-    get 'users/index'
-  end
-
   namespace :admin do
     resources :coordinators, only: [:index, :create, :update, :destroy]
     resources :users, only: [:index, :create, :update]
@@ -16,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :coordinator do
     resources :surveys, only: [:index, :show]
+    resources :users, only: [:index]
     root to: 'application#index'
   end
   devise_for :coordinator, path_names: {

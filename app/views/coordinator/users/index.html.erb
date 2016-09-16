@@ -1,2 +1,37 @@
-<h1>Coordinator::Users#index</h1>
-<p>Find me in app/views/coordinator/users/index.html.erb</p>
+<div class="container">
+  <h1 class="header">Респонденты <span class="badge"><%= @users.count %></span></h1>
+
+  <div id="manage_bar" class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <input id="search_users" type="text" placeholder="Поиск"></input>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" id="all_users">
+  <% @users.each do |user| %>
+    <div class="panel panel-default user">
+      <div class="panel-body">
+	<div class="buttons pull-right">
+	  <%= link_to '#', class: 'btn btn-primary show_surveys' do %>
+	    Опросы
+	    <span class="badge">
+	      <%= user.surveys.count %>
+	    </span>
+	  <% end %>
+	</div>
+	<h2 class="h4">
+	  Логин: <%= user.login %>
+	</h2>
+	<h2 class="h4">
+	  Пароль: <%= user.decrypted_password %>
+	</h2>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="text-center">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+
