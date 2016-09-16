@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :login, length: { maximum: 64 }
   validates :login, uniqueness: { case_sensitive: false }
 
+  default_scope -> { order(updated_at: :desc) }
+
   def creation_time
     created_at.strftime "%d.%m.%Y"
   end

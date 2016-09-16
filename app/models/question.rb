@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
   validates :criterion, presence: true
 
-  default_scope -> { order(number: :asc) }
+  default_scope -> { order(audience: :asc).order(number: :asc) }
 
   scope :all_first_questions, -> { where('sentence = ?', "") }
   scope :all_second_questions, -> { where('sentence != ?', "") }
