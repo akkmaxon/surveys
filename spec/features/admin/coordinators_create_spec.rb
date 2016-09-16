@@ -7,6 +7,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
     sign_in admin
     visit admin_coordinators_path
     find('#add_coordinator_link').trigger 'click'
+    expect(Coordinator.count).to eq 0
   end
 
   describe 'Successfully' do
@@ -22,14 +23,12 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
       expect(Coordinator.first.login).to eq 'coord123'
-      expect(Coordinator.first.decrypted_password).to eq 'pAssw0rd'
     end
 
     it 'generate login' do
       find('.generate_login').trigger 'click'
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
-      expect(Coordinator.first.decrypted_password).to eq 'pAssw0rd'
     end
 
     it 'generate password' do
@@ -77,7 +76,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Пароль", with: 'password'
       click_button "Подтвердить"
       within '#error_explanation' do
-	expect(page).to have_content "слишком длинный логин"
+	expect(page).to have_content "должны выбрать более короткий логин"
       end
     end
 
@@ -86,7 +85,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Пароль", with: 'a' * 129
       click_button "Подтвердить"
       within '#error_explanation' do
-	expect(page).to have_content "слишком длинный пароль"
+	expect(page).to have_content "должны выбрать более короткий пароль"
       end
     end
   end
