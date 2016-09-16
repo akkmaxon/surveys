@@ -37,7 +37,11 @@ RSpec.describe 'Admin can edit own profile', type: :feature do
   end
 
   describe 'unsuccessfully' do
-    context 'for not admin' do
+    context 'for' do
+      before do
+	sign_out admin
+      end
+
       after do
 	expect(page.current_path).to eq new_admin_session_path
 	within '#messages .alert-danger' do
@@ -45,14 +49,17 @@ RSpec.describe 'Admin can edit own profile', type: :feature do
 	end
       end
 
-      it 'impossible for unsigned in user' do
-	sign_out admin
+      it 'unsigned in user' do
 	visit edit_admin_registration_path
       end
 
-      it 'impossible for signed in user' do
-	sign_out admin
+      it 'signed in user' do
 	sign_in FactoryGirl.create :user
+	visit edit_admin_registration_path
+      end
+
+      it 'coordinator' do
+	sign_in FactoryGirl.create :coordinator
 	visit edit_admin_registration_path
       end
     end

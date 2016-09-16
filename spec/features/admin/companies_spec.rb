@@ -11,22 +11,29 @@ RSpec.describe "Admin can manage companies", type: :feature do
   describe "view" do
     let!(:company) { FactoryGirl.create :company, name: 'New Company' }
 
-    it 'impossible for signed in user' do
-      sign_out admin
-      sign_in FactoryGirl.create :user
-      visit admin_companies_path
-      expect(page.current_path).to eq new_admin_session_path
-      within '#messages .alert-danger' do
-	expect(page).to have_content "Войдите, пожалуйста, в систему"
+    context 'impossible for' do
+      after do
+	expect(page.current_path).to eq new_admin_session_path
+	within '#messages .alert-danger' do
+	  expect(page).to have_content "Войдите, пожалуйста, в систему"
+	end
       end
-    end
 
-    it 'impossible for unsigned in user' do
-      sign_out admin
-      visit admin_companies_path
-      expect(page.current_path).to eq new_admin_session_path
-      within '#messages .alert-danger' do
-	expect(page).to have_content "Войдите, пожалуйста, в систему"
+      it 'signed in user' do
+	sign_out admin
+	sign_in FactoryGirl.create :user
+	visit admin_companies_path
+      end
+
+      it 'unsigned in user' do
+	sign_out admin
+	visit admin_companies_path
+      end
+
+      it 'coordinator' do
+	sign_out admin
+	sign_in FactoryGirl.create :coordinator
+	visit admin_companies_path
       end
     end
 

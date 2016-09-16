@@ -8,7 +8,7 @@ RSpec.describe 'Admin can view all coordinators', type: :feature do
     3.times { FactoryGirl.create :coordinator }
   end
 
-  describe 'but not' do
+  describe 'impossible for' do
     before do
       sign_out admin
     end

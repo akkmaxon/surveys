@@ -3,26 +3,26 @@ require 'rails_helper'
 RSpec.describe 'Dashboard page', type: :feature do
   let!(:admin) { FactoryGirl.create :admin }
 
-  context 'require signing in as admin' do
-    let(:user) { FactoryGirl.create :user }
-    
-    it 'unsigned in user cannot view admin dashboard' do
-      visit admin_root_path
+  context 'impossible access for' do
+    after do
       within '#messages .alert-danger' do
 	expect(page).to have_content "Войдите, пожалуйста, в систему."
       end
       expect(page.current_path).to eq(new_admin_session_path)
     end
-
-    it 'signed in user cannot view admin dashboard' do
-      sign_in user
-      visit surveys_path
-      expect(page.current_path).to eq new_info_path
+    
+    it 'unsigned in user' do
       visit admin_root_path
-      within'#messages .alert-danger' do
-	expect(page).to have_content "Войдите, пожалуйста, в систему."
-      end
-      expect(page.current_path).to eq(new_admin_session_path)
+    end
+
+    it 'signed in user' do
+      sign_in FactoryGirl.create :user
+      visit admin_root_path
+    end
+
+    it 'coordinator' do
+      sign_in FactoryGirl.create :coordinator
+      visit admin_root_path
     end
   end
   

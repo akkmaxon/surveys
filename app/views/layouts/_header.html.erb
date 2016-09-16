@@ -48,6 +48,9 @@
 	  <li class="<%= active_link('surveys', 'index') %>">
 	    <%= link_to "Опросы", coordinator_surveys_path, id: 'surveys_link' %>
 	  </li>
+	  <li class="<%= active_link('users', 'index') %>">
+	    <%= link_to "Респонденты", '#', id: 'users_link' %>
+	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li><%= link_to "Выход", destroy_coordinator_session_path, method: :delete %></li>

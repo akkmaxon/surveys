@@ -17,14 +17,14 @@
   <% @surveys.each do |survey| %>
     <div class="panel panel-default survey">
       <div class="panel-body">
+	<div class="buttons pull-right">
+	  <%= link_to "Результаты", coordinator_survey_path(survey), class: 'btn btn-primary show_survey' %>
+	</div>
 	<h2 class="h4">
-	  Респондент: <%= survey.user.login %>
-	  <span class="pull-right">
-	    <%= link_to "Результаты", coordinator_survey_path(survey), class: 'btn btn-primary show_survey' %>
-	  </span>
+	  <small>РЕСПОНДЕНТ:</small> <%= survey.user.login %>
 	</h2>
 	<p>
-	  <%= survey.completed? ? "ЗАВЕРШЕН #{survey.pass_date}" : "НЕ ЗАВЕРШЕН" %>
+	  <%= survey.completed? ? survey.pass_date : "Не завершен" %>
 	</p>
       </div>
     </div>

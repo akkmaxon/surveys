@@ -12,6 +12,10 @@ RSpec.describe 'Admin can view all questions', type: :feature do
   end
 
   describe 'impossible for' do
+    before do
+      sign_out admin
+    end
+
     after do
       within '#messages .alert-danger' do
 	expect(page).to have_content "Войдите, пожалуйста, в систему"
@@ -20,12 +24,15 @@ RSpec.describe 'Admin can view all questions', type: :feature do
     end
 
     it 'unsigned user' do
-      sign_out admin
       visit admin_questions_path
     end
 
     it 'signed user' do
-      sign_out admin
+      sign_in FactoryGirl.create :user
+      visit admin_questions_path
+    end
+
+    it 'coordinator' do
       sign_in FactoryGirl.create :user
       visit admin_questions_path
     end

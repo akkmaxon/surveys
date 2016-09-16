@@ -7,39 +7,45 @@ RSpec.describe 'Coordinator can view full information about survey', type: :feat
   let!(:response1) { FactoryGirl.create :response, survey: survey }
   let!(:response2) { FactoryGirl.create :response, survey: survey }
 
-  before do
-    sign_in coordinator
-    visit coordinator_survey_path(survey)
-  end
-
-  it 'impossible for unsigned in user' do
-    sign_out coordinator
-    visit coordinator_survey_path(survey)
-    expect(page.current_path).to eq new_coordinator_session_path
-    within '#messages .alert-danger' do
-      expect(page).to have_content "Войдите, пожалуйста, в систему"
+  describe 'impossible for' do
+    after do
+      expect(page.current_path).to eq new_coordinator_session_path
+      within '#messages .alert-danger' do
+	expect(page).to have_content "Войдите, пожалуйста, в систему"
+      end
     end
-  end
 
-  it 'impossible for signed in usual user' do
-    sign_out coordinator
-    sign_in user
-    visit coordinator_survey_path(survey)
-    expect(page.current_path).to eq new_coordinator_session_path
-    within '#messages .alert-danger' do
-      expect(page).to have_content "Войдите, пожалуйста, в систему"
+    it 'unsigned in user' do
+      visit coordinator_survey_path(survey)
+    end
+
+    it 'signed in user' do
+      sign_in user
+      visit coordinator_survey_path(survey)
+    end
+
+    it 'admin' do
+      sign_in FactoryGirl.create :admin
+      visit coordinator_survey_path(survey)
     end
   end
     
-  it 'page layout' do
-    within '#survey' do
-      expect(page).to have_selector 'table'
+  describe 'when signed in' do
+    before do
+      sign_in coordinator
+      visit coordinator_survey_path(survey)
     end
-  end
 
-  it 'access from coordinator/surveys' do
-    visit coordinator_surveys_path
-    find('.show_survey').trigger 'click'
-    expect(page.current_path).to eq coordinator_survey_path(survey)
+    it 'page layout' do
+      within '#survey' do
+	expect(page).to have_selector 'table'
+      end
+    end
+
+    it 'access from coordinator/surveys' do
+      visit coordinator_surveys_path
+      find('.show_survey').trigger 'click'
+      expect(page.current_path).to eq coordinator_survey_path(survey)
+    end
   end
 end
