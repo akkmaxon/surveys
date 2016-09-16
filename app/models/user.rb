@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	 :trackable,
 	 :validatable
 
-  has_one :info, dependent: :destroy
+  has_one :info, dependent: :delete
   has_many :surveys, dependent: :destroy
 
   validates :login, presence: true

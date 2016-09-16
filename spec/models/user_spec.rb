@@ -35,6 +35,29 @@ RSpec.describe User, type: :model do
       end
     end
   end
+  
+  describe 'Deleting' do
+    let(:survey) { FactoryGirl.create :survey, user: user }
+    let!(:resp1) { FactoryGirl.create :response, survey: survey }
+    let!(:resp2) { FactoryGirl.create :response, survey: survey }
+    let!(:info) { FactoryGirl.create :info, user: user }
+
+    before do
+      expect(Survey.count).to eq 1
+      expect(Response.count).to eq 2
+      expect(Info.count).to eq 1
+    end
+
+    after do
+      expect(Survey.count).to eq 0
+      expect(Response.count).to eq 0
+      expect(Info.count).to eq 0
+    end
+
+    it 'automatically clean surveys with dependencies' do
+      user.destroy
+    end
+  end
 
   describe 'methods' do
     describe '#manager?' do

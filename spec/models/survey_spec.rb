@@ -21,6 +21,19 @@ RSpec.describe Survey, type: :model do
     end
   end
 
+  describe 'Survey deleting' do
+    let!(:r1) { FactoryGirl.create :response, survey: survey }
+    let!(:r2) { FactoryGirl.create :response, survey: survey }
+    let!(:r3) { FactoryGirl.create :response, survey: survey }
+
+    it 'automatically delete all responses' do
+      expect(Response.count).to eq 3
+      expect(survey.responses.count).to eq 3
+      survey.destroy
+      expect(Response.count).to eq 0
+    end
+  end
+
   describe 'Testing methods' do
     let!(:resp1) do 
       FactoryGirl.create :response, survey: survey,

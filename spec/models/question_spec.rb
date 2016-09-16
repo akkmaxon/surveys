@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  describe 'Question creation' do
-    let(:question) { FactoryGirl.build :question }
+  let(:question) { FactoryGirl.build :question }
 
+  describe 'Question creation' do
     context 'success' do
       it 'default' do
 	question.save
@@ -54,6 +54,19 @@ RSpec.describe Question, type: :model do
 	  expect(question).to be_invalid
 	end
       end
+    end
+  end
+
+  describe 'Deleting behaviour' do
+    let!(:left_st) { FactoryGirl.create :left_statement, question: question }
+    let!(:right_st) { FactoryGirl.create :right_statement, question: question }
+
+    it 'delete left and right statement automatically' do
+      expect(LeftStatement.first).to eq left_st
+      expect(RightStatement.first).to eq right_st
+      question.destroy
+      expect(LeftStatement.count).to eq 0
+      expect(RightStatement.count).to eq 0
     end
   end
 end

@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
-  has_one :left_statement, dependent: :destroy
-  has_one :right_statement, dependent: :destroy
+  has_one :left_statement, dependent: :delete
+  has_one :right_statement, dependent: :delete
 
   validates :audience, inclusion: { in: %w[management working_staff] }
   validates :number, presence: true
