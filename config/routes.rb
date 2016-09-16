@@ -4,12 +4,17 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
+    root to: 'application#index'
+  end
+  devise_for :admin, path_names: {
+    sign_in: 'login'
+  }
+
+  namespace :coordinator do
     resources :surveys, only: [:index, :show]
     root to: 'application#index'
   end
-
-  devise_for :coordinators
-  devise_for :admin, path_names: {
+  devise_for :coordinator, path_names: {
     sign_in: 'login'
   }
 

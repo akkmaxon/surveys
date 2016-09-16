@@ -13,16 +13,16 @@ class User < ApplicationRecord
 
   default_scope -> { order(updated_at: :desc) }
 
-  def creation_time
-    created_at.strftime "%d.%m.%Y"
-  end
-
   def email_required?
     false
   end
 
   def email_changed?
     false
+  end
+
+  def creation_time
+    created_at.strftime "%d.%m.%Y"
   end
 
   def manager?

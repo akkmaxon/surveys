@@ -7,16 +7,21 @@
 	<span class="icon-bar"></span>
 	<span class="icon-bar"></span>
       </button>
+
       <% if admin_signed_in? %>
-	<%= link_to "Панель управления", root_path, class: 'navbar-brand' %>
+	<%= link_to "Панель управления", admin_root_path, class: 'navbar-brand' %>
+      <% elsif coordinator_signed_in? %>
+	<%= link_to "Панель управления", coordinator_root_path, class: 'navbar-brand' %>
       <% elsif user_signed_in? %>
 	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey_link', class: 'navbar-brand' %>
       <% else %>
 	<%= link_to "Самооценка вовлеченности", root_path, class: 'navbar-brand' %>
       <% end %>
+
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
       <% if admin_signed_in? %>
+
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('users', 'index') %>">
 	    <%= link_to "Респонденты", admin_users_path, id: 'users_link' %>
@@ -24,14 +29,11 @@
 	  <li class="<%= active_link('coordinators', 'index') %>">
 	    <%= link_to "Координаторы", admin_coordinators_path, id: 'coordinators_link' %>
 	  </li>
-	  <li class="<%= active_link('questions', 'index') %>">
-	    <%= link_to "Вопросы", admin_questions_path, id: 'questions_link' %>
-	  </li>
 	  <li class="<%= active_link('companies', 'index') %>">
 	    <%= link_to "Компании", admin_companies_path, id: 'companies_link' %>
 	  </li>
-	  <li class="<%= active_link('surveys', 'index') %>">
-	    <%= link_to "Опросы(DELETE)", admin_surveys_path, id: 'surveys_link' %>
+	  <li class="<%= active_link('questions', 'index') %>">
+	    <%= link_to "Вопросы", admin_questions_path, id: 'questions_link' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
@@ -40,6 +42,17 @@
 	  </li>
 	  <li><%= link_to "Выход", destroy_admin_session_path, method: :delete %></li>
 	</ul>
+
+      <% elsif coordinator_signed_in? %>
+	<ul class="nav navbar-nav">
+	  <li class="<%= active_link('surveys', 'index') %>">
+	    <%= link_to "Опросы", coordinator_surveys_path, id: 'surveys_link' %>
+	  </li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><%= link_to "Выход", destroy_coordinator_session_path, method: :delete %></li>
+	</ul>
+
       <% elsif user_signed_in? %>
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('surveys', 'index') %>">
