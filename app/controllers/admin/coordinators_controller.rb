@@ -1,5 +1,5 @@
 class Admin::CoordinatorsController < Admin::ApplicationController
-  before_action :set_coordinator, only: [:destroy]
+  before_action :set_coordinator, only: [:update, :destroy]
   before_action :set_coordinators, except: [:destroy]
 
   def index
@@ -11,6 +11,15 @@ class Admin::CoordinatorsController < Admin::ApplicationController
     @coordinator = Coordinator.new(coordinator_params)
     if @coordinator.save
       flash[:notice] = "Координатор создан."
+      redirect_back(fallback_location: admin_companies_url)
+    else
+      render :index
+    end
+  end
+
+  def update
+    if @coordinator.update(coordinator_params)
+      flash[:notice] = "Координатор изменен."
       redirect_back(fallback_location: admin_companies_url)
     else
       render :index

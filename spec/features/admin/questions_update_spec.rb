@@ -20,6 +20,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
     context 'successfully' do
       it 'changing nothing' do
 	click_button 'submit_1q'
+	sleep 1
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Вопрос обновлен."
 	end
@@ -28,6 +29,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
       it 'changing one thing' do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	click_button 'submit_1q'
+	sleep 1
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Вопрос обновлен."
 	end
