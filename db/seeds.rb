@@ -420,7 +420,8 @@ newuser = User.create! login: 'newuser',
 admin = Admin.create! login: 'admin',
   email: 'admin@email.com',
   password: 'password'
-
+coordinator = Coordinator.create! login: 'coord',
+  password: 'password'
 genders = %w[ мужской женский ]
 ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет", "от 40 до 55 лет", "более 55 лет"]
 experiences = ["менее 1 года", "от 1 года до 3х лет", "от 3х лет до 5ти лет", "более 5ти лет"]
