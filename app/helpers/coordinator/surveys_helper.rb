@@ -1,0 +1,2 @@
+module Coordinator::SurveysHelper
+end
