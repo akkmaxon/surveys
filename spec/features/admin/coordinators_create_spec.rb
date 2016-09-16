@@ -15,6 +15,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Координатор создан."
       end
+      expect(page).to have_selector '#coordinator_credentials'
       expect(Coordinator.count).to eq 1
     end
 
@@ -23,12 +24,19 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
       expect(Coordinator.first.login).to eq 'coord123'
+      within '#coordinator_credentials' do
+	expect(page).to have_content "Логин: coord123"
+	expect(page).to have_content "Пароль: pAssw0rd"
+      end
     end
 
     it 'generate login' do
       find('.generate_login').trigger 'click'
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
+      within '#coordinator_credentials' do
+	expect(page).to have_content "Пароль: pAssw0rd"
+      end
     end
 
     it 'generate password' do
@@ -36,6 +44,9 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       expect(Coordinator.first.login).to eq 'coord123'
+      within '#coordinator_credentials' do
+	expect(page).to have_content "Логин: coord123"
+      end
     end
 
     it 'generating login/password' do
@@ -47,6 +58,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
 
   describe 'unsuccessfully' do
     after do
+      expect(page).not_to have_selector '#coordinator_credentials'
       expect(Coordinator.count).to eq 0
     end
 

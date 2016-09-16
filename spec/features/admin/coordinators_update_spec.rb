@@ -12,6 +12,7 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
 
   describe 'successfully' do
     after do
+      expect(page).to have_selector '#coordinator_credentials'
       within '#messages .alert-success' do
 	expect(page).to have_content "Координатор изменен."
       end
@@ -21,7 +22,10 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
       fill_in 'coordinator_login', with: 'newlogin'
       fill_in 'coordinator_password', with: 'pAssw0rdd'
       click_button "Подтвердить"
-      expect(page).to have_content "Логин: newlogin"
+      within '#coordinator_credentials' do
+	expect(page).to have_content "Логин: newlogin"
+	expect(page).to have_content "Пароль: pAssw0rdd"
+      end
     end
 
     it 'generate login and password' do
@@ -38,6 +42,10 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
   end
 
   describe 'unsuccessfully' do
+    after do
+      expect(page).not_to have_selector '#coordinator_credentials'
+    end
+
     it 'empty login' do
       fill_in 'coordinator_login', with: ""
       find('.generate_password').trigger 'click'

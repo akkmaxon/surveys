@@ -10,6 +10,7 @@ class Admin::CoordinatorsController < Admin::ApplicationController
   def create
     @coordinator = Coordinator.new(coordinator_params)
     if @coordinator.save
+      session[:coordinator_credentials] = coordinator_params
       flash[:notice] = "Координатор создан."
       redirect_back(fallback_location: admin_companies_url)
     else
@@ -19,6 +20,7 @@ class Admin::CoordinatorsController < Admin::ApplicationController
 
   def update
     if @coordinator.update(coordinator_params)
+      session[:coordinator_credentials] = coordinator_params
       flash[:notice] = "Координатор изменен."
       redirect_back(fallback_location: admin_companies_url)
     else
