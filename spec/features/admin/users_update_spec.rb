@@ -11,13 +11,19 @@ RSpec.describe 'Admin can update users', type: :feature do
   end
 
   describe 'successfully' do
+    after do
+      expect(page).to have_selector '#user_credentials'
+    end
+
     it 'manually login' do
       fill_in 'user_login', with: 'newlogin'
       click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Респондент изменен."
       end
-      expect(page).to have_content "Логин: newlogin"
+      within '#user_credentials' do
+	expect(page).to have_content "Логин: newlogin"
+      end
     end
 
     it 'generate login' do
@@ -35,6 +41,9 @@ RSpec.describe 'Admin can update users', type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Респондент изменен."
       end
+      within '#user_credentials' do
+	expect(page).to have_content "Пароль: newpassword"
+      end
     end
 
     it 'generate password' do
@@ -47,6 +56,10 @@ RSpec.describe 'Admin can update users', type: :feature do
   end
 
   describe 'unsuccessfully' do
+    after do
+      expect(page).not_to have_selector '#user_credentials'
+    end
+
     it 'empty login' do
       fill_in 'user_login', with: ""
       click_button "Подтвердить"

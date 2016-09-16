@@ -23,6 +23,7 @@ RSpec.describe 'Admin can create users', type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Респондент создан."
       end
+      expect(page).to have_selector '#user_credentials'
       expect(User.count).to eq 1
     end
 
@@ -30,6 +31,10 @@ RSpec.describe 'Admin can create users', type: :feature do
       fill_in "Логин", with: 'user123'
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
+      within '#user_credentials' do
+	expect(page).to have_content "Логин: user123"
+	expect(page).to have_content "Пароль: pAssw0rd"
+      end
       expect(User.first.login).to eq 'user123'
       expect(User.first.decrypted_password).to eq 'pAssw0rd'
     end
@@ -38,6 +43,9 @@ RSpec.describe 'Admin can create users', type: :feature do
       find('.generate_login').trigger 'click'
       fill_in "Пароль", with: 'pAssw0rd'
       click_button "Подтвердить"
+      within '#user_credentials' do
+	expect(page).to have_content "Пароль: pAssw0rd"
+      end
       expect(User.first.decrypted_password).to eq 'pAssw0rd'
     end
 
@@ -45,6 +53,9 @@ RSpec.describe 'Admin can create users', type: :feature do
       fill_in "Логин", with: 'user123'
       find('.generate_password').trigger 'click'
       click_button "Подтвердить"
+      within '#user_credentials' do
+	expect(page).to have_content "Логин: user123"
+      end
       expect(User.first.login).to eq 'user123'
     end
 
@@ -57,6 +68,7 @@ RSpec.describe 'Admin can create users', type: :feature do
 
   describe 'unsuccessfully' do
     after do
+      expect(page).not_to have_selector '#user_credentials'
       expect(User.count).to eq 0
     end
 
