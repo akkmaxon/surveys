@@ -26,7 +26,7 @@
 	    </td>
 	    <td class="table_radio text-center col-xs-8 col-md-4">
 	      <%= text_for_subject(question.opinion_subject) %>
-	      <%= form_for Response.new, id: "question_#{question.number}", remote: true do |f| %>
+	      <%= form_for Response.new, remote: true do |f| %>
 		<%= hidden_field_tag :survey_id, @survey.id %>
 		<%= f.hidden_field :question_number, value: question.number %>
 		<div data-toggle="buttons">
@@ -70,11 +70,11 @@
       <div class="panel panel-default response <%= n == 0 ? '' : 'hidden_question' %>">
 	<div class="panel-body">
 	  <blockquote><%= question.sentence %></blockquote>
-	  <%= form_for Response.new, id: "question_#{question.number}", remote: true do |f| %>
+	  <%= form_for Response.new, remote: true do |f| %>
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
 	    <div class="input-group">
-	      <%= f.text_field :answer, class: 'form-control' %>
+	      <%= f.text_field :answer, id: "question_#{question.number}_answer", class: 'form-control' %>
 	      <span class="input-group-btn">
 		<%= f.submit "Ответить", class: "btn btn-default submit_questions_2" %>
 	      </span>

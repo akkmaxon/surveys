@@ -54,7 +54,7 @@ RSpec.describe 'User create new response answering', type: :feature do
       end
 
       it 'successfully' do
-	fill_in 'response_answer', with: 'absolutely'
+	fill_in 'question_201_answer', with: 'absolutely'
 	find('.submit_questions_2').trigger 'click'
 	sleep 1
 	user.reload
@@ -70,7 +70,7 @@ RSpec.describe 'User create new response answering', type: :feature do
       end
 
       it 'with empty answer' do
-	fill_in 'response_answer', with: ''
+	fill_in 'question_201_answer', with: ''
 	find('.submit_questions_2').trigger 'click'
 	sleep 1
 	user.reload

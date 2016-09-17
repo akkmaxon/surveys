@@ -98,7 +98,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       find('#question_1_answer_4').trigger 'click'
       find('#question_28_answer_5').trigger 'click'
       find('#question_29_answer_5').trigger 'click'
-      fill_in 'response_answer', with: 'answer sentence'
+      fill_in 'question_201_answer', with: 'answer sentence'
       find('.submit_questions_2').trigger 'click'
       find('#finish_survey').trigger 'click'
       sleep 1
