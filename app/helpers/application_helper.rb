@@ -7,8 +7,8 @@ module ApplicationHelper
     end
   end
 
-  def active_link(name_of_controller, name_of_action)
-    if controller_name == name_of_controller and controller.action_name == name_of_action
+  def active_link(name_of_controller)
+    if controller_name == name_of_controller
       'active'
     else
       ''

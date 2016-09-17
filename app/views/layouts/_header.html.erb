@@ -23,21 +23,21 @@
       <% if admin_signed_in? %>
 
 	<ul class="nav navbar-nav">
-	  <li class="<%= active_link('users', 'index') %>">
+	  <li class="<%= active_link('users') %>">
 	    <%= link_to "Респонденты", admin_users_path, id: 'users_link' %>
 	  </li>
-	  <li class="<%= active_link('coordinators', 'index') %>">
+	  <li class="<%= active_link('coordinators') %>">
 	    <%= link_to "Координаторы", admin_coordinators_path, id: 'coordinators_link' %>
 	  </li>
-	  <li class="<%= active_link('companies', 'index') %>">
+	  <li class="<%= active_link('companies') %>">
 	    <%= link_to "Компании", admin_companies_path, id: 'companies_link' %>
 	  </li>
-	  <li class="<%= active_link('questions', 'index') %>">
+	  <li class="<%= active_link('questions') %>">
 	    <%= link_to "Вопросы", admin_questions_path, id: 'questions_link' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li class="<%= active_link('registrations', 'edit') %>">
+	  <li class="<%= active_link('registrations') %>">
 	    <%= link_to "Настройки", edit_admin_registration_path %>
 	  </li>
 	  <li><%= link_to "Выход", destroy_admin_session_path, method: :delete %></li>
@@ -45,10 +45,10 @@
 
       <% elsif coordinator_signed_in? %>
 	<ul class="nav navbar-nav">
-	  <li class="<%= active_link('surveys', 'index') %>">
+	  <li class="<%= active_link('surveys') %>">
 	    <%= link_to "Опросы", coordinator_surveys_path, id: 'surveys_link' %>
 	  </li>
-	  <li class="<%= active_link('users', 'index') %>">
+	  <li class="<%= active_link('users') %>">
 	    <%= link_to "Респонденты", coordinator_users_path, id: 'users_link' %>
 	  </li>
 	</ul>
@@ -58,17 +58,19 @@
 
       <% elsif user_signed_in? %>
 	<ul class="nav navbar-nav">
-	  <li class="<%= active_link('surveys', 'index') %>">
+	  <li class="<%= active_link('surveys') unless controller.action_name == 'take' %>">
 	    <%= link_to "Завершенные опросы", surveys_path, id: 'all_surveys_link' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li><%= link_to "Информация о себе", edit_info_path %></a></li>
+	  <li class="<%= active_link('infos') %>">
+	    <%= link_to "Информация о себе", edit_info_path, id: 'info_link' %>
+	  </li>
 	  <li><%= link_to "Выход", destroy_user_session_path, method: :delete %></li>
 	</ul>
       <% else %>
 	<ul class="nav navbar-nav navbar-right">
-	  <li class="<%= active_link('sessions', 'new') %>">
+	  <li class="<%= active_link('sessions') %>">
 	    <%= link_to "Вход", login_path %>
 	  </li>
 	</ul>

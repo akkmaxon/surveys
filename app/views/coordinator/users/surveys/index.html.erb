@@ -3,19 +3,8 @@
   </h1>
 </div>
 
-<section id="masonry_container" class="container-fluid">
+<section id="masonry_container" class="container-fluid user_surveys">
   <% @surveys.each do |survey| %>
-    <div class="panel panel-default masonry_element survey">
-      <div class="panel-body">
-	<div class="buttons pull-right">
-	  <%= link_to coordinator_user_survey_path(@user, survey), class: 'btn btn-primary show_survey' do %>
-	    <span class="glyphicon glyphicon-stats"></span>
-	  <% end %>
-	</div>
-	<h2 class="h4">
-	  <%= survey.completed? ? survey.pass_date : "Не завершен" %>
-	</h2>
-      </div>
-    </div>
+    <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinator_user_survey_path(@user, survey) } %>
   <% end %>
 </section>
