@@ -9,11 +9,11 @@
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">
-	<%= f.radio_button :gender, 'мужской', id: 'info_gender_1' %>
+	<%= f.radio_button :gender, 'мужской', id: 'info_gender_1', required: 'required' %>
 	Мужской
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :gender, 'женский', id: 'info_gender_2' %>
+	<%= f.radio_button :gender, 'женский', id: 'info_gender_2', required: 'required' %>
 	Женский
       </label>
     </div>
@@ -25,23 +25,23 @@
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">
-	<%= f.radio_button :age, 'менее 25 лет', id: 'info_age_1' %>
+	<%= f.radio_button :age, 'менее 25 лет', id: 'info_age_1', required: 'required' %>
 	Менее 25 лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 25 до 30 лет', id: 'info_age_2' %>
+	<%= f.radio_button :age, 'от 25 до 30 лет', id: 'info_age_2', required: 'required' %>
 	От 25 до 30 лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 30 до 40 лет', id: 'info_age_3' %>
+	<%= f.radio_button :age, 'от 30 до 40 лет', id: 'info_age_3', required: 'required' %>
 	От 30 до 40 лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 40 до 55 лет', id: 'info_age_4' %>
+	<%= f.radio_button :age, 'от 40 до 55 лет', id: 'info_age_4', required: 'required' %>
 	От 40 до 55 лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :age, 'более 55 лет', id: 'info_age_5' %>
+	<%= f.radio_button :age, 'более 55 лет', id: 'info_age_5', required: 'required' %>
 	Более 55 лет
       </label>
     </div>
@@ -59,7 +59,7 @@
       <div class="btn-group-vertical" data-toggle="buttons">
 	<% @companies.each do |company| %>
 	  <label class="btn btn-default">
-	    <%= f.radio_button :company, company.name, id: "info_company_#{company.id}" %>
+	    <%= f.radio_button :company, company.name, id: "info_company_#{company.id}", required: 'required' %>
 	    <%= company.name %>
 	  </label>
 	<% end %>
@@ -73,19 +73,19 @@
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">
-	<%= f.radio_button :experience, 'меньше 1 года', id: 'info_experience_1' %>
+	<%= f.radio_button :experience, 'меньше 1 года', id: 'info_experience_1', required: 'required' %>
 	Меньше 1 года
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :experience, 'от 1 года до 3х лет', id: 'info_experience_2' %>
+	<%= f.radio_button :experience, 'от 1 года до 3х лет', id: 'info_experience_2', required: 'required' %>
 	От 1 года до 3х лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :experience, 'от 3х до 5ти лет', id: 'info_experience_3' %>
+	<%= f.radio_button :experience, 'от 3х до 5ти лет', id: 'info_experience_3', required: 'required' %>
 	От 3х до 5ти лет
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :experience, 'более 5ти лет', id: 'info_experience_4' %>
+	<%= f.radio_button :experience, 'более 5ти лет', id: 'info_experience_4', required: 'required' %>
 	Более 5ти лет
       </label>
     </div>
@@ -97,19 +97,19 @@
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'первое', id: 'info_workplace_number_1' %>
+	<%= f.radio_button :workplace_number, 'первое', id: 'info_workplace_number_1', required: 'required' %>
 	Первое
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'второе', id: 'info_workplace_number_2' %>
+	<%= f.radio_button :workplace_number, 'второе', id: 'info_workplace_number_2', required: 'required' %>
 	Второе
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'третье', id: 'info_workplace_number_3' %>
+	<%= f.radio_button :workplace_number, 'третье', id: 'info_workplace_number_3', required: 'required' %>
 	Третье
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'больше третьего', id: 'info_workplace_number_4' %>
+	<%= f.radio_button :workplace_number, 'больше третьего', id: 'info_workplace_number_4', required: 'required' %>
 	Больше третьего
       </label>
     </div>
@@ -121,23 +121,23 @@
     </div>
     <div class="btn-group-vertical" data-toggle="buttons">
       <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'рабочая должность', id: 'info_work_position_1' %>
+	<%= f.radio_button :work_position, 'рабочая должность', id: 'info_work_position_1', required: 'required' %>
 	Рабочая должность
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'производственный руководитель', id: 'info_work_position_2' %>
+	<%= f.radio_button :work_position, 'производственный руководитель', id: 'info_work_position_2', required: 'required' %>
 	Производственный руководитель
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'работник офиса', id: 'info_work_position_3' %>
+	<%= f.radio_button :work_position, 'работник офиса', id: 'info_work_position_3', required: 'required' %>
 	Работник офиса
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'руководитель отдела', id: 'info_work_position_4' %>
+	<%= f.radio_button :work_position, 'руководитель отдела', id: 'info_work_position_4', required: 'required' %>
 	Руководитель отдела
       </label>
       <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'топ-менеджер', id: 'info_work_position_5' %>
+	<%= f.radio_button :work_position, 'топ-менеджер', id: 'info_work_position_5', required: 'required' %>
 	Топ-менеджер
       </label>
     </div>

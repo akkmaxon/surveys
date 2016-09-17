@@ -64,9 +64,8 @@ RSpec.describe 'User create info about himself', type: :feature do
 	visit new_info_path
 	find("#info_#{input}_1").trigger 'click'
 	click_button "submit_info"
-	within '#error_explanation' do
-	  expect(page).to have_selector 'ul li', count: 5
-	end
+	expect(page.current_path).to eq new_info_path
+	expect(page).not_to have_selector '#error_explanation'
       end
       user.reload
       expect(user.info).to be_nil

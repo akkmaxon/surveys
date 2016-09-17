@@ -39,7 +39,7 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
       FactoryGirl.create :survey, user: user, completed: true
       sign_in coordinator
       visit coordinator_surveys_path
-      within '#all_surveys' do
+      within '#masonry_container' do
 	expect(page).to have_selector '.survey', count: 1
 	expect(page).to have_selector '.show_survey', count: 1
 	expect(page).to have_content "РЕСПОНДЕНТ: user123"

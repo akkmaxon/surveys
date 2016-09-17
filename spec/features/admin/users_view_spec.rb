@@ -37,7 +37,7 @@ RSpec.describe 'Admin can view all users', type: :feature do
 
     it 'page layout' do
       visit admin_users_path
-      expect(page).to have_selector '#all_users'
+      expect(page).to have_selector '#masonry_container'
       expect(page).to have_selector '.user', count: 3
       expect(page).to have_selector '.active #users_link'
       expect(page).to have_selector 'a#add_user_link'

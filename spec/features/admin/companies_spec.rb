@@ -47,7 +47,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
       visit admin_companies_path
       expect(page).to have_selector '#add_company'
       expect(page).not_to have_selector '#new_company'
-      expect(page).to have_selector '#all_companies'
+      expect(page).to have_selector '#masonry_container'
       expect(page).to have_selector '.company', count: 1
       expect(page).to have_content 'New Company'
     end
@@ -61,7 +61,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Список компаний расширен."
       end
-      within '#all_companies' do
+      within '#masonry_container' do
 	expect(page).to have_selector '.company', count: 1
 	expect(page).to have_content "NEW COMPANY"
       end

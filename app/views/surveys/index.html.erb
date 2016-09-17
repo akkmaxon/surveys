@@ -2,9 +2,9 @@
   <h1 class="header">Завершенные опросы</h1>
 </div>
 
-<section id="user_surveys" class="container-fluid">
+<section id="masonry_container" class="container-fluid">
   <% @surveys.each do |survey| %>
-    <div class="panel panel-default survey">
+    <div class="panel panel-default masonry_element survey">
       <div class="panel-body">
 	<div class="buttons pull-right">
 	  <%= link_to survey_path(survey), class: 'btn btn-primary show_survey' do %>

@@ -8,9 +8,9 @@
   </div>
 </div>
 
-<div class="container-fluid" id="all_users">
+<div id="masonry_container" class="container-fluid">
   <% @users.each do |user| %>
-    <div class="panel panel-default user">
+    <div class="panel panel-default masonry_element user">
       <div class="panel-body">
 	<div class="buttons pull-right">
 	  <%= link_to coordinator_user_surveys_path(user), class: 'btn btn-primary show_surveys' do %>
