@@ -14,7 +14,9 @@
     <div class="panel panel-default survey">
       <div class="panel-body">
 	<div class="buttons pull-right">
-	  <%= link_to "Результаты", coordinator_survey_path(survey), class: 'btn btn-primary show_survey' %>
+	  <%= link_to coordinator_user_survey_path(survey.user, survey), class: 'btn btn-primary show_survey' do %>
+	    <span class="glyphicon glyphicon-stats"></span>
+	  <% end %>
 	</div>
 	<h2 class="h4">
 	  <small>РЕСПОНДЕНТ:</small> <%= survey.user.login %>

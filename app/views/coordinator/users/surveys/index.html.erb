@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 class="header">Опросы для <%= @user.login %> <span class="badge"><%= @surveys.count %></span>
+  </h1>
+</div>
+
+<section id="user_surveys" class="container-fluid">
+  <% @surveys.each do |survey| %>
+    <div class="panel panel-default survey">
+      <div class="panel-body">
+	<div class="buttons pull-right">
+	  <%= link_to coordinator_user_survey_path(@user, survey), class: 'btn btn-primary show_survey' do %>
+	    <span class="glyphicon glyphicon-stats"></span>
+	  <% end %>
+	</div>
+	<h2 class="h4">
+	  <%= survey.completed? ? survey.pass_date : "Не завершен" %>
+	</h2>
+      </div>
+    </div>
+  <% end %>
+</section>

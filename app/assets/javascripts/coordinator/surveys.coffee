@@ -20,5 +20,11 @@ document.addEventListener "turbolinks:load", () ->
     isFitWidth: true
   })
 
+  $('#user_surveys').masonry({
+    itemSelector: '.survey',
+    gutter: 24,
+    isFitWidth: true
+  })
+
 $(window).resize () ->
   resizeSurveys()
