@@ -17,11 +17,11 @@ FactoryGirl.define do
   end
 
   factory :info do
-    gender 'male'
-    experience 'less than 1 year'
-    age 'from 25 to 30'
-    workplace_number 'second'
-    work_position 'руководитель отдела'
+    gender "мужской"
+    experience "меньше 1 года"
+    age "менее 25 лет"
+    workplace_number "второе"
+    work_position "руководитель отдела"
     company 'Pepsi'
   end
 

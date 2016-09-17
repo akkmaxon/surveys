@@ -15,7 +15,7 @@ class InfosController < ApplicationController
     @info = Info.new(info_params.merge user_id: current_user.id)
     if @info.save
       flash[:notice] = "Спасибо, теперь Вы можете пройти тест."
-      redirect_to surveys_url
+      redirect_to take_survey_url(current_user.surveys.create!)
     else
       render :new
     end

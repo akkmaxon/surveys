@@ -54,8 +54,10 @@ RSpec.describe 'User create info about himself', type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Спасибо, теперь Вы можете пройти тест."
       end
-      expect(page.current_path).to eq(surveys_path)
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+      expect(page).to have_selector '.progress'
       user.reload
+      expect(user.surveys.count).to eq 1
       expect(user.info).not_to be_nil
     end
 
@@ -89,7 +91,8 @@ RSpec.describe 'User create info about himself', type: :feature do
 	  find("#info_#{input}_1").trigger 'click'
 	end
 	click_button 'submit_info'
-	expect(page.current_path).to eq(surveys_path)
+	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+	expect(page).to have_selector '.progress'
 	user.reload
 	expect(user.info.company).to eq "нет ответа"
       end
@@ -111,7 +114,9 @@ RSpec.describe 'User create info about himself', type: :feature do
 	  find("#info_#{input}_1").trigger 'click'
 	end
 	click_button 'submit_info'
-	expect(page.current_path).to eq(surveys_path)
+	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+	expect(page).to have_selector '.progress'
+	user.reload
 	user.reload
 	expect(user.info.company).to eq(company1.name)
       end
