@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'User create info about himself', type: :feature do
   let(:user) { FactoryGirl.create :user }
-  let!(:company1) { FactoryGirl.create :company, id: 1 }
-  let!(:company2) { FactoryGirl.create :company, id: 2 }
+  let!(:company1) { FactoryGirl.create :company, id: 1, name: 'Company1' }
+  let!(:company2) { FactoryGirl.create :company, id: 2, name: 'Company2' }
 
   describe 'impossible for' do
     after do
@@ -41,16 +41,14 @@ RSpec.describe 'User create info about himself', type: :feature do
       expect(page).to have_selector 'form.new_info'
     end
 
-    it 'do not create new survey when empty' do
-      click_link 'new_survey_link'
-      expect(Survey.count).to eq 0
-    end
-
     it 'create info with all fields' do
-      %w[gender experience age workplace_number work_position company].each do |input|
-	find("#info_#{input}_1").trigger 'click'
-      end
-      click_button "submit_info"
+      select("женский", from: 'info_gender')
+      select("более 5 лет", from: 'info_experience')
+      select("более 55 лет", from: 'info_age')
+      select("больше третьего", from: 'info_workplace_number')
+      select("топ-менеджер", from: 'info_work_position')
+      select("Company2", from: 'info_company')
+      click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Спасибо, теперь Вы можете пройти тест."
       end
@@ -61,16 +59,12 @@ RSpec.describe 'User create info about himself', type: :feature do
       expect(user.info).not_to be_nil
     end
 
-    it 'errors when not all fields are filled' do
-      %w[gender experience age workplace_number work_position company].each do |input|
-	visit new_info_path
-	find("#info_#{input}_1").trigger 'click'
-	click_button "submit_info"
-	expect(page.current_path).to eq new_info_path
-	expect(page).not_to have_selector '#error_explanation'
-      end
+    it 'fields filled in automatically' do
+      visit new_info_path
+      click_button "Подтвердить"
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
       user.reload
-      expect(user.info).to be_nil
+      expect(user.info).not_to be_nil
     end
 
     context 'companies not defined by admin' do
@@ -81,16 +75,18 @@ RSpec.describe 'User create info about himself', type: :feature do
       end
 
       it 'page layout' do 
-	expect(page).to have_selector '#info_gender_1'
-	expect(page).not_to have_selector '#info_company_1'
-	expect(page).not_to have_selector '#info_company_2'
+	expect(page).to have_selector '#info_gender'
+	expect(page).not_to have_selector '#info_company'
+	expect(page).not_to have_selector '#info_company'
       end
 
       it 'data from user' do
-	%w[gender experience age workplace_number work_position].each do |input|
-	  find("#info_#{input}_1").trigger 'click'
-	end
-	click_button 'submit_info'
+	select("женский", from: 'info_gender')
+	select("более 5 лет", from: 'info_experience')
+	select("более 55 лет", from: 'info_age')
+	select("больше третьего", from: 'info_workplace_number')
+	select("топ-менеджер", from: 'info_work_position')
+	click_button "Подтвердить"
 	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
 	expect(page).to have_selector '.progress'
 	user.reload
@@ -105,15 +101,17 @@ RSpec.describe 'User create info about himself', type: :feature do
       end
 
       it 'page layout' do
-	expect(page).to have_selector '#info_gender_1'
-	expect(page).not_to have_selector '#info_company_1'
+	expect(page).to have_selector '#info_gender'
+	expect(page).not_to have_selector '#info_company'
       end
 
       it 'data from user' do
-	%w[gender experience age workplace_number work_position].each do |input|
-	  find("#info_#{input}_1").trigger 'click'
-	end
-	click_button 'submit_info'
+	select("женский", from: 'info_gender')
+	select("более 5 лет", from: 'info_experience')
+	select("более 55 лет", from: 'info_age')
+	select("больше третьего", from: 'info_workplace_number')
+	select("топ-менеджер", from: 'info_work_position')
+	click_button "Подтвердить"
 	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
 	expect(page).to have_selector '.progress'
 	user.reload

@@ -3,147 +3,63 @@
 <%= form_for @info, url: info_path do |f| %>
   <%= error_explanation_for @info %>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Укажите Ваш пол</h3>
-    </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :gender, 'мужской', id: 'info_gender_1', required: 'required' %>
-	Мужской
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :gender, 'женский', id: 'info_gender_2', required: 'required' %>
-	Женский
-      </label>
-    </div>
+  <div class="form-group">
+    <%= f.label :gender, "Укажите Ваш пол" %>
+    <select id="info_gender" class="form-control" name="info[gender]">
+      <%= options_for_select(["мужской", "женский"], @info.gender) %>
+    </select>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Ваш возраст</h3>
-    </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :age, 'менее 25 лет', id: 'info_age_1', required: 'required' %>
-	Менее 25 лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 25 до 30 лет', id: 'info_age_2', required: 'required' %>
-	От 25 до 30 лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 30 до 40 лет', id: 'info_age_3', required: 'required' %>
-	От 30 до 40 лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :age, 'от 40 до 55 лет', id: 'info_age_4', required: 'required' %>
-	От 40 до 55 лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :age, 'более 55 лет', id: 'info_age_5', required: 'required' %>
-	Более 55 лет
-      </label>
-    </div>
+  <div class="form-group">
+    <% ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет",
+		 "от 40 до 55 лет", "более 55 лет"] %>
+    <%= f.label :age, "Ваш возраст" %>
+    <select id="info_age" class="form-control" name="info[age]">
+      <%= options_for_select(ages, @info.age) %>
+    </select>
   </div>
 
   <% if @companies.blank? %>
     <%= f.hidden_field :company, value: "нет ответа" %>
-  <% elsif @companies.count == 1 %>
-    <%= f.hidden_field :company, value: @companies.first.name %>
+  <% elsif @companies.size == 1 %>
+    <%= f.hidden_field :company, value: @companies.first %>
   <% else %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-	<h3>Укажите компанию, в которой Вы работаете</h3>
-      </div>
-      <div class="btn-group-vertical" data-toggle="buttons">
-	<% @companies.each do |company| %>
-	  <label class="btn btn-default">
-	    <%= f.radio_button :company, company.name, id: "info_company_#{company.id}", required: 'required' %>
-	    <%= company.name %>
-	  </label>
-	<% end %>
-      </div>
+    <div class="form-group">
+      <%= f.label :company, "Укажите компанию, в которой Вы работаете" %>
+      <select id="info_company" class="form-control" name="info[company]">
+	<%= options_for_select(@companies, @info.company) %>
+      </select>
     </div>
   <% end %>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Сколько лет Вы работаете в компании?</h3>
-    </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :experience, 'меньше 1 года', id: 'info_experience_1', required: 'required' %>
-	Меньше 1 года
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :experience, 'от 1 года до 3х лет', id: 'info_experience_2', required: 'required' %>
-	От 1 года до 3х лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :experience, 'от 3х до 5ти лет', id: 'info_experience_3', required: 'required' %>
-	От 3х до 5ти лет
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :experience, 'более 5ти лет', id: 'info_experience_4', required: 'required' %>
-	Более 5ти лет
-      </label>
-    </div>
+  <div class="form-group">
+    <% experiences = ["меньше 1 года", "от 1 года до 3 лет", "от 3 до 5 лет",
+		      "более 5 лет"] %>
+    <%= f.label :experience, "Сколько лет Вы работаете в компании?" %>
+    <select id="info_experience" class="form-control" name="info[experience]">
+      <%= options_for_select(experiences, @info.experience) %>
+    </select>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Какое по счету это место работы для вас?</h3>
-    </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'первое', id: 'info_workplace_number_1', required: 'required' %>
-	Первое
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'второе', id: 'info_workplace_number_2', required: 'required' %>
-	Второе
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'третье', id: 'info_workplace_number_3', required: 'required' %>
-	Третье
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :workplace_number, 'больше третьего', id: 'info_workplace_number_4', required: 'required' %>
-	Больше третьего
-      </label>
-    </div>
+  <div class="form-group">
+    <% wp_numbers = ["первое", "второе", "третье",
+		     "больше третьего"] %>
+    <%= f.label :workplace_number, "Какое по счету это место работы для вас?" %>
+    <select id="info_workplace_number" class="form-control" name="info[workplace_number]">
+      <%= options_for_select(wp_numbers, @info.workplace_number) %>
+    </select>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Какую должность Вы занимаете в компании?</h3>
-    </div>
-    <div class="btn-group-vertical" data-toggle="buttons">
-      <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'рабочая должность', id: 'info_work_position_1', required: 'required' %>
-	Рабочая должность
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'производственный руководитель', id: 'info_work_position_2', required: 'required' %>
-	Производственный руководитель
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'работник офиса', id: 'info_work_position_3', required: 'required' %>
-	Работник офиса
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'руководитель отдела', id: 'info_work_position_4', required: 'required' %>
-	Руководитель отдела
-      </label>
-      <label class="btn btn-default">
-	<%= f.radio_button :work_position, 'топ-менеджер', id: 'info_work_position_5', required: 'required' %>
-	Топ-менеджер
-      </label>
-    </div>
+  <div class="form-group">
+    <% work_position = ["рабочая должность", "производственный руководитель",
+			"работник офиса", "руководитель отдела", "топ-менеджер"] %>
+    <%= f.label :work_position, "Какую должность Вы занимаете в компании?" %>
+    <select id="info_work_position" class="form-control" name="info[work_position]">
+      <%= options_for_select(work_position, @info.work_position) %>
+    </select>
   </div>
 
   <div class="actions">
-    <%= f.submit "Подтвердить", id: 'submit_info', class: 'btn btn-primary btn-lg btn-block' %>
+    <%= f.submit "Подтвердить", class: 'btn btn-primary btn-lg btn-block' %>
   </div>
 <% end %>

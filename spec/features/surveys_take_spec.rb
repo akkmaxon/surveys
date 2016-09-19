@@ -9,7 +9,7 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     after do
       expect(page.current_path).to eq new_user_session_path
       within '#messages .alert-danger' do
-	expect(page).to have_content "Войдите, пожалуйста, в систему"
+        expect(page).to have_content "Войдите, пожалуйста, в систему"
       end
     end
 
@@ -86,7 +86,6 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     it 'redirect to survey after' do
       take_a_survey
       find('#finish_survey').trigger 'click'
-      sleep 1
       user.reload
       expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
       within '#messages .alert-success' do
@@ -101,7 +100,6 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       fill_in 'question_201_answer', with: 'answer sentence'
       find('.submit_questions_2').trigger 'click'
       find('#finish_survey').trigger 'click'
-      sleep 1
       user.reload
       within '#messages .alert-danger' do
 	expect(page).to have_content "С большой долей вероятности можно сказать"

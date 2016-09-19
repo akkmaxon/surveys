@@ -15,7 +15,7 @@ class InfosController < ApplicationController
     @info = Info.new(info_params.merge user_id: current_user.id)
     if @info.save
       flash[:notice] = "Спасибо, теперь Вы можете пройти тест."
-      redirect_to take_survey_url(current_user.surveys.create!)
+      redirect_to take_survey_url(current_user.create_survey)
     else
       render :new
     end
@@ -49,6 +49,6 @@ class InfosController < ApplicationController
   end
 
   def set_companies
-    @companies = Company.all
+    @companies = Company.pluck(:name)
   end
 end

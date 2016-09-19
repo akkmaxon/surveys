@@ -40,6 +40,7 @@ body {
   @extend .text-center;
   padding-bottom: 20px;
   border-bottom: 1px solid #dadada;
+  margin-bottom: 40px;
 }
 
 #error_explanation {
@@ -74,7 +75,7 @@ body {
 }
 
 #manage_bar {
-  margin-top: 20px;
+  margin: -20px 0 20px 0;
   .col-md-4 {
     text-align: center;
 
@@ -97,8 +98,4 @@ body {
 
 .field_with_errors {
   @extend .has-error;
-}
-
-#masonry_container {
-  margin-top: 40px;
 }

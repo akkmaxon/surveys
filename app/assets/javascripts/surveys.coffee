@@ -40,5 +40,3 @@ document.addEventListener "turbolinks:load", () ->
   # after survey
   $(".edit_survey input[type='radio']").on "change", () ->
     $("#submit_agreement").click()
-    $("#agreement").hide(200)
-    $("#email_field").css "display", "block"

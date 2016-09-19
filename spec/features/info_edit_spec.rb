@@ -34,15 +34,9 @@ RSpec.describe 'User update his info', type: :feature do
       visit edit_info_path
     end
 
-    it 'nothing happen if only touch field' do
-      find("#info_age_2").trigger 'click'
-      user.reload
-      expect(user.info.age).to eq(info_clone.age)
-    end
-
     it 'update when submit button clicked' do
-      find("#info_age_2").trigger 'click'
-      click_button 'submit_info'
+      select("более 55 лет", from: 'info_age')
+      click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Ваши данные обновлены."
       end

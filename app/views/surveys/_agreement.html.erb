@@ -1,18 +1,23 @@
 <%= form_for @survey, remote: true do |f| %>
-  <h2 class="h3 text-center">Согласны ли вы со своим результатом?</h2>
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default">
-      <%= f.radio_button :user_agreement, 'я не согласен со своим результатом', id: 'not_agree' %>
-      Нет
-    </label>
-    <label class="btn btn-default">
-      <%= f.radio_button :user_agreement, 'я частично согласен со своим результатом', id: 'partially_agree' %>
-      Частично
-    </label>
-    <label class="btn btn-default">
-      <%= f.radio_button :user_agreement, 'я полностью согласен со своим результатом', id: 'agree' %>
-      Полностью
-    </label>
-  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="h3 text-center">Согласны ли вы со своим результатом?</h2>
+    </div>
+    <div class="panel-body">
+      <div class="btn-group" data-toggle="buttons">
+	<label class="btn btn-default">
+	  <%= f.radio_button :user_agreement, 'я не согласен со своим результатом', id: 'not_agree' %>
+	  Нет
+	</label>
+	<label class="btn btn-default">
+	  <%= f.radio_button :user_agreement, 'я частично согласен со своим результатом', id: 'partially_agree' %>
+	  Частично
+	</label>
+	<label class="btn btn-default">
+	  <%= f.radio_button :user_agreement, 'я полностью согласен со своим результатом', id: 'agree' %>
+	  Полностью
+	</label>
+      </div>
+    </div>
   <%= f.submit "Submit", id: 'submit_agreement' %>
 <% end %>

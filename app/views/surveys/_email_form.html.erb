@@ -1,9 +1,11 @@
 <div class="panel panel-default">
+  <div class="panel-heading">
+    <p><strong>Если Вы хотите получить более детальные результаты, оставьте свою электронную почту и мы вышлем Вам информацию в течение 4 недель.</strong></p>
+  </div>
   <div class="panel-body">
-    <p>Если Вы хотите получить более детальные результаты, оставьте свою электронную почту и мы вышлем Вам информацию в течение 4 недель.</p>
     <%= form_for @survey do |f| %>
       <div class="input-group">
-	<%= f.email_field :user_email, autofocus: true, class: 'form-control', id: 'survey_user_email' %>
+	<%= f.email_field :user_email, class: 'form-control', id: 'survey_user_email' %>
 	<span class="input-group-btn">
 	  <%= f.submit "Оставить почту", class: 'btn btn-default', id: 'leave_email' %>
 	</span>
