@@ -38,6 +38,7 @@ FactoryGirl.define do
     audience 'management'
     opinion_subject 'Я'
     criterion Faker::Lorem.sentence
+    criterion_type 'involvement'
   end
 
   factory :left_statement do

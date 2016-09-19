@@ -7,32 +7,36 @@ class Question < ApplicationRecord
   validates :number, numericality: { only_integer: true }
   validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
   validates :criterion, presence: true
+  validates :criterion_type, presence: true
+  validates :criterion_type, inclusion: { in: %w[involvement satisfaction] }
 
   default_scope -> { order(audience: :asc).order(number: :asc) }
 
   scope :all_first_questions, -> { where('sentence = ?', "") }
   scope :all_second_questions, -> { where('sentence != ?', "") }
-  scope :for_management_count, -> { where('audience = ?', 'management').count }
-  scope :for_working_staff_count, -> { where('audience = ?', 'working_staff').count }
 
-  def self.for(user)
-    if user.manager?
-      where(audience: 'management')
-    else
-      where(audience: 'working_staff')
-    end
+  def self.for_management_count
+    where('audience = ?', 'management').count 
   end
 
-  def self.first_questions_for(user)
-    self.for(user).where('sentence = ?', "")
+  def self.for_working_staff_count
+    where('audience = ?', 'working_staff').count 
   end
 
-  def self.second_questions_for(user)
-    self.for(user).where('sentence != ?', "")
+  def self.for(audience)
+    where(audience: audience)
   end
 
-  def self.group_by_criterion(user)
-    questions = self.first_questions_for(user)
+  def self.first_questions_for(survey)
+    self.for(survey.audience).where('sentence = ?', "")
+  end
+
+  def self.second_questions_for(survey)
+    self.for(survey.audience).where('sentence != ?', "")
+  end
+
+  def self.group_by_criterion(survey, criterion_type)
+    questions = self.first_questions_for(survey).where(criterion_type: criterion_type)
     criteria_list = questions.pluck(:criterion)
     criteria_list.inject({}) do |result, criterion|
       result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))

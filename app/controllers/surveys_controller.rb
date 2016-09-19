@@ -1,16 +1,16 @@
 class SurveysController < ApplicationController
-#  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :check_for_empty_info
-  before_action :find_survey, only: [:show, :take, :update]
+  before_action :set_survey, only: [:show, :take, :update]
   before_action :check_for_survey_owner, only: [:show, :take]
-  before_action :check_for_not_completed_survey, only: :create
-  before_action :set_criteria, only: [:show, :index]
+  before_action :check_for_not_completed_survey, only: [:create]
 
   def index
     @surveys = current_user.completed_surveys
   end
 
   def show
+    @criteria = Question.group_by_criterion(current_user)
+    # {'first' => [1,2], 'second' => [3,4], 'third' => [5,6]}
   end
 
   def create
@@ -47,7 +47,7 @@ class SurveysController < ApplicationController
     params.require(:survey).permit(:user_agreement, :user_email, :completed)
   end
 
-  def find_survey
+  def set_survey
     @survey = Survey.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Опрос №#{params[:id]} не существует"
@@ -68,10 +68,5 @@ class SurveysController < ApplicationController
       last_survey = current_user.surveys.first
       @not_completed_survey = last_survey.completed? ? false : last_survey
     end
-  end
-
-  def set_criteria
-    @criteria = Question.group_by_criterion(current_user)
-    # {'first' => [1,2], 'second' => [3,4], 'third' => [5,6]}
   end
 end
