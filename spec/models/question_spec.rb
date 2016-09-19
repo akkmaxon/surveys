@@ -28,6 +28,11 @@ RSpec.describe Question, type: :model do
 	expect(question.respond_to? :left_statement).to eq true
 	expect(question.respond_to? :right_statement).to eq true
       end
+
+      it 'criterion_type is empty' do
+	question.criterion_type = ''
+	expect(question).to be_valid
+      end
     end
 
     context 'fails' do
@@ -53,10 +58,6 @@ RSpec.describe Question, type: :model do
 	%w[ you they ].each do |o|
 	  question.opinion_subject = o
 	end
-      end
-
-      it 'when criterion_type is empty' do
-	question.criterion_type = ''
       end
 
       it 'when criterion_type is wrong' do

@@ -29,6 +29,14 @@ class User < ApplicationRecord
     info.work_position != "рабочая должность"
   end
 
+  def audience
+    manager? ? 'management' : 'working_staff'
+  end
+
+  def create_survey
+    surveys.create(audience: audience)
+  end
+
   def current_survey_number
     surveys.blank? ? 1 : (count_completed_surveys + 1)
   end

@@ -13,33 +13,28 @@
     </tr>
   </thead>
   <tbody>
-    <% @criteria.each_with_index do |node, i| %>
-      <% criterion = node[0]; questions = node[1] %>
-      <% next if criterion.include?("Доверие к руководству") %>
-      <% if i == 8 %>
-	<tr class="info">
-	  <td colspan="3">Общий уровень вовлеченности</td>
-	  <td></td>
-	  <td></td>
-	  <td></td>
+    <% { @involvement_criteria => "Общий уровень вовлеченности",
+	 @satisfaction_criteria => "Общий уровень удовлетворенности",
+         @last_criteria => "" }.each do |criteria, summary| %>
+      <% criteria.each do |criterion, question_numbers| %>
+	<tr>
+	  <td><%= @counter += 1 %></td>
+	  <td><%= criterion %></td>
+	  <td><%= question_numbers.join(', ') %></td>
+	  <% question_numbers.each do |q| %>
+	    <td><%= survey.answer_for(q) %></td>
+	  <% end %>
+	  <td><%= survey.sum_of(question_numbers)%></td>
 	</tr>
-      <% elsif i == 12 %>
+      <% end %>
+      <% unless summary.blank? %>
 	<tr class="info">
-	  <td colspan="3">Общий уровень удовлетворенности</td>
+	  <td colspan="3"><%= summary %></td>
 	  <td></td>
 	  <td></td>
 	  <td></td>
 	</tr>
       <% end %>
-      <tr>
-	<td><%= i + 1 %></td>
-	<td><%= criterion %></td>
-	<td><%= questions.join(', ') %></td>
-	<% questions.each do |q| %>
-	  <td><%= survey.answer_for(q) %></td>
-	<% end %>
-	<td><%= survey.sum_of(questions)%></td>
-      </tr>
     <% end %>
   </tbody>
 </table>

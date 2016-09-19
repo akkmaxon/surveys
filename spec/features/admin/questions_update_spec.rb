@@ -45,6 +45,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_right_text', with: 'New Right Text'
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Вопрос обновлен."
@@ -100,6 +101,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_right_text', with: 'New Right Text'
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
 	expect(page).not_to have_content 'New'
 	expect(page).not_to have_selector '#messages .alert-success'
@@ -114,6 +116,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_right_text', with: ''
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
 	expect(page).not_to have_content 'New'
 	expect(page).not_to have_selector '#messages .alert-success'

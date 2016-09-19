@@ -42,7 +42,12 @@ class Admin::QuestionsController < Admin::ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:number, :audience, :opinion_subject, :criterion, :sentence)
+    params.require(:question).permit(:number,
+				     :audience,
+				     :opinion_subject,
+				     :criterion,
+				     :criterion_type,
+				     :sentence)
   end
 
   def set_questions

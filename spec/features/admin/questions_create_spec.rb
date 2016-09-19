@@ -20,6 +20,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	find('#field_1q_audience_1').trigger 'click'
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'Something New'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	fill_in 'field_1q_left_title', with: 'Left Title'
 	fill_in 'field_1q_left_text', with: 'Text from left'
 	fill_in 'field_1q_right_title', with: 'Right Title'
@@ -46,6 +47,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	fill_in 'field_1q_number', with: 123
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in "field_1q_criterion", with: 'Something New'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'
@@ -60,6 +62,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	find("#field_1q_audience_1").trigger 'click'
 	find("#field_1q_subject_1").trigger 'click'
 	fill_in "field_1q_criterion", with: 'Something New'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content 'Something New'
@@ -73,6 +76,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	find("#field_1q_audience_1").trigger 'click'
 	find("#field_1q_subject_1").trigger 'click'
 	fill_in "field_1q_criterion", with: 'Something New'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	fill_in 'field_1q_left_title', with: 'Left Title'
 	fill_in 'field_1q_left_text', with: 'Text from left'
 	fill_in 'field_1q_right_title', with: 'Right Title'
@@ -90,6 +94,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	fill_in "field_1q_number", with: 123
 	find("#field_1q_audience_1").trigger 'click'
 	fill_in "field_1q_criterion", with: 'Something New'
+	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'
@@ -103,6 +108,20 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	fill_in "field_1q_number", with: 123
 	find("#field_1q_audience_1").trigger 'click'
 	find("#field_1q_subject_1").trigger 'click'
+	find('#field_1q_criterion_type_1').trigger 'click'
+	click_button "submit_1q"
+	within '#admin_first_questions' do
+	  expect(page).not_to have_content '123'
+	end
+	expect(page).not_to have_selector '#messages .alert'
+	expect(Question.all_first_questions.count).to eq 0
+      end
+
+      it 'without criterion_type' do
+	fill_in "field_1q_number", with: 123
+	find("#field_1q_audience_1").trigger 'click'
+	find("#field_1q_subject_1").trigger 'click'
+	fill_in "field_1q_criterion", with: 'Something New'
 	click_button "submit_1q"
 	within '#admin_first_questions' do
 	  expect(page).not_to have_content '123'

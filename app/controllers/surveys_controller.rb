@@ -9,18 +9,20 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @criteria = Question.group_by_criterion(current_user)
-    # {'first' => [1,2], 'second' => [3,4], 'third' => [5,6]}
+    @involvement_criteria = Question.group_by_criterion(@survey, 'involvement')
+    @satisfaction_criteria = Question.group_by_criterion(@survey, 'satisfaction')
+    @last_criteria = Question.group_by_criterion(@survey, '')
+    @counter = 0
   end
 
   def create
-    @survey = @not_completed_survey ? @not_completed_survey : current_user.surveys.create!
+    @survey = @not_completed_survey ? @not_completed_survey : current_user.create_survey
     redirect_to take_survey_url(@survey)
   end
 
   def take
-    @first_questions = Question.first_questions_for(current_user)
-    @second_questions = Question.second_questions_for(current_user)
+    @first_questions = Question.first_questions_for(@survey)
+    @second_questions = Question.second_questions_for(@survey)
     @sum_of_questions = @first_questions.size + @second_questions.size
   end
 
@@ -66,7 +68,12 @@ class SurveysController < ApplicationController
       @not_completed_survey = false
     else
       last_survey = current_user.surveys.first
-      @not_completed_survey = last_survey.completed? ? false : last_survey
+      @not_completed_survey = last_survey.completed? ? false : update_audience(last_survey)
     end
+  end
+
+  def update_audience(survey)
+    survey.update(audience: current_user.audience)
+    survey
   end
 end

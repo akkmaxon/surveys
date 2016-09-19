@@ -7,8 +7,7 @@ class Question < ApplicationRecord
   validates :number, numericality: { only_integer: true }
   validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
   validates :criterion, presence: true
-  validates :criterion_type, presence: true
-  validates :criterion_type, inclusion: { in: %w[involvement satisfaction] }
+  validates :criterion_type, inclusion: { in: %w[involvement satisfaction] }, allow_blank: true
 
   default_scope -> { order(audience: :asc).order(number: :asc) }
 

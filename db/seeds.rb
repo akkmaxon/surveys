@@ -10,7 +10,8 @@ Company.create! name: "Городской парк"
 
 ### 1 question ###
 q_1 = Question.create! opinion_subject: "Я", audience: "management", number: 1,
-  criterion: "Инициативность, энтузиазм, проактивность"
+  criterion: "Инициативность, энтузиазм, проактивность",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_1.id
   left.title = "Инициатива убивает систему"
@@ -23,7 +24,8 @@ RightStatement.create! do |right|
 end
 ### 2 question ###
 q_2 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 2,
-  criterion: "Инициативность, энтузиазм, проактивность"
+  criterion: "Инициативность, энтузиазм, проактивность",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_2.id
   left.title = "Инициатива убивает систему"
@@ -37,7 +39,8 @@ RightStatement.create! do |right|
 end
 ### 3 question ###
 q_3 = Question.create! opinion_subject: "Я", audience: "management", number: 3,
-  criterion: "Нацеленность на повышение эффективности в работе"
+  criterion: "Нацеленность на повышение эффективности в работе",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_3.id
   left.title = "Лучшее - враг хорошего"
@@ -50,7 +53,8 @@ RightStatement.create! do |right|
 end
 ### 4 question ###
 q_4 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 4,
-  criterion: "Нацеленность на повышение эффективности в работе"
+  criterion: "Нацеленность на повышение эффективности в работе",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_4.id
   left.title = "Лучшее - враг хорошего"
@@ -63,7 +67,8 @@ RightStatement.create! do |right|
 end
 ### 5 question ###
 q_5 = Question.create! opinion_subject: "Я", audience: "management", number: 5,
-  criterion: "Увлеченность работой и профессией"
+  criterion: "Увлеченность работой и профессией",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_5.id
   left.title = "Ответственные подчиненные"
@@ -76,7 +81,8 @@ RightStatement.create! do |right|
 end
 ### 6 question ###
 q_6 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 6,
-  criterion: "Увлеченность работой и профессией"
+  criterion: "Увлеченность работой и профессией",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_6.id
   left.title = "Ответственные подчиненные"
@@ -89,7 +95,8 @@ RightStatement.create! do |right|
 end
 ### 7 question ###
 q_7 = Question.create! opinion_subject: "Я", audience: "management", number: 7,
-  criterion: "Вовлеченность в команду(потребность в принадлежности)"
+  criterion: "Вовлеченность в команду(потребность в принадлежности)",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_7.id
   left.title = "Индивидуальный игрок"
@@ -102,7 +109,8 @@ RightStatement.create! do |right|
 end
 ### 8 question ###
 q_8 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 8,
-  criterion: "Вовлеченность в команду(потребность в принадлежности)"
+  criterion: "Вовлеченность в команду(потребность в принадлежности)",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_8.id
   left.title = "Индивидуальный игрок"
@@ -115,7 +123,8 @@ RightStatement.create! do |right|
 end
 ### 9 question ###
 q_9 = Question.create! opinion_subject: "Я", audience: "management", number: 9,
-  criterion: "Доверие к руководству"
+  criterion: "Доверие к руководству",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_9.id
   left.title = "Трудно застать"
@@ -128,7 +137,8 @@ RightStatement.create! do |right|
 end
 ### 10 question ###
 q_10 = Question.create! opinion_subject: "Я", audience: "management", number: 10,
-  criterion: "Доверие к руководству"
+  criterion: "Доверие к руководству",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_10.id
   left.title = "Не понимаю"
@@ -141,7 +151,8 @@ RightStatement.create! do |right|
 end
 ### 11 question ###
 q_11 = Question.create! opinion_subject: "Я", audience: "management", number: 11,
-  criterion: "Доверие к руководству"
+  criterion: "Доверие к руководству",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_11.id
   left.title = "О деньгах, не о людях"
@@ -154,7 +165,8 @@ RightStatement.create! do |right|
 end
 ### 12 question ###
 q_12 = Question.create! opinion_subject: "Я", audience: "management", number: 12,
-  criterion: "Доверие к руководству"
+  criterion: "Доверие к руководству",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_12.id
   left.title = "Подчинение, но не уважение"
@@ -167,7 +179,8 @@ RightStatement.create! do |right|
 end
 ### 13 question ###
 q_13 = Question.create! opinion_subject: "Я", audience: "management", number: 13,
-  criterion: "Доверие к руководству"
+  criterion: "Доверие к руководству",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_13.id
   left.title = "Начальник"
@@ -180,7 +193,8 @@ RightStatement.create! do |right|
 end
 ### 14 question ###
 q_14 = Question.create! opinion_subject: "Я", audience: "management", number: 14,
-  criterion: "Понимание собственных полномочий(потребность в автономии)"
+  criterion: "Понимание собственных полномочий(потребность в автономии)",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_14.id
   left.title = "Работа как работа"
@@ -193,7 +207,8 @@ RightStatement.create! do |right|
 end
 ### 15 question ###
 q_15 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 15,
-  criterion: "Понимание собственных полномочий(потребность в автономии)"
+  criterion: "Понимание собственных полномочий(потребность в автономии)",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_15.id
   left.title = "Работа как работа"
@@ -206,7 +221,8 @@ RightStatement.create! do |right|
 end
 ### 16 question ###
 q_16 = Question.create! opinion_subject: "Я", audience: "management", number: 16,
-  criterion: "Субъективная клиенториентированность"
+  criterion: "Субъективная клиенториентированность",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_16.id
   left.title = "Мы не всемогущие!"
@@ -219,7 +235,8 @@ RightStatement.create! do |right|
 end
 ### 17 question ###
 q_17 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 17,
-  criterion: "Субъективная клиенториентированность"
+  criterion: "Субъективная клиенториентированность",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_17.id
   left.title = "Мы не всемогущие!"
@@ -232,7 +249,8 @@ RightStatement.create! do |right|
 end
 ### 18 question ###
 q_18 = Question.create! opinion_subject: "Я", audience: "management", number: 18,
-  criterion: "Брэнд работодателя"
+  criterion: "Брэнд работодателя",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_18.id
   left.title = "Не советую"
@@ -245,7 +263,8 @@ RightStatement.create! do |right|
 end
 ### 19 question ###
 q_19 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 19,
-  criterion: "Брэнд работодателя"
+  criterion: "Брэнд работодателя",
+  criterion_type: 'involvement'
 LeftStatement.create! do |left|
   left.question_id = q_19.id
   left.title = "Не советую"
@@ -258,7 +277,8 @@ RightStatement.create! do |right|
 end
 ### 20 question ###
 q_20 = Question.create! opinion_subject: "Я", audience: "management", number: 20,
-  criterion: "Удовлетворенность условиями труда"
+  criterion: "Удовлетворенность условиями труда",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_20.id
   left.title = "В условиях дефицита"
@@ -271,7 +291,8 @@ RightStatement.create! do |right|
 end
 ### 21 question ###
 q_21 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 21,
-  criterion: "Удовлетворенность условиями труда"
+  criterion: "Удовлетворенность условиями труда",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_21.id
   left.title = "В условиях дефицита"
@@ -284,7 +305,8 @@ RightStatement.create! do |right|
 end
 ### 22 question ###
 q_22 = Question.create! opinion_subject: "Я", audience: "management", number: 22,
-  criterion: "Удовлетворенность качеством коммуникаций(информированность)"
+  criterion: "Удовлетворенность качеством коммуникаций(информированность)",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_22.id
   left.title = "Неосведомленный"
@@ -297,7 +319,8 @@ RightStatement.create! do |right|
 end
 ### 23 question ###
 q_23 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 23,
-  criterion: "Удовлетворенность качеством коммуникаций(информированность)"
+  criterion: "Удовлетворенность качеством коммуникаций(информированность)",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_23.id
   left.title = "Неосведомленный"
@@ -310,7 +333,8 @@ RightStatement.create! do |right|
 end
 ### 24 question ###
 q_24 = Question.create! opinion_subject: "Я", audience: "management", number: 24,
-  criterion: "Удовлетворенность атмосферой в коллективе"
+  criterion: "Удовлетворенность атмосферой в коллективе",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_24.id
   left.title = "Прохладная обстановка"
@@ -323,7 +347,8 @@ RightStatement.create! do |right|
 end
 ### 25 question ###
 q_25 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 25,
-  criterion: "Удовлетворенность атмосферой в коллективе"
+  criterion: "Удовлетворенность атмосферой в коллективе",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_25.id
   left.title = "Прохладная обстановка"
@@ -336,7 +361,8 @@ RightStatement.create! do |right|
 end
 ### 26 question ###
 q_26 = Question.create! opinion_subject: "Я", audience: "management", number: 26,
-  criterion: "Удовлетворенность потребности в компетентности"
+  criterion: "Удовлетворенность потребности в компетентности",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_26.id
   left.title = "Непризнанный"
@@ -349,7 +375,8 @@ RightStatement.create! do |right|
 end
 ### 27 question ###
 q_27 = Question.create! opinion_subject: "Мои коллеги", audience: "management", number: 27,
-  criterion: "Удовлетворенность потребности в компетентности"
+  criterion: "Удовлетворенность потребности в компетентности",
+  criterion_type: 'satisfaction'
 LeftStatement.create! do |left|
   left.question_id = q_27.id
   left.title = "Непризнанный"
@@ -454,6 +481,7 @@ user_agreements = ["я не согласен со своим результат�
       s.user_agreement = user_agreements[rand(3)]
       s.user_email = "#{login}@email.com"
       s.completed = true
+      s.audience = user.audience
     end
 
     (1..29).each do |n|
