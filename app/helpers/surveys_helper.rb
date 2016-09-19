@@ -14,4 +14,14 @@ module SurveysHelper
       <p>С чем согласится большинство Ваших коллег?</p>"
     end.html_safe
   end
+
+  def answer_assessment_me(survey, question_number)
+    question = Question.find(question_number)
+    question.opinion_subject == "Я" ? survey.answer_for(question_number) : nil
+  end
+
+  def answer_assessment_my_colleagues(survey, question_number)
+    question = Question.find(question_number)
+    question.opinion_subject == "Мои коллеги" ? survey.answer_for(question_number) : nil
+  end
 end

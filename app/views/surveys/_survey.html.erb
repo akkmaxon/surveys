@@ -21,10 +21,22 @@
 	  <td><%= @counter += 1 %></td>
 	  <td><%= criterion %></td>
 	  <td><%= question_numbers.join(', ') %></td>
-	  <% question_numbers.each do |q| %>
-	    <td><%= survey.answer_for(q) %></td>
-	  <% end %>
-	  <td><%= survey.sum_of(question_numbers)%></td>
+	  <td>
+	    <% ### Я %>
+	    <% question_numbers.each do |q| %>
+	      <%= answer_assessment_me(survey, q) %>
+	    <% end %>
+	  </td>
+	  <td>
+	    <% ### Мои коллеги %>
+	    <% question_numbers.each do |q| %>
+	      <%= answer_assessment_my_colleagues(survey, q) %>
+	    <% end %>
+	  </td>
+	  <td>
+	    <% ### total %>
+	    <%= survey.sum_of(question_numbers)%>
+	  </td>
 	</tr>
       <% end %>
       <% unless summary.blank? %>
