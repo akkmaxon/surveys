@@ -39,7 +39,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
 	expect(page).to have_selector('.header')
 	expect(page).to have_selector('.table')
 	expect(page).to have_selector('.charts')
-	expect(page).not_to have_selector('#email_field')
+	expect(page).to have_selector('#email_field')
 	within('#agreement') do
 	  expect(page).to have_selector("input[type='radio']", count: 3)
 	end

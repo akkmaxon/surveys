@@ -40,3 +40,4 @@ document.addEventListener "turbolinks:load", () ->
   # after survey
   $(".edit_survey input[type='radio']").on "change", () ->
     $("#submit_agreement").click()
+    $("#agreement").slideUp(300)

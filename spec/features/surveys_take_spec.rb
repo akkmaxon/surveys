@@ -83,16 +83,6 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       expect(user.surveys.first.responses.last.answer).to eq 'answer sentence'
     end
 
-    it 'redirect to survey after' do
-      take_a_survey
-      find('#finish_survey').trigger 'click'
-      user.reload
-      expect(page.current_path).to eq survey_path(id: user.surveys.first.id)
-      within '#messages .alert-success' do
-	expect(page).to have_content "Опрос завершен."
-      end
-    end
-
     it 'Survey is not reliable' do
       find('#question_1_answer_4').trigger 'click'
       find('#question_28_answer_5').trigger 'click'
@@ -107,35 +97,34 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       expect(user.surveys.count).to eq 0
     end
 
-    context 'completion of a survey' do
-      # user is manager
-      it 'completed' do
-	take_a_survey
-	find('#finish_survey').trigger 'click'
-	sleep 1
-	click_link 'new_survey_link'
-	user.reload
-	expect(user.surveys.count).to eq 2
-      end
+    it 'completed' do
+      expect(user.surveys.count).to eq 1
+      expect(user.surveys.last).not_to be_completed
+      take_a_survey
+      find('#finish_survey').trigger 'click'
+      sleep 1
+      user.reload
+      expect(user.surveys.count).to eq 1
+      expect(user.surveys.last).to be_completed
+    end
 
-      it 'completed if present questions for other audience' do
-	question_3 = FactoryGirl.create :question, number: 202, audience: 'working_staff', sentence: Faker::Lorem.sentence
-	take_a_survey
-	find('#finish_survey').trigger 'click'
-	sleep 1
-	click_link 'new_survey_link'
-	user.reload
-	expect(user.surveys.count).to eq 2
-      end
+    it 'completed if present questions for other audience' do
+      question_3 = FactoryGirl.create :question, number: 202, audience: 'working_staff', sentence: Faker::Lorem.sentence
+      take_a_survey
+      find('#finish_survey').trigger 'click'
+      sleep 1
+      user.reload
+      expect(user.surveys.count).to eq 1
+      expect(user.surveys.last).to be_completed
+    end
 
-      it 'not completed because one more question is present' do
-	question_3 = FactoryGirl.create :question, audience: 'management', sentence: Faker::Lorem.sentence
-	take_a_survey
-	expect(page).not_to have_selector('#finish_survey')
-	user.reload
-	expect(user.surveys.count).to eq 1
-	expect(user.surveys.last).not_to be_completed
-      end
+    it 'not completed because one more question is present' do
+      question_3 = FactoryGirl.create :question, audience: 'management', sentence: Faker::Lorem.sentence
+      take_a_survey
+      expect(page).not_to have_selector('#finish_survey')
+      user.reload
+      expect(user.surveys.count).to eq 1
+      expect(user.surveys.last).not_to be_completed
     end
   end
 end

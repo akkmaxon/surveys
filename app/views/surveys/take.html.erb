@@ -74,7 +74,7 @@
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
 	    <div class="input-group">
-	      <%= f.text_field :answer, id: "question_#{question.number}_answer", class: 'form-control' %>
+	      <%= f.text_field :answer, id: "question_#{question.number}_answer", class: "form-control" %>
 	      <span class="input-group-btn">
 		<%= f.submit "Ответить", class: "btn btn-default submit_questions_2" %>
 	      </span>

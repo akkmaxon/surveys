@@ -67,12 +67,10 @@ module TestHelpers
   def init_data
     let(:user) { FactoryGirl.create :user }
     let!(:info) { FactoryGirl.create :info, user: user }
-
+    ### 1st questions
     let!(:question_1) { FactoryGirl.create :question, number: 1 }
     let!(:left_st_for_q_1) { FactoryGirl.create :left_statement, title: '1left', question: question_1 }
     let!(:right_st_for_q_1) { FactoryGirl.create :right_statement, title: '1right', question: question_1 }
-
-    let!(:question_2) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence }
 
     let!(:question_28) { FactoryGirl.create :question, number: 28 }
     let!(:left_st_for_q_28) { FactoryGirl.create :left_statement, title: '28left', question: question_28 }
@@ -81,6 +79,8 @@ module TestHelpers
     let!(:question_29) { FactoryGirl.create :question, number: 29 }
     let!(:left_st_for_q_29) { FactoryGirl.create :left_statement, title: '29left', question: question_29 }
     let!(:right_st_for_q_29) { FactoryGirl.create :right_statement, title: '29right', question: question_29 }
+    ### 2nd question
+    let!(:question_2) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence }
   end
 
   def take_a_survey
