@@ -38,6 +38,9 @@ document.addEventListener "turbolinks:load", () ->
     submitButton.click()
 
   # after survey
-  $(".edit_survey input[type='radio']").on "change", () ->
+  $("#agreement input[type='radio']").on "change", () ->
     $("#submit_agreement").click()
     $("#agreement").slideUp(300)
+
+  $("#email_field .edit_survey").on "ajax:success", (e, data, status, xhr) ->
+    $("#email_field").slideUp(300)

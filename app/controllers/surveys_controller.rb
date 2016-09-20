@@ -38,8 +38,8 @@ class SurveysController < ApplicationController
 	redirect_to root_path
       end
     end
-    if surveys_params.key?(:user_email)
-      redirect_to surveys_url
+    if surveys_params.key?(:user_email) or surveys_params.key?(:user_agreement)
+      render plain: 'OK'
     end
   end
 

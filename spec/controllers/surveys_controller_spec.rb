@@ -109,7 +109,8 @@ RSpec.describe SurveysController, type: :controller do
 
     it 'with redirect to surveys' do
       put :update, params: { id: survey.id, survey: { user_email: 'my@email.com' } }
-      expect(response).to redirect_to(:surveys)
+      expect(response).to have_http_status(:success)
+      expect(response).to_not redirect_to(:surveys)
     end
 
     it 'redirect to sign in' do
