@@ -13,7 +13,7 @@
     <div class="panel panel-default masonry_element user">
       <div class="panel-body">
 	<div class="buttons pull-right">
-	  <%= link_to coordinator_user_surveys_path(user), class: 'btn btn-primary show_surveys' do %>
+	  <%= link_to coordinator_user_surveys_path(user), class: 'btn btn-primary show_surveys', title: "Опросы" do %>
 	    <span class="glyphicon glyphicon-list-alt"></span>
 	    <span class="badge">
 	      <%= user.surveys.count %>

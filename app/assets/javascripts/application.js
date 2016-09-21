@@ -33,10 +33,11 @@ var resizeMasonryElements = function() {
 }
 
 document.addEventListener("turbolinks:load", function() {
+  $('[title]').tooltip({ placement: 'top' });
   resizeMasonryElements()
   hideMessages = function() {
-    $('#messages .alert').hide(300)
-    $('#error_explanation').hide(300)
+    $('#messages .alert').slideUp(300)
+    $('#error_explanation').slideUp(300)
   }
   setTimeout(hideMessages, 2000)
 

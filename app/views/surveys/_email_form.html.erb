@@ -5,7 +5,7 @@
   <div class="panel-body">
     <%= form_for @survey, remote: true do |f| %>
       <div class="input-group">
-	<%= f.email_field :user_email, class: 'form-control', id: 'survey_user_email' %>
+	<%= f.email_field :user_email, class: 'form-control', id: 'survey_user_email', required: 'required' %>
 	<span class="input-group-btn">
 	  <%= f.submit "Оставить почту", class: 'btn btn-default', id: 'leave_email' %>
 	</span>

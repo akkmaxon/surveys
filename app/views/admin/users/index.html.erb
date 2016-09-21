@@ -3,7 +3,7 @@
 
   <div id="manage_bar" class="row">
     <div class="col-md-4">
-      <%= render_user %>
+      <%= render_person('user_credentials') %>
     </div>
     <div class="col-md-4">
       <input id="search_users" type="text" placeholder="Поиск"></input>
@@ -44,7 +44,7 @@
     <div class="panel panel-default masonry_element user">
       <div class="panel-body">
 	<div class="buttons pull-right">
-	  <a class="edit_user_link btn btn-info btn-sm" data-toggle="modal" data-target="#edit_user_<%= user.id %>_modal">
+	  <a class="edit_user_link btn btn-info btn-sm" data-toggle="modal" data-target="#edit_user_<%= user.id %>_modal" title="Изменить логин/пароль">
 	    <span class="glyphicon glyphicon-pencil"></span>
 	  </a>
 	</div>
