@@ -1,2 +1,92 @@
-<div class="charts">
+<div class="bar_chart">
+  <canvas id="chart"></canvas>
+  <script>
+    document.addEventListener("turbolinks:load", function() {
+      var criteria = [];
+      var meData = [];
+      var colleaguesData = [];
+      var totalData = [];
+
+      <% [@involvement_criteria, @satisfaction_criteria, @last_criteria].each do |criteria| %>
+	<% criteria.each do |criterion, numbers| %>
+	 <% me_sum = colleagues_sum = total_sum = 0 %>
+         <% numbers.each do |q| %>
+           <% me_sum += answer_assessment_me(survey, q).to_i %>
+	   <% colleagues_sum += answer_assessment_my_colleagues(survey, q).to_i %>
+	   <% total_sum = me_sum + colleagues_sum %>
+	 <% end %>
+	 criteria.push("<%= criterion %>");
+	 meData.push("<%= me_sum %>");
+	 colleaguesData.push("<%= colleagues_sum %>");
+	 totalData.push("<%= total_sum %>");
+	<% end %>
+      <% end %>
+
+      var data = {
+	labels: criteria,
+	datasets: [{
+	  label: "Я",
+	  backgroundColor: "darkred",
+	  data: meData
+	}, {
+	  label: "Мои коллеги",
+	  backgroundColor: "darkgreen",
+	  data: colleaguesData
+	}, {
+	  label: "Общий балл",
+	  backgroundColor: "darkblue",
+	  data: totalData
+	}]
+      };
+
+      var ctx = document.getElementById('chart');
+      var myChart = new Chart(ctx, {
+	type: 'horizontalBar',
+	data: data,
+	options: {
+	  title: {
+	    display: true,
+	    text: "Здесь будет заголовок графика ..."
+	  },
+	  scales: {
+	    xAxes: [{
+	      ticks: {
+		stepSize: 1,
+		beginAtZero: true
+	      }
+	    }],
+	    yAxes: [{
+	      display: true
+	    }]
+	  }
+	}
+      });
+      var ctx2 = document.getElementById('chart2');
+      var myChart2 = new Chart(ctx2, {
+	type: 'bar',
+	data: data,
+	options: {
+	  title: {
+	    display: true,
+	    text: "Здесь будет заголовок графика ..."
+	  },
+	  scales: {
+	    yAxes: [{
+	      ticks: {
+		stepSize: 1,
+		beginAtZero: true
+	      }
+	    }],
+	    xAxes: [{
+	      display: false
+	    }]
+	  }
+	}
+      });
+    });
+  </script>
+</div>
+
+<div class="point_chart">
+  <canvas id="chart2"></canvas>
 </div>
