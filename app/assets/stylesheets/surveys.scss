@@ -1,10 +1,11 @@
 @import 'bootstrap';
 
-#accordion a {
-  margin-top: -7px;
+#survey_take_container {
+  padding: 40px 20px;
 }
 
 table {
+  background-color: #fff !important;
   th {
     text-align: center;
   }
@@ -79,6 +80,7 @@ table {
 }
 
 .bar_chart, .point_chart {
+  background-color: #fff;
   margin-top: 20px;
   width: 100%;
   border: 1px solid #ddd;

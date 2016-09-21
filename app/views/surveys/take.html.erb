@@ -1,96 +1,99 @@
 <div class="container">
   <h1 class="header">Опрос для <%= current_user.login %></h1>
 
-  <div class="progress">
-    <% initial_value = "0/#{@sum_of_questions}" %>
-    <div class="progress-bar" id="<%= initial_value %>">
-      <%= initial_value %>
-    </div>
-  </div>
+  <div class="panel panel-default" id="survey_take_container">
+    <div class="panel-body">
+      <div class="progress">
+	<% initial_value = "0/#{@sum_of_questions}" %>
+	<div class="progress-bar" id="<%= initial_value %>">
+	  <%= initial_value %>
+	</div>
+      </div>
 
-  <div id="first_questions">
-    <div class="specifying_question">
-      <h2><strong>Задание 1.</strong></h2>
-      <p>Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.</p>
-      <p>Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).</p>
-    </div>
-    <table class="table">
-      <tbody class="container">
-	<% @first_questions.each_with_index do |question, n| %>
-	  <tr class="response row <%= n == 0 ? '' : 'hidden_question' %>">
-	    <td class="left col-xs-2 col-md-4">
-	      <% unless question.left_statement.title.blank? %>
-		<strong>"<%= question.left_statement.title %>"</strong><br />
-	      <% end %>
-	      <%= question.left_statement.text %>
-	    </td>
-	    <td class="table_radio text-center col-xs-8 col-md-4">
-	      <%= text_for_subject(question.opinion_subject) %>
-	      <%= form_for Response.new, remote: true do |f| %>
-		<%= hidden_field_tag :survey_id, @survey.id %>
-		<%= f.hidden_field :question_number, value: question.number %>
-		<div data-toggle="buttons">
-		  <label class="btn btn-primary btn-lg">
-		    <%= f.radio_button :answer, 1, id: "question_#{question.number}_answer_1", class: "r_#{question.number}" %>1
-		  </label>
-		  <label class="btn btn-primary">
-		    <%= f.radio_button :answer, 2, id: "question_#{question.number}_answer_2", class: "r_#{question.number}"  %>2
-		  </label>
-		  <label class="btn btn-primary btn-sm">
-		    <%= f.radio_button :answer, 3, id: "question_#{question.number}_answer_3", class: "r_#{question.number}"  %>3
-		  </label>
-		  <label class="btn btn-primary">
-		    <%= f.radio_button :answer, 4, id: "question_#{question.number}_answer_4", class: "r_#{question.number}"  %>4
-		  </label>
-		  <label class="btn btn-primary btn-lg">
-		    <%= f.radio_button :answer, 5, id: "question_#{question.number}_answer_5", class: "r_#{question.number}"  %>5
-		  </label>
-		</div>
-		<%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.number}" %>
-	      <% end %>
-	    </td>
-	    <td class="right col-xs-2 col-md-4">
-	      <% unless question.right_statement.title.blank? %>
-		<strong>"<%= question.right_statement.title %>"</strong><br />
-	      <% end %>
-	      <%= question.right_statement.text %>
-	    </td>
-	  </tr>
+      <div id="first_questions">
+	<div class="specifying_question">
+	  <h2><strong>Задание 1.</strong></h2>
+	  <p>Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.</p>
+	  <p>Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).</p>
+	</div>
+	<table class="table">
+	  <tbody class="container">
+	    <% @first_questions.each_with_index do |question, n| %>
+	      <tr class="response row <%= n == 0 ? '' : 'hidden_question' %>">
+		<td class="left col-xs-2 col-md-4">
+		  <% unless question.left_statement.title.blank? %>
+		    <strong>"<%= question.left_statement.title %>"</strong><br />
+		  <% end %>
+		  <%= question.left_statement.text %>
+		</td>
+		<td class="table_radio text-center col-xs-8 col-md-4">
+		  <%= text_for_subject(question.opinion_subject) %>
+		  <%= form_for Response.new, remote: true do |f| %>
+		    <%= hidden_field_tag :survey_id, @survey.id %>
+		    <%= f.hidden_field :question_number, value: question.number %>
+		    <div data-toggle="buttons">
+		      <label class="btn btn-primary btn-lg">
+			<%= f.radio_button :answer, 1, id: "question_#{question.number}_answer_1", class: "r_#{question.number}" %>1
+		      </label>
+		      <label class="btn btn-primary">
+			<%= f.radio_button :answer, 2, id: "question_#{question.number}_answer_2", class: "r_#{question.number}"  %>2
+		      </label>
+		      <label class="btn btn-primary btn-sm">
+			<%= f.radio_button :answer, 3, id: "question_#{question.number}_answer_3", class: "r_#{question.number}"  %>3
+		      </label>
+		      <label class="btn btn-primary">
+			<%= f.radio_button :answer, 4, id: "question_#{question.number}_answer_4", class: "r_#{question.number}"  %>4
+		      </label>
+		      <label class="btn btn-primary btn-lg">
+			<%= f.radio_button :answer, 5, id: "question_#{question.number}_answer_5", class: "r_#{question.number}"  %>5
+		      </label>
+		    </div>
+		    <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.number}" %>
+		  <% end %>
+		</td>
+		<td class="right col-xs-2 col-md-4">
+		  <% unless question.right_statement.title.blank? %>
+		    <strong>"<%= question.right_statement.title %>"</strong><br />
+		  <% end %>
+		  <%= question.right_statement.text %>
+		</td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+      </div>
+
+      <div id="second_questions">
+	<div class="specifying_question">
+	  <h2><strong>Задание 2.</strong></h2>
+	  <p>Закончите следующие предложения:</p>
+	</div>
+	<hr style="border-top: 1px solid #dadada; margin-top: 10px; margin-bottom: 10px">
+	<% @second_questions.each_with_index do |question, n| %>
+	  <div class="response <%= n == 0 ? '' : 'hidden_question' %>">
+	    <blockquote><%= question.sentence %></blockquote>
+	    <%= form_for Response.new, remote: true do |f| %>
+	      <%= hidden_field_tag :survey_id, @survey.id %>
+	      <%= f.hidden_field :question_number, value: question.number %>
+	      <div class="input-group">
+		<%= f.text_field :answer, id: "question_#{question.number}_answer", class: "form-control" %>
+		<span class="input-group-btn">
+		  <%= f.submit "Ответить", class: "btn btn-default submit_questions_2" %>
+		</span>
+	      </div>
+	    <% end %>
+	  </div>
 	<% end %>
-      </tbody>
-    </table>
-  </div>
+      </div>
 
-  <div id="second_questions">
-    <div class="specifying_question">
-      <h2><strong>Задание 2.</strong></h2>
-      <p>Закончите следующие предложения:</p>
-    </div>
-    <% @second_questions.each_with_index do |question, n| %>
-      <div class="panel panel-default response <%= n == 0 ? '' : 'hidden_question' %>">
-	<div class="panel-body">
-	  <blockquote><%= question.sentence %></blockquote>
-	  <%= form_for Response.new, remote: true do |f| %>
-	    <%= hidden_field_tag :survey_id, @survey.id %>
-	    <%= f.hidden_field :question_number, value: question.number %>
-	    <div class="input-group">
-	      <%= f.text_field :answer, id: "question_#{question.number}_answer", class: "form-control" %>
-	      <span class="input-group-btn">
-		<%= f.submit "Ответить", class: "btn btn-default submit_questions_2" %>
-	      </span>
-	    </div>
+      <div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	  <%= form_for @survey do |f| %>
+	    <%= f.hidden_field :completed, value: true %>
+	    <%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
 	  <% end %>
 	</div>
       </div>
-    <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for @survey do |f| %>
-	<%= f.hidden_field :completed, value: true %>
-	<%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
-      <% end %>
     </div>
   </div>
 </div>
