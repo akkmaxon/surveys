@@ -4,7 +4,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
   context 'User load surveys/show manually' do
     let(:user) { FactoryGirl.create :user }
     let!(:info) { FactoryGirl.create :info, user: user }
-    let!(:survey) { FactoryGirl.create :survey, user: user }
+    let!(:survey) { FactoryGirl.create :survey, user: user, completed: true }
 
     describe 'impossible for' do
       after do
@@ -58,6 +58,8 @@ RSpec.describe 'Work with surveys/show', type: :feature do
 	expect(page.current_path).to eq survey_path(survey)
 	expect(page).to have_selector 'table'
 	expect(page).not_to have_selector('#agreement')
+	visit survey_path(survey)
+	expect(page).not_to have_selector('#agreement')
       end
 
       it 'User fill in an email form' do
@@ -68,6 +70,8 @@ RSpec.describe 'Work with surveys/show', type: :feature do
 	expect(survey.user_email).to eq('my@email.com')
 	expect(page.current_path).to eq survey_path(survey)
 	expect(page).to have_selector 'table'
+	expect(page).not_to have_selector('#email_field')
+	visit survey_path(survey)
 	expect(page).not_to have_selector('#email_field')
       end
 

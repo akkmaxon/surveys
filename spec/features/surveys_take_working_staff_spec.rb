@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Work with surveys/take', type: :feature do
-  init_data
+RSpec.describe 'Working staff take a survey', type: :feature do
+  init_data # 3/3 1q and 1/1 2q for management/working_staff
+  let!(:survey) { FactoryGirl.create :survey, user: user }
   
   describe 'impossible for' do
-    let(:survey) { FactoryGirl.create :survey, user: user }
 
     after do
       expect(page.current_path).to eq new_user_session_path
@@ -28,8 +28,9 @@ RSpec.describe 'Work with surveys/take', type: :feature do
     end
   end
 
-  describe 'when user is signed in' do
+  describe 'when signed in' do
     before do
+      info.update work_position: "рабочая должность"
       sign_in user
       visit root_path
       click_link 'new_survey_link'
@@ -61,7 +62,6 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       find('#question_29_answer_2').trigger 'click'
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#second_questions'
-      expect(page).to have_content question_2.sentence
       expect(page).not_to have_selector '#finish_survey'
       user.reload
       expect(user.surveys.first.responses.count).to eq 3
@@ -83,11 +83,11 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       expect(user.surveys.first.responses.last.answer).to eq 'answer sentence'
     end
 
-    it 'Survey is not reliable' do
+    it 'and survey is not reliable' do
       find('#question_1_answer_4').trigger 'click'
       find('#question_28_answer_5').trigger 'click'
       find('#question_29_answer_5').trigger 'click'
-      fill_in 'question_201_answer', with: 'answer sentence'
+      fill_in id: 'question_201_answer', with: 'answer sentence'
       find('.submit_questions_2').trigger 'click'
       find('#finish_survey').trigger 'click'
       user.reload
@@ -97,19 +97,9 @@ RSpec.describe 'Work with surveys/take', type: :feature do
       expect(user.surveys.count).to eq 0
     end
 
-    it 'completed' do
+    it 'and survey completed' do
       expect(user.surveys.count).to eq 1
       expect(user.surveys.last).not_to be_completed
-      take_a_survey
-      find('#finish_survey').trigger 'click'
-      sleep 1
-      user.reload
-      expect(user.surveys.count).to eq 1
-      expect(user.surveys.last).to be_completed
-    end
-
-    it 'completed if present questions for other audience' do
-      question_3 = FactoryGirl.create :question, number: 202, audience: 'working_staff', sentence: Faker::Lorem.sentence
       take_a_survey
       find('#finish_survey').trigger 'click'
       sleep 1
