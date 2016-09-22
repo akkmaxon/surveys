@@ -2,7 +2,6 @@ FactoryGirl.define do
   factory :user do
     sequence(:login) { |n| "login#{n}" }
     password "password"
-    decrypted_password "password"
   end
 
   factory :admin do

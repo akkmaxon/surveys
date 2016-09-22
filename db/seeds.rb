@@ -442,8 +442,7 @@ Question.create! opinion_subject: "Я", audience: "management", number: 206,
 
 ### Users ###
 newuser = User.create! login: 'newuser',
-  password: 'password',
-  decrypted_password: 'password'
+  password: 'password'
 admin = Admin.create! login: 'admin',
   email: 'admin@email.com',
   password: 'password'
@@ -461,8 +460,7 @@ user_agreements = ["я не согласен со своим результат�
 20.times do
   login = User.find_by(login: 'user').nil? ? 'user' : Faker::Internet.user_name
   user = User.create! login: login,
-    password: 'password',
-    decrypted_password: 'password'
+    password: 'password'
 
   Info.create! do |i|
     i.gender = genders[rand(2)]

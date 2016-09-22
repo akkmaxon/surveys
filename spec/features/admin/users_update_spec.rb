@@ -17,6 +17,7 @@ RSpec.describe 'Admin can update users', type: :feature do
 
     it 'manually login' do
       fill_in 'user_login', with: 'newlogin'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Респондент изменен."
@@ -28,6 +29,7 @@ RSpec.describe 'Admin can update users', type: :feature do
 
     it 'generate login' do
       find('.generate_login').trigger 'click'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       sleep 1
       within '#messages .alert-success' do
@@ -40,9 +42,6 @@ RSpec.describe 'Admin can update users', type: :feature do
       click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Респондент изменен."
-      end
-      within '#user_credentials' do
-	expect(page).to have_content "Пароль: newpassword"
       end
     end
 
@@ -62,12 +61,14 @@ RSpec.describe 'Admin can update users', type: :feature do
 
     it 'empty login' do
       fill_in 'user_login', with: ""
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       expect(page).to have_selector '.modal.fade.in'
     end
 
     it 'too long login' do
       fill_in 'user_login', with: "a" * 65
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       within '#error_explanation' do
 	expect(page).to have_content "Вы должны выбрать более короткий логин"
@@ -77,6 +78,7 @@ RSpec.describe 'Admin can update users', type: :feature do
     it 'with taken login' do
       FactoryGirl.create :user, login: 'takenlogin'
       fill_in 'user_login', with: 'takenlogin'
+      find('.generate_password').trigger 'click'
       click_button "Подтвердить"
       within '#error_explanation' do
 	expect(page).to have_content "Вы должны выбрать другой логин"

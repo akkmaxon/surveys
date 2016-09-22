@@ -8,7 +8,6 @@ class Admin::UsersController < Admin::ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.update_decrypted_password(params[:user][:password])
       session[:user_credentials] = user_params
       flash[:notice] = "Респондент создан."
       redirect_back(fallback_location: admin_companies_url)
@@ -20,7 +19,6 @@ class Admin::UsersController < Admin::ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      @user.update_decrypted_password(params[:user][:password])
       session[:user_credentials] = user_params
       flash[:notice] = "Респондент изменен."
       redirect_back(fallback_location: admin_companies_url)

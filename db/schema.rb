@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(version: 20160919095653) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.string   "decrypted_password"
     t.index ["login"], name: "index_users_on_login", unique: true, using: :btree
   end
 

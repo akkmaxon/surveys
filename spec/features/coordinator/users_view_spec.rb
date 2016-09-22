@@ -48,7 +48,6 @@ RSpec.describe 'Coordinator can view all users', type: :feature do
       expect(page).to have_selector '.user', count: 3
       expect(page).to have_selector 'a.show_surveys', count: 3
       expect(page).to have_content "Логин:", count: 3
-      expect(page).to have_content "Пароль:", count: 3
     end
   end
 end

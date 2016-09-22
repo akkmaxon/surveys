@@ -36,7 +36,6 @@ RSpec.describe 'Admin can create users', type: :feature do
 	expect(page).to have_content "Пароль: pAssw0rd"
       end
       expect(User.first.login).to eq 'user123'
-      expect(User.first.decrypted_password).to eq 'pAssw0rd'
     end
 
     it 'generate login' do
@@ -46,7 +45,6 @@ RSpec.describe 'Admin can create users', type: :feature do
       within '#user_credentials' do
 	expect(page).to have_content "Пароль: pAssw0rd"
       end
-      expect(User.first.decrypted_password).to eq 'pAssw0rd'
     end
 
     it 'generate password' do
