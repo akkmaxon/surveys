@@ -13,17 +13,11 @@ RSpec.describe 'Authentication for admin', type: :feature do
     end
 
     it 'login' do
-      within '#messages .alert-success' do
-	expect(page).to have_content "Вход в систему осуществлен"
-      end
       expect(page.current_path).to eq admin_root_path
     end
 
     it 'logout' do
       click_link "Выход"
-      within '#messages .alert-success' do
-	expect(page).to have_content "Выход из системы осуществлен"
-      end
       expect(page.current_path).to eq root_path
     end
   end

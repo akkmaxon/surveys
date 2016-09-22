@@ -13,7 +13,7 @@ class Admin::CompaniesController < Admin::ApplicationController
     else
       flash[:alert] = "Для добавления компании укажите ее имя."
     end
-    redirect_back(fallback_location: admin_companies_url)
+    redirect_to admin_companies_url
   end
 
   def update
@@ -22,13 +22,13 @@ class Admin::CompaniesController < Admin::ApplicationController
     else
       flash[:alert] = "Необходимо указать новое имя компании."
     end
-    redirect_back(fallback_location: admin_companies_url)
+    redirect_to admin_companies_url
   end
 
   def destroy
     @company.destroy
     flash[:notice] = "Компания удалена."
-    redirect_back(fallback_location: admin_companies_url)
+    redirect_to admin_companies_url
   end
 
   private

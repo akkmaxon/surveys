@@ -41,10 +41,5 @@ RSpec.describe 'Coordinator visit dashboard page', type: :feature do
       end
       expect(page.current_path).to eq coordinator_root_path
     end
-
-    it 'sign out after' do
-      click_link "Выход"
-      expect(page).to have_content "Выход из системы осуществлен"
-    end
   end
 end

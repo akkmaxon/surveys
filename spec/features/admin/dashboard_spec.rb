@@ -38,10 +38,5 @@ RSpec.describe 'Dashboard page', type: :feature do
       expect(page).not_to have_content "Завершенные опросы"
       expect(page.current_path).to eq admin_root_path
     end
-
-    it 'sign out after' do
-      click_link "Выход"
-      expect(page).to have_content "Выход из системы осуществлен"
-    end
   end
 end

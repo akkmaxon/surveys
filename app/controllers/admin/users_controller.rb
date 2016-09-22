@@ -10,7 +10,7 @@ class Admin::UsersController < Admin::ApplicationController
     if @user.save
       session[:user_credentials] = user_params
       flash[:notice] = "Респондент создан."
-      redirect_back(fallback_location: admin_companies_url)
+      redirect_to admin_users_url
     else
       render :index
     end
@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::ApplicationController
     if @user.update(user_params)
       session[:user_credentials] = user_params
       flash[:notice] = "Респондент изменен."
-      redirect_back(fallback_location: admin_companies_url)
+      redirect_to admin_users_url
     else
       @user.reload
       render :index

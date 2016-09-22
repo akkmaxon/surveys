@@ -12,7 +12,7 @@ class Admin::CoordinatorsController < Admin::ApplicationController
     if @coordinator.save
       session[:coordinator_credentials] = coordinator_params
       flash[:notice] = "Координатор создан."
-      redirect_back(fallback_location: admin_companies_url)
+      redirect_to admin_coordinators_url
     else
       render :index
     end
@@ -22,7 +22,7 @@ class Admin::CoordinatorsController < Admin::ApplicationController
     if @coordinator.update(coordinator_params)
       session[:coordinator_credentials] = coordinator_params
       flash[:notice] = "Координатор изменен."
-      redirect_back(fallback_location: admin_companies_url)
+      redirect_to admin_coordinators_url
     else
       render :index
     end
@@ -31,7 +31,7 @@ class Admin::CoordinatorsController < Admin::ApplicationController
   def destroy
     @coordinator.destroy
     flash[:notice] = "Координатор удален."
-    redirect_back(fallback_location: admin_companies_url)
+    redirect_to admin_coordinators_url
   end
 
   private

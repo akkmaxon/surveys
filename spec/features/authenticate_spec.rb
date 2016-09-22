@@ -49,9 +49,6 @@ RSpec.describe 'Authentication for User', type: :feature do
       fill_in "Логин", with: user.login
       fill_in "Пароль", with: user.password
       click_button "Войти"
-      within '#messages .alert-success' do
-	expect(page).to have_content "Вход в систему осуществлен."
-      end
       expect(page.current_path).to eq surveys_path
     end
 
@@ -61,9 +58,6 @@ RSpec.describe 'Authentication for User', type: :feature do
       fill_in "Пароль", with: user.password
       click_button "Войти"
       click_link "Выход"
-      within '#messages .alert-success' do
-	expect(page).to have_content "Выход из системы осуществлен."
-      end
       expect(page.current_path).to eq root_path
     end
   end

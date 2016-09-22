@@ -3,6 +3,7 @@
 
   <div id="manage_bar" class="row">
     <div class="col-md-4">
+      <%= error_explanation_for @user %>
       <%= render_person('user_credentials') %>
     </div>
     <div class="col-md-4">
@@ -18,8 +19,6 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <%= error_explanation_for @user %>
-
       <div id="new_user_modal" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">

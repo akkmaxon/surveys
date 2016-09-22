@@ -14,7 +14,7 @@ class Admin::QuestionsController < Admin::ApplicationController
 	RightStatement.create(right_statement_params)
       end
       flash[:notice] = "Вопрос создан."
-      redirect_back(fallback_location: admin_questions_path)
+      redirect_to admin_questions_path
     else
       render :index
     end
@@ -27,7 +27,7 @@ class Admin::QuestionsController < Admin::ApplicationController
 	@question.right_statement.update(right_statement_params)
       end
       flash[:notice] = "Вопрос обновлен."
-      redirect_back(fallback_location: admin_questions_path)
+      redirect_to admin_questions_path
     else
       render :index
     end
@@ -36,7 +36,7 @@ class Admin::QuestionsController < Admin::ApplicationController
   def destroy
     @question.destroy
     flash[:notice] = "Вопрос удален."
-    redirect_back(fallback_location: admin_questions_path)
+    redirect_to admin_questions_path
   end
 
   private

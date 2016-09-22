@@ -22,12 +22,16 @@ module ApplicationHelper
   def error_explanation_for(object)
     if object.errors.any?
       head = <<-EOF
-    <div id="error_explanation">
-      <h2>Будьте внимательнее, Вы допустили несколько ошибок:</h2>
-      <ul>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+	<h2 class="h4">Допущенные ошибки:</h2>
+      </div>
+      <div class="panel-body">
+	<ul>
       EOF
       foot = <<-EOF
-      </ul>
+	</ul>
+      </div>
     </div>
       EOF
       middle = object.errors.full_messages.inject("") do |m, error|
