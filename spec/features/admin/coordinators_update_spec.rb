@@ -57,7 +57,7 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
       fill_in 'coordinator_login', with: "a" * 65
       find('.generate_password').trigger 'click'
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "Вы должны выбрать более короткий логин"
       end
     end
@@ -67,7 +67,7 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
       fill_in 'coordinator_login', with: 'takenlogin'
       find('.generate_password').trigger 'click'
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "Вы должны выбрать другой логин"
       end
     end
@@ -81,7 +81,7 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
     it 'short password' do
       fill_in 'coordinator_password', with: "123"
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "Вы ввели слишком короткий пароль"
       end
     end
@@ -89,7 +89,7 @@ RSpec.describe 'Admin can update coordinators', type: :feature do
     it 'too long password' do
       fill_in 'coordinator_password', with: "a" * 129
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "Вы должны выбрать более короткий пароль"
       end
     end

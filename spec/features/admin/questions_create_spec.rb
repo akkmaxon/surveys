@@ -86,7 +86,7 @@ RSpec.describe 'Admin can create questions', type: :feature do
 	  expect(page).not_to have_content 'abc123'
 	  expect(page).not_to have_content 'Something New'
 	end
-	expect(page).to have_selector '#error_explanation'
+	expect(page).to have_selector '.panel-danger'
 	expect(Question.all_first_questions.count).to eq 0
       end
 

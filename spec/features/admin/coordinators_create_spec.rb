@@ -78,7 +78,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Логин", with: 'coordinator1'
       fill_in "Пароль", with: 'passw'
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "короткий пароль"
       end
     end
@@ -87,7 +87,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Логин", with: 'a' * 65
       fill_in "Пароль", with: 'password'
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "должны выбрать более короткий логин"
       end
     end
@@ -96,7 +96,7 @@ RSpec.describe 'Admin can create coordinators', type: :feature do
       fill_in "Логин", with: 'user1'
       fill_in "Пароль", with: 'a' * 129
       click_button "Подтвердить"
-      within '#error_explanation' do
+      within '.panel-danger' do
 	expect(page).to have_content "должны выбрать более короткий пароль"
       end
     end

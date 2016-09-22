@@ -86,21 +86,21 @@ RSpec.describe 'Admin can create users', type: :feature do
       fill_in "Логин", with: 'user1'
       fill_in "Пароль", with: 'passw'
       click_button "Подтвердить"
-      expect(page).to have_selector '#error_explanation ul li', count: 1
+      expect(page).to have_selector '.panel-danger ul li', count: 1
     end
 
     it 'with too long login' do
       fill_in "Логин", with: 'a' * 65
       fill_in "Пароль", with: 'password'
       click_button "Подтвердить"
-      expect(page).to have_selector '#error_explanation ul li', count: 1
+      expect(page).to have_selector '.panel-danger ul li', count: 1
     end
 
     it 'with too long password' do
       fill_in "Логин", with: 'user1'
       fill_in "Пароль", with: 'a' * 129
       click_button "Подтвердить"
-      expect(page).to have_selector '#error_explanation ul li', count: 1
+      expect(page).to have_selector '.panel-danger ul li', count: 1
     end
   end
 end
