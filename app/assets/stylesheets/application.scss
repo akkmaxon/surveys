@@ -102,6 +102,21 @@ header {
   @extend .has-error;
 }
 
+#messages {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  .alert {
+    border: none;
+  }
+  .alert-danger {
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), rgb(242, 222, 222), rgba(245, 245, 245, 0.5)) !important;
+  }
+  .alert-success {
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), rgb(223, 240, 216), rgba(245, 245, 245, 0.5)) !important;
+  }
+}
+
 .masonry_element, .question {
   transition: box-shadow 0.4s ease-in-out;
   &:hover {
@@ -109,11 +124,16 @@ header {
   }
 }
 
+header a, .btn {
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
 #manage_bar .btn-success, form .btn-primary {
   box-shadow: 0 3px #999;
   &:active {
     box-shadow: 0 1px #999;
-    transform: translateY(2px);
   }
 }
 

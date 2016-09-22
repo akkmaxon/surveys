@@ -35,11 +35,14 @@ var resizeMasonryElements = function() {
 document.addEventListener("turbolinks:load", function() {
   $('[title]').tooltip({ placement: 'top' });
   resizeMasonryElements()
-  hideMessages = function() {
+
+  $('#messages .alert').on('mouseenter', function() {
+    $(this).slideUp(300)
+  });
+
+  setTimeout(function() {
     $('#messages .alert').slideUp(300)
-    $('#error_explanation').slideUp(300)
-  }
-  setTimeout(hideMessages, 2000)
+  }, 2000);
 
   $('#masonry_container').masonry({
     itemSelector: '.masonry_element',
