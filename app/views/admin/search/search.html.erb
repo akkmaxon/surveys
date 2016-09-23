@@ -9,14 +9,15 @@
     <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
   <% else %>
     <div id="masonry_container" class="container-fluid">
-      <% if @users %>
-	<h2 class="h3">Респонденты</h2>
+      <% unless @users.blank? %>
 	<% @users.each do |user| %>
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>
 	<% end %>
-      <% elsif @coordinators %>
-      <% elsif @companies %>
-      <% elsif @questions %>
+      <% end %>
+      <% unless @coordinators.blank? %>
+	<% @coordinators.each do |coordinator| %>
+	  <%= render partial: 'admin/coordinators/coordinator', locals: { coordinator: coordinator } %>
+	<% end %>
       <% end %>
     </div>
   <% end %>
