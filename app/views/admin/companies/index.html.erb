@@ -18,21 +18,6 @@
 
 <div class="masonry_container container-fluid">
   <% @companies.each do |company| %>
-    <div class="panel panel-default masonry_element company">
-      <div class="panel-body">
-	<div class="pull-right buttons">
-	  <a class="update_company btn btn-sm btn-info" title="Изменить имя">
-	    <span class="glyphicon glyphicon-pencil"></span>
-	  </a>
-	  <%= link_to admin_company_path(company), method: :delete, class: "delete_company btn btn-sm btn-danger", title: "Удалить", data: { confirm: "Компания будет удалена. Подтверждаете действие?" } do %>
-	    <span class="glyphicon glyphicon-trash"></span>
-	  <% end %>
-	</div>
-	<h2 class="h4 company_name">
-	  <%= company.name %>
-	</h2>
-	<%= render 'form', object: company %>
-      </div>
-    </div>
+    <%= render partial: 'company', locals: { company: company } %>
   <% end %>
 </div>

@@ -8,17 +8,32 @@
   <% if @nothing_found %>
     <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
   <% else %>
-    <div class="masonry_container container-fluid">
-      <% unless @users.blank? %>
+    <% unless @users.blank? %>
+      <h2 class="search_header">Респонденты:</h2>
+      <div class="masonry_container container-fluid">
 	<% @users.each do |user| %>
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>
 	<% end %>
-      <% end %>
-      <% unless @coordinators.blank? %>
+      </div>
+      <hr>
+    <% end %>
+    <% unless @coordinators.blank? %>
+      <h2 class="search_header">Координаторы:</h2>
+      <div class="masonry_container container-fluid">
 	<% @coordinators.each do |coordinator| %>
 	  <%= render partial: 'admin/coordinators/coordinator', locals: { coordinator: coordinator } %>
 	<% end %>
-      <% end %>
-    </div>
+      </div>
+      <hr>
+    <% end %>
+    <% unless @companies.blank? %>
+      <h2 class="search_header">Компании:</h2>
+      <div class="masonry_container container-fluid">
+	<% @companies.each do |company| %>
+	  <%= render partial: 'admin/companies/company', locals: { company: company } %>
+	<% end %>
+      </div>
+      <hr>
+    <% end %>
   <% end %>
 </section>

@@ -42,7 +42,7 @@ RSpec.describe 'Admin can search and', type: :feature do
   it 'find only one user' do
     fill_in id: 'search_field', with: 'user2'
     click_button 'search_button'
-    within '#masonry_container' do
+    within '.masonry_container' do
       expect(page).to have_selector ".masonry_element", count: 1
       expect(page).to have_content 'user2'
       expect(page).to have_selector '.edit_user_link'
@@ -52,7 +52,7 @@ RSpec.describe 'Admin can search and', type: :feature do
   it 'find all the users' do
     fill_in id: 'search_field', with: 'user'
     click_button 'search_button'
-    within '#masonry_container' do
+    within '.masonry_container' do
       expect(page).to have_selector ".masonry_element", count: 3
     end
   end
@@ -60,7 +60,7 @@ RSpec.describe 'Admin can search and', type: :feature do
   it 'find only one coordinator' do
     fill_in id: 'search_field', with: 'coordinator2'
     click_button 'search_button'
-    within '#masonry_container' do
+    within '.masonry_container' do
       expect(page).to have_selector ".masonry_element", count: 1
       expect(page).to have_content 'coordinator2'
       expect(page).to have_selector '.edit_coordinator_link'
@@ -70,12 +70,28 @@ RSpec.describe 'Admin can search and', type: :feature do
   it 'find all the coordinators' do
     fill_in id: 'search_field', with: 'coordinator'
     click_button 'search_button'
-    within '#masonry_container' do
+    within '.masonry_container' do
       expect(page).to have_selector ".masonry_element", count: 3
     end
   end
 
-  it 'find only one company'
-  it 'find all the companies'
+  it 'find only one company' do
+    fill_in id: 'search_field', with: 'company2'
+    click_button 'search_button'
+    within '.masonry_container' do
+      expect(page).to have_selector ".masonry_element", count: 1
+      expect(page).to have_content 'company2'
+      expect(page).to have_selector '.edit_company_link'
+    end
+  end
+
+  it 'find all the companies' do
+    fill_in id: 'search_field', with: 'company'
+    click_button 'search_button'
+    within '.masonry_container' do
+      expect(page).to have_selector ".masonry_element", count: 3
+    end
+  end
+
   it 'find only one question'
 end

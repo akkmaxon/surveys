@@ -5,7 +5,7 @@ document.addEventListener "turbolinks:load", () ->
   $("#add_company").on "click", () ->
     $("#add_new_company").toggle(300)
 
-  $(".update_company").on "click", () ->
+  $(".edit_company_link").on "click", () ->
     $(@).hide()
     $(@).parent().next().remove()
     $(@).parent().next().show(300)
