@@ -27,7 +27,13 @@ RSpec.describe 'Admin can search and', type: :feature do
     expect(page.current_path).to eq admin_search_path
   end
 
-  it 'find nothing' do
+  it 'find nothing if query is empty' do
+    fill_in id: 'search_field', with: ''
+    click_button 'search_button'
+    expect(page).to have_content "найти не удалось"
+  end
+
+  it 'find nothing if query is valid' do
     fill_in id: 'search_field', with: 'abcdef'
     click_button 'search_button'
     expect(page).to have_content "найти не удалось"
