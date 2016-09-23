@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<div id="masonry_container" class="container-fluid">
+<div class="masonry_container container-fluid">
   <% @users.each do |user| %>
     <%= render partial: 'user', locals: { user: user } %>
   <% end %>

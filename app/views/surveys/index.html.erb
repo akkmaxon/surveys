@@ -2,7 +2,7 @@
   <h1 class="header">Завершенные опросы</h1>
 </div>
 
-<section id="masonry_container" class="container-fluid">
+<section class="masonry_container container-fluid">
   <% @surveys.each do |survey| %>
     <%= render partial: 'survey_thumb', locals: { survey: survey, link: survey_path(survey) } %>
   <% end %>

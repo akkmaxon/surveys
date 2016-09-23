@@ -4,7 +4,7 @@
   </h1>
 </div>
 
-<section id="masonry_container" class="container-fluid">
+<section class="masonry_container container-fluid">
   <% @surveys.each do |survey| %>
     <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinator_user_survey_path(survey.user, survey) } %>
   <% end %>

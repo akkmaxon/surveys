@@ -8,7 +8,7 @@
   <% if @nothing_found %>
     <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
   <% else %>
-    <div id="masonry_container" class="container-fluid">
+    <div class="masonry_container container-fluid">
       <% unless @users.blank? %>
 	<% @users.each do |user| %>
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>

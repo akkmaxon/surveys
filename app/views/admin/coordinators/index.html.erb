@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<div id="masonry_container" class="container-fluid">
+<div class="masonry_container container-fluid">
   <% @coordinators.each do |coordinator| %>
     <%= render partial: 'coordinator', locals: { coordinator: coordinator } %>
   <% end %>

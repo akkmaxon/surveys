@@ -44,7 +44,7 @@ document.addEventListener("turbolinks:load", function() {
     $('#messages .alert').slideUp(300)
   }, 3000);
 
-  $('#masonry_container').masonry({
+  $('.masonry_container').masonry({
     itemSelector: '.masonry_element',
     gutter: 24,
     isFitWidth: true
