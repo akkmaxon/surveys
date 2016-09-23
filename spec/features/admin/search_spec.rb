@@ -15,6 +15,13 @@ RSpec.describe 'Admin can search and', type: :feature do
   let!(:company2) { FactoryGirl.create :company, name: 'company2' }
   let!(:company3) { FactoryGirl.create :company, name: 'company3' }
   ### questions
+  let!(:question1) { FactoryGirl.create :question, number: 1, criterion: 'Main criterion' }
+  let!(:ls_q1) { FactoryGirl.create :left_statement, title: 'left1', question: question1 }
+  let!(:rs_q1) { FactoryGirl.create :right_statement, title: 'right1', question: question1 }
+  let!(:question2) { FactoryGirl.create :question, number: 2, criterion: 'Irrelevant criterion' }
+  let!(:ls_q2) { FactoryGirl.create :left_statement, title: 'left2', text: 'hidden text', question: question2 }
+  let!(:rs_q2) { FactoryGirl.create :right_statement, title: 'right2', question: question2 }
+  let!(:question3) { FactoryGirl.create :question, number: 201, sentence: 'Sentence' }
 
   before do
     sign_in admin
@@ -93,5 +100,49 @@ RSpec.describe 'Admin can search and', type: :feature do
     end
   end
 
-  it 'find only one question'
+  it 'find one question by criterion' do
+    fill_in id: 'search_field', with: 'Main'
+    click_button 'search_button'
+    expect(page).to have_selector '.question', count: 1
+    expect(page).to have_content 'Main criterion'
+    expect(page).to have_content 'left1'
+    expect(page).to have_content 'right1'
+  end
+
+  it 'find all question by criterion' do
+    fill_in id: 'search_field', with: 'criterion'
+    click_button 'search_button'
+    expect(page).to have_selector '.question', count: 2
+    expect(page).to have_content 'left1'
+    expect(page).to have_content 'right1'
+    expect(page).to have_content 'left2'
+    expect(page).to have_content 'right2'
+  end
+
+  it 'find question by sentence' do
+    fill_in id: 'search_field', with: 'sentence'
+    click_button 'search_button'
+    expect(page).to have_selector '.question', count: 1
+    expect(page).to have_content 'Sentence'
+  end
+
+  it 'find question by title of statements' do
+    fill_in id: 'search_field', with: 'left'
+    click_button 'search_button'
+    expect(page).to have_selector '.question', count: 2
+    expect(page).to have_content 'hidden text'
+    expect(page).to have_content 'left1'
+    expect(page).to have_content 'right1'
+    expect(page).to have_content 'left2'
+    expect(page).to have_content 'right2'
+  end
+
+  it 'find question by text of statements' do
+    fill_in id: 'search_field', with: 'text'
+    click_button 'search_button'
+    expect(page).to have_selector '.question', count: 1
+    expect(page).to have_content 'hidden text'
+    expect(page).to have_content 'left2'
+    expect(page).to have_content 'right2'
+  end
 end
