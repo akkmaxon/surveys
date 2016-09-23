@@ -65,4 +65,8 @@ class Question < ApplicationRecord
       "Рабочая специальность"
     end
   end
+
+  def self.search_for_query(query)
+    []
+  end
 end

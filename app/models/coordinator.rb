@@ -17,4 +17,8 @@ class Coordinator < ApplicationRecord
   def email_changed?
     false
   end
+
+  def self.search_for_query(query)
+    where("login ilike ?", "%#{query}%")
+  end
 end

@@ -1,7 +1,23 @@
 <div class="container">
-  <h1 class="header">Результаты поиска</h1>
-
-  <section>
-    <p><%= @result %></p>
-  </section>
+  <h1 class="header">
+    Результаты поиска <span class="badge"><%= @total_count %></span>
+  </h1>
 </div>
+
+<section id="search_results">
+  <% if @nothing_found %>
+    <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
+  <% else %>
+    <div id="masonry_container" class="container-fluid">
+      <% if @users %>
+	<h2 class="h3">Респонденты</h2>
+	<% @users.each do |user| %>
+	  <%= render partial: 'admin/users/user', locals: { user: user } %>
+	<% end %>
+      <% elsif @coordinators %>
+      <% elsif @companies %>
+      <% elsif @questions %>
+      <% end %>
+    </div>
+  <% end %>
+</section>

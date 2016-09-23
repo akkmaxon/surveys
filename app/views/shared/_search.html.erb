@@ -1,10 +1,8 @@
-<%= form_tag admin_search_path do %>
-  <div class="input-group">
-    <%= text_field_tag :keywords, '', placeholder: "Поиск" %>
-    <span class="input-group-btn">
-      <button class="btn btn-link">
-	<span class="glyphicon glyphicon-search"></span>
-      </button>
-    </span>
-  </div>
-<% end %>
+<div class="input-group">
+  <%= text_field_tag :search_query, '', id: 'search_field', placeholder: "Поиск" %>
+  <span class="input-group-btn">
+    <button class="btn btn-link" id="search_button">
+      <span class="glyphicon glyphicon-search"></span>
+    </button>
+  </span>
+</div>

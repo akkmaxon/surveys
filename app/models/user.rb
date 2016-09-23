@@ -48,4 +48,8 @@ class User < ApplicationRecord
   def count_completed_surveys
     completed_surveys.count
   end
+
+  def self.search_for_query(query)
+    where("login ilike ?", "%#{query}%")
+  end
 end

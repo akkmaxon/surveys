@@ -37,7 +37,11 @@
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li><%= render 'shared/search' %></li>
+	  <li>
+	    <%= form_tag admin_search_path, method: :get do %>
+	      <%= render 'shared/search' %>
+	    <% end %>
+	  </li>
 	  <li class="<%= active_link('registrations') %>">
 	    <%= link_to "Настройки", edit_admin_registration_path %>
 	  </li>
@@ -54,7 +58,11 @@
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-	  <li><%= render 'shared/search' %></li>
+	  <li>
+	    <%= form_tag '#' do %>
+	      <%= render 'shared/search' %>
+	    <% end %>
+	  </li>
 	  <li><%= link_to "Выход", destroy_coordinator_session_path, method: :delete %></li>
 	</ul>
 

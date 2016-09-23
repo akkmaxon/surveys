@@ -100,12 +100,13 @@ header {
   width: 100%;
   .alert {
     border: none;
-  }
-  .alert-danger {
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), rgb(242, 222, 222), rgba(245, 245, 245, 0.5)) !important;
+    color: #fff;
   }
   .alert-success {
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), rgb(223, 240, 216), rgba(245, 245, 245, 0.5)) !important;
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #449d44, rgba(245, 245, 245, 0.5)) !important;
+  }
+  .alert-danger {
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #c9302c, rgba(245, 245, 245, 0.5)) !important;
   }
 }
 
@@ -131,4 +132,10 @@ header a, .btn {
 
 #devise_form, #info_form {
   padding: 20px;
+}
+
+#devise_form {
+  a {
+    margin-top: 10px;
+  }
 }

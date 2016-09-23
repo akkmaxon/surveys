@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
-    post 'search' => 'search#search'
+    get 'search' => 'search#search'
     root to: 'application#index'
   end
   devise_for :admin, path_names: {
