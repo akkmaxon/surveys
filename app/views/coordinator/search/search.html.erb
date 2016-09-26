@@ -1,0 +1,41 @@
+<div class="container">
+  <h1 class="header">
+    Результаты поиска <span class="badge"><%= @total_count %></span>
+  </h1>
+
+  <div id="manage_bar">
+<% if @nothing_found %>
+    <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
+  </div>
+</div>
+<% else %>
+    <div class="text-center">
+      <div class="btn-group" data-toggle="buttons">
+	<label class="btn btn-primary" id="show_users_search_results">
+	  <input type="radio">
+	    Респонденты
+	    <span class="badge"><%= @users.count %></span>
+	  </input>
+	</label>
+	<label class="btn btn-primary" id="show_surveys_search_results">
+	  <input type="radio">
+	    Опросы
+	    <span class="badge"><%= @surveys.count %></span>
+	  </input>
+	</label>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="search_results">
+  <div id="users_search_results">
+    <% unless @users.blank? %>
+      <div class="masonry_container container-fluid">
+	<% @users.each do |user| %>
+	  <%= render partial: 'coordinator/users/user', locals: { user: user } %>
+	<% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
+<% end %>

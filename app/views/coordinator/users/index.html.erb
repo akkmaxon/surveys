@@ -4,21 +4,7 @@
 
 <div class="masonry_container container-fluid">
   <% @users.each do |user| %>
-    <div class="panel panel-default masonry_element user">
-      <div class="panel-body">
-	<div class="buttons pull-right">
-	  <%= link_to coordinator_user_surveys_path(user), class: 'btn btn-primary show_surveys', title: "Опросы" do %>
-	    <span class="glyphicon glyphicon-list-alt"></span>
-	    <span class="badge">
-	      <%= user.surveys.count %>
-	    </span>
-	  <% end %>
-	</div>
-	<h2 class="h4">
-	  <%= user.login %>
-	</h2>
-      </div>
-    </div>
+    <%= render partial: 'coordinator/users/user', locals: { user: user } %>
   <% end %>
 </div>
 

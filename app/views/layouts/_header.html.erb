@@ -59,7 +59,7 @@
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li>
-	    <%= form_tag '#' do %>
+	    <%= form_tag coordinator_search_path, method: :get do %>
 	      <%= render 'shared/search' %>
 	    <% end %>
 	  </li>

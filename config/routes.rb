@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index] do
       resources :surveys, only: [:index, :show], controller: 'users/surveys'
     end
+    get 'search' => 'search#search'
     root to: 'application#index'
   end
   devise_for :coordinator, path_names: {
