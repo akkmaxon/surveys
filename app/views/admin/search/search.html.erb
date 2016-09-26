@@ -11,7 +11,7 @@
 <% else %>
     <div class="col-md-6 col-md-offset-3">
       <div class="btn-group" data-toggle="buttons">
-	<label class="btn btn-primary active" id="show_users_search_results">
+	<label class="btn btn-primary" id="show_users_search_results">
 	  <input type="radio">
 	    Респонденты
 	    <span class="badge"><%= @users.count %></span>
@@ -42,7 +42,6 @@
 <section id="search_results">
   <div id="users_search_results">
     <% unless @users.blank? %>
-      <h2 class="search_header">Респонденты:</h2>
       <div class="masonry_container container-fluid">
 	<% @users.each do |user| %>
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>
@@ -52,7 +51,6 @@
   </div>
   <div id="coordinators_search_results">
     <% unless @coordinators.blank? %>
-      <h2 class="search_header">Координаторы:</h2>
       <div class="masonry_container container-fluid">
 	<% @coordinators.each do |coordinator| %>
 	  <%= render partial: 'admin/coordinators/coordinator', locals: { coordinator: coordinator } %>
@@ -62,7 +60,6 @@
   </div>
   <div id="companies_search_results">
     <% unless @companies.blank? %>
-      <h2 class="search_header">Компании:</h2>
       <div class="masonry_container container-fluid">
 	<% @companies.each do |company| %>
 	  <%= render partial: 'admin/companies/company', locals: { company: company } %>
@@ -72,7 +69,6 @@
   </div>
   <div id="questions_search_results">
     <% unless @questions.blank? %>
-      <h2 class="search_header">Вопросы:</h2>
       <div class="container">
 	<div class="row">
 	  <div class="col-md-8 col-md-offset-2">

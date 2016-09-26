@@ -1,9 +1,3 @@
-@import 'bootstrap';
-
 #search_results {
   margin-top: 30px;
-  .search_header {
-    @extend .h3;
-    margin-left: 40px;
-  }
 }

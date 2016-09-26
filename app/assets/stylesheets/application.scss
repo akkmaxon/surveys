@@ -110,6 +110,10 @@ header {
   }
 }
 
+.masonry_container {
+  margin-top: 30px;
+}
+
 .masonry_element, .question {
   transition: box-shadow 0.4s ease-in-out;
   &:hover {
