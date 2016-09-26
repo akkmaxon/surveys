@@ -1,5 +1,4 @@
 class Admin::QuestionsController < Admin::ApplicationController
-  before_action :set_questions, only: [:index, :create]
   before_action :set_question, only: [:update, :destroy]
 
   def index
@@ -48,11 +47,6 @@ class Admin::QuestionsController < Admin::ApplicationController
 				     :criterion,
 				     :criterion_type,
 				     :sentence)
-  end
-
-  def set_questions
-    @first_questions = Question.all_first_questions
-    @second_questions = Question.all_second_questions
   end
 
   def set_question

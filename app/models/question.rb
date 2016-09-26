@@ -67,6 +67,27 @@ class Question < ApplicationRecord
   end
 
   def self.search_for_query(query)
+    by_crit = where("criterion ilike ?", "%#{query}%")
+    return by_crit unless by_crit.blank?
+    by_sent = where("sentence ilike ?", "%#{query}%")
+    return by_sent unless by_sent.blank?
     []
+=begin
+    by_l_tit = LeftStatement.where("title ilike ?", "%#{query}%").pluck(:question_id)
+    # do something with it
+    return by_l_tit unless by_l_tit.blank?
+    by_r_tit = RightStatement.where("title ilike ?", "%#{query}%").inject([]) do |q, st|
+      q << st
+    end
+    return by_r_tit unless by_r_tit.blank?
+    by_l_tex = LeftStatement.where("text ilike ?", "%#{query}%").inject([]) do |q, st|
+      q << st
+    end
+    return by_l_tex unless by_l_tex.blank?
+    by_r_tex = RightStatement.where("text ilike ?", "%#{query}%").inject([]) do |q, st|
+      q << st
+    end
+    return by_r_tex unless by_r_tex.blank?
+=end
   end
 end

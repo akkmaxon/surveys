@@ -29,9 +29,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
-	within '#messages .alert-success' do
-	  expect(page).to have_content "Вопрос обновлен."
-	end
 	within '#admin_first_questions' do
 	  expect(page).to have_content '123'
 	  expect(page).to have_content "Рабочая специальность"

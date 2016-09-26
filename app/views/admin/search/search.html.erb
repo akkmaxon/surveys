@@ -2,12 +2,45 @@
   <h1 class="header">
     Результаты поиска <span class="badge"><%= @total_count %></span>
   </h1>
-</div>
 
-<section id="search_results">
-  <% if @nothing_found %>
+  <div id="manage_bar" class="row">
+<% if @nothing_found %>
     <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
-  <% else %>
+  </div>
+</div>
+<% else %>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="btn-group" data-toggle="buttons">
+	<label class="btn btn-primary active" id="show_users_search_results">
+	  <input type="radio">
+	    Респонденты
+	    <span class="badge"><%= @users.count %></span>
+	  </input>
+	</label>
+	<label class="btn btn-primary" id="show_coordinators_search_results">
+	  <input type="radio">
+	    Координаторы
+	    <span class="badge"><%= @coordinators.count %></span>
+	  </input>
+	</label>
+	<label class="btn btn-primary" id="show_companies_search_results">
+	  <input type="radio">
+	    Компании
+	    <span class="badge"><%= @companies.count %></span>
+	  </input>
+	</label>
+	<label class="btn btn-primary" id="show_questions_search_results">
+	  <input type="radio">
+	    Вопросы
+	    <span class="badge"><%= @questions.count %></span>
+	  </input>
+	</label>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="search_results">
+  <div id="users_search_results">
     <% unless @users.blank? %>
       <h2 class="search_header">Респонденты:</h2>
       <div class="masonry_container container-fluid">
@@ -15,8 +48,9 @@
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>
 	<% end %>
       </div>
-      <hr>
     <% end %>
+  </div>
+  <div id="coordinators_search_results">
     <% unless @coordinators.blank? %>
       <h2 class="search_header">Координаторы:</h2>
       <div class="masonry_container container-fluid">
@@ -24,8 +58,9 @@
 	  <%= render partial: 'admin/coordinators/coordinator', locals: { coordinator: coordinator } %>
 	<% end %>
       </div>
-      <hr>
     <% end %>
+  </div>
+  <div id="companies_search_results">
     <% unless @companies.blank? %>
       <h2 class="search_header">Компании:</h2>
       <div class="masonry_container container-fluid">
@@ -33,7 +68,25 @@
 	  <%= render partial: 'admin/companies/company', locals: { company: company } %>
 	<% end %>
       </div>
-      <hr>
     <% end %>
-  <% end %>
+  </div>
+  <div id="questions_search_results">
+    <% unless @questions.blank? %>
+      <h2 class="search_header">Вопросы:</h2>
+      <div class="container">
+	<div class="row">
+	  <div class="col-md-8 col-md-offset-2">
+	    <% @questions.each do |question| %>
+	      <% if question.sentence.blank? %>
+		<%= render partial: 'admin/questions/first_question', locals: { question: question } %>
+	      <% else %>
+		<%= render partial: 'admin/questions/second_question', locals: { question: question } %>
+	      <% end %>
+	    <% end %>
+	  </div>
+	</div>
+      </div>
+    <% end %>
+  </div>
 </section>
+<% end %>
