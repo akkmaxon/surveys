@@ -40,7 +40,6 @@ RSpec.describe 'Admin can view all coordinators', type: :feature do
       expect(page).to have_selector '.masonry_container'
       expect(page).to have_selector '.coordinator', count: 3
       expect(page).to have_selector 'a#add_coordinator_link'
-      expect(page).to have_content "Логин:", count: 3
     end
 
     it 'visit from dashboard' do
