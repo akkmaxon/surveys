@@ -3,33 +3,33 @@
     Результаты поиска <span class="badge"><%= @total_count %></span>
   </h1>
 
-  <div id="manage_bar" class="row">
+  <div id="manage_bar">
 <% if @nothing_found %>
     <h2 class="h4 text-center">К сожалению, по Вашему запросу ничего найти не удалось</h2>
   </div>
 </div>
 <% else %>
-    <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
       <div class="btn-group" data-toggle="buttons">
-	<label class="btn btn-primary" id="show_users_search_results">
+	<label class="btn btn-primary" id="admin_users_search_results">
 	  <input type="radio">
 	    Респонденты
 	    <span class="badge"><%= @users.count %></span>
 	  </input>
 	</label>
-	<label class="btn btn-primary" id="show_coordinators_search_results">
+	<label class="btn btn-primary" id="admin_coordinators_search_results">
 	  <input type="radio">
 	    Координаторы
 	    <span class="badge"><%= @coordinators.count %></span>
 	  </input>
 	</label>
-	<label class="btn btn-primary" id="show_companies_search_results">
+	<label class="btn btn-primary" id="admin_companies_search_results">
 	  <input type="radio">
 	    Компании
 	    <span class="badge"><%= @companies.count %></span>
 	  </input>
 	</label>
-	<label class="btn btn-primary" id="show_questions_search_results">
+	<label class="btn btn-primary" id="admin_questions_search_results">
 	  <input type="radio">
 	    Вопросы
 	    <span class="badge"><%= @questions.count %></span>
