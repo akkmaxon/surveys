@@ -1,4 +1,4 @@
-https://somewhere.com
+Доступ для респондента на <%= DOMAIN_NAME %>
 
-Логин:  <%= @user.login %>
-Пароль: <%= @user.encrypted_password %>
+Логин:  <%= session['user_credentials']['login'] %>
+Пароль: <%= session['user_credentials']['password'] %>

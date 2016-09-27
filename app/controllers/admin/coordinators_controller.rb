@@ -1,10 +1,14 @@
 class Admin::CoordinatorsController < Admin::ApplicationController
-  before_action :set_coordinator, only: [:update, :destroy]
+  before_action :set_coordinator, only: [:show, :update, :destroy]
   before_action :set_coordinators, except: [:destroy]
 
   def index
     @coordinators = Coordinator.all
     @coordinator = Coordinator.new
+  end
+
+  def show
+    render pdf: @coordinator.login
   end
 
   def create
