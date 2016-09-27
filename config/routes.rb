@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :coordinators, only: [:index, :create, :update, :destroy]
-    resources :users, only: [:index, :create, :update]
+    resources :users, only: [:index, :show, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
     get 'search' => 'search#search'

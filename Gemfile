@@ -15,6 +15,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'faker'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'prawn'
 
 group :development, :test do
   gem 'byebug'

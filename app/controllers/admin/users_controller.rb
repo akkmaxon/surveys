@@ -1,8 +1,13 @@
 class Admin::UsersController < Admin::ApplicationController
+  before_action :set_user, only: [:show, :update]
   before_action :set_users
 
   def index
     @user = User.new
+  end
+
+  def show
+    render pdf: @user.login
   end
 
   def create
@@ -17,7 +22,6 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       session[:user_credentials] = user_params
       flash[:notice] = "Респондент изменен."
@@ -32,6 +36,10 @@ class Admin::UsersController < Admin::ApplicationController
 
   def user_params
     params.require(:user).permit(:login, :password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def set_users
