@@ -1,7 +1,6 @@
 <div class="panel panel-default" id="<%= session_key %>">
   <div class="panel-body">
     <button id="close_person_save" class="pull-right close">&times;</button>
-    <div class="glyphicon glyphicon-info-sign" title="Сохраните данные, в дальнейшем пароль будет недоступен для просмотра!"></div>
     <p><strong>Логин:  <%= session[session_key]['login'] %></strong></p>
     <p><strong>Пароль: <%= session[session_key]['password'] %></strong></p>
     <%= link_to address, class: 'btn btn-primary btn-block' do %>
