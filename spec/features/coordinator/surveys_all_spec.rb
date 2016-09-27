@@ -42,7 +42,6 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
       within '.masonry_container' do
 	expect(page).to have_selector '.survey', count: 1
 	expect(page).to have_selector '.show_survey', count: 1
-	expect(page).to have_content "РЕСПОНДЕНТ: user123"
       end
     end
   end

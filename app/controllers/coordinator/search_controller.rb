@@ -3,7 +3,7 @@ class Coordinator::SearchController < Coordinator::ApplicationController
     q = params[:search_query]
     @nothing_found = false
     @users = User.search_for_query(q)
-    @surveys = []
+    @surveys = Survey.search_for_query(q)
     if (@users.blank? and @surveys.blank?) or q.blank?
       @nothing_found = true
       @total_count = 0

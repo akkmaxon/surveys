@@ -25,4 +25,8 @@ class Survey < ApplicationRecord
     responses.find_by(question_number: 28).answer != "5" ||
       responses.find_by(question_number: 29).answer != "5"
   end
+
+  def self.search_for_query(query)
+    where("user_email ilike ?", "%#{query}%")
+  end
 end

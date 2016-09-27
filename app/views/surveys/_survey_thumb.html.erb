@@ -8,9 +8,20 @@
     <h2 class="h4">
       <%= survey.completed? ? survey.pass_date : "Не завершен" %>
     </h2>
-    <% unless params[:user_id] or user_signed_in? %>
+    <% unless user_signed_in? %>
+      <% unless params[:user_id] %>
+	<h2 class="h4">
+	  <span class="glyphicon glyphicon-user"></span>
+	  <%= survey.user.login %>
+	</h2>
+      <% end %>
       <h2 class="h4">
-	<small>РЕСПОНДЕНТ:</small> <%= survey.user.login %>
+	<span class="glyphicon glyphicon-envelope"></span>
+        <%= survey.user_email %>
+      </h2>
+      <h2 class="h4">
+	<span class="glyphicon glyphicon-thumbs-up"></span>
+	<small><%= survey.user_agreement %></small>
       </h2>
     <% end %>
   </div>
