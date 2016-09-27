@@ -4,4 +4,9 @@ class Admin::ApplicationController < ApplicationController
 
   def index
   end
+
+  def clean_person_credentials
+    session.delete(params[:person_credentials])
+    redirect_back(fallback_location: admin_root_path)
+  end
 end

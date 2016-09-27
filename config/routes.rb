@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
     get 'search' => 'search#search'
+    post 'application/clean_person_credentials'
     root to: 'application#index'
   end
   devise_for :admin, path_names: {
