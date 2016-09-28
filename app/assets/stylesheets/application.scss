@@ -131,10 +131,24 @@ header a, .btn {
   }
 }
 
-#manage_bar .btn-success, form .btn-primary {
-  box-shadow: 0 3px #999;
+#manage_bar .btn-success {
+  box-shadow: 0 2px #418c41;
   &:active {
-    box-shadow: 0 1px #999;
+    box-shadow: none;
+  }
+}
+
+form .btn-primary {
+  box-shadow: 0 2px #215683;
+  &:active { 
+    box-shadow: none;
+  }
+}
+
+.input-group-btn .btn, .btn-group .btn-primary, .btn-group .btn-default {
+  box-shadow: none;
+  &:active {
+    transform: none;
   }
 }
 
