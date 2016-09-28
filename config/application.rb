@@ -29,7 +29,9 @@ module Surveys
 	  italic: 'app/assets/fonts/LiberationSans-Italic.ttf'
 	})
       pdf.font 'liberation'
-      pdf.text render_to_string(options)
+      pdf.bounding_box([20, pdf.bounds.height], width: pdf.bounds.width - 20) do
+	pdf.text render_to_string(options)
+      end
       send_data(pdf.render, filename: "#{filename}.pdf", disposition: "attachment")
     end
     # Settings in config/environments/* take precedence over those specified here.
