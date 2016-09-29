@@ -6,6 +6,10 @@ class Coordinator::Users::SurveysController < Coordinator::ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+    @user = @survey.user
+    @info = @user.info
+    @first_responses = @survey.responses.on_first_questions
+    @second_responses = @survey.responses.on_second_questions
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Опрос №#{params[:id]} не существует"
     redirect_to coordinator_surveys_url

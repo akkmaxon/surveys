@@ -37,7 +37,7 @@ RSpec.describe 'User create info about himself', type: :feature do
     it 'check good redirect' do
       expect(page).to have_selector 'form.new_info'
       expect(page).to have_selector '#messages .alert'
-      click_link 'new_survey_link'
+      find('#new_survey_link').trigger 'click'
       expect(page).to have_selector 'form.new_info'
     end
 

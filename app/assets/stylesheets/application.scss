@@ -98,15 +98,13 @@ header {
   position: absolute;
   top: 0;
   width: 100%;
-  .alert {
-    border: none;
-    color: #fff;
-  }
   .alert-success {
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #449d44, rgba(245, 245, 245, 0.5)) !important;
+    color: #3c763d;
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #dff0d8, rgba(245, 245, 245, 0.5)) !important;
   }
   .alert-danger {
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #c9302c, rgba(245, 245, 245, 0.5)) !important;
+    color: #a94442;
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #f2dede, rgba(245, 245, 245, 0.5)) !important;
   }
 }
 
@@ -138,7 +136,7 @@ header a, .btn {
   }
 }
 
-form .btn-primary {
+.btn-primary {
   box-shadow: 0 2px #215683;
   &:active { 
     box-shadow: none;

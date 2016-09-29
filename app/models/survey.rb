@@ -22,8 +22,13 @@ class Survey < ApplicationRecord
   end
 
   def reliable?
-    responses.find_by(question_number: 28).answer != "5" ||
-      responses.find_by(question_number: 29).answer != "5"
+    resp28 = responses.find_by(question_number: 28)
+    resp29 = responses.find_by(question_number: 29)
+    if resp28.nil? and resp29.nil?
+      true
+    else
+      resp28.answer != "5" || resp29.answer != "5"
+    end
   end
 
   def self.search_for_query(query)

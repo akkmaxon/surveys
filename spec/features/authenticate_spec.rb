@@ -53,6 +53,7 @@ RSpec.describe 'Authentication for User', type: :feature do
     end
 
     it 'logout' do
+      FactoryGirl.create :info, user: user
       visit new_user_session_path
       fill_in "Логин", with: user.login
       fill_in "Пароль", with: user.password

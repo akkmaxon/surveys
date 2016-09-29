@@ -4,5 +4,8 @@ class Response < ApplicationRecord
   validates :question_number, presence: true
   validates :question_number, numericality: { only_integer: true }
 
-  scope :sort_question_number, -> { order(question_number: :asc) }
+ #scope :sort_question_number, -> { order(question_number: :asc) }
+  default_scope -> { order(question_number: :asc) }
+  scope :on_first_questions, -> { where('question_number < ?', 200) }
+  scope :on_second_questions, -> { where('question_number > ?', 200) }
 end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Coordinator can view full information about survey', type: :feature do
   let(:user) { FactoryGirl.create :user }
+  let!(:info) { FactoryGirl.create :info, user: user }
   let!(:survey) { FactoryGirl.create :survey, user: user, completed: true }
   let!(:response1) { FactoryGirl.create :response, survey: survey }
   let!(:response2) { FactoryGirl.create :response, survey: survey }
@@ -37,9 +38,7 @@ RSpec.describe 'Coordinator can view full information about survey', type: :feat
     end
 
     it 'page layout' do
-      within '#survey' do
-	expect(page).to have_selector 'table'
-      end
+      expect(page).to have_selector '#coordinator_survey'
     end
 
     it 'access from coordinator/surveys' do

@@ -42,7 +42,7 @@ document.addEventListener("turbolinks:load", function() {
 
   setTimeout(function() {
     $('#messages .alert').slideUp(300)
-  }, 3000);
+  }, 5000);
 
   $('.masonry_container').masonry({
     itemSelector: '.masonry_element',
