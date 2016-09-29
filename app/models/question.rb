@@ -2,12 +2,12 @@ class Question < ApplicationRecord
   has_one :left_statement, dependent: :delete
   has_one :right_statement, dependent: :delete
 
-  validates :audience, inclusion: { in: %w[management working_staff] }
+  validates :audience, inclusion: { in: ["Менеджмент", "Рабочая специальность"] }
   validates :number, presence: true
   validates :number, numericality: { only_integer: true }
   validates :opinion_subject, inclusion: { in: ["Я", "Мои коллеги"] }
   validates :criterion, presence: true
-  validates :criterion_type, inclusion: { in: %w[involvement satisfaction] }, allow_blank: true
+  validates :criterion_type, inclusion: { in: %w[Вовлеченность Удовлетворенность] }, allow_blank: true
 
   default_scope -> { order(audience: :asc).order(number: :asc) }
 
@@ -15,11 +15,11 @@ class Question < ApplicationRecord
   scope :all_second_questions, -> { where('sentence != ?', "") }
 
   def self.for_management_count
-    where('audience = ?', 'management').count 
+    where('audience = ?', "Менеджмент").count 
   end
 
   def self.for_working_staff_count
-    where('audience = ?', 'working_staff').count 
+    where('audience = ?', "Рабочая специальность").count 
   end
 
   def self.for(audience)
@@ -56,14 +56,6 @@ class Question < ApplicationRecord
 
   def right_title
     right_statement.title if right_statement
-  end
-
-  def audience_in_russian
-    if audience == 'management'
-      "Менеджмент"
-    elsif audience == 'working_staff'
-      "Рабочая специальность"
-    end
   end
 
   def self.search_for_query(query)

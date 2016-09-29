@@ -82,19 +82,19 @@ module MyTestHelpers
     ### 2nd question for management
     let!(:q201_m) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence }
     ### 1st questions 1,28, 29 for working_staff
-    let!(:q1_w) { FactoryGirl.create :question, number: 1, audience: 'working_staff' }
+    let!(:q1_w) { FactoryGirl.create :question, number: 1, audience: "Рабочая специальность" }
     let!(:left_for_q1_w) { FactoryGirl.create :left_statement, title: '1left', question: q1_w }
     let!(:right_for_q1_w) { FactoryGirl.create :right_statement, title: '1right', question: q1_w }
 
-    let!(:q28_w) { FactoryGirl.create :question, number: 28, audience: 'working_staff' }
+    let!(:q28_w) { FactoryGirl.create :question, number: 28, audience: "Рабочая специальность" }
     let!(:left_for_q28_w) { FactoryGirl.create :left_statement, title: '28left', question: q28_w }
     let!(:right_for_q28_w) { FactoryGirl.create :right_statement, title: '28right', question: q28_w }
 
-    let!(:q29_w) { FactoryGirl.create :question, number: 29, audience: 'working_staff' }
+    let!(:q29_w) { FactoryGirl.create :question, number: 29, audience: "Рабочая специальность" }
     let!(:left_for_q29_w) { FactoryGirl.create :left_statement, title: '29left', question: q29_w }
     let!(:right_for_q29_w) { FactoryGirl.create :right_statement, title: '29right', question: q29_w }
     ### 2nd question for working_staff
-    let!(:q201_w) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, audience: 'working_staff' }
+    let!(:q201_w) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, audience: "Рабочая специальность" }
   end
 
   def take_a_survey

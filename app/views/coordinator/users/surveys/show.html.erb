@@ -10,7 +10,7 @@
   </div>
 
   <section id="coordinator_survey">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
       <div class="panel-heading">
 	<h2 class="h4 text-center">Общая информация о респонденте:</h2>
       </div>
@@ -19,7 +19,7 @@
 	  <li><strong>Логин: </strong><%= @user.login %></li>
 	  <li><strong>Email: </strong><%= @survey.user_email %></li>
 	  <li><strong>Пол: </strong><%= @info.gender %></li>
-	  <li><strong>Возраст: </strong><%= @info.age %> лет</li>
+	  <li><strong>Возраст: </strong><%= @info.age %></li>
 	  <li><strong>Место работы по счету: </strong><%= @info.workplace_number %></li>
 	  <li><strong>Компания: </strong><%= @info.company %></li>
 	  <li><strong>Время работы в компании: </strong><%= @info.experience %></li>
@@ -31,7 +31,7 @@
 	</ul>
       </div>
     </div>
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
       <div class="panel-heading">
 	<h2 class="h4 text-center">Ответы:</h2>
       </div>
@@ -53,7 +53,7 @@
 	      <strong>
 		<%= question ? question.sentence : "ВОПРОС БЫЛ УДАЛЕН" %>
 	      </strong>
-	      <%= resp.answer %>
+	      <p class="sentence"><%= resp.answer %></p>
 	    </li>
 	  <% end %>
 	</ul>

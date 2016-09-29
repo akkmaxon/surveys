@@ -109,7 +109,7 @@ RSpec.describe 'Working staff take a survey', type: :feature do
     end
 
     it 'not completed because one more question is present' do
-      question_3 = FactoryGirl.create :question, audience: 'management', sentence: Faker::Lorem.sentence
+      question_3 = FactoryGirl.create :question, audience: "Менеджмент", sentence: Faker::Lorem.sentence
       take_a_survey
       expect(page).not_to have_selector('#finish_survey')
       user.reload

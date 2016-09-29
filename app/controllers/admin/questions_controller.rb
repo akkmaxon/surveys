@@ -3,6 +3,7 @@ class Admin::QuestionsController < Admin::ApplicationController
 
   def index
     @question = Question.new
+    @total_count = Question.count
   end
 
   def create

@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def audience
-    manager? ? 'management' : 'working_staff'
+    manager? ? "Менеджмент" : "Рабочая специальность"
   end
 
   def create_survey

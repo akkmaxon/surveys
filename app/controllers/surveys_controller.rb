@@ -9,8 +9,8 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @involvement_criteria = Question.group_by_criterion(@survey, 'involvement')
-    @satisfaction_criteria = Question.group_by_criterion(@survey, 'satisfaction')
+    @involvement_criteria = Question.group_by_criterion(@survey, "Вовлеченность")
+    @satisfaction_criteria = Question.group_by_criterion(@survey, "Удовлетворенность")
     @last_criteria = Question.group_by_criterion(@survey, '')
     @counter = 0
   end

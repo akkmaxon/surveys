@@ -34,10 +34,10 @@ FactoryGirl.define do
 
   factory :question do
     sequence(:number, 1)
-    audience 'management'
+    audience 'Менеджмент'
     opinion_subject 'Я'
     criterion Faker::Lorem.sentence
-    criterion_type 'involvement'
+    criterion_type 'Вовлеченность'
   end
 
   factory :left_statement do

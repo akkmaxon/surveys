@@ -11,7 +11,7 @@ RSpec.describe Question, type: :model do
       end
 
       it 'audience in proper range' do
-	%w[management working_staff].each do |a|
+	["Менеджмент", "Рабочая специальность"].each do |a|
 	  question.audience = a
 	  expect(question).to be_valid
 	end
@@ -82,22 +82,22 @@ RSpec.describe Question, type: :model do
   end
 
   describe 'methods' do
-    let!(:q1) { FactoryGirl.create :question, criterion_type: 'involvement', criterion: 'first_crit', number: 1 }
-    let!(:q2) { FactoryGirl.create :question, criterion_type: 'involvement', criterion: 'first_crit', number: 2 }
-    let!(:q3) { FactoryGirl.create :question, criterion_type: 'involvement', criterion: 'second_crit', number: 3 }
-    let!(:q4) { FactoryGirl.create :question, criterion_type: 'involvement', criterion: 'second_crit', number: 4 }
-    let!(:q5) { FactoryGirl.create :question, criterion_type: 'satisfaction', criterion: 'third_crit', number: 5 }
-    let!(:q6) { FactoryGirl.create :question, criterion_type: 'satisfaction', criterion: 'third_crit', number: 6 }
-    let!(:q7) { FactoryGirl.create :question, criterion_type: 'satisfaction', criterion: 'fourth_crit', number: 7 }
-    let!(:q8) { FactoryGirl.create :question, criterion_type: 'satisfaction', criterion: 'fourth_crit', number: 8 }
+    let!(:q1) { FactoryGirl.create :question, criterion_type: "Вовлеченность", criterion: 'first_crit', number: 1 }
+    let!(:q2) { FactoryGirl.create :question, criterion_type: "Вовлеченность", criterion: 'first_crit', number: 2 }
+    let!(:q3) { FactoryGirl.create :question, criterion_type: "Вовлеченность", criterion: 'second_crit', number: 3 }
+    let!(:q4) { FactoryGirl.create :question, criterion_type: "Вовлеченность", criterion: 'second_crit', number: 4 }
+    let!(:q5) { FactoryGirl.create :question, criterion_type: "Удовлетворенность", criterion: 'third_crit', number: 5 }
+    let!(:q6) { FactoryGirl.create :question, criterion_type: "Удовлетворенность", criterion: 'third_crit', number: 6 }
+    let!(:q7) { FactoryGirl.create :question, criterion_type: "Удовлетворенность", criterion: 'fourth_crit', number: 7 }
+    let!(:q8) { FactoryGirl.create :question, criterion_type: "Удовлетворенность", criterion: 'fourth_crit', number: 8 }
     let!(:user) { FactoryGirl.create :user }
-    let!(:survey) { FactoryGirl.create :survey, user: user, audience: 'management', completed: true }
+    let!(:survey) { FactoryGirl.create :survey, user: user, audience: "Менеджмент", completed: true }
 
     it '.for' do
-      q2.update(number: 1, audience: 'working_staff')
-      q3.update(number: 2, audience: 'working_staff')
-      expect(Question.for('management').count).to eq 6
-      expect(Question.for('working_staff').count).to eq 2
+      q2.update(number: 1, audience: "Рабочая специальность")
+      q3.update(number: 2, audience: "Рабочая специальность")
+      expect(Question.for("Менеджмент").count).to eq 6
+      expect(Question.for("Рабочая специальность").count).to eq 2
     end
 
     it '.first_questions_for' do
@@ -117,12 +117,12 @@ RSpec.describe Question, type: :model do
     describe '.group_by_criterion' do
       context 'management' do
 	it 'return involvements' do
-	  criteria = Question.group_by_criterion(survey, 'involvement')
+	  criteria = Question.group_by_criterion(survey, "Вовлеченность")
 	  expect(criteria).to eq({ 'first_crit' => [1,2], 'second_crit' => [3,4] })
 	end
 
 	it 'return satisfactions' do
-	  criteria = Question.group_by_criterion(survey, 'satisfaction')
+	  criteria = Question.group_by_criterion(survey, "Удовлетворенность")
 	  expect(criteria).to eq({ 'third_crit' => [5,6], 'fourth_crit' => [7,8] })
 	end
       end
@@ -130,18 +130,18 @@ RSpec.describe Question, type: :model do
       context 'working_staff' do
 	before do
 	  [q1, q2, q5, q6].each do |question|
-	    question.update audience: 'working_staff' 
+	    question.update audience: "Рабочая специальность"
 	  end
-	  survey.update audience: 'working_staff'
+	  survey.update audience: "Рабочая специальность"
 	end
 
 	it 'return involvements' do
-	  criteria = Question.group_by_criterion(survey, 'involvement')
+	  criteria = Question.group_by_criterion(survey, "Вовлеченность")
 	  expect(criteria).to eq({ 'first_crit' => [1,2]})
 	end
 
 	it 'return satisfactions' do
-	  criteria = Question.group_by_criterion(survey, 'satisfaction')
+	  criteria = Question.group_by_criterion(survey, "Удовлетворенность")
 	  expect(criteria).to eq({ 'third_crit' => [5,6]})
 	end
       end
