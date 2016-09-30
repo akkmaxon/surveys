@@ -2,6 +2,7 @@ require_relative 'boot'
 
 require "rails"
 require "prawn"
+require "spreadsheet"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -34,8 +35,10 @@ module Surveys
       send_data(pdf.render, filename: "#{filename}.pdf", disposition: "attachment")
     end
 
-    ActionController::Renderers.add :xls do |filename, options|
-      send_data(render_to_string(options), filename: "#{filename}.xls", disposition: "attachment")
+    ActionController::Renderers.add :xls do |xls, options|
+      file = StringIO.new
+      xls.write file
+      send_data(file.string.force_encoding('binary'), filename: "#{options[:name]}.xls", disposition: "attachment")
     end
   end
 end

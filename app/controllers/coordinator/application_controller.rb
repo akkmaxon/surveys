@@ -6,10 +6,7 @@ class Coordinator::ApplicationController < ApplicationController
   end
 
   def surveys_export
-    @surveys = Survey.all.reorder(:id)
-    @max_first_questions_count = count_first_questions
-    @max_second_questions_count = count_second_questions
-    render xls: "Опросы(#{Time.now.strftime '%d.%m.%Y'})"
+    render xls: Survey.export_xls, name: "Опросы #{Time.now.strftime '%d.%m.%Y'}"
   end
 
   private

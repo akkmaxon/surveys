@@ -16,6 +16,7 @@ gem 'faker'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'prawn'
+gem 'spreadsheet'
 
 group :development, :test do
   gem 'byebug'
