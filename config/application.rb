@@ -11,7 +11,6 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -34,8 +33,9 @@ module Surveys
       end
       send_data(pdf.render, filename: "#{filename}.pdf", disposition: "attachment")
     end
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+
+    ActionController::Renderers.add :xls do |filename, options|
+      send_data(render_to_string(options), filename: "#{filename}.xls", disposition: "attachment")
+    end
   end
 end

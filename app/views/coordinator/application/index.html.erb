@@ -1,8 +1,11 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <h1 class="header">Coordinator dashboard</h1>
-      <p><%= Faker::Lorem.paragraph %></p>
+  <h1 class="header">Coordinator dashboard</h1>
+  <div id="manage_bar" class="row">
+    <div class="col-md-4">
+      <%= link_to coordinator_surveys_export_path(format: :xls), class: 'btn btn-primary btn-block' do %>
+	<span class="glyphicon glyphicon-export"></span>
+        ЭКСПОРТ ДАННЫХ
+      <% end %>
     </div>
   </div>
 </div>

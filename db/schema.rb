@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160919095653) do
     t.string   "user_agreement", default: ""
     t.string   "user_email"
     t.boolean  "completed",      default: false
-    t.string   "audience",       default: "management"
+    t.string   "audience",       default: "Менеджмент"
     t.index ["user_id"], name: "index_surveys_on_user_id", using: :btree
   end
 

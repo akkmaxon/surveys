@@ -1,32 +1,25 @@
 <div class="container">
   <h1 class="header">Опрос <%= @survey.user.login %></h1>
-  <div id="manage_bar" class="row">
-    <div class="col-md-4">
-      <%= link_to '#', class: 'btn btn-primary btn-block' do %>
-	<span class="glyphicon glyphicon-export"></span>
-        ЭКСПОРТ ДАННЫХ
-      <% end %>
-    </div>
-  </div>
+</div>
 
+<div class="container">
   <section id="coordinator_survey">
     <div class="panel panel-default">
       <div class="panel-heading">
-	<h2 class="h4 text-center">Общая информация о респонденте:</h2>
+	<h2 class="h4 text-center">Общая информация:</h2>
       </div>
       <div class="panel-body">
 	<ul>
+	  <li><strong>Дата прохождения опроса: </strong><%= @survey.pass_date %></li>
+	  <li><strong>Опрос для: </strong><%= @survey.audience %></li>
 	  <li><strong>Логин: </strong><%= @user.login %></li>
-	  <li><strong>Email: </strong><%= @survey.user_email %></li>
 	  <li><strong>Пол: </strong><%= @info.gender %></li>
 	  <li><strong>Возраст: </strong><%= @info.age %></li>
-	  <li><strong>Место работы по счету: </strong><%= @info.workplace_number %></li>
 	  <li><strong>Компания: </strong><%= @info.company %></li>
 	  <li><strong>Время работы в компании: </strong><%= @info.experience %></li>
 	  <li><strong>Должность: </strong><%= @info.work_position %></li>
-	  <hr>
-	  <li><strong>Опрос для: </strong><%= @survey.audience %></li>
-	  <li><strong>Дата прохождения опроса: </strong><%= @survey.pass_date %></li>
+	  <li><strong>Место работы по счету: </strong><%= @info.workplace_number %></li>
+	  <li><strong>Email: </strong><%= @survey.user_email %></li>
 	  <li><strong>Отношение к опросу: </strong><%= @survey.user_agreement %></li>
 	</ul>
       </div>
