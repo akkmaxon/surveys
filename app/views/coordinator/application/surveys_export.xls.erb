@@ -19,16 +19,6 @@
   </Styles>
   <ss:Worksheet ss:Name="Общая информация">
     <Table>
-      <Column ss:Width="80"/>
-      <Column ss:Width="145"/>
-      <Column ss:Width="64"/>
-      <Column ss:Width="55"/>
-      <Column ss:Width="70"/>
-      <Column ss:Width="64"/>
-      <Column ss:Width="130"/>
-      <Column ss:Width="95"/>
-      <Column ss:Width="115"/>
-      <Column ss:Width="110"/>
       <Row>
 	<Cell ss:StyleID="Heading"><Data ss:Type="String">Номер опроса</Data></Cell>
 	<Cell ss:StyleID="Heading"><Data ss:Type="String">Дата прохождения опроса</Data></Cell>
@@ -43,7 +33,7 @@
 	<Cell ss:StyleID="Heading"><Data ss:Type="String">Email</Data></Cell>
 	<Cell ss:StyleID="Heading"><Data ss:Type="String">Отношение к опросу</Data></Cell>
       </Row>
-      <%= @surveys.each do |survey| %>
+      <% @surveys.each do |survey| %>
 	<% user = survey.user %>
 	<% info = user.info %>
 	<Row>
@@ -64,5 +54,37 @@
     </Table>
     <x:WorksheetOptions/>
   </ss:Worksheet>
+  <ss:Worksheet ss:Name="Ответы">
+    <Table>
+      <Row>
+	<Cell ss:StyleID="Heading" ss:MergeDown="1"><Data ss:Type="String">Номер опроса</Data></Cell>
+	<Cell ss:StyleID="Heading" ss:MergeAcross="<%= @max_first_questions_count - 1%>"><Data ss:Type="String">Задание 1</Data></Cell>
+	<Cell ss:StyleID="Heading" ss:MergeAcross="<%= @max_second_questions_count - 1%>"><Data ss:Type="String">Задание 2</Data></Cell>
+      </Row>
+      <Row>
+        <Cell></Cell>
+        <% @max_first_questions_count.times do |n| %>
+	  <Cell ss:StyleID="Heading"><Data ss:Type="Number"><%= n + 1 %></Data></Cell>
+	<% end %>
+	<% @max_second_questions_count.times do |n| %>
+	  <Cell ss:StyleID="Heading"><Data ss:Type="String">
+	    <% question = Question.find_by(number: "20#{n+1}".to_i) %>
+	    <%= question.nil? ? "ВОПРОС УДАЛЕН" : question.sentence %>
+	  </Data></Cell>
+	<% end %>
+      </Row>
+      <% @surveys.each do |survey| %> 
+	<Row>
+	  <Cell><Data ss:Type="Number"><%= survey.id %></Data></Cell>
+	  <% @max_first_questions_count.times do |n| %>
+	    <Cell><Data ss:Type="Number"><%= survey.answer_for(n+1) %></Data></Cell>
+	  <% end %>
+	  <% @max_second_questions_count.times do |n| %>
+	    <Cell><Data ss:Type="String"><%= survey.answer_for("20#{n+1}".to_i) %></Data></Cell>
+	  <% end %>
+	</Row>
+      <% end %>
+    </Table>
+    <x:WorksheetOptions/>
+  </ss:Worksheet>
 </Workbook>
-

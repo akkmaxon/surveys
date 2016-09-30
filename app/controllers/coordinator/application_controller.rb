@@ -7,12 +7,30 @@ class Coordinator::ApplicationController < ApplicationController
 
   def surveys_export
     @surveys = Survey.all.reorder(:id)
-    @max_first_questions_count = Survey.all.max do |a,b|
-      a.responses.on_first_questions.count <=> b.responses.on_first_questions.count
-    end.responses.on_first_questions.count
-    @max_second_questions_count = Survey.all.max do |a,b|
-      a.responses.on_second_questions.count <=> b.responses.on_second_questions.count
-    end.responses.on_second_questions.count
+    @max_first_questions_count = count_first_questions
+    @max_second_questions_count = count_second_questions
     render xls: "Опросы(#{Time.now.strftime '%d.%m.%Y'})"
+  end
+
+  private
+  
+  def count_first_questions
+    max = Response.on_first_questions.max do |a,b|
+      a.question_number <=> b.question_number
+    end.question_number
+    min = Response.on_first_questions.min do |a,b|
+      a.question_number <=> b.question_number
+    end.question_number
+    max - min + 1
+  end
+
+  def count_second_questions
+    max = Response.on_second_questions.max do |a,b|
+      a.question_number <=> b.question_number
+    end.question_number
+    min = Response.on_second_questions.min do |a,b|
+      a.question_number <=> b.question_number
+    end.question_number
+    max - min + 1
   end
 end
