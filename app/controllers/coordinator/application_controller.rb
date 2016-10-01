@@ -6,6 +6,6 @@ class Coordinator::ApplicationController < ApplicationController
   end
 
   def surveys_export
-    render xls: Survey.export_xls, name: "Опросы #{Time.now.strftime '%d.%m.%Y'}"
+    render xls: Survey.export, name: "Опросы #{Time.now.strftime '%d.%m.%Y'}"
   end
 end
