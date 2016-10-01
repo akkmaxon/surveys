@@ -32,7 +32,21 @@ class Survey < ApplicationRecord
   end
 
   def self.search_for_query(query)
-    where("user_email ilike ?", "%#{query}%")
+    result = []
+    possible_id = query.to_i
+    unless possible_id == 0
+      survey = find(possible_id)
+      result.push(survey) unless survey.nil?
+    end
+    %w[user_email user_agreement audience].each do |column|
+      result.concat where("#{column} ilike ?", "%#{query}%").to_a
+    end
+    u_ids = User.search_for_query(query).pluck(:id)
+    u_ids.each do |user_id|
+      survey = find_by(user_id: user_id)
+      result.push(survey) unless survey.nil?
+    end
+    result.uniq
   end
 
   def self.export

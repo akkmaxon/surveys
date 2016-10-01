@@ -9,4 +9,12 @@ class Info < ApplicationRecord
     :company,
     presence: true
 
+  
+  def self.search_for_query(query)
+    result = []
+    %w[gender company].each do |column|
+      result.concat where("#{column} ilike ?", "%#{query}%")
+    end
+    result.uniq
+  end
 end

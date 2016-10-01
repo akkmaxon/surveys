@@ -50,6 +50,10 @@ class User < ApplicationRecord
   end
 
   def self.search_for_query(query)
-    where("login ilike ?", "%#{query}%")
+    result = []
+    result.concat where("login ilike ?", "%#{query}%")
+    u_ids = Info.search_for_query(query).pluck(:user_id)
+    result.concat find(u_ids)
+    result.uniq
   end
 end

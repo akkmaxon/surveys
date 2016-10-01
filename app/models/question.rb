@@ -64,10 +64,8 @@ class Question < ApplicationRecord
       result.concat where("#{column} ilike ?", "%#{query}%").to_a
     end
     [LeftStatement, RightStatement].each do |st|
-      %w[title text].each do |column|
-	q_ids = st.where("#{column} ilike ?", "%#{query}%").pluck(:question_id)
-	result.concat(find(q_ids))
-      end
+      q_ids = st.search_for_query(query).pluck(:question_id)
+      result.concat find(q_ids)
     end
     result.sort.uniq
   end
