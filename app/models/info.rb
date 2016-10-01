@@ -12,7 +12,7 @@ class Info < ApplicationRecord
   
   def self.search_for_query(query)
     result = []
-    %w[gender company].each do |column|
+    %w[work_position gender company].each do |column|
       result.concat where("#{column} ilike ?", "%#{query}%")
     end
     result.uniq
