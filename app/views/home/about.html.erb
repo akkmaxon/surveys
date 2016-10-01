@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <h1 class="header">Описание сервиса</h1>
-
-      <h2><%= Faker::Lorem.sentence %></h2>
-      <p><%= Faker::Lorem.paragraph(10) %></p>
-      <blockquote><%= Faker::Lorem.paragraph %></blockquote>
-      <p><%= Faker::Lorem.paragraph(10) %></p>
+      <div class="jumbotron">
+	<h1>Самооценка вовлеченности</h1>
+	<hr>
+	<p>Система для сбора, хранения и аналитики данных, полученных
+	в результате применения методики "Самооценка вовлеченности"</p>
+	<%= link_to "Принять участие в опросе", login_path, class: 'btn btn-primary btn-block btn-lg' %>
+      </div>
     </div>
   </div>
 </div>

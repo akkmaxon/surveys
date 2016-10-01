@@ -35,7 +35,11 @@ class Survey < ApplicationRecord
     result = []
     possible_id = query.to_i
     unless possible_id == 0
-      survey = find(possible_id)
+      begin
+	survey = find(possible_id)
+      rescue ActiveRecord::RecordNotFound
+	survey = nil
+      end
       result.push(survey) unless survey.nil?
     end
     %w[user_email user_agreement audience].each do |column|
