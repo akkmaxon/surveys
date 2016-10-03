@@ -84,8 +84,12 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#finish_survey'
       user.reload
+      resp = user.surveys.first.responses.last
       expect(user.surveys.first.responses.count).to eq 4
-      expect(user.surveys.first.responses.last.answer).to eq 'answer sentence'
+      expect(resp.answer).to eq 'answer sentence'
+      expect(resp.sentence).to eq q201_m.sentence
+      expect(resp.criterion).to eq "Свободные ответы"
+      expect(resp.criterion_type).to eq ""
     end
 
     it 'and survey is not reliable' do

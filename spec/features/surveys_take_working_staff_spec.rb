@@ -57,20 +57,26 @@ RSpec.describe 'Working staff take a survey', type: :feature do
     end
 
     it 'process first questions' do
-      find('#question_1_answer_1').trigger 'click'
-      find('#question_28_answer_4').trigger 'click'
-      find('#question_29_answer_2').trigger 'click'
+      find('#question_1_answer_3').trigger 'click'
+      find('#question_28_answer_2').trigger 'click'
+      find('#question_29_answer_4').trigger 'click'
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#second_questions'
       expect(page).not_to have_selector '#finish_survey'
       user.reload
       expect(user.surveys.first.responses.count).to eq 3
-      expect(user.surveys.first.responses.find_by(question_number: 1).answer).
-	to eq "1"
-      expect(user.surveys.first.responses.find_by(question_number: 28).answer).
-	to eq "4"
-      expect(user.surveys.first.responses.find_by(question_number: 29).answer).
-	to eq "2"
+      first = user.surveys.first.responses.find_by(question_number: 1)
+      second = user.surveys.first.responses.find_by(question_number: 28)
+      third = user.surveys.first.responses.find_by(question_number: 29)
+      expect(first.answer).to eq "3"
+      expect(first.criterion).to eq q1_w.criterion
+      expect(second.answer).to eq "2"
+      expect(second.criterion).to eq q28_w.criterion
+      expect(third.answer).to eq "4"
+      expect(third.criterion).to eq q29_w.criterion
+      [first, second, third].each do |resp|
+	expect(resp.sentence).to eq ""
+      end
     end
 
     it 'process second questions' do
@@ -79,8 +85,12 @@ RSpec.describe 'Working staff take a survey', type: :feature do
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#finish_survey'
       user.reload
+      resp = user.surveys.first.responses.last
       expect(user.surveys.first.responses.count).to eq 4
-      expect(user.surveys.first.responses.last.answer).to eq 'answer sentence'
+      expect(resp.answer).to eq 'answer sentence'
+      expect(resp.sentence).to eq q201_w.sentence
+      expect(resp.criterion).to eq "Свободные ответы"
+      expect(resp.criterion_type).to eq ""
     end
 
     it 'and survey is not reliable' do

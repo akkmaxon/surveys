@@ -80,7 +80,7 @@ module MyTestHelpers
     let!(:left_for_q29_m) { FactoryGirl.create :left_statement, title: '29left', question: q29_m }
     let!(:right_for_q_29_m) { FactoryGirl.create :right_statement, title: '29right', question: q29_m }
     ### 2nd question for management
-    let!(:q201_m) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence }
+    let!(:q201_m) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, criterion: "Свободные ответы", criterion_type: "" }
     ### 1st questions 1,28, 29 for working_staff
     let!(:q1_w) { FactoryGirl.create :question, number: 1, audience: "Рабочая специальность" }
     let!(:left_for_q1_w) { FactoryGirl.create :left_statement, title: '1left', question: q1_w }
@@ -94,7 +94,7 @@ module MyTestHelpers
     let!(:left_for_q29_w) { FactoryGirl.create :left_statement, title: '29left', question: q29_w }
     let!(:right_for_q29_w) { FactoryGirl.create :right_statement, title: '29right', question: q29_w }
     ### 2nd question for working_staff
-    let!(:q201_w) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, audience: "Рабочая специальность" }
+    let!(:q201_w) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, audience: "Рабочая специальность", criterion: "Свободные ответы", criterion_type: "" }
   end
 
   def take_a_survey

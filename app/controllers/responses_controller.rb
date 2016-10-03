@@ -13,7 +13,11 @@ class ResponsesController < ApplicationController
   private
 
   def response_params
-    params.require(:response).permit(:question_number, :answer)
+    params.require(:response).permit(:question_number,
+				     :answer,
+				     :sentence,
+				     :criterion,
+				     :criterion_type)
   end
 
   def find_response

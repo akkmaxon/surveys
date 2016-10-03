@@ -28,7 +28,7 @@ user_agreements = ["я не согласен со своим результат�
 		   "я частично согласен со своим результатом",
 		   "я полностью согласен со своим результатом"]
 
-10000.times do |counter|
+2999.times do |counter|
   login = User.find_by(login: 'user').nil? ? 'user' : (counter + 1000000).to_s(36)
   user = User.create! login: login,
     password: 'password'
@@ -58,6 +58,8 @@ user_agreements = ["я не согласен со своим результат�
 	resp.survey_id = survey.id
 	resp.question_number = question.number
 	resp.answer = (rand(5) + 1).to_s
+	resp.criterion = question.criterion
+	resp.criterion_type = question.criterion_type
       end
     end
 
@@ -66,6 +68,7 @@ user_agreements = ["я не согласен со своим результат�
 	resp.survey_id = survey.id
 	resp.question_number = question.number
 	resp.answer = Faker::Lorem.sentence
+	resp.sentence = question.sentence
       end
     end
   end
