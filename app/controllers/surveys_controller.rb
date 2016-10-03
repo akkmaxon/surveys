@@ -50,9 +50,9 @@ class SurveysController < ApplicationController
   end
 
   def set_survey
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find(params[:id].to_i(36) - CRYPT_SURVEY)
   rescue ActiveRecord::RecordNotFound
-    flash[:alert] = "Опрос №#{params[:id]} не существует"
+    flash[:alert] = "Опрос #{params[:id]} не существует"
     redirect_to surveys_url
   end
 

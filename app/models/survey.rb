@@ -56,4 +56,8 @@ class Survey < ApplicationRecord
   def self.export
     SurveysExporter.new(all.reorder(:id)).to_xls
   end
+
+  def to_param
+    (id + CRYPT_SURVEY).to_s(36)
+  end
 end

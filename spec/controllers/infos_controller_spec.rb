@@ -32,7 +32,7 @@ RSpec.describe InfosController, type: :controller do
 
     it 'successfully' do
       post :create, params: { info: info_params }
-      expect(response).to redirect_to "/surveys/#{user.surveys.first.id}/take"
+      expect(response).to redirect_to "/surveys/#{(user.surveys.first.id + CRYPT_SURVEY).to_s(36)}/take"
       expect(flash[:notice]).to_not be nil
     end
 

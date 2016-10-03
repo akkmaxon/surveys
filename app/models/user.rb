@@ -56,4 +56,8 @@ class User < ApplicationRecord
     result.concat find(u_ids)
     result.uniq
   end
+
+  def to_param
+    login
+  end
 end

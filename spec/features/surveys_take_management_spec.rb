@@ -64,12 +64,18 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       expect(page).not_to have_selector '#finish_survey'
       user.reload
       expect(user.surveys.first.responses.count).to eq 3
-      expect(user.surveys.first.responses.find_by(question_number: 1).answer).
-	to eq "1"
-      expect(user.surveys.first.responses.find_by(question_number: 28).answer).
-	to eq "4"
-      expect(user.surveys.first.responses.find_by(question_number: 29).answer).
-	to eq "2"
+      first = user.surveys.first.responses.find_by(question_number: 1)
+      second = user.surveys.first.responses.find_by(question_number: 28)
+      third = user.surveys.first.responses.find_by(question_number: 29)
+      expect(first.answer).to eq "1"
+      expect(first.criterion).to eq q1_m.criterion
+      expect(second.answer).to eq "4"
+      expect(second.criterion).to eq q28_m.criterion
+      expect(third.answer).to eq "2"
+      expect(third.criterion).to eq q29_m.criterion
+      [first, second, third].each do |resp|
+	expect(resp.sentence).to eq ""
+      end
     end
 
     it 'process second questions' do
