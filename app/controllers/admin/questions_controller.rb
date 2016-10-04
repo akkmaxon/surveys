@@ -42,12 +42,14 @@ class Admin::QuestionsController < Admin::ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:number,
-				     :audience,
-				     :opinion_subject,
-				     :criterion,
-				     :criterion_type,
-				     :sentence)
+    p = params.require(:question).permit(:number,
+					 :audience,
+					 :opinion_subject,
+					 :criterion,
+					 :criterion_type,
+					 :sentence)
+    p[:number] = (p[:number].to_i + 200).to_s unless p[:sentence].blank?
+    p
   end
 
   def set_question

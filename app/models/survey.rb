@@ -13,6 +13,21 @@ class Survey < ApplicationRecord
     resp.answer unless resp.nil?
   end
 
+  def criterion_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.criterion unless resp.nil?
+  end
+
+  def criterion_type_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.criterion_type unless resp.nil?
+  end
+
+  def sentence_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.sentence unless resp.nil?
+  end
+
   def sum_of(question_numbers = [])
     sum = 0
     question_numbers.each do |n|

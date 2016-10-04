@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
       redirect_to new_info_url
     end
   end
+
+  def array_to_relation(model, query_result)
+    query_result.class == Array ? model.where(id: query_result.map(&:id)) : query_result
+  end
 end

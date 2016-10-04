@@ -43,10 +43,7 @@
 	<ul>
 	  <% @second_responses.each do |resp| %>
 	    <li>
-	      <% question = Question.find_by(number: resp.question_number) %>
-	      <strong>
-		<%= question ? question.sentence : "ВОПРОС БЫЛ УДАЛЕН" %>
-	      </strong>
+	      <strong><%= resp.sentence %></strong>
 	      <p class="sentence"><%= resp.answer %></p>
 	    </li>
 	  <% end %>

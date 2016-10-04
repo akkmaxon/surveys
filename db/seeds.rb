@@ -68,6 +68,7 @@ user_agreements = ["я не согласен со своим результат�
 	resp.survey_id = survey.id
 	resp.question_number = question.number
 	resp.answer = Faker::Lorem.sentence
+	resp.criterion = question.criterion
 	resp.sentence = question.sentence
       end
     end

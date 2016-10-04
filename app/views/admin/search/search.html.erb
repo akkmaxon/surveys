@@ -47,6 +47,9 @@
 	  <%= render partial: 'admin/users/user', locals: { user: user } %>
 	<% end %>
       </div>
+      <div class="text-center">
+	<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+      </div>
     <% end %>
   </div>
   <div id="coordinators_search_results">
@@ -56,6 +59,9 @@
 	  <%= render partial: 'admin/coordinators/coordinator', locals: { coordinator: coordinator } %>
 	<% end %>
       </div>
+      <div class="text-center">
+	<%= will_paginate @coordinators, renderer: BootstrapPagination::Rails %>
+      </div>
     <% end %>
   </div>
   <div id="companies_search_results">
@@ -64,6 +70,9 @@
 	<% @companies.each do |company| %>
 	  <%= render partial: 'admin/companies/company', locals: { company: company } %>
 	<% end %>
+      </div>
+      <div class="text-center">
+	<%= will_paginate @companies, renderer: BootstrapPagination::Rails %>
       </div>
     <% end %>
   </div>
@@ -81,6 +90,9 @@
 	    <% end %>
 	  </div>
 	</div>
+      </div>
+      <div class="text-center">
+	<%= will_paginate @questions, renderer: BootstrapPagination::Rails %>
       </div>
     <% end %>
   </div>

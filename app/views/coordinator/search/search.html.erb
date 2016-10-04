@@ -35,6 +35,9 @@
 	  <%= render partial: 'coordinator/users/user', locals: { user: user } %>
 	<% end %>
       </div>
+      <div class="text-center">
+	<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+      </div>
     <% end %>
   </div>
   <div id="surveys_search_results">
@@ -43,6 +46,9 @@
 	<% @surveys.each do |survey| %>
 	  <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinator_user_survey_path(survey.user, survey) } %>
 	<% end %>
+      </div>
+      <div class="text-center">
+	<%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>
       </div>
     <% end %>
   </div>
