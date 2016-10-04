@@ -3,6 +3,7 @@ class Admin::ApplicationController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    redirect_to admin_users_url
   end
 
   def clean_person_credentials

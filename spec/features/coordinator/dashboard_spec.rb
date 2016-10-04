@@ -34,12 +34,12 @@ RSpec.describe 'Coordinator visit dashboard page', type: :feature do
 
     it 'page layout' do
       within 'header' do
-	expect(page).to have_content "Панель управления"
+	expect(page).to have_content "Координатор"
 	expect(page).to have_content "Опросы"
 	expect(page).not_to have_content "Самооценка"
 	expect(page).not_to have_content "Завершенные опросы"
       end
-      expect(page.current_path).to eq coordinator_root_path
+      expect(page.current_path).to eq coordinator_surveys_path
     end
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe 'Authentication for admin', type: :feature do
     end
 
     it 'login' do
-      expect(page.current_path).to eq admin_root_path
+      expect(page.current_path).to eq admin_users_path
     end
 
     it 'logout' do
@@ -66,7 +66,7 @@ RSpec.describe 'Authentication for admin', type: :feature do
       fill_in "Пароль", with: user.password
       click_button "Войти"
       visit root_path
-      expect(page.current_path).to eq admin_root_path
+      expect(page.current_path).to eq admin_users_path
     end
   end
 end

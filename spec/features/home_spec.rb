@@ -13,9 +13,9 @@ RSpec.describe 'Behaviour of home controller', type: :feature do
   it 'redirect for admin' do
     sign_in FactoryGirl.create :admin
     visit root_path
-    expect(page.current_path).to eq admin_root_path
+    expect(page.current_path).to eq admin_users_path
     within 'header' do
-      expect(page).to have_content "Панель"
+      expect(page).to have_content "Администратор"
       expect(page).to have_content "Координаторы"
       expect(page).to have_content "Вопросы"
       expect(page).to have_content "Выход"
@@ -25,9 +25,9 @@ RSpec.describe 'Behaviour of home controller', type: :feature do
   it 'redirect for coordinator' do
     sign_in FactoryGirl.create :coordinator
     visit root_path
-    expect(page.current_path).to eq coordinator_root_path
+    expect(page.current_path).to eq coordinator_surveys_path
     within 'header' do
-      expect(page).to have_content "Панель"
+      expect(page).to have_content "Координатор"
       expect(page).to have_content "Опросы"
       expect(page).to have_content "Респонденты"
       expect(page).to have_content "Выход"

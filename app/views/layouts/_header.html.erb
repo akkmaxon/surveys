@@ -9,9 +9,9 @@
       </button>
 
       <% if admin_signed_in? %>
-	<%= link_to "Панель управления", admin_root_path, class: 'navbar-brand' %>
+	<span class="navbar-brand">Администратор</span>
       <% elsif coordinator_signed_in? %>
-	<%= link_to "Панель управления", coordinator_root_path, class: 'navbar-brand' %>
+	<span class="navbar-brand">Координатор</span>
       <% elsif user_signed_in? %>
 	<%= link_to "Новый опрос", surveys_path, method: :post, id: 'new_survey_link', class: 'navbar-brand' %>
       <% else %>
@@ -55,6 +55,15 @@
 	  </li>
 	  <li class="<%= active_link('users') %>">
 	    <%= link_to "Респонденты", coordinator_users_path, id: 'users_link' %>
+	  </li>
+	  <li class="dropdown">
+	    <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-hashpopup="true" aria-expanded="false">
+	      <span class="glyphicon glyphicon-export"></span>
+	      ЭКСПОРТ ДАННЫХ
+	    </a>
+	    <ul class="dropdown-menu">
+	      <li><%= link_to "в формате .xls", coordinator_surveys_export_path(format: :xls) %></li>
+	    </ul>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">

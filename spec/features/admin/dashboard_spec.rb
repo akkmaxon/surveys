@@ -33,10 +33,10 @@ RSpec.describe 'Dashboard page', type: :feature do
     end
 
     it 'good layout' do
-      expect(page).to have_content "Панель управления"
+      expect(page).to have_content "Администратор"
       expect(page).not_to have_content "Самооценка"
       expect(page).not_to have_content "Завершенные опросы"
-      expect(page.current_path).to eq admin_root_path
+      expect(page.current_path).to eq admin_users_path
     end
   end
 end

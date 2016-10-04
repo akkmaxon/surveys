@@ -14,7 +14,7 @@ RSpec.describe 'Admin can edit own profile', type: :feature do
       within '#messages .alert-success' do
 	expect(page).to have_content "Профиль обновлен"
       end
-      expect(page.current_path).to eq admin_root_path
+      expect(page.current_path).to eq admin_users_path
       expect(Admin.first.login).to eq 'newadmin'
       expect(Admin.first.email).to eq 'newemail@newadmin.com'
     end
