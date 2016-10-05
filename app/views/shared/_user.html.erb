@@ -1,9 +1,7 @@
 <div class="panel panel-default masonry_element user">
   <div class="panel-body">
     <div class="buttons pull-right">
-      <a class="edit_user_link btn btn-info btn-sm" data-toggle="modal" data-target="#edit_user_<%= user.id %>_modal" title="Изменить логин/пароль">
-	<span class="glyphicon glyphicon-pencil"></span>
-      </a>
+      <%= render partial: buttons, locals: { user: user } %>
     </div>
     <h2 class="h4">
       <span class="glyphicon glyphicon-user"></span>
@@ -28,20 +26,5 @@
 	<li><strong>Место работы по счету: </strong><%= user.info.workplace_number %></li>
       </ul>
     <% end %>
-  </div>
-</div>
-<div id="edit_user_<%= user.id %>_modal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-	<button class="close" data-dismiss="modal" aria-label="Close">
-	  <span aria-hidden="true">&times;</span>
-	</button>
-	<h2 class="h3 text-center">Изменить логин/пароль</h2>
-      </div>
-      <div class="modal-body">
-	<%= render 'admin/shared/form', object: user %>
-      </div>
-    </div>
   </div>
 </div>

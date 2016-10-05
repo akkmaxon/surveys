@@ -1,4 +1,5 @@
 document.addEventListener "turbolinks:load", () ->
+  $('.edit_survey input[checked="checked"]').parent().addClass('active')
   parseProgressBarId = () ->
     [checked, total] = $(".progress-bar").attr('id').split '/'
     [Number(checked), Number(total)]

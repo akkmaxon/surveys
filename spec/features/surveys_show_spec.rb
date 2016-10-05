@@ -59,7 +59,10 @@ RSpec.describe 'Work with surveys/show', type: :feature do
 	expect(page).to have_selector 'table'
 	expect(page).not_to have_selector('#agreement')
 	visit survey_path(survey)
-	expect(page).not_to have_selector('#agreement')
+	find('#agree').trigger 'click'
+	sleep 1
+	survey.reload
+	expect(survey.user_agreement).to eq 'я полностью согласен со своим результатом'
       end
 
       it 'User fill in an email form' do
@@ -72,7 +75,11 @@ RSpec.describe 'Work with surveys/show', type: :feature do
 	expect(page).to have_selector 'table'
 	expect(page).not_to have_selector('#email_field')
 	visit survey_path(survey)
-	expect(page).not_to have_selector('#email_field')
+	fill_in id: 'survey_user_email', with: 'other@email.com'
+	click_button 'leave_email'
+	sleep 1
+	survey.reload
+	expect(survey.user_email).to eq('other@email.com')
       end
 
       it 'Attempt to watch survey of other user' do

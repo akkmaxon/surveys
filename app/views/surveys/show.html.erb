@@ -3,15 +3,11 @@
 
   <%= render 'survey', survey: @survey %>
 
-  <% if @survey.user_agreement.blank? %>
-    <div id="agreement">
-      <%= render 'surveys/agreement' %>
-    </div>
-  <% end %>
+  <div id="agreement">
+    <%= render 'surveys/agreement' %>
+  </div>
 
-  <% if @survey.user_email.blank? %>
-    <div id="email_field">
-      <%= render 'surveys/email_form' %>
-    </div>
-  <% end %>
+  <div id="email_field">
+    <%= render 'surveys/email_form' %>
+  </div>
 </div>

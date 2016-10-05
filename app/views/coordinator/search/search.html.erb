@@ -32,7 +32,7 @@
     <% unless @users.blank? %>
       <div class="masonry_container container-fluid">
 	<% @users.each do |user| %>
-	  <%= render partial: 'coordinator/users/user', locals: { user: user } %>
+	  <%= render partial: 'shared/user', locals: { user: user, buttons: 'coordinator/users/buttons' } %>
 	<% end %>
       </div>
       <div class="text-center">

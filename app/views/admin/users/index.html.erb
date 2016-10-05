@@ -39,7 +39,7 @@
 
 <div class="masonry_container container-fluid">
   <% @users.each do |user| %>
-    <%= render partial: 'user', locals: { user: user } %>
+    <%= render partial: 'shared/user', locals: { user: user, buttons: 'admin/users/buttons' } %>
   <% end %>
 </div>
 
