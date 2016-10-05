@@ -6,8 +6,28 @@
       </a>
     </div>
     <h2 class="h4">
+      <span class="glyphicon glyphicon-user"></span>
       <%= user.login %>
     </h2>
+    <% if user.info.nil? %>
+      <h2 class="h4">
+	<span class="glyphicon glyphicon-info-sign"></span>
+	Нет информации
+      </h2>
+    <% else %>
+      <h2 class="h4">
+	<span class="glyphicon glyphicon-info-sign"></span>
+	Информация:
+      </h2>
+      <ul>
+	<li><strong>Пол: </strong><%= user.info.gender %></li>
+	<li><strong>Возраст: </strong><%= user.info.age %></li>
+	<li><strong>Компания: </strong><%= user.info.company %></li>
+	<li><strong>Время работы в компании: </strong><%= user.info.experience %></li>
+	<li><strong>Должность: </strong><%= user.info.work_position %></li>
+	<li><strong>Место работы по счету: </strong><%= user.info.workplace_number %></li>
+      </ul>
+    <% end %>
   </div>
 </div>
 <div id="edit_user_<%= user.id %>_modal" class="modal fade" tabindex="-1" role="dialog">

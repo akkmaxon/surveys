@@ -61,32 +61,6 @@
 	  }
 	}
       });
-      var ctx2 = document.getElementById('chart2');
-      var myChart2 = new Chart(ctx2, {
-	type: 'bar',
-	data: data,
-	options: {
-	  title: {
-	    display: true,
-	    text: "Здесь будет заголовок графика ..."
-	  },
-	  scales: {
-	    yAxes: [{
-	      ticks: {
-		stepSize: 1,
-		beginAtZero: true
-	      }
-	    }],
-	    xAxes: [{
-	      display: false
-	    }]
-	  }
-	}
-      });
     });
   </script>
-</div>
-
-<div class="point_chart">
-  <canvas id="chart2"></canvas>
 </div>
