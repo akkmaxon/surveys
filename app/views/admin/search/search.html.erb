@@ -78,17 +78,17 @@
   </div>
   <div id="questions_search_results">
     <% unless @questions.blank? %>
-      <div class="container">
+      <div class="container-fluid">
 	<div class="row">
-	  <div class="col-md-8 col-md-offset-2">
-	    <% @questions.each do |question| %>
+	  <% @questions.each do |question| %>
+	    <div class="col-md-6">
 	      <% if question.sentence.blank? %>
 		<%= render partial: 'admin/questions/first_question', locals: { question: question } %>
 	      <% else %>
 		<%= render partial: 'admin/questions/second_question', locals: { question: question } %>
 	      <% end %>
-	    <% end %>
-	  </div>
+	    </div>
+	  <% end %>
 	</div>
       </div>
       <div class="text-center">
