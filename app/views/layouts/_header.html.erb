@@ -62,7 +62,9 @@
 	      ЭКСПОРТ ДАННЫХ
 	    </a>
 	    <ul class="dropdown-menu">
-	      <li><%= link_to "в формате .xls", coordinator_surveys_export_path(format: :xls) %></li>
+	      <li><%= link_to "все данные", coordinator_surveys_export_path(format: :xls), data: { confirm: "Это может занять много времени, продолжить?" } %></li>
+	      <li><%= link_to "по компаниям", coordinator_root_path, data: { confirm: 'Not ready yet!' } %></li>
+	      <li><%= link_to "по должностям", coordinator_root_path, data: { confirm: 'Not ready yet!' } %></li>
 	    </ul>
 	  </li>
 	</ul>
