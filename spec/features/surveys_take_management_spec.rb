@@ -48,6 +48,7 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       expect(page).to have_selector '.response', count: 1
       expect(page).to have_selector 'input[type="radio"]', count: 5
       expect(page).not_to have_selector '#finish_survey'
+      expect(page).not_to have_selector '#show_results_link'
       within '.table' do
 	%w[1left 1right].each do |title|
 	  expect(page).to have_content title
@@ -61,7 +62,7 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       find('#question_29_answer_2').trigger 'click'
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#second_questions'
-      expect(page).not_to have_selector '#finish_survey'
+      expect(page).not_to have_selector '#show_results_link'
       user.reload
       expect(user.surveys.first.responses.count).to eq 3
       first = user.surveys.first.responses.find_by(question_number: 1)
@@ -82,7 +83,7 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       take_a_survey
       expect(page).not_to have_selector '#second_questions'
       expect(page).not_to have_selector '#first_questions'
-      expect(page).to have_selector '#finish_survey'
+      expect(page).to have_selector '#show_results_link'
       user.reload
       resp = user.surveys.first.responses.last
       expect(user.surveys.first.responses.count).to eq 4
@@ -98,7 +99,6 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       find('#question_29_answer_5').trigger 'click'
       fill_in id: 'question_201_answer', with: 'answer sentence'
       find('.submit_questions_2').trigger 'click'
-      find('#finish_survey').trigger 'click'
       user.reload
       within '#messages .alert-danger' do
 	expect(page).to have_content "С большой долей вероятности можно сказать"
@@ -110,7 +110,6 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       expect(user.surveys.count).to eq 1
       expect(user.surveys.last).not_to be_completed
       take_a_survey
-      find('#finish_survey').trigger 'click'
       sleep 1
       user.reload
       expect(user.surveys.count).to eq 1
@@ -120,7 +119,7 @@ RSpec.describe 'Manager takes a survey', type: :feature do
     it 'not completed because one more question is present' do
       question_3 = FactoryGirl.create :question, audience: "Менеджмент", sentence: Faker::Lorem.sentence
       take_a_survey
-      expect(page).not_to have_selector('#finish_survey')
+      expect(page).not_to have_selector('#show_results_link')
       user.reload
       expect(user.surveys.count).to eq 1
       expect(user.surveys.last).not_to be_completed

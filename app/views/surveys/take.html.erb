@@ -9,16 +9,16 @@
 	  <p>Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).</p>
 	</div>
 	<table class="table">
-	  <tbody class="container">
+	  <tbody>
 	    <% @first_questions.each_with_index do |question, n| %>
-	      <tr class="response row <%= n == 0 ? '' : 'hidden_question' %>">
-		<td class="left col-xs-2 col-md-4">
+	      <tr class="response <%= n == 0 ? '' : 'hidden_question' %>">
+		<td class="left">
 		  <% unless question.left_statement.title.blank? %>
 		    <strong>"<%= question.left_statement.title %>"</strong><br />
 		  <% end %>
 		  <%= question.left_statement.text %>
 		</td>
-		<td class="table_radio text-center col-xs-8 col-md-4">
+		<td class="table_radio text-center">
 		  <%= text_for_subject(question.opinion_subject) %>
 		  <%= form_for Response.new, remote: true do |f| %>
 		    <%= hidden_field_tag :survey_id, @survey.id %>
@@ -45,7 +45,7 @@
 		    <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.number}" %>
 		  <% end %>
 		</td>
-		<td class="right col-xs-2 col-md-4">
+		<td class="right">
 		  <% unless question.right_statement.title.blank? %>
 		    <strong>"<%= question.right_statement.title %>"</strong><br />
 		  <% end %>
@@ -80,15 +80,15 @@
 	  </div>
 	<% end %>
       </div>
-
+      <%= form_for @survey, remote: true do |f| %>
+	<%= f.hidden_field :completed, value: true %>
+	<%= f.submit 'Complete Survey', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
+      <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for @survey do |f| %>
-	<%= f.hidden_field :completed, value: true %>
-	<%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
-      <% end %>
+      <%= link_to "Получить краткие результаты", @survey, class: 'btn btn-primary btn-lg btn-block', id: "show_results_link" %>
     </div>
   </div>
 </div>

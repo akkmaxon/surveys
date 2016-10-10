@@ -5,6 +5,9 @@
 }
 
 table {
+  .left, .right, .table_radio {
+    width: 33.333333%;
+  }
   background-color: #fff !important;
   th {
     text-align: center;
@@ -32,7 +35,7 @@ table {
 }
 
 .progress-bar {
-  min-width: 7%;
+  min-width: 40px;
 }
 
 .table_radio {
@@ -58,7 +61,6 @@ table {
 
 #finish_survey {
   display: none;
-  margin-top: 50px;
 }
 
 #second_questions {
@@ -89,7 +91,12 @@ table {
   background: linear-gradient(to right, #f8f8f8, #fff, #f8f8f8);
   .progress {
     margin-top: 20px;
-    margin-left: 33%;
-    margin-right: 33%;
+    margin-left: 25%;
+    margin-right: 25%;
   }
+}
+
+#show_results_link {
+  display: none;
+  margin-top: 50px;
 }
