@@ -32,7 +32,7 @@ table {
 }
 
 .progress-bar {
-  min-width: 5%;
+  min-width: 7%;
 }
 
 .table_radio {
@@ -58,7 +58,7 @@ table {
 
 #finish_survey {
   display: none;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #second_questions {
@@ -66,11 +66,9 @@ table {
 }
 
 .specifying_question {
-  h2 {
-    @extend .h3;
-    @extend .text-center;
-  }
-  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+  padding: 0 20px 10px 20px;
 } 
 
 .subject_with_arrows {
@@ -85,4 +83,13 @@ table {
   width: 100%;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+#progress_line {
+  background: linear-gradient(to right, #f8f8f8, #fff, #f8f8f8);
+  .progress {
+    margin-top: 20px;
+    margin-left: 33%;
+    margin-right: 33%;
+  }
 }

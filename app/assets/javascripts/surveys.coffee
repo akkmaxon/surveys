@@ -25,11 +25,13 @@ document.addEventListener "turbolinks:load", () ->
     updateProgressBar()
     # end of the game
     if finishedSurvey()
-      $('#second_questions').remove()
+      $('#survey_take_container').remove()
+      $(".header").text("Опрос завершен")
       $("#finish_survey").css('display', 'block').removeClass("disabled")
     # finishing 1 questions
     if ($('.submit_questions_1').size() is 0) and ($("#first_questions").size() isnt 0)
       $("#first_questions").remove()
+      $(".header").text("Задание 2")
       $("#second_questions").css('display', 'block')
 
   # 1 questions radios

@@ -1,18 +1,10 @@
 <div class="container">
-  <h1 class="header">Новый опрос</h1>
+  <h1 class="header">Задание 1</h1>
 
   <div class="panel panel-default" id="survey_take_container">
     <div class="panel-body">
-      <div class="progress">
-	<% initial_value = "0/#{@sum_of_questions}" %>
-	<div class="progress-bar" id="<%= initial_value %>">
-	  <%= initial_value %>
-	</div>
-      </div>
-
       <div id="first_questions">
 	<div class="specifying_question">
-	  <h2><strong>Задание 1.</strong></h2>
 	  <p>Прочитайте высказывания, которые описывают противоположные мнения работников о себе и Вашей компании.</p>
 	  <p>Шкала от 1 до 5 обозначает степень согласия с одной из групп(1 - полностью согласен/согласна с мнением, расположенным слева, 5 - полностью согласен/согласна с мнением, расположенным справа).</p>
 	</div>
@@ -67,7 +59,6 @@
 
       <div id="second_questions">
 	<div class="specifying_question">
-	  <h2><strong>Задание 2.</strong></h2>
 	  <p>Закончите следующие предложения:</p>
 	</div>
 	<hr style="border-top: 1px solid #dadada; margin-top: 10px; margin-bottom: 10px">
@@ -90,14 +81,23 @@
 	<% end %>
       </div>
 
-      <div class="row">
-	<div class="col-md-6 col-md-offset-3">
-	  <%= form_for @survey do |f| %>
-	    <%= f.hidden_field :completed, value: true %>
-	    <%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
-	  <% end %>
-	</div>
-      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for @survey do |f| %>
+	<%= f.hidden_field :completed, value: true %>
+	<%= f.submit 'Получить краткие результаты', class: 'btn btn-primary btn-lg btn-block disabled', id: 'finish_survey' %>
+      <% end %>
     </div>
   </div>
 </div>
+
+<footer class="navbar navbar-default navbar-fixed-bottom" id="progress_line">
+  <div class="progress">
+    <% initial_value = "0/#{@sum_of_questions}" %>
+    <div class="progress-bar" id="<%= initial_value %>">
+      <%= initial_value %>
+    </div>
+  </div>
+</footer>
