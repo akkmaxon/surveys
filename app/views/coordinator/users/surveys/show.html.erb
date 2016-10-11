@@ -9,36 +9,63 @@
 	<h2 class="h4 text-center">Общая информация:</h2>
       </div>
       <div class="panel-body">
-	<ul>
-	  <li><strong>Опрос №: </strong><%= @survey.id %></li>
-	  <li><strong>Дата прохождения: </strong><%= @survey.pass_date %></li>
-	  <li><strong>Опрос для: </strong><%= @survey.audience %></li>
-	  <li><strong>Логин: </strong><%= @user.login %></li>
-	  <li><strong>Пол: </strong><%= @info.gender %></li>
-	  <li><strong>Возраст: </strong><%= @info.age %></li>
-	  <li><strong>Компания: </strong><%= @info.company %></li>
-	  <li><strong>Время работы в компании: </strong><%= @info.experience %></li>
-	  <li><strong>Должность: </strong><%= @info.work_position %></li>
-	  <li><strong>Место работы по счету: </strong><%= @info.workplace_number %></li>
-	  <li><strong>Email: </strong><%= @survey.user_email %></li>
-	  <li><strong>Отношение к опросу: </strong><%= @survey.user_agreement %></li>
-	</ul>
+	<table class="table table-hover">
+	  <tbody>
+	    <tr>
+	      <td><strong>Опрос №: </strong></td>
+	      <td><%= @survey.id %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Дата прохождения: </strong></td>
+	      <td><%= @survey.pass_date %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Опрос для: </strong></td>
+	      <td><%= @survey.audience %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Логин: </strong></td>
+	      <td><%= @user.login %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Пол: </strong></td>
+	      <td><%= @info.gender %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Возраст: </strong></td>
+	      <td><%= @info.age %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Компания: </strong></td>
+	      <td><%= @info.company %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Время работы в компании: </strong></td>
+	      <td><%= @info.experience %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Должность: </strong></td>
+	      <td><%= @info.work_position %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Место работы по счету: </strong></td>
+	      <td><%= @info.workplace_number %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Email: </strong></td>
+	      <td><%= @survey.user_email %></td>
+	    </tr>
+	    <tr>
+	      <td><strong>Отношение к опросу: </strong></td>
+	      <td><%= @survey.user_agreement %></td>
+	    </tr>
+	</table>
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">
-	<h2 class="h4 text-center">Ответы:</h2>
-      </div>
       <div class="panel-body">
 	<h2 class="h4 text-center">Задание 1.</h2>
-	<ul>
-	  <% @first_responses.each do |resp| %>
-	    <li>
-	      <strong><%= resp.question_number %>. </strong>
-	      <%= resp.answer %>
-	    </li>
-	  <% end %>
-	</ul>
+	<%= render partial: 'surveys/survey', locals: { survey: @survey } %>
 	<h2 class="h4 text-center">Задание 2.</h2>
 	<ul>
 	  <% @second_responses.each do |resp| %>

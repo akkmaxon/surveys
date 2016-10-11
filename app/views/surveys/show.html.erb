@@ -2,6 +2,7 @@
   <h1 class="header">Результат опроса от <%= @survey.pass_date %></h1>
 
   <%= render 'survey', survey: @survey %>
+  <%= render partial: 'charts', locals: { survey: @survey } %>
 
   <div id="agreement">
     <%= render 'surveys/agreement' %>
