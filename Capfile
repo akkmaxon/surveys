@@ -5,9 +5,7 @@ require "capistrano/setup"
 require "capistrano/deploy"
 require 'capistrano/bundler'
 require 'capistrano/rails'
-
-set :rbenv_type, :user
-set :rbenv_ruby, '2.3.1'
+require 'capistrano/rbenv'
 
 # Include tasks from other gems included in your Gemfile
 #
