@@ -6,6 +6,8 @@ class SurveysExporter
   end
 
   def to_xls
+    mem_before = "%d MB" %(`ps -o rss= -p #{Process.pid}`.to_i/1024)
+
     workbook = Spreadsheet::Workbook.new
     bold = Spreadsheet::Format.new weight: :bold
     ### setting up first worksheet ###
@@ -45,6 +47,10 @@ class SurveysExporter
 	second.row(i + 2).push cell
       end
     end
+    mem_after = "%d MB" %(`ps -o rss= -p #{Process.pid}`.to_i/1024)
+    puts 'Before: ' + mem_before
+    puts 'After: ' + mem_after
+
     workbook
   end
 
