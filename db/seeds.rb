@@ -28,7 +28,7 @@ user_agreements = ["я не согласен со своим результат�
 		   "я частично согласен со своим результатом",
 		   "я полностью согласен со своим результатом"]
 
-2999.times do |counter|
+9999.times do |counter|
   login = User.find_by(login: 'user').nil? ? 'user' : (counter + 1000000).to_s(36)
   user = User.create! login: login,
     password: 'password'

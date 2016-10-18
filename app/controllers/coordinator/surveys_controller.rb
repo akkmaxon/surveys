@@ -5,7 +5,7 @@ class Coordinator::SurveysController < Coordinator::ApplicationController
 
   def export
     respond_to do |format|
-      format.csv { send_data Survey.export, filename: "Опросы #{Time.now.strftime '%d.%m.%Y'}.csv" }
+      format.csv { send_data Survey.export, filename: "Опросы(#{Time.now.strftime '%d.%m.%Y'}).csv" }
     end
   end
 end
