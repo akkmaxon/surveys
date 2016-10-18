@@ -9,8 +9,9 @@ class Survey < ApplicationRecord
   end
 
   def answer_for(question_number)
-    resp = responses.find_by(question_number: question_number)
-    resp.answer unless resp.nil?
+    resp_arr = responses.pluck(:question_number, :answer)
+    resp = resp_arr.find { |a| a[0] == question_number }
+    resp[1] unless resp.nil?
   end
 
   def criterion_for(question_number)
@@ -69,7 +70,14 @@ class Survey < ApplicationRecord
   end
 
   def self.export
-    SurveysExporter.new(all.reorder(:id)).to_xls
+    exporter = SurveysExporter.new(EXPORT_FILE)
+    exporter.create_csv
+    lim = 100
+    (0..all.count).step(lim) do |n|
+      csv = exporter.to_csv(all.reorder(:id).offset(n).limit(lim))
+      File.open(EXPORT_FILE, 'a') { |f| f.write csv }
+    end
+    File.open(EXPORT_FILE).read
   end
 
   def to_param

@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   }
 
   namespace :coordinator do
-    resources :surveys, only: [:index]
+    resources :surveys, only: [:index] do
+      collection do
+	get 'export'
+      end
+    end
     resources :users, only: [:index] do
       resources :surveys, only: [:index, :show], controller: 'users/surveys'
     end
     get 'search' => 'search#search'
-    get 'surveys_export' => 'application#surveys_export'
     root to: 'application#index'
   end
   devise_for :coordinator, path_names: {

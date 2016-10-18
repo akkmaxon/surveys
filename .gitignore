@@ -21,3 +21,4 @@ ASK
 /vagrant
 config/database.yml
 config/secrets.yml
+export.csv
