@@ -70,12 +70,19 @@ class Survey < ApplicationRecord
   end
 
   def self.export
-    exporter = SurveysExporter.new(EXPORT_FILE)
+    mem_before = `ps -o rss= -p #{Process.pid}`.to_i/1024
+    exporter = SurveysExporter.new EXPORT_FILE
     exporter.create_csv
     lim = 100
-    (0..all.count).step(lim) do |n|
+    (0..count).step(lim) do |n|
       csv = exporter.to_csv(all.reorder(:id).offset(n).limit(lim))
       File.open(EXPORT_FILE, 'a') { |f| f.write csv }
+    end
+    mem_after = `ps -o rss= -p #{Process.pid}`.to_i/1024
+    puts mem_before
+    puts mem_after
+    [Survey,Response,User,Info].each do |obj|
+      puts ObjectSpace.each_object(obj).count
     end
     File.open(EXPORT_FILE).read
   end

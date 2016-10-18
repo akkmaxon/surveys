@@ -1,4 +1,7 @@
 class SurveysExporter
+  DEFAULT_MAX_FIRST_QUESTIONS_COUNT = 29
+  DEFAULT_MAX_SECOND_QUESTIONS_COUNT = 6
+
   def initialize(filename)
     @surveys = []
     @filename = filename
@@ -7,7 +10,7 @@ class SurveysExporter
   end
 
   def create_csv
-    csv = CSV.generate(col_sep: "\t") do |csv|
+    csv = CSV.generate do |csv|
       csv << headings
     end
     File.open(@filename,'w') { |f| f.write csv }
@@ -15,7 +18,7 @@ class SurveysExporter
 
   def to_csv(surveys)
     @surveys = surveys
-    CSV.generate(col_sep: "\t") do |csv|
+    CSV.generate do |csv|
       @surveys.each do |survey|
 	csv << data_of(survey)
       end
@@ -50,14 +53,13 @@ class SurveysExporter
   end
 
   def max_first_questions_count
-    max = Response.on_first_questions.pluck(:question_number).max
-    min = Response.on_first_questions.pluck(:question_number).min
-    max - min + 1
+    max = Question.all_first_questions.pluck(:number).max
+    max < DEFAULT_MAX_FIRST_QUESTIONS_COUNT ? DEFAULT_MAX_FIRST_QUESTIONS_COUNT : max
   end
 
   def max_second_questions_count
-    max = Response.on_second_questions.pluck(:question_number).max
-    min = Response.on_second_questions.pluck(:question_number).min
-    max - min + 1
+    max = Question.all_second_questions.pluck(:number).max
+    min = 201
+    max < DEFAULT_MAX_SECOND_QUESTIONS_COUNT ? DEFAULT_MAX_SECOND_QUESTIONS_COUNT : (max - min + 1)
   end
 end
