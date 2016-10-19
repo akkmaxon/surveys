@@ -1,4 +1,5 @@
 require_relative 'boot'
+require_relative 'smtp_credentials'
 
 require "rails"
 require "prawn"
@@ -21,6 +22,14 @@ module Surveys
   class Application < Rails::Application
     config.i18n.default_locale = :ru
     config.active_job.queue_adapter = :delayed_job
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: SMTP_ADDRESS,
+      port: SMTP_PORT,
+      user_name: SMTP_USERNAME,
+      password: SMTP_PASSWORD,
+      authentication: 'plain'
+    }
 
     ActionController::Renderers.add :pdf do |filename, options|
       pdf = Prawn::Document.new

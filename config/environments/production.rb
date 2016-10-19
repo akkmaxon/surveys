@@ -44,7 +44,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :warn
+  config.log_level = :unknown
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -57,8 +57,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "surveys_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: '188.120.227.156' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
