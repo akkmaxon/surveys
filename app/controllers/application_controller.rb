@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:update_csv]
   before_action :devise_sanitizer_params, if: :devise_controller?
 
   protect_from_forgery with: :exception
+
+  def update_csv
+    Survey.delay(run_at: Time.now).export
+  end
+
+  protected
 
   def devise_sanitizer_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:email])

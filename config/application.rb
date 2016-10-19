@@ -20,6 +20,7 @@ Bundler.require(*Rails.groups)
 module Surveys
   class Application < Rails::Application
     config.i18n.default_locale = :ru
+    config.active_job.queue_adapter = :delayed_job
 
     ActionController::Renderers.add :pdf do |filename, options|
       pdf = Prawn::Document.new

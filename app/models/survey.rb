@@ -1,6 +1,7 @@
 class Survey < ApplicationRecord
   belongs_to :user
   has_many :responses, dependent: :delete_all
+  validates :user, presence: true
 
   default_scope -> { order(created_at: :desc) }
 

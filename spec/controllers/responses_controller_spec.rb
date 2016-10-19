@@ -37,7 +37,7 @@ RSpec.describe ResponsesController, type: :controller do
 	survey.destroy
 	expect {
 	  post :create, params: { survey_id: survey.id, response: resp }
-	}.to raise_error(ActiveRecord::RecordInvalid)
+	}.to raise_error(ActiveRecord::InvalidForeignKey)
       end
     end
   end

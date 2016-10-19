@@ -4,8 +4,9 @@ class Coordinator::SurveysController < Coordinator::ApplicationController
   end
 
   def export
+    file = File.open(EXPORT_FILE, 'r')
     respond_to do |format|
-      format.csv { send_data Survey.export, filename: "Опросы(#{Time.now.strftime '%d.%m.%Y'}).csv" }
+      format.csv { send_data file.read, filename: "Опросы(#{file.mtime.strftime '%d.%m.%Y'}).csv" }
     end
   end
 end

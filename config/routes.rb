@@ -41,5 +41,6 @@ Rails.application.routes.draw do
     get 'login' => 'devise/sessions#new'
   end
 
+  get 'application/update_csv'
   root to: 'home#about'
 end

@@ -57,7 +57,7 @@
 	    <%= link_to "Респонденты", coordinator_users_path, id: 'users_link' %>
 	  </li>
 	  <li>
-	    <%= link_to export_coordinator_surveys_path(format: :csv), method: :get, data: { confirm: "Это может занять много времени, продолжить?" } do %>
+	    <%= link_to export_coordinator_surveys_path(format: :csv) do %>
 	      <span class="glyphicon glyphicon-export"></span>
 	      ЭКСПОРТ ДАННЫХ
 	    <% end %>
