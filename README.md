@@ -1,24 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Services:
+* update export.csv file by cron
+* RAILS_ENV=production current/bin/delayed_job start for complete previous step
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Deployment:
+* eval `ssh-agent -s` && ssh-add
+* cap production deploy
+* passenger-config restart-app(on server)
