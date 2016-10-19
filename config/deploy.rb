@@ -9,7 +9,7 @@ set :deploy_to, "/home/deploy/#{fetch(:application)}"
 set :rbenv_type, :user
 set :rbenv_ruby, '2.3.1'
 
-set :linked_files, %w{config/database.yml config/secrets.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml config/smtp_credentials.rb}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :deploy do
