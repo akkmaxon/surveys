@@ -10,13 +10,24 @@ RSpec.describe ResponsesController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:resp) { FactoryGirl.attributes_for :response }
+    let(:resp) { FactoryGirl.attributes_for :response, answer: 3 }
     context 'successfully' do
-      it 'default' do
+      it 'create new response' do
 	expect(Response.count).to eq 0
 	post :create, xhr: true, params: { survey_id: survey.id, response: resp }
 	expect(response).to have_http_status(:success)
 	expect(Response.count).to eq 1
+      end
+
+      it 'update response' do
+	Response.create! resp.merge(survey_id: survey.id)
+	expect(Response.count).to eq 1
+	expect(Response.first.answer).to eq("3")
+	resp[:answer] = 1000
+	post :create, xhr: true, params: { survey_id: survey.id, response: resp }
+	expect(response).to have_http_status(:success)
+	expect(Response.count).to eq 1
+	expect(Response.first.answer).to eq("1000")
       end
     end
 
@@ -31,6 +42,7 @@ RSpec.describe ResponsesController, type: :controller do
 	sign_out user
 	post :create, params: { survey_id: survey.id, response: resp }
 	expect(response).to redirect_to(:new_user_session)
+	expect(flash[:alert]).to eq("Войдите, пожалуйста, в систему.")
       end	
 
       it 'survey is absent' do

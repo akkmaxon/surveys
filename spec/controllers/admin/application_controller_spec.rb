@@ -10,8 +10,14 @@ RSpec.describe Admin::ApplicationController, type: :controller do
   describe "GET #index" do
     it "returns http success" do
       get :index
-      expect(response).to have_http_status(:redirect)
+      expect(response).to redirect_to(:admin_users)
+    end
+
+    it 'redirect when not signed in' do
+      sign_out admin
+      get :index
+      expect(response).to redirect_to(:new_admin_session)
+      expect(flash[:alert]).to eq("Войдите, пожалуйста, в систему.")
     end
   end
-
 end

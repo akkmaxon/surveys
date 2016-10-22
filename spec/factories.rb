@@ -30,6 +30,8 @@ FactoryGirl.define do
   factory :response do
     answer Faker::Lorem.sentence
     sequence(:question_number, 1)
+    criterion "Default Criterion"
+    criterion_type "Default Criterion Type"
   end
 
   factory :question do
