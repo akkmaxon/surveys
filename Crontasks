@@ -1,0 +1,5 @@
+export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin:$PATH
+eval "$(rbenv init -)"
+curl http://188.120.227.156/application/update_csv
+cd /home/deploy/surveys/current/
+RAILS_ENV=production bundle exec rake jobs:workoff &>log/export.log
