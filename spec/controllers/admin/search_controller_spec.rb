@@ -6,13 +6,14 @@ RSpec.describe Admin::SearchController, type: :controller do
 
     it 'successfully' do
       sign_in admin
-      get :search
+      get :search, params: { q: 'find me' }
       expect(response).to render_template(:search)
     end
 
     it 'redirect to sign in' do
-      get :search
+      get :search, params: { q: 'find_me' }
       expect(response).to redirect_to(:new_admin_session)
+      expect(flash[:alert]).to eq("Войдите, пожалуйста, в систему.")
     end
   end
 end
