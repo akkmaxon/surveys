@@ -1,0 +1,47 @@
+<div class="panel panel-default question <%= question.audience == "Менеджмент" ? 'management' : 'working_staff' %>">
+  <div class="panel-heading">
+    <div class="buttons pull-right">
+      <a class="edit_question_link btn btn-sm btn-info" title="Редактировать">
+	<span class="glyphicon glyphicon-pencil"></span>
+      </a>
+      <%= link_to admins_question_path(question), method: :delete, class: 'btn btn-sm btn-danger delete_question', title: "Удалить", data: { confirm: "Вопрос №#{question.number} будет удален. Подтверждаете действие?" } do %>
+	<span class="glyphicon glyphicon-trash"></span>
+      <% end %> 
+    </div>
+    <h3 class="h4 text-right">
+      №<%= question.number %>
+      <span class="label label-primary pull-left">
+	<%= question.audience %>
+      </span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+	<% unless question.left_title.blank? %>
+	  <strong>"<%= question.left_title %>"</strong><br>
+	<% end %>
+	<%= question.left_text %>
+      </div>
+      <div class="col-sm-6">
+	<% unless question.right_title.blank? %>
+	  <strong>"<%= question.right_title %>"</strong><br>
+	<% end %>
+	<%= question.right_text %>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">
+    <h3 class="h4">
+      <span class="label label-success">
+	<%= question.opinion_subject %>
+      </span>
+      <span class="label label-warning pull-right" title="Критерий">
+	<%= question.criterion %>
+      </span>
+    </h3>
+  </div>
+</div>
+<div class="container_question_form">
+  <%= render 'admins/questions/first_question_form', object: question %>
+</div>

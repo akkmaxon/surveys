@@ -24,21 +24,21 @@
 
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('users') %>">
-	    <%= link_to "Респонденты", admin_users_path, id: 'users_link' %>
+	    <%= link_to "Респонденты", admins_users_path, id: 'users_link' %>
 	  </li>
 	  <li class="<%= active_link('coordinators') %>">
-	    <%= link_to "Координаторы", admin_coordinators_path, id: 'coordinators_link' %>
+	    <%= link_to "Координаторы", admins_coordinators_path, id: 'coordinators_link' %>
 	  </li>
 	  <li class="<%= active_link('companies') %>">
-	    <%= link_to "Компании", admin_companies_path, id: 'companies_link' %>
+	    <%= link_to "Компании", admins_companies_path, id: 'companies_link' %>
 	  </li>
 	  <li class="<%= active_link('questions') %>">
-	    <%= link_to "Вопросы", admin_questions_path, id: 'questions_link' %>
+	    <%= link_to "Вопросы", admins_questions_path, id: 'questions_link' %>
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li class="navbar-form navbar-left">
-	    <%= form_tag admin_search_path, method: :get do %>
+	    <%= form_tag admins_search_path, method: :get do %>
 	      <%= render 'shared/search' %>
 	    <% end %>
 	  </li>
@@ -51,13 +51,13 @@
       <% elsif coordinator_signed_in? %>
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('surveys') %>">
-	    <%= link_to "Опросы", coordinator_surveys_path, id: 'surveys_link' %>
+	    <%= link_to "Опросы", coordinators_surveys_path, id: 'surveys_link' %>
 	  </li>
 	  <li class="<%= active_link('users') %>">
-	    <%= link_to "Респонденты", coordinator_users_path, id: 'users_link' %>
+	    <%= link_to "Респонденты", coordinators_users_path, id: 'users_link' %>
 	  </li>
 	  <li>
-	    <%= link_to export_coordinator_surveys_path(format: :csv) do %>
+	    <%= link_to export_coordinators_surveys_path(format: :csv) do %>
 	      <span class="glyphicon glyphicon-export"></span>
 	      ЭКСПОРТ ДАННЫХ
 	    <% end %>
@@ -65,7 +65,7 @@
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li class="navbar-form navbar-left">
-	    <%= form_tag coordinator_search_path, method: :get do %>
+	    <%= form_tag coordinators_search_path, method: :get do %>
 	      <%= render 'shared/search' %>
 	    <% end %>
 	  </li>

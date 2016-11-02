@@ -1,0 +1,8 @@
+<%= form_for [:admins, object] do |f| %>
+  <div class="input-group input-group-sm">
+    <%= f.text_field :name, class: 'form-control', placeholder: "Имя компании", required: 'required' %>
+    <span class="input-group-btn">
+      <%= f.submit "Подтвердить", class: 'submit_company btn btn-primary' %>
+    </span>
+  </div>
+<% end %>

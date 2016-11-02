@@ -1,0 +1,23 @@
+<%= form_for [:admins, object] do |f| %>
+  <div class="form-group">
+    <%= f.label :login, "Логин" %>
+    <div class="input-group">
+      <%= f.text_field :login, class: 'form-control', required: 'required' %>
+      <span class="input-group-btn">
+	<a class="btn btn-default generate_login">Генерировать логин</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, "Пароль(не менее 6 символов)" %>
+    <div class="input-group">
+      <%= f.password_field :password, class: 'form-control', required: 'required' %>
+      <span class="input-group-btn">
+	<a class="btn btn-default generate_password">Генерировать пароль</a>
+      </span>
+    </div>
+  </div>
+
+  <%= f.submit "Подтвердить", class: 'btn btn-primary btn-lg btn-block' %>
+<% end %>

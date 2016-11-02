@@ -16,13 +16,13 @@ RSpec.describe HomeController, type: :controller do
     it 'sign in admin' do
       sign_in FactoryGirl.create(:admin)
       get :about
-      expect(response).to redirect_to(:admin_root)
+      expect(response).to redirect_to(:admins_root)
     end
 
     it 'sign in coordinator' do
       sign_in FactoryGirl.create(:coordinator)
       get :about
-      expect(response).to redirect_to(:coordinator_root)
+      expect(response).to redirect_to(:coordinators_root)
     end
   end
 end

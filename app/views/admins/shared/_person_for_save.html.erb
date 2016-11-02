@@ -1,0 +1,14 @@
+<div class="panel panel-default" id="<%= session_key %>">
+  <div class="panel-body">
+    <%= form_tag admins_application_clean_person_credentials_path do %>
+      <%= hidden_field_tag :person_credentials, session_key %>
+      <button type="submit" name="commit" class="pull-right close">&times;</button>
+    <% end %>
+    <p><strong>Логин:  <%= session[session_key]['login'] %></strong></p>
+    <p><strong>Пароль: <%= session[session_key]['password'] %></strong></p>
+    <%= link_to address, class: 'btn btn-primary btn-block' do %>
+      <span class="glyphicon glyphicon-save"></span>
+      СОХРАНИТЬ
+    <% end %>
+  </div>
+</div>

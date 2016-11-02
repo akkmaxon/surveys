@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
+  namespace :admins do
     resources :coordinators, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:index, :show, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
@@ -8,11 +8,11 @@ Rails.application.routes.draw do
     post 'application/clean_person_credentials'
     root to: 'application#index'
   end
-  devise_for :admin, path_names: {
+  devise_for :admins, path_names: {
     sign_in: 'login'
   }
 
-  namespace :coordinator do
+  namespace :coordinators do
     resources :surveys, only: [:index] do
       collection do
 	get 'export'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get 'search' => 'search#search'
     root to: 'application#index'
   end
-  devise_for :coordinator, path_names: {
+  devise_for :coordinators, path_names: {
     sign_in: 'login'
   }
 
