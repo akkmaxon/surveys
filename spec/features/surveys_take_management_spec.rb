@@ -54,6 +54,30 @@ RSpec.describe 'Manager takes a survey', type: :feature do
 	  expect(page).to have_content title
 	end
       end
+      within '.progress-bar' do
+	expect(page).to have_content "0/4"
+      end
+    end
+
+    it 'more questions for management after adding by admin' do
+      q = FactoryGirl.create :question, number: 2, audience: "Менеджмент"
+      FactoryGirl.create :left_statement, question: q
+      FactoryGirl.create :right_statement, question: q
+      FactoryGirl.create :question, number: 202, audience: "Менеджмент", sentence: Faker::Lorem.sentence
+      click_link 'new_survey_link'
+      within '.progress-bar' do
+	expect(page).to have_content "0/6"
+      end
+    end
+
+    it 'less questions for management after removing by admin' do
+      [1, 201].each do |number|
+	Question.find_by(number: number, audience: "Менеджмент").destroy
+      end
+      click_link 'new_survey_link'
+      within '.progress-bar' do
+	expect(page).to have_content "0/2"
+      end
     end
 
     it 'process first questions' do

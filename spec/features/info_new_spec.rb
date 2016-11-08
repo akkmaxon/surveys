@@ -77,7 +77,6 @@ RSpec.describe 'User create info about himself', type: :feature do
       it 'page layout' do 
 	expect(page).to have_selector '#info_gender'
 	expect(page).not_to have_selector '#info_company'
-	expect(page).not_to have_selector '#info_company'
       end
 
       it 'data from user' do
