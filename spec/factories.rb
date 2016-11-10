@@ -38,6 +38,7 @@ FactoryGirl.define do
     sequence(:number, 1)
     audience 'Менеджмент'
     opinion_subject 'Я'
+    title Faker::Lorem.sentence
     criterion Faker::Lorem.sentence
     criterion_type 'Вовлеченность'
   end

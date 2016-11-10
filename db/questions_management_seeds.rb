@@ -1,5 +1,6 @@
 ### 1 question ###
 q_1 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 1,
+  title: "С каким высказыванием Вы наиболее согласны?",
   criterion: "Инициативность, энтузиазм",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -14,6 +15,7 @@ RightStatement.create! do |right|
 end
 ### 2 question ###
 q_2 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 2,
+  title: "С каким из этих мнений Вы более согласны, относительно большинства Ваших коллег?",
   criterion: "Инициативность, энтузиазм",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -29,6 +31,7 @@ RightStatement.create! do |right|
 end
 ### 3 question ###
 q_3 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 3,
+  title: "С каким высказыванием Вы наиболее согласны?",
   criterion: "Нацеленность на повышение эффективности в работе",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -43,6 +46,7 @@ RightStatement.create! do |right|
 end
 ### 4 question ###
 q_4 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 4,
+  title: "Какое высказывание соответствует, на Ваш взгляд, поведению большинства Ваших коллег?",
   criterion: "Нацеленность на повышение эффективности в работе",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -57,6 +61,7 @@ RightStatement.create! do |right|
 end
 ### 5 question ###
 q_5 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 5,
+  title: "Какое высказывание соответствует Вашему поведению?",
   criterion: "Понимание собственных полномочий",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -71,6 +76,7 @@ RightStatement.create! do |right|
 end
 ### 6 question ###
 q_6 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 6,
+  title: "Какое высказывание, на Ваш взгляд, соответствует поведению большинства Ваших коллег?",
   criterion: "Понимание собственных полномочий",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -85,6 +91,7 @@ RightStatement.create! do |right|
 end
 ### 7 question ###
 q_7 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 7,
+  title: "Какое высказывание соответствует Вашему поведению?",
   criterion: "Вовлеченность в команду",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -99,6 +106,7 @@ RightStatement.create! do |right|
 end
 ### 8 question ###
 q_8 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 8,
+  title: "Какое высказывание соответствует поведению большинства Ваших коллег?",
   criterion: "Вовлеченность в команду",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -113,6 +121,7 @@ RightStatement.create! do |right|
 end
 ### 9 question ###
 q_9 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 9,
+  title: "Какое высказывание соответствует Вашему впечатлению о работе в компании?",
   criterion: "Доступность руководителя",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -127,6 +136,7 @@ RightStatement.create! do |right|
 end
 ### 10 question ###
 q_10 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 10,
+  title: "Какое высказывание соответствует Вашему впечатлению о работе в компании?",
   criterion: "Понимание принципов принятия решений",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -141,6 +151,7 @@ RightStatement.create! do |right|
 end
 ### 11 question ###
 q_11 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 11,
+  title: "Какое высказывание соответствует Вашему впечатлению о работе в компании?",
   criterion: "Забота о людях",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -155,6 +166,7 @@ RightStatement.create! do |right|
 end
 ### 12 question ###
 q_12 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 12,
+  title: "Какое высказывание соответствует Вашему впечатлению о работе в компании?",
   criterion: "Уважение к руководителю",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -169,6 +181,7 @@ RightStatement.create! do |right|
 end
 ### 13 question ###
 q_13 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 13,
+  title: "Какое высказывание соответствует Вашему впечатлению о высшем руководстве компании?",
   criterion: "Лидерские качества общего руководства",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -183,6 +196,7 @@ RightStatement.create! do |right|
 end
 ### 14 question ###
 q_14 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 14,
+  title: "Какое высказывание соответствует Вашему впечатлению о непосредственном руководителе?",
   criterion: "Лидерские качества непосредственного руководителя",
   criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
@@ -197,6 +211,7 @@ RightStatement.create! do |right|
 end
 ### 15 question ###
 q_15 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 15,
+  title: "Какое высказывание соответствует Вашему впечатлению о работе в компании?",
   criterion: "Увлеченность работой и профессией",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -211,6 +226,7 @@ RightStatement.create! do |right|
 end
 ### 16 question ###
 q_16 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 16,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Увлеченность работой и профессией",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -225,6 +241,7 @@ RightStatement.create! do |right|
 end
 ### 17 question ###
 q_17 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 17,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Субъективная клиенториентированность",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -239,6 +256,7 @@ RightStatement.create! do |right|
 end
 ### 18 question ###
 q_18 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 18,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Субъективная клиенториентированность",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -253,6 +271,7 @@ RightStatement.create! do |right|
 end
 ### 19 question ###
 q_19 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 19,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Репутация работодателя",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -267,6 +286,7 @@ RightStatement.create! do |right|
 end
 ### 20 question ###
 q_20 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 20,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Репутация работодателя",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
@@ -281,6 +301,7 @@ RightStatement.create! do |right|
 end
 ### 21 question ###
 q_21 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 21,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Удовлетворенность условиями труда",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -295,6 +316,7 @@ RightStatement.create! do |right|
 end
 ### 22 question ###
 q_22 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 22,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Удовлетворенность условиями труда",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -309,6 +331,7 @@ RightStatement.create! do |right|
 end
 ### 23 question ###
 q_23 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 23,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Удовлетворенность качеством коммуникаций (информированность)",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -323,6 +346,7 @@ RightStatement.create! do |right|
 end
 ### 24 question ###
 q_24 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 24,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Удовлетворенность качеством коммуникаций (информированность)",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -337,6 +361,7 @@ RightStatement.create! do |right|
 end
 ### 25 question ###
 q_25 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 25,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Удовлетворенность атмосферой в коллективе",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -351,6 +376,7 @@ RightStatement.create! do |right|
 end
 ### 26 question ###
 q_26 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 26,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Удовлетворенность атмосферой в коллективе",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -365,6 +391,7 @@ RightStatement.create! do |right|
 end
 ### 27 question ###
 q_27 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 27,
+  title: "Какое высказывание соответствует Вашему впечатлению о компании?",
   criterion: "Удовлетворенность потребности в компетентности",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -379,6 +406,7 @@ RightStatement.create! do |right|
 end
 ### 28 question ###
 q_28 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 28,
+  title: "Какое высказывание соответствует Вашему впечатлению о коллегах?",
   criterion: "Удовлетворенность потребности в компетентности",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
@@ -393,6 +421,7 @@ RightStatement.create! do |right|
 end
 ### 29 question ###
 q_29 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 29,
+  title: "Какое высказывание соответствует Вашему впечатлению о себе?",
   criterion: "Шкала социальной желательности"
 LeftStatement.create! do |left|
   left.question_id = q_29.id
@@ -406,6 +435,7 @@ RightStatement.create! do |right|
 end
 ### 30 question ###
 q_30 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 30,
+  title: "Какое высказывание соответствует Вашему впечатлению о себе?",
   criterion: "Шкала социальной желательности"
 LeftStatement.create! do |left|
   left.question_id = q_30.id
