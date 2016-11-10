@@ -36,11 +36,14 @@
 		      <label class="btn btn-primary btn-sm">
 			<%= f.radio_button :answer, 3, id: "question_#{question.number}_answer_3", class: "r_#{question.number}"  %>3
 		      </label>
-		      <label class="btn btn-primary">
+		      <label class="btn btn-primary btn-sm">
 			<%= f.radio_button :answer, 4, id: "question_#{question.number}_answer_4", class: "r_#{question.number}"  %>4
 		      </label>
-		      <label class="btn btn-primary btn-lg">
+		      <label class="btn btn-primary">
 			<%= f.radio_button :answer, 5, id: "question_#{question.number}_answer_5", class: "r_#{question.number}"  %>5
+		      </label>
+		      <label class="btn btn-primary btn-lg">
+			<%= f.radio_button :answer, 6, id: "question_#{question.number}_answer_6", class: "r_#{question.number}"  %>6
 		      </label>
 		    </div>
 		    <%= f.submit "Выбрать", class: "submit_questions_1", id: "r_#{question.number}" %>

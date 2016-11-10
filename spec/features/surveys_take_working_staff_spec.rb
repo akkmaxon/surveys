@@ -47,7 +47,7 @@ RSpec.describe 'Working staff take a survey', type: :feature do
       expect(page).not_to have_selector '#second_questions'
       expect(page).to have_selector '.progress'
       expect(page).to have_selector '.response', count: 1
-      expect(page).to have_selector 'input[type="radio"]', count: 5
+      expect(page).to have_selector 'input[type="radio"]', count: 6
       expect(page).not_to have_selector '#finish_survey'
       expect(page).not_to have_selector '#show_results_link'
       within '.table' do
