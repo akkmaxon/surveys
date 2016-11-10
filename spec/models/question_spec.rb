@@ -33,6 +33,13 @@ RSpec.describe Question, type: :model do
 	question.criterion_type = ''
 	expect(question).to be_valid
       end
+
+      it 'criterion_type in proper range' do
+	["Вовлеченность", "Удовлетворенность", "Отношение к руководству" ].each do |t|
+	  question.criterion_type = t
+	  expect(question).to be_valid
+	end
+      end
     end
 
     context 'fails' do
