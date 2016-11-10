@@ -20,7 +20,8 @@
 		  <%= question.left_statement.text %>
 		</td>
 		<td class="table_radio text-center">
-		  <%= text_for_subject(question.opinion_subject) %>
+		  <p><%= question.title %></p>
+		  <p>&larr;<span style="padding: 0 10px"></span>&rarr;</p>
 		  <%= form_for Response.new, remote: true do |f| %>
 		    <%= hidden_field_tag :survey_id, @survey.id %>
 		    <%= f.hidden_field :question_number, value: question.number %>

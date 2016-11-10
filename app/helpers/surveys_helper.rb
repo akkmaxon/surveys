@@ -4,17 +4,6 @@ module SurveysHelper
     survey.id == newest_survey.id ? "in" : ""
   end
 
-  def text_for_subject(subject)
-    case subject
-    when "Я"
-      "<p class='subject_with_arrows'>&larr;<strong>Я</strong>&rarr;</p>
-      <p>Мнение какой из групп Вам ближе?</p>"
-    when "Мои коллеги"
-      "<p class='subject_with_arrows'>&larr;<strong>Мои коллеги</strong>&rarr;</p>
-      <p>С чем согласится большинство Ваших коллег?</p>"
-    end.html_safe
-  end
-
   def answer_assessment_me(survey, question_number)
     question = Question.find(question_number)
     question.opinion_subject == "Я" ? survey.answer_for(question_number) : nil
