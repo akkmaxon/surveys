@@ -1,6 +1,6 @@
 ### 1 question ###
 q_1 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 1,
-  criterion: "Инициативность, энтузиазм, проактивность",
+  criterion: "Инициативность, энтузиазм",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_1.id
@@ -14,7 +14,7 @@ RightStatement.create! do |right|
 end
 ### 2 question ###
 q_2 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 2,
-  criterion: "Инициативность, энтузиазм, проактивность",
+  criterion: "Инициативность, энтузиазм",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_2.id
@@ -57,7 +57,7 @@ RightStatement.create! do |right|
 end
 ### 5 question ###
 q_5 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 5,
-  criterion: "Увлеченность работой и профессией",
+  criterion: "Понимание собственных полномочий",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_5.id
@@ -71,7 +71,7 @@ RightStatement.create! do |right|
 end
 ### 6 question ###
 q_6 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 6,
-  criterion: "Увлеченность работой и профессией",
+  criterion: "Понимание собственных полномочий",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_6.id
@@ -85,7 +85,7 @@ RightStatement.create! do |right|
 end
 ### 7 question ###
 q_7 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 7,
-  criterion: "Вовлеченность в команду(потребность в принадлежности)",
+  criterion: "Вовлеченность в команду",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_7.id
@@ -99,7 +99,7 @@ RightStatement.create! do |right|
 end
 ### 8 question ###
 q_8 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 8,
-  criterion: "Вовлеченность в команду(потребность в принадлежности)",
+  criterion: "Вовлеченность в команду",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_8.id
@@ -113,8 +113,8 @@ RightStatement.create! do |right|
 end
 ### 9 question ###
 q_9 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 9,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Доступность руководителя",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_9.id
   left.title = "Трудно застать"
@@ -127,8 +127,8 @@ RightStatement.create! do |right|
 end
 ### 10 question ###
 q_10 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 10,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Понимание принципов принятия решений",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_10.id
   left.title = "Не понимаю"
@@ -141,8 +141,8 @@ RightStatement.create! do |right|
 end
 ### 11 question ###
 q_11 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 11,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Забота о людях",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_11.id
   left.title = "О деньгах, не о людях"
@@ -155,8 +155,8 @@ RightStatement.create! do |right|
 end
 ### 12 question ###
 q_12 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 12,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Уважение к руководителю",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_12.id
   left.title = "Подчинение, но не уважение"
@@ -169,8 +169,8 @@ RightStatement.create! do |right|
 end
 ### 13 question ###
 q_13 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 13,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Лидерские качества общего руководства",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_13.id
   left.title = "Начальник"
@@ -183,8 +183,8 @@ RightStatement.create! do |right|
 end
 ### 14 question ###
 q_14 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 14,
-  criterion: "Доверие к руководству",
-  criterion_type: "Вовлеченность"
+  criterion: "Лидерские качества непосредственного руководителя",
+  criterion_type: "Отношение к руководству"
 LeftStatement.create! do |left|
   left.question_id = q_14.id
   left.title = "Начальник"
@@ -197,7 +197,7 @@ RightStatement.create! do |right|
 end
 ### 15 question ###
 q_15 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 15,
-  criterion: "Понимание собственных полномочий(потребность в автономии)",
+  criterion: "Увлеченность работой и профессией",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_15.id
@@ -211,7 +211,7 @@ RightStatement.create! do |right|
 end
 ### 16 question ###
 q_16 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 16,
-  criterion: "Понимание собственных полномочий(потребность в автономии)",
+  criterion: "Увлеченность работой и профессией",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_16.id
@@ -253,7 +253,7 @@ RightStatement.create! do |right|
 end
 ### 19 question ###
 q_19 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 19,
-  criterion: "Брэнд работодателя",
+  criterion: "Репутация работодателя",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_19.id
@@ -267,7 +267,7 @@ RightStatement.create! do |right|
 end
 ### 20 question ###
 q_20 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 20,
-  criterion: "Брэнд работодателя",
+  criterion: "Репутация работодателя",
   criterion_type: "Вовлеченность"
 LeftStatement.create! do |left|
   left.question_id = q_20.id
@@ -309,7 +309,7 @@ RightStatement.create! do |right|
 end
 ### 23 question ###
 q_23 = Question.create! opinion_subject: "Я", audience: "Менеджмент", number: 23,
-  criterion: "Удовлетворенность качеством коммуникаций(информированность)",
+  criterion: "Удовлетворенность качеством коммуникаций (информированность)",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
   left.question_id = q_23.id
@@ -323,7 +323,7 @@ RightStatement.create! do |right|
 end
 ### 24 question ###
 q_24 = Question.create! opinion_subject: "Мои коллеги", audience: "Менеджмент", number: 24,
-  criterion: "Удовлетворенность качеством коммуникаций(информированность)",
+  criterion: "Удовлетворенность качеством коммуникаций (информированность)",
   criterion_type: "Удовлетворенность"
 LeftStatement.create! do |left|
   left.question_id = q_24.id
