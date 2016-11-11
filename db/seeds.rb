@@ -1,3 +1,4 @@
+require 'highline/import'
 require_relative 'questions_management_seeds'
 require_relative 'questions_working_staff_seeds'
 
@@ -12,8 +13,6 @@ Company.create! name: "Управление недвижимостью"
 Company.create! name: "Городской парк"
 
 ### Users ###
-newuser = User.create! login: 'newuser',
-  password: 'password'
 admin = Admin.create! login: 'admin',
   email: 'admin@email.com',
   password: 'password'
@@ -32,48 +31,56 @@ user_agreements = ["я не согласен со своим результат�
 		   "я частично согласен со своим результатом",
 		   "я полностью согласен со своим результатом"]
 
-999.times do |counter|
-  login = User.find_by(login: 'user').nil? ? 'user' : (counter + 1000000).to_s(36)
-  user = User.create! login: login,
-    password: 'password'
+answer = ask "Создать респондентов? (Y/n): "
 
-  Info.create! do |i|
-    i.gender = genders[rand(2)]
-    i.experience = experiences[rand(4)]
-    i.age = ages[rand(5)]
-    i.workplace_number = workplace_numbers[rand(4)]
-    i.work_position = work_positions[rand(5)]
-    i.company = Company.find(rand(8) + 1).name
-    i.user_id = user.id
-  end
+unless answer == 'n'
+  newuser = User.create! login: 'newuser', password: 'password'
+  count = ask "Сколько (default=999): "
+  count = count.to_i
+  count = 999 if(count == 0)
+  (count - 1).times do |counter|
+    login = User.find_by(login: 'user').nil? ? 'user' : (counter + 1000000).to_s(36)
+    user = User.create! login: login,
+      password: 'password'
 
-  rand(5).times do
-    ### User takes a survey ###
-    survey = Survey.create! do |s|
-      s.user_id = user.id
-      s.user_agreement = user_agreements[rand(3)]
-      s.user_email = "#{login}@email.com"
-      s.completed = true
-      s.audience = user.audience
+    Info.create! do |i|
+      i.gender = genders[rand(2)]
+      i.experience = experiences[rand(4)]
+      i.age = ages[rand(5)]
+      i.workplace_number = workplace_numbers[rand(4)]
+      i.work_position = work_positions[rand(5)]
+      i.company = Company.find(rand(8) + 1).name
+      i.user_id = user.id
     end
 
-    Question.first_questions_for(survey).each do |question|
-      Response.create! do |resp|
-	resp.survey_id = survey.id
-	resp.question_number = question.number
-	resp.answer = (rand(6) + 1).to_s
-	resp.criterion = question.criterion
-	resp.criterion_type = question.criterion_type
+    rand(5).times do
+      ### User takes a survey ###
+      survey = Survey.create! do |s|
+	s.user_id = user.id
+	s.user_agreement = user_agreements[rand(3)]
+	s.user_email = "#{login}@email.com"
+	s.completed = true
+	s.audience = user.audience
       end
-    end
 
-    Question.second_questions_for(survey).each do |question|
-      Response.create! do |resp|
-	resp.survey_id = survey.id
-	resp.question_number = question.number
-	resp.answer = Faker::Lorem.sentence
-	resp.criterion = question.criterion
-	resp.sentence = question.sentence
+      Question.first_questions_for(survey).each do |question|
+	Response.create! do |resp|
+	  resp.survey_id = survey.id
+	  resp.question_number = question.number
+	  resp.answer = (rand(6) + 1).to_s
+	  resp.criterion = question.criterion
+	  resp.criterion_type = question.criterion_type
+	end
+      end
+
+      Question.second_questions_for(survey).each do |question|
+	Response.create! do |resp|
+	  resp.survey_id = survey.id
+	  resp.question_number = question.number
+	  resp.answer = Faker::Lorem.sentence
+	  resp.criterion = question.criterion
+	  resp.sentence = question.sentence
+	end
       end
     end
   end
