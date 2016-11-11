@@ -1,0 +1,2 @@
+module Coordinators::UsersHelper
+end

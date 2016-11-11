@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Admin::QuestionsHelper, type: :helper do
+RSpec.describe Admins::QuestionsHelper, type: :helper do
   describe '#set_number_for_question' do
     let(:question) { FactoryGirl.build :question, number: 1 }
     

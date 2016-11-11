@@ -1,4 +1,4 @@
-module Admin::QuestionsHelper
+module Admins::QuestionsHelper
   def set_number_for_question(question, type, last_question)
     if question.number.blank?
       if last_question.blank?

@@ -30,7 +30,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
-	sleep 1
+	sleep 5
 	within '#admin_first_questions' do
 	  expect(page).to have_content 'What are you doing?'
 	  expect(page).to have_content '123'
