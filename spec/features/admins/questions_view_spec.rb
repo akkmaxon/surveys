@@ -50,7 +50,7 @@ RSpec.describe 'Admin can view all questions', type: :feature do
       end
     end
 
-    it 'access from dashboard' do
+    it 'access from root' do
       visit admins_root_path
       click_link 'questions_link'
       expect(page.current_path).to eq admins_questions_path
@@ -89,4 +89,3 @@ RSpec.describe 'Admin can view all questions', type: :feature do
     end
   end
 end
-

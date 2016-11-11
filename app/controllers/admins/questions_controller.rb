@@ -42,7 +42,8 @@ class Admins::QuestionsController < Admins::ApplicationController
   private
 
   def question_params
-    p = params.require(:question).permit(:number,
+    p = params.require(:question).permit(:title,
+					 :number,
 					 :audience,
 					 :opinion_subject,
 					 :criterion,

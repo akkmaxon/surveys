@@ -19,6 +19,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 
     context 'successfully' do
       it 'changing all properties' do
+	fill_in 'field_1q_title', with: 'What are you doing?'
 	fill_in 'field_1q_number', with: 123
 	find('#field_1q_audience_2').trigger 'click'
 	fill_in 'field_1q_left_title', with: 'New Left Title'
@@ -29,11 +30,9 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
-	sleep 3
-	within '#messages .alert-success' do
-	  expect(page).to have_content "Вопрос обновлен."
-	end
+	sleep 1
 	within '#admin_first_questions' do
+	  expect(page).to have_content 'What are you doing?'
 	  expect(page).to have_content '123'
 	  expect(page).to have_content "Рабочая специальность"
 	  expect(page).to have_content 'New Left Title'
@@ -42,6 +41,9 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	  expect(page).to have_content 'New Right Text'
 	  expect(page).to have_content "Я"
 	  expect(page).to have_content 'New Criterion'
+	end
+	within '#messages .alert-success' do
+	  expect(page).to have_content "Вопрос обновлен."
 	end
       end
     end

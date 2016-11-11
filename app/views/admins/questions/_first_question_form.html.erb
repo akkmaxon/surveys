@@ -13,6 +13,10 @@
 
     <div class="panel-body">
       <div class="row">
+	<div class="col-xs-12 form-group">
+	  <%= f.label :title, "Вопрос" %>
+	  <%= f.text_field :title, id: 'field_1q_title', class: 'form-control', placeholder: "С каким высказыванием Вы наиболее согласны?", required: 'required' %>
+	</div>
 	<div class="col-md-6 form-group">
 	  <%= f.label :number, "Номер" %>
 	  <%= f.text_field :number, id: 'field_1q_number', class: 'form-control',
@@ -61,7 +65,7 @@
 	  </div>
 	</div>
 	<div class="col-md-6 form-group">
-	  <%= f.text_field :criterion, class: 'form-control', id: 'field_1q_criterion', placeholder: "Критерий", required: 'required' %>
+	  <%= f.text_field :criterion, class: 'form-control', id: 'field_1q_criterion', placeholder: "Инициативность, энтузиазм", required: 'required' %>
 	</div>
       </div>
       <div class="form-group">
@@ -73,6 +77,10 @@
 	  <label class="btn btn-default">
 	    <%= f.radio_button :criterion_type, "Удовлетворенность", id: 'field_1q_criterion_type_2', required: 'required' %>
 	    Удовлетворенность
+	  </label>
+	  <label class="btn btn-default">
+	    <%= f.radio_button :criterion_type, "Отношение к руководству", id: 'field_1q_criterion_type_3', required: 'required' %>
+	    Отношение к руководству
 	  </label>
 	</div>
       </div>
