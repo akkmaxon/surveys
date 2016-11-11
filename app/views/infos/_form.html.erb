@@ -4,13 +4,11 @@
   <div class="form-group">
     <%= f.label :gender, "Укажите Ваш пол" %>
     <select id="info_gender" class="form-control" name="info[gender]">
-      <%= options_for_select(["мужской", "женский"], @info.gender) %>
+      <%= options_for_select(genders, @info.gender) %>
     </select>
   </div>
 
   <div class="form-group">
-    <% ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет",
-		 "от 40 до 55 лет", "более 55 лет"] %>
     <%= f.label :age, "Ваш возраст" %>
     <select id="info_age" class="form-control" name="info[age]">
       <%= options_for_select(ages, @info.age) %>
@@ -31,8 +29,6 @@
   <% end %>
 
   <div class="form-group">
-    <% experiences = ["меньше 1 года", "от 1 года до 3 лет", "от 3 до 5 лет",
-		      "более 5 лет"] %>
     <%= f.label :experience, "Сколько лет Вы работаете в компании?" %>
     <select id="info_experience" class="form-control" name="info[experience]">
       <%= options_for_select(experiences, @info.experience) %>
@@ -40,20 +36,16 @@
   </div>
 
   <div class="form-group">
-    <% wp_numbers = ["первое", "второе", "третье",
-		     "больше третьего"] %>
     <%= f.label :workplace_number, "Какое по счету это место работы для вас?" %>
     <select id="info_workplace_number" class="form-control" name="info[workplace_number]">
-      <%= options_for_select(wp_numbers, @info.workplace_number) %>
+      <%= options_for_select(workplace_numbers, @info.workplace_number) %>
     </select>
   </div>
 
   <div class="form-group">
-    <% work_position = ["рабочая должность", "производственный руководитель",
-			"работник офиса", "руководитель отдела", "топ-менеджер"] %>
     <%= f.label :work_position, "Какую должность Вы занимаете в компании?" %>
     <select id="info_work_position" class="form-control" name="info[work_position]">
-      <%= options_for_select(work_position, @info.work_position) %>
+      <%= options_for_select(work_positions, @info.work_position) %>
     </select>
   </div>
 

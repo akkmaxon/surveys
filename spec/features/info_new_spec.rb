@@ -45,7 +45,7 @@ RSpec.describe 'User create info about himself', type: :feature do
       select("женский", from: 'info_gender')
       select("более 5 лет", from: 'info_experience')
       select("более 55 лет", from: 'info_age')
-      select("больше третьего", from: 'info_workplace_number')
+      select("третье", from: 'info_workplace_number')
       select("топ-менеджер", from: 'info_work_position')
       select("Company2", from: 'info_company')
       click_button "Подтвердить"
@@ -83,7 +83,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 	select("женский", from: 'info_gender')
 	select("более 5 лет", from: 'info_experience')
 	select("более 55 лет", from: 'info_age')
-	select("больше третьего", from: 'info_workplace_number')
+	select("третье", from: 'info_workplace_number')
 	select("топ-менеджер", from: 'info_work_position')
 	click_button "Подтвердить"
 	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
@@ -108,7 +108,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 	select("женский", from: 'info_gender')
 	select("более 5 лет", from: 'info_experience')
 	select("более 55 лет", from: 'info_age')
-	select("больше третьего", from: 'info_workplace_number')
+	select("третье", from: 'info_workplace_number')
 	select("топ-менеджер", from: 'info_work_position')
 	click_button "Подтвердить"
 	expect(page.current_path).to eq(take_survey_path(user.surveys.first))

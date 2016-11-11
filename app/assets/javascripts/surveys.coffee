@@ -21,6 +21,9 @@ document.addEventListener "turbolinks:load", () ->
     nextQ = currentQ.next()
     currentQ.remove()
     nextQ.css('display', 'block')
+    questionTitle = nextQ.find('.question_title')
+    if questionTitle
+      $('#current_question').text questionTitle.text()
 
     updateProgressBar()
     # end of the game
