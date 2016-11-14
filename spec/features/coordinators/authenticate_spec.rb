@@ -29,6 +29,7 @@ RSpec.describe 'Authentication for coordinator', type: :feature do
 
     after do
       click_button "Войти"
+      expect(page.current_path).to eq new_coordinator_session_path
       within '#messages .alert-danger' do
 	expect(page).to have_content "Неверный логин или пароль"
       end

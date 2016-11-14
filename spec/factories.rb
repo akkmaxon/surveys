@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:login) { |n| "login#{n}" }
+    sequence(:login) { |n| "user#{n}" }
     password "password"
   end
 
@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :coordinator do
-    sequence(:login) { |n| "login#{n}" }
+    sequence(:login) { |n| "coordinator#{n}" }
     password "password"
   end
 

@@ -1,54 +1,11 @@
 class Survey < ApplicationRecord
   RSUM = 11
+
   belongs_to :user
   has_many :responses, dependent: :delete_all
   validates :user, presence: true
 
   default_scope -> { order(created_at: :desc) }
-
-  def pass_date
-    updated_at.strftime "%d.%m.%Y"
-  end
-
-  def answer_for(question_number)
-    resp_arr = responses.pluck(:question_number, :answer)
-    resp = resp_arr.find { |a| a[0] == question_number }
-    resp[1] unless resp.nil?
-  end
-
-  def criterion_for(question_number)
-    resp = responses.find_by(question_number: question_number)
-    resp.criterion unless resp.nil?
-  end
-
-  def criterion_type_for(question_number)
-    resp = responses.find_by(question_number: question_number)
-    resp.criterion_type unless resp.nil?
-  end
-
-  def sentence_for(question_number)
-    resp = responses.find_by(question_number: question_number)
-    resp.sentence unless resp.nil?
-  end
-
-  def sum_of(question_numbers = [])
-    sum = 0
-    question_numbers.each do |n|
-      sum += answer_for(n).to_i
-    end
-    sum
-  end
-
-  def reliable?
-    resp29 = responses.find_by(question_number: 29)
-    resp30 = responses.find_by(question_number: 30)
-    if resp29.nil? and resp30.nil?
-      true
-    else
-      sum = resp29.answer.to_i + resp30.answer.to_i
-      sum < RSUM ? true : false
-    end
-  end
 
   def self.search_for_query(query)
     result = []
@@ -90,7 +47,60 @@ class Survey < ApplicationRecord
     File.open(EXPORT_FILE).read
   end
 
+  def pass_date
+    updated_at.strftime "%d.%m.%Y"
+  end
+
+  def answer_for(question_number)
+    resp_arr = responses.pluck(:question_number, :answer)
+    resp = resp_arr.find { |a| a[0] == question_number }
+    resp[1] unless resp.nil?
+  end
+
+  def criterion_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.criterion unless resp.nil?
+  end
+
+  def criterion_type_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.criterion_type unless resp.nil?
+  end
+
+  def sentence_for(question_number)
+    resp = responses.find_by(question_number: question_number)
+    resp.sentence unless resp.nil?
+  end
+
+  def total_assessment_for(question_numbers = [])
+    if question_numbers.empty?
+      nil
+    else
+      total = question_numbers.inject(0) do |sum, n|
+	sum += answer_for(n).to_f
+      end / question_numbers.size
+      (total * report_correction).round(2)
+    end
+  end
+
+  def reliable?
+    resp29 = responses.find_by(question_number: 29)
+    resp30 = responses.find_by(question_number: 30)
+    if resp29.nil? and resp30.nil?
+      true
+    else
+      sum = resp29.answer.to_i + resp30.answer.to_i
+      sum < RSUM ? true : false
+    end
+  end
+
   def to_param
     (id + CRYPT_SURVEY).to_s(36)
   end
+
+  private
+
+    def report_correction
+      5.0 / 6.0
+    end
 end

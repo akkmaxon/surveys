@@ -11,8 +11,8 @@ class SurveysController < ApplicationController
   def show
     @involvement_criteria = Question.group_by_criterion(@survey, "Вовлеченность")
     @satisfaction_criteria = Question.group_by_criterion(@survey, "Удовлетворенность")
+    @respect_bosses_criteria = Question.group_by_criterion(@survey, "Отношение к руководству")
     @last_criteria = Question.group_by_criterion(@survey, '')
-    @counter = 0
   end
 
   def create

@@ -49,8 +49,8 @@ RSpec.describe 'User create new response answering', type: :feature do
       before do
 	click_link 'new_survey_link'
 	find('#question_1_answer_1').trigger 'click'
-	find('#question_28_answer_4').trigger 'click'
-	find('#question_29_answer_2').trigger 'click'
+	find('#question_29_answer_4').trigger 'click'
+	find('#question_30_answer_2').trigger 'click'
       end
 
       it 'successfully' do
@@ -61,9 +61,9 @@ RSpec.describe 'User create new response answering', type: :feature do
 	expect(user.surveys.first.responses.count).to eq 4
 	expect(user.surveys.first.responses.find_by(question_number: 1).answer).
 	  to eq "1"
-	expect(user.surveys.first.responses.find_by(question_number: 28).answer).
-	  to eq "4"
 	expect(user.surveys.first.responses.find_by(question_number: 29).answer).
+	  to eq "4"
+	expect(user.surveys.first.responses.find_by(question_number: 30).answer).
 	  to eq "2"
 	expect(user.surveys.first.responses.find_by(question_number: 201).answer).
 	  to eq "absolutely"

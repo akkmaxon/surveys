@@ -4,13 +4,8 @@ module SurveysHelper
     survey.id == newest_survey.id ? "in" : ""
   end
 
-  def answer_assessment_me(survey, question_number)
+  def answer_assessment(survey, question_number, sub)
     question = Question.find_by(number: question_number)
-    question.opinion_subject == "Я" ? survey.answer_for(question_number) : nil
-  end
-
-  def answer_assessment_my_colleagues(survey, question_number)
-    question = Question.find_by(number: question_number)
-    question.opinion_subject == "Мои коллеги" ? survey.answer_for(question_number) : nil
+    question.opinion_subject == sub ? survey.answer_for(question_number) : nil
   end
 end

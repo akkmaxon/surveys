@@ -72,13 +72,13 @@ module MyTestHelpers
     let!(:left_for_q1m) { FactoryGirl.create :left_statement, title: '1left', question: q1_m }
     let!(:right_for_q1m) { FactoryGirl.create :right_statement, title: '1right', question: q1_m }
 
-    let!(:q28_m) { FactoryGirl.create :question, number: 28 }
-    let!(:left_for_q28_m) { FactoryGirl.create :left_statement, title: '28left', question: q28_m }
-    let!(:right_for_q28_m) { FactoryGirl.create :right_statement, title: '28right', question: q28_m }
-
     let!(:q29_m) { FactoryGirl.create :question, number: 29 }
     let!(:left_for_q29_m) { FactoryGirl.create :left_statement, title: '29left', question: q29_m }
-    let!(:right_for_q_29_m) { FactoryGirl.create :right_statement, title: '29right', question: q29_m }
+    let!(:right_for_q29_m) { FactoryGirl.create :right_statement, title: '29right', question: q29_m }
+
+    let!(:q30_m) { FactoryGirl.create :question, number: 30 }
+    let!(:left_for_q30_m) { FactoryGirl.create :left_statement, title: '30left', question: q30_m }
+    let!(:right_for_q30_m) { FactoryGirl.create :right_statement, title: '30right', question: q30_m }
     ### 2nd question for management
     let!(:q201_m) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, criterion: "Свободные ответы", criterion_type: "" }
     ### 1st questions 1,28, 29 for working_staff
@@ -86,21 +86,21 @@ module MyTestHelpers
     let!(:left_for_q1_w) { FactoryGirl.create :left_statement, title: '1left', question: q1_w }
     let!(:right_for_q1_w) { FactoryGirl.create :right_statement, title: '1right', question: q1_w }
 
-    let!(:q28_w) { FactoryGirl.create :question, number: 28, audience: "Рабочая специальность" }
-    let!(:left_for_q28_w) { FactoryGirl.create :left_statement, title: '28left', question: q28_w }
-    let!(:right_for_q28_w) { FactoryGirl.create :right_statement, title: '28right', question: q28_w }
-
     let!(:q29_w) { FactoryGirl.create :question, number: 29, audience: "Рабочая специальность" }
     let!(:left_for_q29_w) { FactoryGirl.create :left_statement, title: '29left', question: q29_w }
     let!(:right_for_q29_w) { FactoryGirl.create :right_statement, title: '29right', question: q29_w }
+
+    let!(:q30_w) { FactoryGirl.create :question, number: 30, audience: "Рабочая специальность" }
+    let!(:left_for_q30_w) { FactoryGirl.create :left_statement, title: '30left', question: q30_w }
+    let!(:right_for_q30_w) { FactoryGirl.create :right_statement, title: '30right', question: q30_w }
     ### 2nd question for working_staff
     let!(:q201_w) { FactoryGirl.create :question, number: 201, sentence: Faker::Lorem.sentence, audience: "Рабочая специальность", criterion: "Свободные ответы", criterion_type: "" }
   end
 
   def take_a_survey
     find('#question_1_answer_1').trigger 'click'
-    find('#question_28_answer_4').trigger 'click'
-    find('#question_29_answer_2').trigger 'click'
+    find('#question_29_answer_4').trigger 'click'
+    find('#question_30_answer_2').trigger 'click'
     fill_in id: 'question_201_answer', with: 'answer sentence'
     find('.submit_questions_2').trigger 'click'
   end

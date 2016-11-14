@@ -11,8 +11,8 @@
 	<% criteria.each do |criterion, numbers| %>
 	 <% me_sum = colleagues_sum = total_sum = 0 %>
          <% numbers.each do |q| %>
-           <% me_sum += answer_assessment_me(survey, q).to_i %>
-	   <% colleagues_sum += answer_assessment_my_colleagues(survey, q).to_i %>
+           <% me_sum += answer_assessment(survey, q, "Я").to_i %>
+	   <% colleagues_sum += answer_assessment(survey, q, "Мои коллеги").to_i %>
 	   <% total_sum = me_sum + colleagues_sum %>
 	 <% end %>
 	 criteria.push("<%= criterion %>");

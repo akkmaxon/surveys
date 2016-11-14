@@ -58,18 +58,24 @@ RSpec.describe Survey, type: :model do
       end
     end
 
-    describe '#sum_of' do
-      it 'without parameters' do
+    describe '#total_assessment_for' do
+      before do
 	allow(survey).to receive(:answer_for).and_return("5")
-	result = survey.sum_of
-	expect(result).to eq 0
+	allow(survey).to receive(:report_correction).and_return(1.0)
+      end
+
+      it 'without parameters' do
+	expect(survey.total_assessment_for).to eq nil
+      end
+
+      it 'with empty array in parameters' do
+	expect(survey.total_assessment_for []).to eq nil
       end
 
       it 'with parameters' do
-	allow(survey).to receive(:answer_for).and_return("5")
-	expect(survey.sum_of([1,2])).to eq 10
-	expect(survey.sum_of([3,4,5])).to eq 15
-	expect(survey.sum_of([6,7,8,9,10])).to eq 25
+	expect(survey.total_assessment_for [1,2]).to eq 5.0
+	expect(survey.total_assessment_for [3,4,5]).to eq 5.0
+	expect(survey.total_assessment_for [6,7,8,9,10]).to eq 5.0
       end
     end
 

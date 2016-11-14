@@ -82,22 +82,22 @@ RSpec.describe 'Manager takes a survey', type: :feature do
 
     it 'process first questions' do
       find('#question_1_answer_1').trigger 'click'
-      find('#question_28_answer_4').trigger 'click'
-      find('#question_29_answer_2').trigger 'click'
+      find('#question_29_answer_4').trigger 'click'
+      find('#question_30_answer_2').trigger 'click'
       expect(page).not_to have_selector '#first_questions'
       expect(page).to have_selector '#second_questions'
       expect(page).not_to have_selector '#show_results_link'
       user.reload
       expect(user.surveys.first.responses.count).to eq 3
       first = user.surveys.first.responses.find_by(question_number: 1)
-      second = user.surveys.first.responses.find_by(question_number: 28)
-      third = user.surveys.first.responses.find_by(question_number: 29)
+      second = user.surveys.first.responses.find_by(question_number: 29)
+      third = user.surveys.first.responses.find_by(question_number: 30)
       expect(first.answer).to eq "1"
       expect(first.criterion).to eq q1_m.criterion
       expect(second.answer).to eq "4"
-      expect(second.criterion).to eq q28_m.criterion
+      expect(second.criterion).to eq q29_m.criterion
       expect(third.answer).to eq "2"
-      expect(third.criterion).to eq q29_m.criterion
+      expect(third.criterion).to eq q30_m.criterion
       [first, second, third].each do |resp|
 	expect(resp.sentence).to eq ""
       end
@@ -119,8 +119,8 @@ RSpec.describe 'Manager takes a survey', type: :feature do
 
     it 'and survey is not reliable' do
       find('#question_1_answer_4').trigger 'click'
-      find('#question_28_answer_5').trigger 'click'
-      find('#question_29_answer_5').trigger 'click'
+      find('#question_29_answer_6').trigger 'click'
+      find('#question_30_answer_6').trigger 'click'
       fill_in id: 'question_201_answer', with: 'answer sentence'
       find('.submit_questions_2').trigger 'click'
       user.reload
