@@ -19,6 +19,7 @@
     <div class="row">
       <div class="col-xs-12 text-center question_title_view">
 	<strong>"<%= question.title %>"</strong>
+	<hr>
       </div>
       <div class="col-sm-6">
 	<% unless question.left_title.blank? %>
@@ -39,7 +40,7 @@
       <span class="label label-success">
 	<%= question.opinion_subject %>
       </span>
-      <span class="label label-warning pull-right" title="Критерий">
+      <span class="label label-warning pull-right">
 	<%= question.criterion %>
       </span>
     </h3>

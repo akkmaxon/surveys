@@ -74,15 +74,30 @@ RSpec.describe Survey, type: :model do
     end
 
     describe '#reliable?' do
-      let!(:resp1) { FactoryGirl.create :response, survey: survey, question_number: 28, answer: "5" }
-      let!(:resp2) { FactoryGirl.create :response, survey: survey, question_number: 29, answer: "1" }
+      let!(:resp1) { FactoryGirl.create :response, survey: survey, question_number: 29, answer: "4" }
+      let!(:resp2) { FactoryGirl.create :response, survey: survey, question_number: 30, answer: "3" }
 
-      it 'return true' do
+      it 'with values from middle' do
 	expect(survey).to be_reliable
       end
 
-      it 'return false' do
-	resp2.update answer: "5"
+      it 'with lowest values' do
+	resp1.update answer: "1"
+	resp2.update answer: "1"
+	expect(survey).to be_reliable
+      end
+
+      it 'with sum == RSUM' do
+	[["5", "6"], ["6", "5"]].each do |values|
+	  resp1.update answer: values[0]
+	  resp2.update answer: values[1]
+	  expect(survey).not_to be_reliable
+	end
+      end
+
+      it 'with sum > RSUM' do
+	resp1.update answer: "6"
+	resp2.update answer: "6"
 	expect(survey).not_to be_reliable
       end
     end

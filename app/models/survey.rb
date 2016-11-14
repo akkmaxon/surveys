@@ -1,4 +1,5 @@
 class Survey < ApplicationRecord
+  RSUM = 11
   belongs_to :user
   has_many :responses, dependent: :delete_all
   validates :user, presence: true
@@ -39,12 +40,13 @@ class Survey < ApplicationRecord
   end
 
   def reliable?
-    resp28 = responses.find_by(question_number: 28)
     resp29 = responses.find_by(question_number: 29)
-    if resp28.nil? and resp29.nil?
+    resp30 = responses.find_by(question_number: 30)
+    if resp29.nil? and resp30.nil?
       true
     else
-      resp28.answer != "5" || resp29.answer != "5"
+      sum = resp29.answer.to_i + resp30.answer.to_i
+      sum < RSUM ? true : false
     end
   end
 
