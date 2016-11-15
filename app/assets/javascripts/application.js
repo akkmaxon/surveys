@@ -40,10 +40,6 @@ document.addEventListener("turbolinks:load", function() {
     $(this).slideUp(300)
   });
 
-  setTimeout(function() {
-    $('#messages .alert').slideUp(300)
-  }, 5000);
-
   $('.masonry_container').masonry({
     itemSelector: '.masonry_element',
     gutter: 24,

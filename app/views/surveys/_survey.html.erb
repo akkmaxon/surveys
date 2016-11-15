@@ -1,6 +1,7 @@
 <table id="table_results" class="table table-bordered table-condensed">
   <thead>
     <tr>
+      <th rowspan="2">№ п/п</th>
       <th rowspan="2">Наименование шкалы</th>
       <th rowspan="2">№ вопроса</th>
       <th colspan="2">Коэффициенты</th>
@@ -12,12 +13,15 @@
     </tr>
   </thead>
   <tbody>
+    <% counter = 0 %>
     <% { @involvement_criteria => "Общий уровень вовлеченности",
 	 @satisfaction_criteria => "Общий уровень удовлетворенности",
-	 @respect_bosses_criteria => "Отношение к руководству (общее)",
          @last_criteria => "" }.each do |criteria, summary| %>
       <% criteria.each do |criterion, question_numbers| %>
 	<tr>
+	  <td>
+	    <%= counter += 1 %>
+	  </td>
 	  <td class="criterion"><%= criterion %></td>
 	  <td><%= question_numbers.join(', ') %></td>
 	  <td>
@@ -37,8 +41,7 @@
       <% end %>
       <% unless summary.blank? %>
 	<tr class="info">
-	  <td colspan="3"><%= summary %></td>
-	  <td></td>
+	  <td colspan="5"><%= summary %></td>
 	  <td><%= survey.total_assessment_for(criteria.values.flatten)%></td>
 	</tr>
       <% end %>

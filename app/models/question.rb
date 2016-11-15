@@ -36,9 +36,18 @@ class Question < ApplicationRecord
 
   def self.group_by_criterion(survey, criterion_type)
     questions = self.first_questions_for(survey).where(criterion_type: criterion_type)
-    criteria_list = questions.pluck(:criterion)
-    criteria_list.inject({}) do |result, criterion|
-      result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))
+    criteria = questions.pluck(:criterion)
+    if criterion_type == "Вовлеченность"
+      bosses_numbers = self.first_questions_for(survey).
+	where(criterion_type: "Отношение к руководству").pluck(:number)
+      bosses = { "Отношение к руководству (общее)" => bosses_numbers }
+      criteria.inject(bosses) do |result, criterion|
+	result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))
+      end.invert.sort.to_h.invert
+    else
+      criteria.inject({}) do |result, criterion|
+	result.merge(criterion => questions.where('criterion = ?', criterion).pluck(:number))
+      end
     end
   end
 

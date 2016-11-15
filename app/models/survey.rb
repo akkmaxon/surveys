@@ -73,6 +73,7 @@ class Survey < ApplicationRecord
   end
 
   def total_assessment_for(question_numbers = [])
+    # formula: (a1 + a2 + ... + an)/n * 5/6
     if question_numbers.empty?
       nil
     else

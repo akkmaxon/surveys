@@ -30,18 +30,17 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
 	click_button 'submit_1q'
-	sleep 5
-	within '#admin_first_questions' do
-	  expect(page).to have_content 'What are you doing?'
-	  expect(page).to have_content '123'
-	  expect(page).to have_content "Рабочая специальность"
-	  expect(page).to have_content 'New Left Title'
-	  expect(page).to have_content 'New Left Text'
-	  expect(page).to have_content 'New Right Title'
-	  expect(page).to have_content 'New Right Text'
-	  expect(page).to have_content "Я"
-	  expect(page).to have_content 'New Criterion'
-	end
+	q1.reload
+	expect(q1.title).to eq('What are you doing?')
+	expect(q1.number).to eq(123)
+	expect(q1.audience).to eq("Рабочая специальность")
+	expect(q1.left_statement.title).to eq('New Left Title')
+	expect(q1.right_statement.title).to eq('New Right Title')
+	expect(q1.left_statement.text).to eq('New Left Text')
+	expect(q1.right_statement.text).to eq('New Right Text')
+	expect(q1.opinion_subject).to eq("Я")
+	expect(q1.criterion).to eq('New Criterion')
+	expect(q1.criterion_type).to eq("Вовлеченность")
 	within '#messages .alert-success' do
 	  expect(page).to have_content "Вопрос обновлен."
 	end
