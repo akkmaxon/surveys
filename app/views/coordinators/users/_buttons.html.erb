@@ -1,4 +1,4 @@
-<%= link_to coordinators_user_surveys_path(user), class: 'btn btn-primary show_surveys', title: "Опросы" do %>
+<%= link_to coordinators_surveys_path(user: user.login), class: 'btn btn-primary show_surveys', title: "Опросы" do %>
   <span class="glyphicon glyphicon-list-alt"></span>
   <span class="badge">
     <%= user.surveys.count %>

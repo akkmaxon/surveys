@@ -44,7 +44,7 @@
     <% unless @surveys.blank? %>
       <div class="masonry_container container-fluid">
 	<% @surveys.each do |survey| %>
-	  <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_user_survey_path(survey.user, survey) } %>
+	  <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_survey_path(survey) } %>
 	<% end %>
       </div>
       <div class="text-center">

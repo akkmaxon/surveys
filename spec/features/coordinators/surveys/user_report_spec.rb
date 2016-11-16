@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Coordinator can view full information about survey', type: :feature do
+RSpec.describe 'Coordinator view report for one user', type: :feature do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
   let!(:survey) { FactoryGirl.create :survey, user: user, completed: true }
@@ -17,24 +17,24 @@ RSpec.describe 'Coordinator can view full information about survey', type: :feat
     end
 
     it 'unsigned in user' do
-      visit coordinators_user_survey_path(user, survey)
+      visit coordinators_survey_path(survey)
     end
 
     it 'signed in user' do
       sign_in user
-      visit coordinators_user_survey_path(user, survey)
+      visit coordinators_survey_path(survey)
     end
 
     it 'admin' do
       sign_in FactoryGirl.create :admin
-      visit coordinators_user_survey_path(user, survey)
+      visit coordinators_survey_path(survey)
     end
   end
     
   describe 'when signed in' do
     before do
       sign_in coordinator
-      visit coordinators_user_survey_path(user, survey)
+      visit coordinators_survey_path(survey)
     end
 
     it 'page layout' do
@@ -44,13 +44,14 @@ RSpec.describe 'Coordinator can view full information about survey', type: :feat
     it 'access from coordinators/surveys' do
       visit coordinators_surveys_path
       find('.show_survey').trigger 'click'
-      expect(page.current_path).to eq coordinators_user_survey_path(user, survey)
+      expect(page.current_path).to eq coordinators_survey_path(survey)
     end
 
-    it 'access from coordinators/user/surveys' do
-      visit coordinators_user_surveys_path(user)
-      find('.show_survey').trigger 'click'
-      expect(page.current_path).to eq coordinators_user_survey_path(user, survey)
+    it 'rescue when survey is wrong' do
+      visit coordinators_surveys_path
+      visit "/coordinators/surveys/abcdefg"
+      expect(page).to have_selector('#messages .alert-danger')
+      expect(page.current_path).to eq coordinators_surveys_path
     end
   end
 end

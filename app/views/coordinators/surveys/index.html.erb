@@ -1,12 +1,12 @@
 <div class="container">
   <h1 class="header">
-    Опросы <span class="badge"><%= @surveys.count %></span>
+    Опросы (<%= @filter_name %>) <span class="badge"><%= @surveys.count %></span>
   </h1>
 </div>
 
 <section class="masonry_container container-fluid">
   <% @surveys.each do |survey| %>
-    <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_user_survey_path(survey.user, survey) } %>
+    <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_survey_path(survey) } %>
   <% end %>
 </section>
 

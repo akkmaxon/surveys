@@ -13,14 +13,12 @@ Rails.application.routes.draw do
   }
 
   namespace :coordinators do
-    resources :surveys, only: [:index] do
+    resources :surveys, only: [:index, :show] do
       collection do
 	get 'export'
       end
     end
-    resources :users, only: [:index] do
-      resources :surveys, only: [:index, :show], controller: 'users/surveys'
-    end
+    resources :users, only: [:index]
     get 'search' => 'search#search'
     root to: 'application#index'
   end

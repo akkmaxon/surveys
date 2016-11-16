@@ -10,12 +10,10 @@
       <%= survey.completed? ? survey.pass_date : "Не завершен" %>
     </h2>
     <% unless user_signed_in? %>
-      <% unless params[:user_id] %>
-	<h2 class="h4">
-	  <span class="glyphicon glyphicon-user"></span>
-	  <%= survey.user.login %>
-	</h2>
-      <% end %>
+      <h2 class="h4">
+	<span class="glyphicon glyphicon-user"></span>
+	<%= survey.user.login %>
+      </h2>
     <% end %>
     <h2 class="h4">
       <span class="glyphicon glyphicon-envelope"></span>

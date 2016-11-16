@@ -27,21 +27,21 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
   end
 
   describe 'when signed in' do
-    it 'accessing from dashboard' do
+    it 'redirect after signing in' do
       sign_in coordinator
       visit coordinators_root_path
-      click_link 'surveys_link'
       expect(page.current_path).to eq coordinators_surveys_path
     end
 
     it 'successfully' do
       user = FactoryGirl.create :user, login: 'user123'
       FactoryGirl.create :survey, user: user, completed: true
+      FactoryGirl.create :survey, user: user, completed: true
       sign_in coordinator
       visit coordinators_surveys_path
       within '.masonry_container' do
-	expect(page).to have_selector '.survey', count: 1
-	expect(page).to have_selector '.show_survey', count: 1
+	expect(page).to have_selector '.survey', count: 2
+	expect(page).to have_selector '.show_survey', count: 2
       end
     end
   end
