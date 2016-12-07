@@ -1,2 +1,0 @@
-module Coordinators::SearchHelper
-end
