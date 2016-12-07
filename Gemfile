@@ -28,6 +28,8 @@ gem 'capistrano-rbenv', git: 'https://github.com/capistrano/rbenv'
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'pry-rails'
 end
 
 group :development do

@@ -1,0 +1,22 @@
+<div class="panel panel-default masonry_element company">
+  <div class="panel-body">
+    <div class="pull-right buttons">
+      <% if admin_signed_in? %>
+	<a class="edit_company_link btn btn-sm btn-info" title="Изменить имя">
+	  <span class="glyphicon glyphicon-pencil"></span>
+	</a>
+	<%= link_to admins_company_path(company), method: :delete, class: "delete_company btn btn-sm btn-danger", title: "Удалить", data: { confirm: "Компания будет удалена. Подтверждаете действие?" } do %>
+	  <span class="glyphicon glyphicon-trash"></span>
+	<% end %>
+      <% elsif coordinator_signed_in? %>
+	<%= link_to coordinators_reports_path(company: company.name), class: "btn btn-primary show_report", title: "Отчет" do %>
+	  <span class="glyphicon glyphicon-stats"></span>
+	<% end %>
+      <% end %>
+    </div>
+    <h2 class="h4 company_name">
+      <%= company.name %>
+    </h2>
+    <%= render('admins/companies/form', object: company) if admin_signed_in? %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Coordinator can view all users', type: :feature do
+RSpec.describe 'Coordinator can view all the users', type: :feature do
   let(:coordinator) { FactoryGirl.create :coordinator }
 
   before do
@@ -35,7 +35,7 @@ RSpec.describe 'Coordinator can view all users', type: :feature do
       sign_in coordinator
     end
 
-    it 'access from dashboard' do
+    it 'access from the root' do
       visit coordinators_root_path
       click_link 'users_link'
       expect(page.current_path).to eq coordinators_users_path
@@ -46,7 +46,7 @@ RSpec.describe 'Coordinator can view all users', type: :feature do
       expect(page).to have_selector '.masonry_container'
       expect(page).to have_selector '.active #users_link'
       expect(page).to have_selector '.user', count: 3
-      expect(page).to have_selector 'a.show_surveys', count: 3
+      expect(page).to have_selector 'a.show_report', count: 3
     end
   end
 end

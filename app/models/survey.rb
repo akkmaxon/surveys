@@ -53,8 +53,8 @@ class Survey < ApplicationRecord
 
   def answer_for(question_number)
     resp_arr = responses.pluck(:question_number, :answer)
-    resp = resp_arr.find { |a| a[0] == question_number }
-    resp[1] unless resp.nil?
+    resp = resp_arr.find { |a| a.first == question_number }
+    resp.last unless resp.nil?
   end
 
   def criterion_for(question_number)
@@ -72,6 +72,7 @@ class Survey < ApplicationRecord
     resp.sentence unless resp.nil?
   end
 
+  #TODO: delete
   def total_assessment_for(question_numbers = [])
     # formula: (a1 + a2 + ... + an)/n * 5/6
     if question_numbers.empty?

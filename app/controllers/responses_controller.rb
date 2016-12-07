@@ -16,6 +16,7 @@ class ResponsesController < ApplicationController
     params.require(:response).permit(:question_number,
 				     :answer,
 				     :sentence,
+				     :opinion_subject,
 				     :criterion,
 				     :criterion_type)
   end

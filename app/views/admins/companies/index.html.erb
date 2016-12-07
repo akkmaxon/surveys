@@ -18,6 +18,6 @@
 
 <div class="masonry_container container-fluid">
   <% @companies.each do |company| %>
-    <%= render partial: 'company', locals: { company: company } %>
+    <%= render partial: 'shared/company', locals: { company: company } %>
   <% end %>
 </div>

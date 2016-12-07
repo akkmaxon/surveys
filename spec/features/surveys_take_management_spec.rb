@@ -93,11 +93,14 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       second = user.surveys.first.responses.find_by(question_number: 29)
       third = user.surveys.first.responses.find_by(question_number: 30)
       expect(first.answer).to eq "1"
-      expect(first.criterion).to eq q1_m.criterion
+      expect(first.criterion).to eq(q1_m.criterion)
+      expect(first.opinion_subject).to eq(q1_m.opinion_subject)
       expect(second.answer).to eq "4"
-      expect(second.criterion).to eq q29_m.criterion
+      expect(second.criterion).to eq(q29_m.criterion)
+      expect(second.opinion_subject).to eq(q29_m.opinion_subject)
       expect(third.answer).to eq "2"
-      expect(third.criterion).to eq q30_m.criterion
+      expect(third.criterion).to eq(q30_m.criterion)
+      expect(third.opinion_subject).to eq(q30_m.opinion_subject)
       [first, second, third].each do |resp|
 	expect(resp.sentence).to eq ""
       end

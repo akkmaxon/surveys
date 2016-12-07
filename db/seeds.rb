@@ -70,6 +70,7 @@ unless answer == 'n'
 	  resp.answer = (rand(6) + 1).to_s
 	  resp.criterion = question.criterion
 	  resp.criterion_type = question.criterion_type
+	  resp.opinion_subject = question.opinion_subject
 	end
       end
 
@@ -80,6 +81,7 @@ unless answer == 'n'
 	  resp.answer = Faker::Lorem.sentence
 	  resp.criterion = question.criterion
 	  resp.sentence = question.sentence
+	  resp.opinion_subject = question.opinion_subject
 	end
       end
     end

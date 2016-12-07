@@ -42,7 +42,7 @@ RSpec.describe 'User view taken surveys', type: :feature do
       sign_in user
       visit surveys_path
       expect(page).to have_selector '.survey', count: 2
-      expect(page).to have_selector '.survey a.show_survey', count: 2
+      expect(page).to have_selector '.survey a.show_report', count: 2
     end
   end
 end

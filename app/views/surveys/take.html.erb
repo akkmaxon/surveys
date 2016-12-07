@@ -25,6 +25,7 @@
 		<%= form_for Response.new, remote: true do |f| %>
 		  <%= hidden_field_tag :survey_id, @survey.id %>
 		  <%= f.hidden_field :question_number, value: question.number %>
+		  <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 		  <%= f.hidden_field :criterion, value: question.criterion %>
 		  <%= f.hidden_field :criterion_type, value: question.criterion_type %>
 		  <div data-toggle="buttons">
@@ -74,6 +75,7 @@
 	    <%= hidden_field_tag :survey_id, @survey.id %>
 	    <%= f.hidden_field :question_number, value: question.number %>
 	    <%= f.hidden_field :sentence, value: question.sentence %>
+	    <%= f.hidden_field :opinion_subject, value: question.opinion_subject %>
 	    <%= f.hidden_field :criterion, value: question.criterion %>
 	    <div class="input-group">
 	      <%= f.text_field :answer, id: "question_#{question.number}_answer", class: "form-control" %>

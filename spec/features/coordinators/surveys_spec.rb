@@ -41,7 +41,7 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
       visit coordinators_surveys_path
       within '.masonry_container' do
 	expect(page).to have_selector '.survey', count: 2
-	expect(page).to have_selector '.show_survey', count: 2
+	expect(page).to have_selector 'a.show_report', count: 2
       end
     end
   end

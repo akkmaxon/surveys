@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110082651) do
+ActiveRecord::Schema.define(version: 20161207123816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20161110082651) do
     t.string   "sentence",        default: ""
     t.string   "criterion",       default: ""
     t.string   "criterion_type",  default: ""
+    t.string   "opinion_subject"
     t.index ["survey_id"], name: "index_responses_on_survey_id", using: :btree
   end
 

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :coordinators do
+    get 'companies/index'
+  end
+
   namespace :admins do
     resources :coordinators, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:index, :show, :create, :update]
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
     end
     resources :reports, only: [:index]
     resources :users, only: [:index]
+    resources :companies, only: [:index]
     get 'search' => 'search#search'
     root to: 'application#index'
   end

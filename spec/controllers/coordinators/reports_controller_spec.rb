@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Coordinators::ReportsController, type: :controller do
   let(:coordinator) { FactoryGirl.create :coordinator }
   let(:user) { FactoryGirl.create :user }
+  let!(:info) { FactoryGirl.create :info, user: user }
   let!(:survey) { FactoryGirl.create :survey, user: user, completed: true }
 
   before do
@@ -10,8 +11,23 @@ RSpec.describe Coordinators::ReportsController, type: :controller do
   end
 
   describe "GET #index" do
-    it "returns http success" do
+    it 'with survey in params' do
       get :index, params: { survey: survey.to_param }
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'with user in params' do
+      get :index, params: { user: user.login }
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'with company in params' do
+      get :index, params: { company: info.company }
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'with work_position in params' do
+      get :index, params: { work_position: info.work_position }
       expect(response).to have_http_status(:success)
     end
 

@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="header">
+    Компании <span class="badge"><%= @companies.count %></span>
+  </h1>
+</div>
+
+<div class="masonry_container container-fluid">
+  <% @companies.each do |company| %>
+    <%= render partial: 'shared/company', locals: { company: company } %>
+  <% end %>
+</div>
