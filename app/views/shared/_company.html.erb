@@ -9,7 +9,7 @@
 	  <span class="glyphicon glyphicon-trash"></span>
 	<% end %>
       <% elsif coordinator_signed_in? %>
-	<%= link_to coordinators_reports_path(company: company.name), class: "btn btn-primary show_report", title: "Отчет" do %>
+	<%= link_to coordinators_reports_company_path(company.name), class: "btn btn-primary show_report", title: "Отчет" do %>
 	  <span class="glyphicon glyphicon-stats"></span>
 	<% end %>
       <% end %>

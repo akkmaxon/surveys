@@ -6,7 +6,7 @@
 
 <section class="masonry_container container-fluid">
   <% @surveys.each do |survey| %>
-    <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_reports_path( survey: survey.to_param) } %>
+    <%= render partial: 'surveys/survey_thumb', locals: { survey: survey, link: coordinators_reports_survey_path(survey.to_param) } %>
   <% end %>
 </section>
 

@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 	get 'export'
       end
     end
-    resources :reports, only: [:index]
+    namespace :reports do
+      resources :users, only: [:show]
+      resources :companies, only: [:show]
+      resources :surveys, only: [:show]
+    end
     resources :users, only: [:index]
     resources :companies, only: [:index]
     get 'search' => 'search#search'

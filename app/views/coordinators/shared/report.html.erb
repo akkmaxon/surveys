@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="header">Отчет</h1>
+
+  <% @tables.each do |table| %>
+    <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+	<th rowspan="2">№ п/п</th>
+	<th rowspan="2">Наименование шкалы</th>
+	<th rowspan="2">№ вопроса</th>
+	<th colspan="2">Коэффициенты</th>
+	<th rowspan="2" class="assessment">Общий балл</th>
+      </tr>
+      <tr>
+	<th class="assessment">Оценка "Я"</th>
+	<th class="assessment">Оценка "Мои коллеги"</th>
+      </tr>
+    </thead>
+      <tbody>
+	<% table[:rows].each do |row| %>
+	  <tr>
+	    <td><%= row[:counter] %></td>
+	    <td class="criterion"><%= row[:criterion] %></td>
+	    <td><%= row[:question_numbers] %></td>
+	    <td><%= row[:answer_me] %></td>
+	    <td><%= row[:answer_colleagues] %></td>
+	    <td><%= row[:result] %></td>
+	  </tr>
+	<% end %>
+	<tr class="info">
+	  <td colspan="5"><%= table[:criterion_type_summary] %></td>
+	  <td><%= table[:summary] %></td>
+	</tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
