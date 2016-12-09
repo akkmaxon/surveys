@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin can view all questions', type: :feature do
+  fixtures :questions, :left_statements, :right_statements
+
   let(:admin) { FactoryGirl.create :admin }
-  init_data # 3/3 1q and 1/1 2q for management/working_staff
 
   before do
     sign_in admin
@@ -26,12 +27,12 @@ RSpec.describe 'Admin can view all questions', type: :feature do
     end
 
     it 'signed user' do
-      sign_in FactoryGirl.create :user
+      sign_in FactoryGirl.create(:user)
       visit admins_questions_path
     end
 
     it 'coordinator' do
-      sign_in FactoryGirl.create :user
+      sign_in FactoryGirl.create(:user)
       visit admins_questions_path
     end
   end

@@ -2,15 +2,30 @@ require 'rails_helper'
 
 RSpec.describe Admins::QuestionsController, type: :controller do
   let(:admin) { FactoryGirl.create :admin }
-  let!(:question) { FactoryGirl.create :question }
-  let!(:lst) { FactoryGirl.create :left_statement, question: question }
-  let!(:rst) { FactoryGirl.create :right_statement, question: question }
+  let!(:question) do
+    Question.create! opinion_subject: "Я",
+      audience: "Менеджмент",
+      number: 1,
+      title: "Title",
+      criterion: "Criterion",
+      criterion_type: "Вовлеченность"
+  end
+  let!(:lst) { LeftStatement.create! title: "Title", text: "Text", question: question }
+  let!(:rst) { RightStatement.create! title: "Title", text: "Text", question: question }
   let(:question_params) do
-    { question: FactoryGirl.attributes_for(:question),
-      left_title: FactoryGirl.attributes_for(:left_statement)[:title],
-      left_text: FactoryGirl.attributes_for(:left_statement)[:text],
-      right_title: FactoryGirl.attributes_for(:right_statement)[:title],
-      right_text: FactoryGirl.attributes_for(:right_statement)[:text] }
+    { question: {
+	title: "Title",
+	number: 10,
+	audience: "Менеджмент",
+	opinion_subject: "Я",
+	criterion: "Criterion",
+	criterion_type: "Вовлеченность",
+	sentence: ""
+      },
+      left_title: "New Left Title",
+      left_text: "New Left Text",
+      right_title: "New Right Title",
+      right_text: "New Right Text" }
   end
 
   before do

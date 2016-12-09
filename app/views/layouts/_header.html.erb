@@ -55,7 +55,7 @@
 	    <%= link_to "Компании", coordinators_companies_path, id: 'companies_link' %>
 	  </li>
 	  <li class="<%= active_link('work_positions') %>">
-	    <%= link_to "Должности ???", coordinators_surveys_path, id: 'work_positions_link' %>
+	    <%= link_to "Должности", coordinators_work_positions_path, id: 'work_positions_link' %>
 	  </li>
 	  <li>
 	    <%= link_to export_coordinators_surveys_path(format: :csv) do %>

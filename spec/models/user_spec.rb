@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
   end
   
   describe 'Deleting' do
-    let(:survey) { FactoryGirl.create :survey, user: user }
+    let(:survey) { Survey.create! user: user }
     let!(:resp1) { FactoryGirl.create :response, survey: survey }
     let!(:resp2) { FactoryGirl.create :response, survey: survey }
     let!(:info) { FactoryGirl.create :info, user: user }
@@ -85,16 +85,16 @@ RSpec.describe User, type: :model do
     end
 
     describe 'count_completed_surveys' do
-      let!(:s1) { FactoryGirl.create :survey, completed: true, user: user }
-      let!(:s2) { FactoryGirl.create :survey, completed: true, user: user }
-      let!(:s3) { FactoryGirl.create :survey, user: user }
+      let!(:s1) { Survey.create! user: user, completed: true }
+      let!(:s2) { Survey.create! user: user, completed: true }
+      let!(:s3) { Survey.create! user: user, completed: false }
 
       it 'first test' do
 	expect(user.count_completed_surveys).to eq 2
       end
 
       it 'second test' do
-	s3.update completed: true
+	s3.update(completed: true)
 	expect(user.count_completed_surveys).to eq 3
       end
     end

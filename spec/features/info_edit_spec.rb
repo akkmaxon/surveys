@@ -18,12 +18,12 @@ RSpec.describe 'User update his info', type: :feature do
     end
 
     it 'coordinator' do
-      sign_in FactoryGirl.create :coordinator
+      sign_in FactoryGirl.create(:coordinator)
       visit edit_info_path
     end
 
     it 'admin' do
-      sign_in FactoryGirl.create :admin
+      sign_in FactoryGirl.create(:admin)
       visit edit_info_path
     end
   end

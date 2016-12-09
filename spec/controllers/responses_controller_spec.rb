@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ResponsesController, type: :controller do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
-  let!(:survey) { FactoryGirl.create :survey, user: user }
+  let!(:survey) { Survey.create! user: user }
 
   before do
     sign_in user

@@ -1,0 +1,29 @@
+left_for_q1_m:
+  title: "question1_management_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question1_management
+
+left_for_q29_m:
+  title: "question29_management_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question29_management
+
+left_for_q30_m:
+  title: "question30_management_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question30_management
+
+left_for_q1_w:
+  title: "question1_working_staff_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question1_working_staff
+
+left_for_q29_w:
+  title: "question29_working_staff_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question29_working_staff
+
+left_for_q30_w:
+  title: "question30_working_staff_left"
+  text: <%= Faker::Lorem.sentence %>
+  question: question30_working_staff

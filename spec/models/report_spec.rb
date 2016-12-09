@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Report, type: :model do
   let(:user) { FactoryGirl.create :user }
-  let!(:survey1) { FactoryGirl.create :survey, user: user, completed: true }
-  let!(:survey2) { FactoryGirl.create :survey, user: user, completed: true }
   let!(:criterion_types) { ["Вовлеченность", "Удовлетворенность", "Отношение к руководству", ""] }
   let!(:criteria) { ["First Criterion", "Second Criterion", "Свободные ответы"] }
   

@@ -24,7 +24,7 @@ RSpec.describe Coordinator, type: :model do
       end
 
       it 'with not unique login' do
-	FactoryGirl.create :coordinator, login: 'login'
+	FactoryGirl.create(:coordinator, login: 'login')
 	coordinator.login = 'login'
       end
 

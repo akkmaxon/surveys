@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'User create new response answering', type: :feature do
-  init_data
+  fixtures :questions, :left_statements, :right_statements
+
+  let(:user) { FactoryGirl.create :user }
+  let!(:info) { FactoryGirl.create :info, user: user }
 
   describe 'impossible for' do
-    let(:survey) { FactoryGirl.create :survey, user: user }
+    let(:survey) { Survey.create! user: user }
 
     after do
       expect(page.current_path).to eq new_user_session_path

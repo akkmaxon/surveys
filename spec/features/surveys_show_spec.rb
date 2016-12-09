@@ -4,7 +4,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
   context 'User load surveys/show manually' do
     let(:user) { FactoryGirl.create :user }
     let!(:info) { FactoryGirl.create :info, user: user }
-    let!(:survey) { FactoryGirl.create :survey, user: user, completed: true }
+    let!(:survey) { Survey.create! user: user, completed: true }
 
     describe 'impossible for' do
       after do
@@ -83,8 +83,8 @@ RSpec.describe 'Work with surveys/show', type: :feature do
       end
 
       it 'Attempt to watch survey of other user' do
-	other_user = FactoryGirl.create :user
-	forbidden_survey = FactoryGirl.create :survey, user: other_user
+	other_user = FactoryGirl.create(:user)
+	forbidden_survey = Survey.create!(user: other_user, completed: true)
 	visit "/surveys/#{(forbidden_survey.id + CRYPT_SURVEY).to_s(36)}"
 	within '#messages .alert-danger' do
 	  expect(page).to have_content "Вы не можете видеть результаты других пользователей"

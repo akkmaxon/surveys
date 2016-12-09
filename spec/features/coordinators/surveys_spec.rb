@@ -16,12 +16,12 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
     end
 
     it 'signed in user' do
-      sign_in FactoryGirl.create :user
+      sign_in FactoryGirl.create(:user)
       visit coordinators_surveys_path
     end
 
     it 'admin' do
-      sign_in FactoryGirl.create :admin
+      sign_in FactoryGirl.create(:admin)
       visit coordinators_surveys_path
     end
   end
@@ -34,9 +34,8 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
     end
 
     it 'successfully' do
-      user = FactoryGirl.create :user, login: 'user123'
-      FactoryGirl.create :survey, user: user, completed: true
-      FactoryGirl.create :survey, user: user, completed: true
+      user = FactoryGirl.create(:user, login: 'user123')
+      2.times { Survey.create! user: user, completed: true }
       sign_in coordinator
       visit coordinators_surveys_path
       within '.masonry_container' do

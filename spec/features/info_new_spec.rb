@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'User create info about himself', type: :feature do
+  fixtures :companies
+
   let(:user) { FactoryGirl.create :user }
-  let!(:company1) { FactoryGirl.create :company, id: 1, name: 'Company1' }
-  let!(:company2) { FactoryGirl.create :company, id: 2, name: 'Company2' }
 
   describe 'impossible for' do
     after do
@@ -18,12 +18,12 @@ RSpec.describe 'User create info about himself', type: :feature do
     end
 
     it 'coordinator' do
-      sign_in FactoryGirl.create :coordinator
+      sign_in FactoryGirl.create(:coordinator)
       visit new_info_path
     end
 
     it 'admin' do
-      sign_in FactoryGirl.create :admin
+      sign_in FactoryGirl.create(:admin)
       visit new_info_path
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe 'User create info about himself', type: :feature do
       select("более 55 лет", from: 'info_age')
       select("третье", from: 'info_workplace_number')
       select("топ-менеджер", from: 'info_work_position')
-      select("Company2", from: 'info_company')
+      select("SecondCompany", from: 'info_company')
       click_button "Подтвердить"
       within '#messages .alert-success' do
 	expect(page).to have_content "Спасибо, теперь Вы можете пройти тест."
@@ -69,8 +69,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 
     context 'companies not defined by admin' do
       before do
-	company1.destroy
-	company2.destroy
+	Company.destroy_all
 	visit new_info_path
       end
 
@@ -95,7 +94,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 
     context 'only one company' do
       before do
-	company2.destroy
+	Company.where('name != ?', 'FirstCompany').destroy_all
 	visit new_info_path
       end
 
@@ -115,7 +114,7 @@ RSpec.describe 'User create info about himself', type: :feature do
 	expect(page).to have_selector '.progress'
 	user.reload
 	user.reload
-	expect(user.info.company).to eq(company1.name)
+	expect(user.info.company).to eq('FirstCompany')
       end
     end
   end

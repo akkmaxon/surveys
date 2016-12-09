@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Manager takes a survey', type: :feature do
-  init_data # 3/3 1q and 1/1 2q for management/working_staff
-  let!(:survey) { FactoryGirl.create :survey, user: user }
+  fixtures :questions, :left_statements, :right_statements
+
+  let(:user) { FactoryGirl.create :user }
+  let!(:info) { FactoryGirl.create :info, user: user }
+  let!(:survey) { Survey.create! user: user }
   
   describe 'impossible for' do
 
@@ -18,12 +21,12 @@ RSpec.describe 'Manager takes a survey', type: :feature do
     end
 
     it 'coordinator' do
-      sign_in FactoryGirl.create :coordinator
+      sign_in FactoryGirl.create(:coordinator)
       visit take_survey_path(survey)
     end
 
     it 'admin' do
-      sign_in FactoryGirl.create :admin
+      sign_in FactoryGirl.create(:admin)
       visit take_survey_path(survey)
     end
   end
@@ -50,7 +53,7 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       expect(page).not_to have_selector '#finish_survey'
       expect(page).not_to have_selector '#show_results_link'
       within '.table' do
-	%w[1left 1right].each do |title|
+	%w[question1_management_left question1_management_right].each do |title|
 	  expect(page).to have_content title
 	end
       end
@@ -60,10 +63,19 @@ RSpec.describe 'Manager takes a survey', type: :feature do
     end
 
     it 'more questions for management after adding by admin' do
-      q = FactoryGirl.create :question, number: 2, audience: "Менеджмент"
-      FactoryGirl.create :left_statement, question: q
-      FactoryGirl.create :right_statement, question: q
-      FactoryGirl.create :question, number: 202, audience: "Менеджмент", sentence: Faker::Lorem.sentence
+      q = Question.create! opinion_subject: "Я",
+	number: 3,
+	audience: "Менеджмент",
+	title: "Title",
+	criterion: "Criterion",
+	criterion_type: "Вовлеченность"
+      LeftStatement.create! title: "Title", text: "Text", question: q
+      RightStatement.create! title: "Title", text: "Text", question: q
+      Question.create! opinion_subject: "Я",
+	number: 202,
+	audience: "Менеджмент",
+	sentence: Faker::Lorem.sentence,
+        criterion: "Criterion"
       click_link 'new_survey_link'
       within '.progress-bar' do
 	expect(page).to have_content "0/6"
@@ -93,14 +105,20 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       second = user.surveys.first.responses.find_by(question_number: 29)
       third = user.surveys.first.responses.find_by(question_number: 30)
       expect(first.answer).to eq "1"
-      expect(first.criterion).to eq(q1_m.criterion)
-      expect(first.opinion_subject).to eq(q1_m.opinion_subject)
+      expect(first.criterion).
+	to eq(questions(:question1_management).criterion)
+      expect(first.opinion_subject).
+	to eq(questions(:question1_management).opinion_subject)
       expect(second.answer).to eq "4"
-      expect(second.criterion).to eq(q29_m.criterion)
-      expect(second.opinion_subject).to eq(q29_m.opinion_subject)
+      expect(second.criterion).
+	to eq(questions(:question29_management).criterion)
+      expect(second.opinion_subject).
+	to eq(questions(:question29_management).opinion_subject)
       expect(third.answer).to eq "2"
-      expect(third.criterion).to eq(q30_m.criterion)
-      expect(third.opinion_subject).to eq(q30_m.opinion_subject)
+      expect(third.criterion).
+	to eq(questions(:question30_management).criterion)
+      expect(third.opinion_subject).
+	to eq(questions(:question30_management).opinion_subject)
       [first, second, third].each do |resp|
 	expect(resp.sentence).to eq ""
       end
@@ -115,9 +133,10 @@ RSpec.describe 'Manager takes a survey', type: :feature do
       resp = user.surveys.first.responses.last
       expect(user.surveys.first.responses.count).to eq 4
       expect(resp.answer).to eq 'answer sentence'
-      expect(resp.sentence).to eq q201_m.sentence
-      expect(resp.criterion).to eq "Свободные ответы"
-      expect(resp.criterion_type).to eq ""
+      expect(resp.sentence).
+	to eq(questions(:question201_management).sentence)
+      expect(resp.criterion).to eq("Свободные ответы")
+      expect(resp.criterion_type).to eq("")
     end
 
     it 'and survey is not reliable' do
@@ -144,7 +163,11 @@ RSpec.describe 'Manager takes a survey', type: :feature do
     end
 
     it 'not completed because one more question is present' do
-      question_3 = FactoryGirl.create :question, audience: "Менеджмент", sentence: Faker::Lorem.sentence
+      Question.create! opinion_subject: "Я",
+	audience: "Менеджмент",
+	number: 203,
+	sentence: Faker::Lorem.sentence,
+        criterion: "Criterion"
       take_a_survey
       expect(page).not_to have_selector('#show_results_link')
       user.reload

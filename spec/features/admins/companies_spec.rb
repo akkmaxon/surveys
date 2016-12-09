@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Admin can manage companies", type: :feature do
+RSpec.describe "Admin manage companies and ", type: :feature do
+  fixtures :companies
+
   let(:admin) { FactoryGirl.create :admin }
 
   before do
@@ -9,7 +11,6 @@ RSpec.describe "Admin can manage companies", type: :feature do
   end
 
   describe "view" do
-    let!(:company) { FactoryGirl.create :company, name: 'New Company' }
 
     context 'impossible for' do
       after do
@@ -21,7 +22,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
 
       it 'signed in user' do
 	sign_out admin
-	sign_in FactoryGirl.create :user
+	sign_in FactoryGirl.create(:user)
 	visit admins_companies_path
       end
 
@@ -32,7 +33,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
 
       it 'coordinator' do
 	sign_out admin
-	sign_in FactoryGirl.create :coordinator
+	sign_in FactoryGirl.create(:coordinator)
 	visit admins_companies_path
       end
     end
@@ -48,8 +49,10 @@ RSpec.describe "Admin can manage companies", type: :feature do
       expect(page).to have_selector '#add_company'
       expect(page).not_to have_selector '#new_company'
       expect(page).to have_selector '.masonry_container'
-      expect(page).to have_selector '.company', count: 1
-      expect(page).to have_content 'New Company'
+      expect(page).to have_selector '.company', count: 3
+      expect(page).to have_content 'FirstCompany'
+      expect(page).to have_content 'SecondCompany'
+      expect(page).to have_content 'ThirdCompany'
     end
   end
 
@@ -62,7 +65,7 @@ RSpec.describe "Admin can manage companies", type: :feature do
 	expect(page).to have_content "Список компаний расширен."
       end
       within '.masonry_container' do
-	expect(page).to have_selector '.company', count: 1
+	expect(page).to have_selector '.company', count: 4
 	expect(page).to have_content "NEW COMPANY"
       end
     end
@@ -72,15 +75,14 @@ RSpec.describe "Admin can manage companies", type: :feature do
       fill_in "Имя компании", with: ''
       click_button "Подтвердить"
       visit admins_companies_path
-      expect(page).not_to have_selector '.company'
-      expect(Company.count).to eq 0
+      expect(page).to have_selector '.company', count: 3
+      expect(Company.count).to eq 3
     end
   end
 
   describe "updating" do
-    let!(:company) { FactoryGirl.create :company }
-
     before do
+      Company.where('name != ?', "FirstCompany").destroy_all
       visit admins_companies_path
       find('.company .edit_company_link').trigger 'click'
     end
@@ -97,14 +99,13 @@ RSpec.describe "Admin can manage companies", type: :feature do
     it 'with empty name' do
       fill_in id: 'company_name', with: ''
       click_button "Подтвердить"
-      company.reload
-      expect(company.name).not_to eq ''
+      expect(Company.find_by(name: '')).to be_nil
     end
   end
 
   describe "deleting" do
     it 'successfully' do
-      FactoryGirl.create :company
+      Company.where('name != ?', "FirstCompany").destroy_all
       visit admins_companies_path
       expect(page).to have_selector '.company'
       find('.company .delete_company').trigger 'click'

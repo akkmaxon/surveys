@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin can update questions', type: :feature do
+  fixtures :questions, :left_statements, :right_statements
+
   let(:admin) { FactoryGirl.create :admin }
-  let!(:q1) { FactoryGirl.create :question }
-  let!(:left_q1) { FactoryGirl.create :left_statement, question: q1 }
-  let!(:right_q1) { FactoryGirl.create :right_statement, question: q1 }
-  let!(:q2) { FactoryGirl.create :question, sentence: Faker::Lorem.sentence }
 
   before do
     sign_in admin
@@ -14,36 +12,35 @@ RSpec.describe 'Admin can update questions', type: :feature do
 
   describe 'first' do
     before do
-      find('#admin_first_questions .edit_question_link').trigger 'click'
+      first('#admin_first_questions .edit_question_link').trigger 'click'
     end
 
-    context 'successfully' do
-      it 'changing all properties' do
-	fill_in 'field_1q_title', with: 'What are you doing?'
-	fill_in 'field_1q_number', with: 123
-	find('#field_1q_audience_2').trigger 'click'
-	fill_in 'field_1q_left_title', with: 'New Left Title'
-	fill_in 'field_1q_left_text', with: 'New Left Text'
-	fill_in 'field_1q_right_title', with: 'New Right Title'
-	fill_in 'field_1q_right_text', with: 'New Right Text'
-	find('#field_1q_subject_1').trigger 'click'
-	fill_in 'field_1q_criterion', with: 'New Criterion'
-	find('#field_1q_criterion_type_1').trigger 'click'
-	click_button 'submit_1q'
-	q1.reload
-	expect(q1.title).to eq('What are you doing?')
-	expect(q1.number).to eq(123)
-	expect(q1.audience).to eq("Рабочая специальность")
-	expect(q1.left_statement.title).to eq('New Left Title')
-	expect(q1.right_statement.title).to eq('New Right Title')
-	expect(q1.left_statement.text).to eq('New Left Text')
-	expect(q1.right_statement.text).to eq('New Right Text')
-	expect(q1.opinion_subject).to eq("Я")
-	expect(q1.criterion).to eq('New Criterion')
-	expect(q1.criterion_type).to eq("Вовлеченность")
-	within '#messages .alert-success' do
-	  expect(page).to have_content "Вопрос обновлен."
-	end
+    it 'changing all properties' do
+      q1 = questions(:question1_management)
+      fill_in 'field_1q_title', with: 'What are you doing?'
+      fill_in 'field_1q_number', with: 123
+      find('#field_1q_audience_2').trigger 'click'
+      fill_in 'field_1q_left_title', with: 'New Left Title'
+      fill_in 'field_1q_left_text', with: 'New Left Text'
+      fill_in 'field_1q_right_title', with: 'New Right Title'
+      fill_in 'field_1q_right_text', with: 'New Right Text'
+      find('#field_1q_subject_1').trigger 'click'
+      fill_in 'field_1q_criterion', with: 'New Criterion'
+      find('#field_1q_criterion_type_1').trigger 'click'
+      click_button 'submit_1q'
+      q1.reload
+      expect(q1.title).to eq('What are you doing?')
+      expect(q1.number).to eq(123)
+      expect(q1.audience).to eq("Рабочая специальность")
+      expect(q1.left_statement.title).to eq('New Left Title')
+      expect(q1.right_statement.title).to eq('New Right Title')
+      expect(q1.left_statement.text).to eq('New Left Text')
+      expect(q1.right_statement.text).to eq('New Right Text')
+      expect(q1.opinion_subject).to eq("Я")
+      expect(q1.criterion).to eq('New Criterion')
+      expect(q1.criterion_type).to eq("Вовлеченность")
+      within '#messages .alert-success' do
+	expect(page).to have_content "Вопрос обновлен."
       end
     end
 
@@ -110,7 +107,7 @@ RSpec.describe 'Admin can update questions', type: :feature do
 
   describe 'second' do
     before do
-      find('#admin_second_questions .edit_question_link').trigger 'click'
+      first('#admin_second_questions .edit_question_link').trigger 'click'
     end
 
     context 'successfully' do

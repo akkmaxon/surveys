@@ -4,7 +4,7 @@ RSpec.describe 'Coordinator can view all the companies', type: :feature do
   let(:coordinator) { FactoryGirl.create :coordinator }
 
   before do
-    3.times { FactoryGirl.create :company }
+    3.times { |n| Company.create! name: "Company#{n}" }
   end
 
   describe 'impossible for' do

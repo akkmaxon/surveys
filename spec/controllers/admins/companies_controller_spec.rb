@@ -43,7 +43,7 @@ RSpec.describe Admins::CompaniesController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let!(:company) { FactoryGirl.create :company }
+    let!(:company) { Company.create! name: "Company" }
 
     it 'successfully' do
       put :update, params: { id: company.id, company: { name: 'New Name' } }
@@ -66,7 +66,7 @@ RSpec.describe Admins::CompaniesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let!(:company) { FactoryGirl.create :company }
+    let!(:company) { Company.create! name: "Company" }
 
     it 'successfully' do
       delete :destroy, params: { id: company.id }

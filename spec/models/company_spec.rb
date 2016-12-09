@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Company, type: :model do
-  let(:company) { FactoryGirl.build :company }
+  let(:company) { Company.new name: "Company" }
+
   it 'must be valid' do
     company.save
     expect(company).to be_valid

@@ -24,36 +24,10 @@ FactoryGirl.define do
     company 'Pepsi'
   end
 
-  factory :survey do
-  end 
-
   factory :response do
-    answer Faker::Lorem.sentence
+    answer "3"
     sequence(:question_number, 1)
-    criterion "Default Criterion"
-    criterion_type "Default Criterion Type"
-  end
-
-  factory :question do
-    title Faker::Lorem.sentence
-    sequence(:number, 1)
-    audience 'Менеджмент'
-    opinion_subject 'Я'
-    criterion Faker::Lorem.sentence
-    criterion_type 'Вовлеченность'
-  end
-
-  factory :left_statement do
-    title Faker::Lorem.sentence
-    text Faker::Lorem.paragraph
-  end
-    
-  factory :right_statement do
-    title Faker::Lorem.sentence
-    text Faker::Lorem.paragraph
-  end
-
-  factory :company do
-    name Faker::Lorem.sentence
+    criterion "Criterion"
+    criterion_type "Criterion Type"
   end
 end

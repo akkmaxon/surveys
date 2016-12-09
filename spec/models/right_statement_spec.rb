@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe RightStatement, type: :model do
-  let(:question) { FactoryGirl.create :question }
-  let(:right_st) { FactoryGirl.create :right_statement, question: question }
+  let(:question) do
+    Question.create! opinion_subject: "Я",
+      audience: "Менеджмент",
+      number: 1,
+      title: "Title",
+      criterion: "Criterion",
+      criterion_type: "Вовлеченность"
+  end
+
+  let(:right_st) { RightStatement.new title: "Title", text: "Text", question: question }
 
   it 'Creating with valid properties' do
     right_st.save

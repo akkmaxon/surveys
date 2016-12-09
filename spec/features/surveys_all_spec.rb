@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'User view taken surveys', type: :feature do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
-  let!(:s1) { FactoryGirl.create :survey, user: user, completed: true }
-  let!(:s2) { FactoryGirl.create :survey, user: user, completed: true }
 
   describe 'impossible for' do
     after do
@@ -30,6 +28,10 @@ RSpec.describe 'User view taken surveys', type: :feature do
   end
 
   describe 'when signed in' do
+    before do
+      2.times { Survey.create! user: user, completed: true }
+    end
+
     it 'as other user' do
       other_user = FactoryGirl.create :user
       FactoryGirl.create :info, user: other_user

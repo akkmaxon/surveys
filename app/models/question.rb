@@ -34,6 +34,7 @@ class Question < ApplicationRecord
     self.for(survey.audience).where('sentence != ?', "")
   end
 
+  ###   DELETE_ME
   def self.group_by_criterion(survey, criterion_type)
     questions = self.first_questions_for(survey).where(criterion_type: criterion_type)
     criteria = questions.pluck(:criterion)

@@ -1,0 +1,62 @@
+### Questions for management
+
+question1_management:
+  number: 1
+  audience: "Менеджмент"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Инициативность, энтузиазм"
+  criterion_type: "Вовлеченность"
+
+question29_management:
+  number: 29
+  audience: "Менеджмент"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Шкала социальной желательности"
+
+question30_management:
+  number: 30
+  audience: "Менеджмент"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Шкала социальной желательности"
+
+question201_management:
+  number: 201
+  audience: "Менеджмент"
+  opinion_subject: "Я"
+  sentence: <%= Faker::Lorem.sentence %>
+  criterion: "Свободные ответы"
+
+### Questions for working staff
+
+question1_working_staff:
+  number: 1
+  audience: "Рабочая специальность"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Инициативность, энтузиазм"
+  criterion_type: "Вовлеченность"
+
+question29_working_staff:
+  number: 29
+  audience: "Рабочая специальность"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Шкала социальной желательности"
+
+question30_working_staff:
+  number: 30
+  audience: "Рабочая специальность"
+  opinion_subject: "Я"
+  title: <%= Faker::Lorem.sentence %>
+  criterion: "Шкала социальной желательности"
+
+question201_working_staff:
+  number: 201
+  audience: "Рабочая специальность"
+  opinion_subject: "Я"
+  sentence: <%= Faker::Lorem.sentence %>
+  criterion: "Свободные ответы"
+

@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe LeftStatement, type: :model do
-  let(:question) { FactoryGirl.create :question }
-  let(:left_st) { FactoryGirl.create :left_statement, question: question }
+  let(:question) do
+    Question.create! opinion_subject: "Я",
+      audience: "Менеджмент",
+      number: 1,
+      title: "Title",
+      criterion: "Criterion",
+      criterion_type: "Вовлеченность"
+  end
+
+  let(:left_st) { LeftStatement.new title: "Title", text: "Text", question: question }
 
   it 'Creating with valid properties' do
     left_st.save

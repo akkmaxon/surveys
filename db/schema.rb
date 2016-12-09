@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20161207123816) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "user_agreement", default: ""
-    t.string   "user_email"
+    t.string   "user_email",     default: ""
     t.boolean  "completed",      default: false
     t.string   "audience",       default: "Менеджмент"
     t.index ["user_id"], name: "index_surveys_on_user_id", using: :btree

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Survey, type: :model do
   let(:user) { FactoryGirl.create :user }
-  let(:survey) { user.surveys.build FactoryGirl.attributes_for(:survey) }
+  let(:survey) { Survey.new user: user }
 
   describe 'Survey creation' do
     context 'success' do
@@ -15,18 +15,14 @@ RSpec.describe Survey, type: :model do
 
     context 'fails' do
       it 'created independently from user' do
-	survey = FactoryGirl.build :survey
-	expect(survey).to be_invalid
+	expect(Survey.new).to be_invalid
       end
     end
   end
 
   describe 'Survey deleting' do
-    let!(:r1) { FactoryGirl.create :response, survey: survey }
-    let!(:r2) { FactoryGirl.create :response, survey: survey }
-    let!(:r3) { FactoryGirl.create :response, survey: survey }
-
     it 'automatically delete all responses' do
+      3.times { FactoryGirl.create :response, survey: survey }
       expect(Response.count).to eq 3
       expect(survey.responses.count).to eq 3
       survey.destroy

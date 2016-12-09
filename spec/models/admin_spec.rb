@@ -37,7 +37,7 @@ RSpec.describe Admin, type: :model do
       end
 
       it 'email must be unique' do
-	other_admin = FactoryGirl.create :admin, email: admin.email
+	other_admin = FactoryGirl.create(:admin, email: admin.email)
 	other_admin.save
 	expect(admin).to be_invalid
       end

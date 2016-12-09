@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe SurveysController, type: :controller do
   let(:user) { FactoryGirl.create :user }
   let!(:info) { FactoryGirl.create :info, user: user }
-  let!(:survey) { FactoryGirl.create :survey, user: user }
+  let!(:survey) { Survey.create! user: user }
 
   before do
     sign_in user
@@ -38,7 +38,7 @@ RSpec.describe SurveysController, type: :controller do
 
     it 'fails for other user' do
       other_user = FactoryGirl.create :user
-      survey = FactoryGirl.create :survey, user: other_user
+      survey = Survey.create! user: other_user
       get :show, params: { id: (survey.id + CRYPT_SURVEY).to_s(36) }
       expect(response).to redirect_to(:surveys)
       expect(flash[:alert]).to eq("Вы не можете видеть результаты других пользователей")
@@ -60,9 +60,10 @@ RSpec.describe SurveysController, type: :controller do
   end
 
   describe 'POST #create' do
-    let!(:question) { FactoryGirl.create :question }
+    fixtures :questions
+    
+    let!(:question) { questions(:question1_management) }
     let!(:resp) { FactoryGirl.create :response, survey: survey, question_number: question.number }
-
 
     it 'successfully' do
       survey.update completed: true
