@@ -6,7 +6,7 @@
     <% end %>
     <p><strong>Логин:  <%= session[session_key]['login'] %></strong></p>
     <p><strong>Пароль: <%= session[session_key]['password'] %></strong></p>
-    <%= link_to address, class: 'btn btn-primary btn-block' do %>
+    <%= link_to address, class: 'btn btn-primary btn-block surrounded' do %>
       <span class="glyphicon glyphicon-save"></span>
       СОХРАНИТЬ
     <% end %>

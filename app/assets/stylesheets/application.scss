@@ -122,30 +122,17 @@ header {
   }
 }
 
-header a, .btn {
+header a {
   &:active {
     transform: translateY(2px);
   }
 }
 
-#manage_bar .btn-success {
-  box-shadow: 0 2px #418c41;
-  &:active {
-    box-shadow: none;
-  }
-}
-
-.btn-primary {
-  box-shadow: 0 2px #215683;
+.surrounded {
+  box-shadow: 0 2px #747474;
   &:active { 
     box-shadow: none;
-  }
-}
-
-.input-group-btn .btn, .btn-group .btn-primary, .btn-group .btn-default {
-  box-shadow: none;
-  &:active {
-    transform: none;
+    transform: translateY(2px);
   }
 }
 

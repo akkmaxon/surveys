@@ -47,7 +47,7 @@ RSpec.describe 'Work with surveys/show', type: :feature do
       it 'agreement & email are absent' do
 	survey.reload
 	expect(survey.user_agreement).to eq ''
-	expect(survey.user_email).to eq nil
+	expect(survey.user_email).to eq ''
       end
 
       it 'User click agreement' do
