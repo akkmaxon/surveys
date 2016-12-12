@@ -44,7 +44,7 @@ document.addEventListener("turbolinks:load", function() {
     itemSelector: '.masonry_element',
     gutter: 24,
     isFitWidth: true
-  })
+  });
 });
 
 $(window).resize(function () {

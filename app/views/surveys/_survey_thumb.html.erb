@@ -6,21 +6,21 @@
       <% end %>
     </div>
     <h2 class="h4">
-      <span class="glyphicon glyphicon-calendar"></span>
+      <span class="glyphicon glyphicon-calendar" title="Дата"></span>
       <%= survey.completed? ? survey.pass_date : "Не завершен" %>
     </h2>
     <% unless user_signed_in? %>
       <h2 class="h4">
-	<span class="glyphicon glyphicon-user"></span>
+	<span class="glyphicon glyphicon-user" title="Респондент"></span>
 	<%= survey.user.login %>
       </h2>
     <% end %>
     <h2 class="h4">
-      <span class="glyphicon glyphicon-envelope"></span>
+      <span class="glyphicon glyphicon-envelope" title="Email"></span>
       <small><%= survey.user_email %></small>
     </h2>
     <h2 class="h4">
-      <span class="glyphicon glyphicon-comment"></span>
+      <span class="glyphicon glyphicon-comment" title="Отношение к опросу"></span>
       <small><%= survey.user_agreement %></small>
     </h2>
   </div>

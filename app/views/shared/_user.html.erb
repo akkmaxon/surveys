@@ -4,20 +4,14 @@
       <%= render partial: buttons, locals: { user: user } %>
     </div>
     <h2 class="h4">
-      <span class="glyphicon glyphicon-user"></span>
+      <span class="glyphicon glyphicon-user" title="Логин"></span>
       <%= user.login %>
     </h2>
-    <% if user.info.nil? %>
-      <h2 class="h4">
-	<span class="glyphicon glyphicon-info-sign"></span>
-	Нет информации
+    <% unless user.info.nil? %>
+      <h2 class="h4 pull-left">
+        <span class="glyphicon glyphicon-info-sign" title="Информация"></span>
       </h2>
-    <% else %>
-      <h2 class="h4">
-	<span class="glyphicon glyphicon-info-sign"></span>
-	Информация:
-      </h2>
-      <ul>
+      <ul class="user_info">
 	<li><strong>Пол: </strong><%= user.info.gender %></li>
 	<li><strong>Возраст: </strong><%= user.info.age %></li>
 	<li><strong>Компания: </strong><%= user.info.company %></li>

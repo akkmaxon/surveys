@@ -122,6 +122,10 @@ header {
   }
 }
 
+.user_info {
+  margin-top: 20px;
+}
+
 header a {
   &:active {
     transform: translateY(2px);
