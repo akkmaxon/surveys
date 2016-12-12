@@ -1,3 +1,7 @@
+<%= link_to coordinators_surveys_path(filter: user.login), class: 'btn btn-sm btn-info', title: "Опросы" do %>
+  <span class="glyphicon glyphicon-list-alt"></span>
+<% end %>
+
 <%= link_to coordinators_reports_user_path(user.login), class: 'btn btn-sm btn-primary show_report', title: "Отчет" do %>
   <span class="glyphicon glyphicon-stats"></span>
 <% end %>

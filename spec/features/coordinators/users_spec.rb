@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Coordinator can view all the users', type: :feature do
+RSpec.describe 'Coordinator can view users', type: :feature do
   let(:coordinator) { FactoryGirl.create :coordinator }
 
   before do
@@ -35,18 +35,31 @@ RSpec.describe 'Coordinator can view all the users', type: :feature do
       sign_in coordinator
     end
 
-    it 'access from the root' do
+    it 'without filters' do
       visit coordinators_root_path
       click_link 'users_link'
       expect(page.current_path).to eq coordinators_users_path
-    end
-
-    it 'page layout' do
-      visit coordinators_users_path
       expect(page).to have_selector '.masonry_container'
       expect(page).to have_selector '.active #users_link'
       expect(page).to have_selector '.user', count: 3
       expect(page).to have_selector 'a.show_report', count: 3
+    end
+
+    it 'only for specific company' do
+      company = Company.create!(name: "Company")
+      user = FactoryGirl.create(:user, login: 'Company User')
+      FactoryGirl.create(:info, user: user, company: company.name)
+
+      expect(User.count).to eq(4)
+
+      visit coordinators_companies_path
+      find('.show_company_users').trigger('click')
+      expect(page.current_path).to eq(coordinators_users_path)
+      expect(page).to have_content("Респонденты (#{company.name})")
+      expect(page).to have_selector('.masonry_container .user', count: 1)
+      within('.masonry_container .user') do
+	expect(page).to have_content(user.login)
+      end
     end
   end
 end
