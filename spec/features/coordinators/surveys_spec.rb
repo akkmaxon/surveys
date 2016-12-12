@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Coordinator view all surveys', type: :feature do
+RSpec.describe 'Coordinator can view surveys', type: :feature do
   let(:coordinator) { FactoryGirl.create :coordinator }
 
   describe 'impossible for' do
@@ -26,22 +26,31 @@ RSpec.describe 'Coordinator view all surveys', type: :feature do
     end
   end
 
-  describe 'when signed in' do
-    it 'redirect after signing in' do
-      sign_in coordinator
-      visit coordinators_root_path
-      expect(page.current_path).to eq coordinators_surveys_path
-    end
+  describe 'successfully' do
+    let(:user) { FactoryGirl.create(:user, login: 'user123') }
 
-    it 'successfully' do
-      user = FactoryGirl.create(:user, login: 'user123')
+    before do
       2.times { Survey.create! user: user, completed: true }
       sign_in coordinator
+    end
+
+    it 'without filters' do
       visit coordinators_surveys_path
       within '.masonry_container' do
 	expect(page).to have_selector '.survey', count: 2
 	expect(page).to have_selector 'a.show_report', count: 2
       end
+    end
+
+    it 'for specific user' do
+      other_user = FactoryGirl.create(:user, login: 'Specific User')
+      FactoryGirl.create(:info, user: other_user)
+      Survey.create!(user: other_user, completed: true)
+      visit coordinators_users_path
+      first('.show_user_surveys').trigger('click')
+      expect(page.current_path).to eq(coordinators_surveys_path)
+      expect(page).to have_content("Опросы (#{other_user.login})")
+      expect(page).to have_selector('.masonry_container .survey', count: 1)
     end
   end
 end

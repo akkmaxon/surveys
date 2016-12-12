@@ -1,6 +1,8 @@
 <div class="container">
   <h1 class="header">
-    Опросы <%= @filter_name %> <span class="badge"><%= @surveys.count %></span>
+    Опросы
+    <%= "(" + params[:filter] + ")" if params.key?(:filter) %>
+    <span class="badge"><%= @surveys.count %></span>
   </h1>
 </div>
 

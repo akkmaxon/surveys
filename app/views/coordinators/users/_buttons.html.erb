@@ -1,4 +1,4 @@
-<%= link_to coordinators_surveys_path(filter: user.login), class: 'btn btn-sm btn-info', title: "Опросы" do %>
+<%= link_to coordinators_surveys_path(filter: user.login), class: 'btn btn-sm btn-info show_user_surveys', title: "Опросы (#{user.surveys.count})" do %>
   <span class="glyphicon glyphicon-list-alt"></span>
 <% end %>
 
