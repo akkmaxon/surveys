@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  namespace :coordinators do
-    get 'companies/index'
-  end
-
   namespace :admins do
     resources :coordinators, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:index, :show, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
+    get 'db/backup'
+    post 'db/restore'
     get 'search' => 'search#search'
     post 'application/clean_person_credentials'
     root to: 'application#index'

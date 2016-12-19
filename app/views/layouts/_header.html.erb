@@ -20,8 +20,8 @@
 
     </div>
     <div class="collapse navbar-collapse" id="navbar-collapsed">
-      <% if admin_signed_in? %>
 
+      <% if admin_signed_in? %>
 	<ul class="nav navbar-nav">
 	  <li class="<%= active_link('users') %>">
 	    <%= link_to "Респонденты", admins_users_path, id: 'users_link' %>
@@ -37,6 +37,7 @@
 	  </li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
+	  <li><%= link_to "Бэкап БД", admins_db_backup_path, id: 'db_backup_link' %></li>
 	  <li class="<%= active_link('registrations') %>">
 	    <%= link_to "Настройки", edit_admin_registration_path %>
 	  </li>
