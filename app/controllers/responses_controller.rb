@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
     else
       @response.update(response_params)
     end
-    render plain: 'OK'
+    render plain: 'Success'
   end
 
   private

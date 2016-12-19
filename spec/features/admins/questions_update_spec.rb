@@ -39,12 +39,14 @@ RSpec.describe 'Admin can update questions', type: :feature do
       expect(q1.opinion_subject).to eq("Я")
       expect(q1.criterion).to eq('New Criterion')
       expect(q1.criterion_type).to eq("Вовлеченность")
-      within '#messages .alert-success' do
-	expect(page).to have_content "Вопрос обновлен."
-      end
     end
 
     context 'unsuccessfully' do
+      after do
+	expect(page).not_to have_content 'New'
+	click_button 'submit_1q'
+      end
+
       it 'with empty number' do
 	fill_in 'field_1q_number', with: ''
 	find('#field_1q_audience_1').trigger 'click'
@@ -54,9 +56,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_right_text', with: 'New Right Text'
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
-	click_button 'submit_1q'
-	expect(page).not_to have_content 'New'
-	expect(page).not_to have_selector '#messages .alert-success'
       end
 
       it 'with empty criterion' do
@@ -68,9 +67,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	fill_in 'field_1q_right_text', with: 'New Right Text'
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: ''
-	click_button 'submit_1q'
-	expect(page).not_to have_content 'New'
-	expect(page).not_to have_selector '#messages .alert-success'
       end
 
       it 'with empty left text' do
@@ -83,9 +79,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
-	click_button 'submit_1q'
-	expect(page).not_to have_content 'New'
-	expect(page).not_to have_selector '#messages .alert-success'
       end
 
       it 'with empty right text' do
@@ -98,9 +91,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
 	find('#field_1q_subject_1').trigger 'click'
 	fill_in 'field_1q_criterion', with: 'New Criterion'
 	find('#field_1q_criterion_type_1').trigger 'click'
-	click_button 'submit_1q'
-	expect(page).not_to have_content 'New'
-	expect(page).not_to have_selector '#messages .alert-success'
       end
     end
   end
@@ -111,20 +101,10 @@ RSpec.describe 'Admin can update questions', type: :feature do
     end
 
     context 'successfully' do
-      it 'changing nothing' do
-	click_button 'submit_2q'
-	within '#messages .alert-success' do
-	  expect(page).to have_content "Вопрос обновлен."
-	end
-      end
-
       it 'changing all' do
 	find('#field_2q_audience_2').trigger 'click'
 	fill_in 'field_2q_sentence', with: 'New Sentence'
 	click_button 'submit_2q'
-	within '#messages .alert-success' do
-	  expect(page).to have_content "Вопрос обновлен."
-	end
 	within '#admin_second_questions' do
 	  expect(page).to have_content "Рабочая специальность"
 	  expect(page).to have_content "New Sentence"
@@ -136,7 +116,6 @@ RSpec.describe 'Admin can update questions', type: :feature do
       it 'with empty sentence' do
 	fill_in 'field_2q_sentence', with: ''
 	click_button 'submit_2q'
-	expect(page).not_to have_selector '#messages .alert-success'
 	expect(page).to have_selector '.container_question_form'
       end
     end

@@ -71,18 +71,14 @@
   <section id="admin_first_questions" class="col-md-7">
     <h2 class="h3 text-center">Задание 1</h2>
     <% Question.all_first_questions.each do |question| %>
-      <% cache question do %>
-	<%= render partial: 'first_question', locals: { question: question } %>
-      <% end %>
+      <%= render partial: 'first_question', locals: { question: question } %>
     <% end %>
   </section>
 
   <section id="admin_second_questions" class="col-md-5">
     <h2 class="h3 text-center">Задание 2</h2>
     <% Question.all_second_questions.each do |question| %>
-      <% cache question do %>
-	<%= render partial: 'second_question', locals: { question: question } %>
-      <% end %>
+      <%= render partial: 'second_question', locals: { question: question } %>
     <% end %>
   </section>
 </div>

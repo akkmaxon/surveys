@@ -1,3 +1,8 @@
+decreaseQuestionsCount = (id) ->
+  elem = $("#{id} .badge")
+  currentCount = Number(elem.text())
+  elem.text(String(currentCount - 1))
+
 document.addEventListener "turbolinks:load", () ->
   $('.container_question_form').hide()
   $(".edit_question input[checked='checked']").parent().addClass('active')
@@ -25,3 +30,11 @@ document.addEventListener "turbolinks:load", () ->
   $('#show_only_working_staff_questions').on 'click', () ->
     $('.question.management').css('display', 'none')
     $('.question.working_staff').css('display', 'block')
+
+  $(".delete_question").on "ajax:success", (e, data, status, xhr) ->
+    $(@).parents('.question').hide(300)
+    decreaseQuestionsCount('#show_all_questions')
+    if $(@).parents('.question').hasClass('management')
+      decreaseQuestionsCount('#show_only_management_questions')
+    else if $(@).parents('.question').hasClass('working_staff')
+      decreaseQuestionsCount('#show_only_working_staff_questions')

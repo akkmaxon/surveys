@@ -35,8 +35,7 @@ class Admins::QuestionsController < Admins::ApplicationController
 
   def destroy
     @question.destroy
-    flash[:notice] = "Вопрос удален."
-    redirect_to admins_questions_path
+    render plain: "Success"
   end
 
   private

@@ -38,7 +38,7 @@ class SurveysController < ApplicationController
       end
     end
     if surveys_params.key?(:user_email) or surveys_params.key?(:user_agreement)
-      render plain: 'OK'
+      render plain: 'Success'
     end
   end
 
