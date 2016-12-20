@@ -1,11 +1,20 @@
-decreaseQuestionsCount = (id) ->
-  elem = $("#{id} .badge")
-  currentCount = Number(elem.text())
-  elem.text(String(currentCount - 1))
-
 prepareQuestionsPage = () ->
   $('.container_question_form').hide()
   $(".edit_question input[checked='checked']").parent().addClass('active')
+
+tuneManageBar = () ->
+  # management
+  elem = $("#show_only_management_questions .badge")
+  managementCount = $('.management').size()
+  elem.text String(managementCount)
+  # working staff
+  elem = $("#show_only_working_staff_questions .badge")
+  workingStaffCount = $('.working_staff').size()
+  elem.text String(workingStaffCount)
+  # all
+  elem = $("#show_all_questions .badge")
+  totalCount = managementCount + workingStaffCount
+  elem.text String(totalCount)
 
 document.addEventListener "turbolinks:load", () ->
   prepareQuestionsPage()
@@ -35,14 +44,11 @@ document.addEventListener "turbolinks:load", () ->
     $('.question.working_staff').css('display', 'block')
 
   $(".delete_question").on "ajax:success", (e, data, status, xhr) ->
-    $(@).parents('.question').hide(300)
-    decreaseQuestionsCount('#show_all_questions')
-    if $(@).parents('.question').hasClass('management')
-      decreaseQuestionsCount('#show_only_management_questions')
-    else if $(@).parents('.question').hasClass('working_staff')
-      decreaseQuestionsCount('#show_only_working_staff_questions')
+    parent = $(@).parents('.question')
+    parent.replaceWith "<p class=\"alert alert-success\">Вопрос удален</p>"
+    tuneManageBar()
 
-  $(".edit_question").on "ajax:success", (e, data, status, xhr) ->
+  $('.edit_question').on "ajax:success", (e, data, status, xhr) ->
     # form for question
     originalElement = $(@).parents('.container_question_form')
     originalElement.hide(300)
@@ -53,3 +59,4 @@ document.addEventListener "turbolinks:load", () ->
     originalElement.remove()
     elemToUpdate.show(300)
     prepareQuestionsPage()
+    tuneManageBar()

@@ -40,6 +40,11 @@ RSpec.describe 'Admin can update questions', type: :feature do
       expect(q1.opinion_subject).to eq("Я")
       expect(q1.criterion).to eq('New Criterion')
       expect(q1.criterion_type).to eq("Вовлеченность")
+      within '#manage_bar' do
+	expect(page).to have_content("Все 8")
+	expect(page).to have_content("Менеджмент 3")
+	expect(page).to have_content("Рабочая специальность 5")
+      end
     end
 
     context 'unsuccessfully' do
