@@ -22,14 +22,14 @@ class Admins::QuestionsController < Admins::ApplicationController
 
   def update
     if @question.update(question_params)
-      if @question.sentence.blank?
-	@question.left_statement.update(left_statement_params)
-	@question.right_statement.update(right_statement_params)
-      end
-      flash[:notice] = "Вопрос обновлен."
-      redirect_to admins_questions_path
-    else
-      render :index
+      t = if @question.sentence.blank?
+	    @question.left_statement.update(left_statement_params)
+	    @question.right_statement.update(right_statement_params)
+	    '_first_question'
+	  else
+	    '_second_question'
+	  end
+      render t, locals: { question: @question }, layout: false
     end
   end
 

@@ -3,9 +3,12 @@ decreaseQuestionsCount = (id) ->
   currentCount = Number(elem.text())
   elem.text(String(currentCount - 1))
 
-document.addEventListener "turbolinks:load", () ->
+prepareQuestionsPage = () ->
   $('.container_question_form').hide()
   $(".edit_question input[checked='checked']").parent().addClass('active')
+
+document.addEventListener "turbolinks:load", () ->
+  prepareQuestionsPage()
 
   $('.edit_question_link').on 'click', () ->
     originalElement = $(@).parents('.question')
@@ -38,3 +41,15 @@ document.addEventListener "turbolinks:load", () ->
       decreaseQuestionsCount('#show_only_management_questions')
     else if $(@).parents('.question').hasClass('working_staff')
       decreaseQuestionsCount('#show_only_working_staff_questions')
+
+  $(".edit_question").on "ajax:success", (e, data, status, xhr) ->
+    # form for question
+    originalElement = $(@).parents('.container_question_form')
+    originalElement.hide(300)
+    # view question
+    elemToUpdate = originalElement.prev()
+    elemToUpdate.replaceWith xhr.responseText
+    # delete form and change view with response from server
+    originalElement.remove()
+    elemToUpdate.show(300)
+    prepareQuestionsPage()

@@ -63,31 +63,27 @@ RSpec.describe Admins::QuestionsController, type: :controller do
 
   describe 'PUT #update' do
     it 'successfully' do
-      put :update, params: question_params.merge({ id: question.id })
-      expect(response).to redirect_to(:admins_questions)
-      expect(flash[:notice]).to eq("Вопрос обновлен.")
+      put :update, xhr: true, params: question_params.merge({ id: question.id })
+      expect(response).to have_http_status(:success)
     end
 
     it 'redirect to sign in' do
       sign_out admin
-      put :update, params: question_params.merge({ id: question.id })
-      expect(response).to redirect_to(:new_admin_session)
-      expect(flash[:alert]).to eq("Войдите, пожалуйста, в систему.")
+      put :update, xhr: true, params: question_params.merge({ id: question.id })
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe 'DELETE #destroy' do
     it 'successfully' do
-      delete :destroy, params: { id: question.id }
-      expect(response).to redirect_to(:admins_questions)
-      expect(flash[:notice]).to eq("Вопрос удален.")
+      delete :destroy, xhr: true, params: { id: question.id }
+      expect(response).to have_http_status(:success)
     end
 
     it 'redirect to sign in' do
       sign_out admin
-      delete :destroy, params: { id: question.id }
-      expect(response).to redirect_to(:new_admin_session)
-      expect(flash[:alert]).to eq("Войдите, пожалуйста, в систему.")
+      delete :destroy, xhr: true, params: { id: question.id }
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 end
