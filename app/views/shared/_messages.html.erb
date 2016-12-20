@@ -1,6 +1,9 @@
 <div id="messages">
   <% flash.each do |name, message| %>
-    <div class="alert alert-<%= change_for_bootstrap(name) %>">
+    <div class="alert alert-<%= change_for_bootstrap(name) %> alert-dismissible" role="alert">
+      <button class="close" aria-label="Close" data-dismiss="alert">
+	<span aria-hidden="true">&times;</span>
+      </button>
       <%= message %>
     </div>
   <% end %>

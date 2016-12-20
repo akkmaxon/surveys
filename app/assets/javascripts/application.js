@@ -36,10 +36,6 @@ document.addEventListener("turbolinks:load", function() {
   $('[title]').tooltip({ placement: 'top' });
   resizeMasonryElements()
 
-  $('#messages .alert').on('mouseenter', function() {
-    $(this).slideUp(300)
-  });
-
   $('.masonry_container').masonry({
     itemSelector: '.masonry_element',
     gutter: 24,

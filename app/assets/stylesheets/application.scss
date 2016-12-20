@@ -94,16 +94,8 @@ header {
 }
 
 #messages {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  .alert-success {
-    color: #3c763d;
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #dff0d8, rgba(245, 245, 245, 0.5)) !important;
-  }
-  .alert-danger {
-    color: #a94442;
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.5), #f2dede, rgba(245, 245, 245, 0.5)) !important;
+  .close {
+    margin: 2px;
   }
 }
 
