@@ -13,10 +13,10 @@ Company.create! name: "Управление недвижимостью"
 Company.create! name: "Городской парк"
 
 ### Users ###
-admin = Admin.create! login: 'admin',
+Admin.create! login: 'admin',
   email: 'admin@email.com',
   password: 'password'
-coordinator = Coordinator.create! login: 'coordinator',
+Coordinator.create! login: 'coordinator',
   password: 'password'
 genders = %w[ мужской женский ]
 ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет", "от 40 до 55 лет", "более 55 лет"]
@@ -34,7 +34,7 @@ user_agreements = ["я не согласен со своим результат�
 answer = ask "Создать респондентов? (Y/n): "
 
 unless answer == 'n'
-  newuser = User.create! login: 'newuser', password: 'password'
+  User.create! login: 'newuser', password: 'password'
   count = ask "Сколько (default=999): "
   count = count.to_i
   count = 999 if(count == 0)

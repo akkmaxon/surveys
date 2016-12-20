@@ -57,7 +57,7 @@ RSpec.describe Admins::CompaniesController, type: :controller do
       expect(flash[:alert]).to eq("Необходимо указать новое имя компании.")
     end
 
-     it 'redirect to sign in' do
+    it 'redirect to sign in' do
       sign_out admin
       put :update, params: { id: company.id, company: { name: 'New Name' } }
       expect(response).to redirect_to(:new_admin_session)

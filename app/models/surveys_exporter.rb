@@ -10,10 +10,10 @@ class SurveysExporter
   end
 
   def create_csv
-    csv = CSV.generate do |csv|
+    data = CSV.generate do |csv|
       csv << headings
     end
-    File.open(@filename,'w') { |f| f.write csv }
+    File.open(@filename,'w') { |f| f.write data }
   end
 
   def to_csv(surveys)

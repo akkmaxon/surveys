@@ -20,6 +20,7 @@ gem 'prawn'
 gem 'spreadsheet'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'rubocop', require: false
 gem 'capistrano'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'

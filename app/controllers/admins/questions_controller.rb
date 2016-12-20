@@ -28,7 +28,7 @@ class Admins::QuestionsController < Admins::ApplicationController
 	    '_first_question'
 	  else
 	    '_second_question'
-	  end
+          end
       render t, locals: { question: @question }, layout: false
     end
   end

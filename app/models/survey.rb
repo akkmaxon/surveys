@@ -79,7 +79,7 @@ class Survey < ApplicationRecord
       nil
     else
       total = question_numbers.inject(0) do |sum, n|
-	sum += answer_for(n).to_f
+	sum + answer_for(n).to_f
       end / question_numbers.size
       (total * report_correction).round(2)
     end
