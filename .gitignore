@@ -23,3 +23,4 @@ config/database.yml
 config/secrets.yml
 config/smtp_credentials.rb
 export.csv
+surveys.backup
