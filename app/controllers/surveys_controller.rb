@@ -30,7 +30,7 @@ class SurveysController < ApplicationController
     if surveys_params.key?(:completed)
       if @survey.reliable?
 	flash[:notice] = "Опрос завершен."
-	render plain: 'OK'
+	render plain: 'Success'
       else
 	@survey.destroy
 	flash[:alert] = "С большой долей вероятности можно сказать, что Вы отвечали не совсем искренне, поэтому мы считаем Ваши данные недостоверными."

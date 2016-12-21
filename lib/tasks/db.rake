@@ -23,7 +23,7 @@ namespace :db do
   desc 'Restore db from a db/surveys.backup'
   task :restore do
     if File.exists?(FILE)
-      print "Restore surveys_#{Rails.env}. Ctrl^C to cancel "
+      print "Restore surveys_#{Rails.env} from #{FILE}. Ctrl^C to cancel "
       moving_points
       `PGPASSWORD=#{DB_CONFIG["password"]} pg_restore\
    --username #{DB_CONFIG["username"]}\

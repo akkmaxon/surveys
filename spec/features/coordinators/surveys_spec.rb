@@ -42,15 +42,29 @@ RSpec.describe 'Coordinator can view surveys', type: :feature do
       end
     end
 
-    it 'for specific user' do
-      other_user = FactoryGirl.create(:user, login: 'Specific User')
-      FactoryGirl.create(:info, user: other_user)
-      Survey.create!(user: other_user, completed: true)
-      visit coordinators_users_path
-      first('.show_user_surveys').trigger('click')
-      expect(page.current_path).to eq(coordinators_surveys_path)
-      expect(page).to have_content("Опросы (#{other_user.login})")
-      expect(page).to have_selector('.masonry_container .survey', count: 1)
+    context 'for specific user' do
+      let(:other_user) { FactoryGirl.create(:user, login: 'Specific User') }
+
+      before do
+	FactoryGirl.create(:info, user: other_user)
+      end
+
+      it 'with completed survey' do
+	Survey.create!(user: other_user, completed: true)
+	visit coordinators_users_path
+	first('.show_user_surveys').trigger('click')
+	expect(page.current_path).to eq(coordinators_surveys_path)
+	expect(page).to have_content("Опросы (#{other_user.login}) 1")
+	expect(page).to have_selector('.masonry_container .survey', count: 1)
+      end
+
+      it 'without completed surveys' do
+	visit coordinators_users_path
+	first('.show_user_surveys').trigger('click')
+	expect(page.current_path).to eq(coordinators_surveys_path)
+	expect(page).to have_content("Опросы (#{other_user.login}) 0")
+	expect(page).to have_selector('.masonry_container .survey', count: 0)
+      end
     end
   end
 end

@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Company, type: :model do
-  let(:company) { Company.new name: "Company" }
-
   it 'must be valid' do
-    company.save
+    company = Company.new(name: 'Company')
     expect(company).to be_valid
   end
 
-  it 'company must have a name' do
-    company.name = ''
+  it 'must have a name' do
+    company = Company.new
     expect(company).to be_invalid
   end
 end

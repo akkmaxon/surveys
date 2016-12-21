@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin manage companies and ", type: :feature do
+RSpec.describe "Admin manage companies", type: :feature do
   fixtures :companies
 
   let(:admin) { FactoryGirl.create :admin }
@@ -38,12 +38,6 @@ RSpec.describe "Admin manage companies and ", type: :feature do
       end
     end
 
-    it 'access from dashboard' do
-      visit admins_root_path
-      click_link "Компании"
-      expect(page.current_path).to eq admins_companies_path
-    end
-
     it 'page layout' do
       visit admins_companies_path
       expect(page).to have_selector '#add_company'
@@ -56,7 +50,7 @@ RSpec.describe "Admin manage companies and ", type: :feature do
     end
   end
 
-  describe "creating" do
+  describe "create" do
     it 'with valid name' do
       find('#add_company').trigger 'click'
       fill_in "Имя компании", with: 'NEW COMPANY'
@@ -80,7 +74,7 @@ RSpec.describe "Admin manage companies and ", type: :feature do
     end
   end
 
-  describe "updating" do
+  describe "update" do
     before do
       Company.where('name != ?', "FirstCompany").destroy_all
       visit admins_companies_path
@@ -103,7 +97,7 @@ RSpec.describe "Admin manage companies and ", type: :feature do
     end
   end
 
-  describe "deleting" do
+  describe "delete" do
     it 'successfully' do
       Company.where('name != ?', "FirstCompany").destroy_all
       visit admins_companies_path

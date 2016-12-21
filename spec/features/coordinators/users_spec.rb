@@ -45,20 +45,30 @@ RSpec.describe 'Coordinator can view users', type: :feature do
       expect(page).to have_selector 'a.show_report', count: 3
     end
 
-    it 'only for specific company' do
-      company = Company.create!(name: "Company")
-      user = FactoryGirl.create(:user, login: 'Company User')
-      FactoryGirl.create(:info, user: user, company: company.name)
+    context 'for specific company' do
+      let!(:company) { Company.create!(name: "Company") }
 
-      expect(User.count).to eq(4)
+      it 'with an employee' do
+	user = FactoryGirl.create(:user, login: 'Company User')
+	FactoryGirl.create(:info, user: user, company: company.name)
+	expect(User.count).to eq(4)
 
-      visit coordinators_companies_path
-      find('.show_company_users').trigger('click')
-      expect(page.current_path).to eq(coordinators_users_path)
-      expect(page).to have_content("Респонденты (#{company.name})")
-      expect(page).to have_selector('.masonry_container .user', count: 1)
-      within('.masonry_container .user') do
-	expect(page).to have_content(user.login)
+	visit coordinators_companies_path
+	find('.show_company_users').trigger('click')
+	expect(page.current_path).to eq(coordinators_users_path)
+	expect(page).to have_content("Респонденты (#{company.name}) 1")
+	expect(page).to have_selector('.masonry_container .user', count: 1)
+	within('.masonry_container .user') do
+	  expect(page).to have_content(user.login)
+	end
+      end
+
+      it 'without employees' do
+	visit coordinators_companies_path
+	find('.show_company_users').trigger('click')
+	expect(page.current_path).to eq(coordinators_users_path)
+	expect(page).to have_content("Респонденты (#{company.name}) 0")
+	expect(page).to have_selector('.masonry_container .user', count: 0)
       end
     end
   end
