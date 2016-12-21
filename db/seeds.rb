@@ -12,6 +12,13 @@ Company.create! name: "Таможенный пост"
 Company.create! name: "Управление недвижимостью"
 Company.create! name: "Городской парк"
 
+### Work Positions ###
+WorkPosition.create! title: "Рабочая должность"
+WorkPosition.create! title: "Производственный персонал (мастер, руководитель производственного участка)"
+WorkPosition.create! title: "Работник офиса"
+WorkPosition.create! title: "Руководитель отдела, группы, менеджер"
+WorkPosition.create! title: "Топ-менеджер"
+
 ### Users ###
 Admin.create! login: 'admin',
   email: 'admin@email.com',
@@ -22,11 +29,6 @@ genders = %w[ мужской женский ]
 ages = ["менее 25 лет", "от 25 до 30 лет", "от 30 до 40 лет", "от 40 до 55 лет", "более 55 лет"]
 experiences = ["менее 1 года", "от 1 года до 3 лет", "от 3 до 5 лет", "более 5 лет"]
 workplace_numbers = ["первое", "второе", "третье", "у меня было более трех мест работы"]
-work_positions = ["рабочая должность",
-		  "производственный персонал (мастер, руководитель производственного участка)",
-		  "работник офиса",
-		  "руководитель отдела, группы, менеджер",
-		  "топ-менеджер"]
 user_agreements = ["я не согласен со своим результатом",
 		   "я частично согласен со своим результатом",
 		   "я полностью согласен со своим результатом"]
@@ -48,8 +50,8 @@ unless answer == 'n'
       i.experience = experiences[rand(4)]
       i.age = ages[rand(5)]
       i.workplace_number = workplace_numbers[rand(4)]
-      i.work_position = work_positions[rand(5)]
-      i.company = Company.find(rand(8) + 1).name
+      i.work_position = WorkPosition.pluck(:title)[rand(5)]
+      i.company = Company.pluck(:name)[rand(8)]
       i.user_id = user.id
     end
 
