@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="header">Должности <span class="badge"><%= @work_positions.count %></span></h1>
+
+  <div id="manage_bar" class="row">
+    <div class="col-md-4 col-md-offset-8">
+      <a id="add_work_position" class="btn btn-success surrounded">
+	<span class="glyphicon glyphicon-plus"></span>
+	Добавить новую должность
+      </a>
+    </div>
+  </div>
+
+  <div id="add_new_work_position">
+    <%= label_tag :work_position_title, "Новая должность" %>
+    <%= render 'form', object: @new_wp %>
+  </div>
+</div>
+
+<div class="masonry_container container-fluid">
+  <% @work_positions.each do |wp| %>
+    <div class="panel panel-default masonry_element work_position">
+      <div class="panel-body">
+	<div class="pull-right buttons">
+	    <a class="edit_work_position_link btn btn-sm btn-info" title="Редактировать">
+	      <span class="glyphicon glyphicon-pencil"></span>
+	    </a>
+	    <%= link_to admins_work_position_path(wp), method: :delete, class: "delete_work_position btn btn-sm btn-danger", title: "Удалить", data: { confirm: "Должность будет удалена. Подтверждаете действие?" } do %>
+	      <span class="glyphicon glyphicon-trash"></span>
+	    <% end %>
+	</div>
+	<h2 class="h4 work_position_title">
+	  <%= wp.title %>
+	</h2>
+	<%= render 'form', object: wp %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

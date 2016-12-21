@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :coordinators, only: [:index, :show, :create, :update, :destroy]
     resources :users, only: [:index, :show, :create, :update]
     resources :companies, only: [:index, :create, :update, :destroy]
+    resources :work_positions, only: [:index, :create, :update, :destroy]
     resources :questions, only: [:index, :create, :update, :destroy]
     get 'db/backup'
     post 'db/restore'

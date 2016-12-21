@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Admin manage work_positions", type: :feature do
+  fixtures :work_positions
+
   let(:admin) { FactoryGirl.create :admin }
 
   describe "view" do
@@ -14,17 +16,24 @@ RSpec.describe "Admin manage work_positions", type: :feature do
 
       it 'signed in user' do
 	sign_in FactoryGirl.create(:user)
-	visit admins_companies_path
+	visit admins_work_positions_path
       end
 
       it 'unsigned in user' do
-	visit admins_companies_path
+	visit admins_work_positions_path
       end
 
       it 'coordinator' do
 	sign_in FactoryGirl.create(:coordinator)
-	visit admins_companies_path
+	visit admins_work_positions_path
       end
+    end
+
+    it 'access for admin' do
+      sign_in admin
+      visit root_path
+      find('#work_positions_link').trigger('click')
+      expect(page.current_path).to eq(admins_work_positions_path)
     end
 
     it 'page layout' do
@@ -43,6 +52,7 @@ RSpec.describe "Admin manage work_positions", type: :feature do
   describe "create" do
     before do
       sign_in admin
+      visit admins_work_positions_path
     end
 
     it 'with valid title' do
@@ -53,7 +63,7 @@ RSpec.describe "Admin manage work_positions", type: :feature do
 	expect(page).to have_content "Должность добавлена"
       end
       within '.masonry_container' do
-	expect(page).to have_selector '.work_positions', count: 4
+	expect(page).to have_selector '.work_position', count: 4
 	expect(page).to have_content 'New WorkPosition'
       end
       expect(WorkPosition.count).to eq 4
@@ -64,15 +74,16 @@ RSpec.describe "Admin manage work_positions", type: :feature do
       fill_in id: 'work_position_title', with: ''
       click_button "Подтвердить"
       visit admins_work_positions_path
-      expect(page).to have_selector '.work_positions', count: 3
+      expect(page).to have_selector '.work_position', count: 3
       expect(WorkPosition.count).to eq 3
     end
   end
 
   describe "update" do
     before do
-      visit admins_companies_path
-      first('.work_positions .edit_work_position_link').trigger 'click'
+      sign_in admin
+      visit admins_work_positions_path
+      first('.work_position .edit_work_position_link').trigger 'click'
     end
 
     it 'with valid title' do
@@ -90,20 +101,24 @@ RSpec.describe "Admin manage work_positions", type: :feature do
       fill_in id: 'work_position_title', with: ''
       click_button "Подтвердить"
       expect(page).not_to have_selector('#messages .alert-success')
-      expect(WorkPosition.find_by(name: '')).to be_nil
+      expect(WorkPosition.find_by(title: '')).to be_nil
     end
   end
 
   describe "delete" do
-    it 'successfully' do
+    before do
+      sign_in admin
       visit admins_work_positions_path
-      expect(page).to have_selector '.work_positions', count: 3
-      find('.work_positions .delete_work_position').trigger 'click'
+    end
+
+    it 'successfully' do
+      expect(page).to have_selector '.work_position', count: 3
+      first('.work_position .delete_work_position').trigger 'click'
       within '#messages .alert-success' do
 	expect(page).to have_content "Должность удалена"
       end
       expect(page.current_path).to eq(admins_work_positions_path)
-      expect(page).to have_selector '.work_positions', count: 2
+      expect(page).to have_selector '.work_position', count: 2
     end    
   end
 end
