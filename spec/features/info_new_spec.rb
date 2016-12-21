@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'User create info about himself', type: :feature do
-  fixtures :companies
+  fixtures :companies, :work_positions
 
   let(:user) { FactoryGirl.create :user }
 
@@ -46,7 +46,7 @@ RSpec.describe 'User create info about himself', type: :feature do
       select("более 5 лет", from: 'info_experience')
       select("более 55 лет", from: 'info_age')
       select("третье", from: 'info_workplace_number')
-      select("топ-менеджер", from: 'info_work_position')
+      select("ThirdWorkPosition", from: 'info_work_position')
       select("SecondCompany", from: 'info_company')
       click_button "Подтвердить"
       within '#messages .alert-success' do
@@ -67,55 +67,94 @@ RSpec.describe 'User create info about himself', type: :feature do
       expect(user.info).not_to be_nil
     end
 
-    context 'companies not defined by admin' do
-      before do
-	Company.destroy_all
-	visit new_info_path
-      end
+    it 'companies not defined by admin' do
+      Company.destroy_all
+      visit new_info_path
 
-      it 'page layout' do 
-	expect(page).to have_selector '#info_gender'
-	expect(page).not_to have_selector '#info_company'
-      end
+      expect(page).to have_selector '#info_gender'
+      expect(page).to have_selector '#info_age'
+      expect(page).to have_selector '#info_experience'
+      expect(page).to have_selector '#info_workplace_number'
+      expect(page).to have_selector '#info_work_position'
+      expect(page).not_to have_selector '#info_company'
 
-      it 'data from user' do
-	select("женский", from: 'info_gender')
-	select("более 5 лет", from: 'info_experience')
-	select("более 55 лет", from: 'info_age')
-	select("третье", from: 'info_workplace_number')
-	select("топ-менеджер", from: 'info_work_position')
-	click_button "Подтвердить"
-	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
-	expect(page).to have_selector '.progress'
-	user.reload
-	expect(user.info.company).to eq "нет ответа"
-      end
+      select("женский", from: 'info_gender')
+      select("более 5 лет", from: 'info_experience')
+      select("более 55 лет", from: 'info_age')
+      select("третье", from: 'info_workplace_number')
+      select("FirstWorkPosition", from: 'info_work_position')
+      click_button "Подтвердить"
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+      expect(page).to have_selector '.progress'
+      user.reload
+      expect(user.info.company).to eq "нет ответа"
     end
 
-    context 'only one company' do
-      before do
-	Company.where('name != ?', 'FirstCompany').destroy_all
-	visit new_info_path
-      end
+    it 'one company defined by admin' do
+      Company.where('name != ?', 'FirstCompany').destroy_all
+      visit new_info_path
 
-      it 'page layout' do
-	expect(page).to have_selector '#info_gender'
-	expect(page).not_to have_selector '#info_company'
-      end
+      expect(page).to have_selector '#info_gender'
+      expect(page).to have_selector '#info_age'
+      expect(page).to have_selector '#info_experience'
+      expect(page).to have_selector '#info_workplace_number'
+      expect(page).to have_selector '#info_work_position'
+      expect(page).not_to have_selector '#info_company'
 
-      it 'data from user' do
-	select("женский", from: 'info_gender')
-	select("более 5 лет", from: 'info_experience')
-	select("более 55 лет", from: 'info_age')
-	select("третье", from: 'info_workplace_number')
-	select("топ-менеджер", from: 'info_work_position')
-	click_button "Подтвердить"
-	expect(page.current_path).to eq(take_survey_path(user.surveys.first))
-	expect(page).to have_selector '.progress'
-	user.reload
-	user.reload
-	expect(user.info.company).to eq('FirstCompany')
-      end
+      select("женский", from: 'info_gender')
+      select("более 5 лет", from: 'info_experience')
+      select("более 55 лет", from: 'info_age')
+      select("третье", from: 'info_workplace_number')
+      select("FirstWorkPosition", from: 'info_work_position')
+      click_button "Подтвердить"
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+      expect(page).to have_selector '.progress'
+      user.reload
+      expect(user.info.company).to eq('FirstCompany')
+    end
+
+    it 'work_positions not defined by admin' do
+      WorkPosition.destroy_all
+      visit new_info_path
+
+      expect(page).to have_selector '#info_gender'
+      expect(page).to have_selector '#info_age'
+      expect(page).to have_selector '#info_company'
+      expect(page).to have_selector '#info_experience'
+      expect(page).to have_selector '#info_workplace_number'
+      expect(page).not_to have_selector '#info_work_position'
+
+      select("женский", from: 'info_gender')
+      select("более 5 лет", from: 'info_experience')
+      select("более 55 лет", from: 'info_age')
+      select("третье", from: 'info_workplace_number')
+      select("FirstCompany", from: 'info_company')
+      click_button "Подтвердить"
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+      user.reload
+      expect(user.info.work_position).to eq("нет ответа")
+    end
+
+    it 'one work_position defined by admin' do
+      WorkPosition.where('title != ?', 'FirstWorkPosition').destroy_all
+      visit new_info_path
+
+      expect(page).to have_selector '#info_gender'
+      expect(page).to have_selector '#info_age'
+      expect(page).to have_selector '#info_company'
+      expect(page).to have_selector '#info_experience'
+      expect(page).to have_selector '#info_workplace_number'
+      expect(page).not_to have_selector '#info_work_position'
+
+      select("женский", from: 'info_gender')
+      select("более 5 лет", from: 'info_experience')
+      select("более 55 лет", from: 'info_age')
+      select("третье", from: 'info_workplace_number')
+      select("FirstCompany", from: 'info_company')
+      click_button "Подтвердить"
+      expect(page.current_path).to eq(take_survey_path(user.surveys.first))
+      user.reload
+      expect(user.info.work_position).to eq('FirstWorkPosition')
     end
   end
 end

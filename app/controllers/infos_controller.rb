@@ -1,7 +1,7 @@
 class InfosController < ApplicationController
   before_action :check_for_empty_info, only: [:edit]
   before_action :find_info, only: [:edit, :update]
-  before_action :set_companies, except: [:create]
+  before_action :set_companies, :set_work_positions, except: [:create]
 
   def new
     if current_user.info.blank?
@@ -50,5 +50,9 @@ class InfosController < ApplicationController
 
   def set_companies
     @companies = Company.pluck(:name)
+  end
+
+  def set_work_positions
+    @work_positions = WorkPosition.pluck(:title)
   end
 end

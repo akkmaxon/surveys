@@ -42,12 +42,18 @@
     </select>
   </div>
 
-  <div class="form-group">
-    <%= f.label :work_position, "Какую должность Вы занимаете в компании?" %>
-    <select id="info_work_position" class="form-control" name="info[work_position]">
-      <%= options_for_select(work_positions, @info.work_position) %>
-    </select>
-  </div>
+  <% if @work_positions.blank? %>
+    <%= f.hidden_field :work_position, value: "нет ответа" %>
+  <% elsif @work_positions.size == 1 %>
+    <%= f.hidden_field :work_position, value: @work_positions.first %>
+  <% else %>
+    <div class="form-group">
+      <%= f.label :work_position, "Какую должность Вы занимаете в компании?" %>
+      <select id="info_work_position" class="form-control" name="info[work_position]">
+	<%= options_for_select(@work_positions, @info.work_position) %>
+      </select>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "Подтвердить", class: 'btn btn-primary btn-lg btn-block surrounded' %>
