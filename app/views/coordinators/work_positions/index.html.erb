@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="header">
+    Должности
+    <%= owned_by %>
+    <span class="badge"><%= @work_positions.count %></span>
+  </h1>
+</div>
+
+<div class="masonry_container container-fluid">
+  <% @work_positions.each do |wp| %>
+    <div class="panel panel-default masonry_element work_position">
+      <div class="panel-body">
+	<div class="pull-right buttons">
+	  <%= link_to coordinators_reports_work_position_path(wp.title), class: 'btn btn-sm btn-primary show_report', title: "Отчет" do %>
+	    <span class="glyphicon glyphicon-stats"></span>
+	  <% end %>
+	</div>
+	<h2 class="h4 work_position_title">
+	  <%= wp.title %>
+	</h2>
+      </div>
+    </div>
+  <% end %>
+</div>

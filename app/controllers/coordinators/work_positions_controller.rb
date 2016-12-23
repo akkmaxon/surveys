@@ -1,5 +1,5 @@
 class Coordinators::WorkPositionsController < Coordinators::ApplicationController
   def index
-    render plain: 'Implement me!!!'
+    @work_positions = WorkPosition.all
   end
 end

@@ -1,11 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Coordinator can view all the companies', type: :feature do
-  let(:coordinator) { FactoryGirl.create :coordinator }
+  fixtures :companies
 
-  before do
-    3.times { |n| Company.create! name: "Company#{n}" }
-  end
+  let(:coordinator) { FactoryGirl.create :coordinator }
 
   describe 'impossible for' do
     after do
@@ -46,6 +44,8 @@ RSpec.describe 'Coordinator can view all the companies', type: :feature do
       expect(page).to have_selector '.masonry_container'
       expect(page).to have_selector '.active #companies_link'
       expect(page).to have_selector '.company', count: 3
+      expect(page).to have_selector 'a.show_company_work_positions', count: 3
+      expect(page).to have_selector 'a.show_company_users', count: 3
       expect(page).to have_selector 'a.show_report', count: 3
     end
   end

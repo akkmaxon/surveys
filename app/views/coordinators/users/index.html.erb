@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="header">
     Респонденты
-    <%= "(" + params[:filter] + ")" if params.key?(:filter) %>
+    <%= owned_by %>
     <span class="badge"><%= @users.count %></span>
   </h1>
 </div>

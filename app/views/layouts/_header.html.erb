@@ -58,8 +58,17 @@
 	  <li class="<%= active_link('companies') %>">
 	    <%= link_to "Компании", coordinators_companies_path, id: 'companies_link' %>
 	  </li>
-	  <li class="<%= active_link('work_positions') %>">
-	    <%= link_to "Должности", coordinators_work_positions_path, id: 'work_positions_link' %>
+	  <li class="dropdown <%= active_link('work_positions') %>">
+	    <a href="#" id="work_positions_link" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+	      Должности <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu">
+	      <% Company.all.each do |company| # change it later!!!%> 
+		<li><%= link_to company.name, coordinators_work_positions_path(filter: company.name), class: 'work_positions_company' %></li>
+	      <% end %>
+	      <li role="separator" class="divider"></li>
+	      <li><%= link_to "По всем компаниям", coordinators_work_positions_path, id: 'work_positions_all_companies' %></li>
+	    </ul>
 	  </li>
 	  <li>
 	    <%= link_to export_coordinators_surveys_path(format: :csv) do %>

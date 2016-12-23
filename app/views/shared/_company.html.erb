@@ -1,6 +1,7 @@
 <div class="panel panel-default masonry_element company">
   <div class="panel-body">
     <div class="pull-right buttons">
+
       <% if admin_signed_in? %>
 	<a class="edit_company_link btn btn-sm btn-info" title="Изменить имя">
 	  <span class="glyphicon glyphicon-pencil"></span>
@@ -8,11 +9,15 @@
 	<%= link_to admins_company_path(company), method: :delete, class: "delete_company btn btn-sm btn-danger", title: "Удалить", data: { confirm: "Компания будет удалена. Подтверждаете действие?" } do %>
 	  <span class="glyphicon glyphicon-trash"></span>
 	<% end %>
+
       <% elsif coordinator_signed_in? %>
-	<%= link_to coordinators_users_path(filter: company.name), class: "btn btn-sm btn-info show_company_users", title: "Респонденты" do %>
+	<%= link_to coordinators_work_positions_path(filter: company.name), class: 'btn btn-sm btn-warning show_company_work_positions', title: "Должности" do %>
+	  <span class="glyphicon glyphicon-briefcase"></span>
+	<% end %>
+	<%= link_to coordinators_users_path(filter: company.name), class: 'btn btn-sm btn-info show_company_users', title: "Респонденты" do %>
 	  <span class="glyphicon glyphicon-user"></span>
 	<% end %>
-	<%= link_to coordinators_reports_company_path(company.name), class: "btn btn-sm btn-primary show_report", title: "Отчет" do %>
+	<%= link_to coordinators_reports_company_path(company.name), class: 'btn btn-sm btn-primary show_report', title: "Отчет" do %>
 	  <span class="glyphicon glyphicon-stats"></span>
 	<% end %>
       <% end %>

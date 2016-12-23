@@ -42,6 +42,7 @@ RSpec.describe 'Coordinator can view users', type: :feature do
       expect(page).to have_selector '.masonry_container'
       expect(page).to have_selector '.active #users_link'
       expect(page).to have_selector '.user', count: 3
+      expect(page).to have_selector 'a.show_user_surveys', count: 3
       expect(page).to have_selector 'a.show_report', count: 3
     end
 
